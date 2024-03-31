@@ -114,7 +114,7 @@
     box-sizing: border-box;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
-    background: #173459;
+    background: #db8d56;
     border: none;
     width: 100%;
     color: #f8f9f9;
@@ -176,7 +176,7 @@
 
 header {
 
-    background-image: url("https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516_640.jpg");
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG01_FjNxDEQzo6-oXgbWArRqosDV7xNosN8Eb6lntUIkizXMMQUtQzNLNkw1MVimzFsw&usqp=CAU");
     width: 100%;
     height: auto;
     background-repeat: no-repeat;
@@ -204,7 +204,7 @@ ul {
     align-self: flex-end;
     width: 100%;
     padding: 15px 0px;
-    background-color: darkslateblue;
+    background-color: rgba(74, 38, 31, 0.446);
     
     box-sizing: border-box;
     margin: 0px;
@@ -243,14 +243,24 @@ li>a {
     color: white;
     padding: 50px;
 
-}
 
+}
+.first{
+    font-size: 40px;
+    color: chocolate;
+    background-color: aliceblue;
+    border-radius: 50%;
+    display: inline-block;
+    padding:0px 10px;
+}
 .article {
     width: 80%;
     height: auto;
     background-color: #f8f9f9;
     display: flex;
     flex-wrap: wrap;
+    font-family: monospace;
+    font-size: 20px;
     justify-content: space-between;
 }
 #listbar{font-size:40px;}

@@ -76,11 +76,7 @@ for(var i=3;i<par.length;i++){
 val1+= `<div class="dd">
 <button class="dd-btn">${par[i].Heading}</button>
 
-<div class="dd-content">
-   <a href="#">${par[i].subhead.sub1}</a>
-   <a href="#">${par[i].subhead.sub2}</a>
-   <a href="#">${par[i].subhead.sub3}</a>
-</div>
+
 </div>`
 
 val2+=`<div class="content">
@@ -93,8 +89,8 @@ style="padding: 20px;text-align:center;">
 <button class="btn">READ</button>
 <button class="btn">BACK</button>
 </div>`
-document.getElementsByClassName("ds")[0].innerHTML=val1
-document.getElementsByClassName("box")[0].innerHTML=val2
+document.getElementsByClassName("ds")[0].innerHTML+=val1
+document.getElementsByClassName("box")[0].innerHTML+=val2
 
 document.getElementsByClassName("aside")[0].innerHTML+=` <div class="asidBox">
 <img id="smallimg" src="${par[i].content2}">
