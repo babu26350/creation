@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            nostrum
+        </title>
+        <style>
+           #container{
+            background-color: aquamarine;
+            width: fit-content;
+            padding: 20px 50px 30px 30px;
+           } 
+        .listbar{
+            width:60%;
+            background-color: azure;
+            padding-top: 60px;
+            height:400px;
+            overflow-y:scroll;
+      }
+        .red{width:auto;
+            min-width:16.5%;
+            height:70px;
+         background-color: bisque;
+        border: 1px solid red;
+        display: inline-block;
+        margin: -10px -3px;
+        box-sizing: border-box;
+        padding: 5px 10px;
+        
+    }
+    #red{min-width:15%;
+            
+            height: 30px;
+         background-color: bisque;
+        border: 1px solid red;
+        display: inline-block;
+        margin: 0px;
+        box-sizing: border-box;
+        padding: 3.5px 30px;
+        }
+        .span{margin-right: 6px;
+            color:white;
+            font-weight:bold;
+            width: 100px;
+         display: inline-block;
+        }
+        .dt{
+            padding: 2px 10px 2px 30px;
+        }
+        .id{display:none}
+        </style>
+        
+    </head>
+    <body>
+        
+     <div id="container">
+            <h1>Type the details of the student</h1>
+            <span class="span">Head</span><input type="text" class="dt" placeholder="Name"><br>
+            <span class="span">sub1</span><input type="text" class="dt" placeholder="Name"><br>
+            <span class="span">sub2</span><input type="text" class="dt" placeholder="Name"><br>
+                <span class="span">sub3</span><input type="text" class="dt" placeholder="Age"><br>
+                <span class="span">content1</span><input type="text" class="dt" placeholder="class"><br>
+                <span class="span">content2</span><input type="text" class="dt" placeholder="Father"><br>
+                <span class="span">content3</span><input type="text" class="dt" placeholder="Mother"><br>
+                <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="setValue()" id="bt1">SUBMIT</button>
+                <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="sendReq()" id="bt2">submit</button>
+              <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="goBack()" id="bt3">BACK</button>
+      </div>
+      <div class="listbar">
+            
+        <div id="list">
+        </div>
+        </div> 
+      <script>
+         var bt2 = document.getElementById("bt2")
+          var bt3 = document.getElementById("bt3")
+          
+          bt3.style.display="none"
+        var student =[]
+        var apiInex =[]
+
+        
+  
+
+    var val = ""
+   
+   var apiId = ""
+    
+    
+   function reFresh(){ 
+
+    async function test(){
+                
+                const responce =await fetch("https://6555dd2084b36e3a431e83be.mockapi.io/getinfo/1/")
+                const student = responce.json();
+                return student;
+    }
+ test().then((res)=>{
+                var js = [JSON.stringify(res)];
+                var par =JSON.parse(js)
+        
+        for(var i=5;i<par.length;i++){
+        
+      
+      
+          val+=`<div class="parent"><p class="red">${par[i].Name}</p>
+                     <p class="red">${par[i].Age}</p>
+                     <p class="red">${par[i].Class}</p>
+                    <p class="red">${par[i].Father}</p>
+                     <p class="red">${par[i].Mother}</p> 
+                     <p class="id">${par[i].id}</p>
+                      <button class="edit" type="button">EDIT</button>
+                    <button class="delet" type="button">DELETE</button></div><br>`
+          document.getElementById("list").innerHTML = val
+                     
+          var button = document.getElementsByClassName("edit")
+          var input = document.getElementsByClassName("dt")
+          var bt1 = document.getElementById("bt1")
+          var listBar = document.getElementsByClassName("listbar")[0]
+                            
+          for(var x =0;x<button.length;x++){
+          
+        button[x].onclick = function(){
+            apiId = this.parentElement.children[5].innerHTML
+            input[0].value = this.parentElement.children[0].innerHTML
+            input[1].value = this.parentElement.children[1].innerHTML
+            input[2].value = this.parentElement.children[2].innerHTML
+            input[3].value = this.parentElement.children[3].innerHTML
+            input[4].value = this.parentElement.children[4].innerHTML
+        
+            alert(apiId)
+        
+bt1.style.display ="none"
+listBar.style.display ="none"
+bt2.style.display="inline-block"
+bt3.style.display="inline-block"
+        
+        
+        } 
+var delet =document.getElementsByClassName("delet")
+        for(var a=0;a<delet.length;a++){
+            delet[a].onclick =function(){
+            apiId = this.parentElement.children[5].innerHTML
+            alert(apiId)
+            var x =window.confirm("Are yor sure to delete this record ?")
+          
+    if(x==true){
+            deleteApi();
+           }
+        }
+        }
+        
+    
+        
+        }
+          };    
+ }).catch((err)=>{alert(err)});
+}
+
+var listBar = document.getElementsByClassName("listbar")[0]
+var bt1 = document.getElementById("bt1")
+
+function goBack(){
+    bt1.style.display ="block"
+listBar.style.display ="block"
+bt2.style.display ="none"
+bt3.style.display ="none"
+}
+
+
+function sendReq(){      
+           alert(apiId)
+        
+           var input = document.getElementsByClassName("dt")
+            var string = {"Heading":input[0].value,
+                "subhead":{"sub1":input[1].value,
+                          "sub2":input[2].value,
+                           "sub3":input[3].value,},
+                "content1":  input[4].value,
+                "content2":  input[5].value,
+                 "content3":input[6].value}
+            
+            fetch("https://654f6363358230d8f0cd4325.mockapi.io/content/ret",{
+method:"POST",
+headers:{
+'content-type':'application/json'
+},
+body:JSON.stringify(string)
+            }).then((res)=>res.json())
+            .then((json)=>alert(JSON.stringify(json)));
+         goBack()
+            reFresh(1); 
+        }
+function deleteApi(){
+            fetch("https://6555dd2084b36e3a431e83be.mockapi.io/getinfo/1/"+apiId+"",{
+method:"DELETE",
+headers:{
+'content-type':'application/json'
+},
+
+            }).then((res)=>res.json())
+            .then((json)=>alert(JSON.stringify(json)));
+         reFresh(2);  
+        }
+         
+reFresh();
+
+var ram=[{"Heading":"Education","subhead":{"sub1":"Ram","sub2":"shyam","sub3":"suresh"},"content1":"raam ji ki sawari","content2":"jay shri ram","content3":"sitaraam hanuman"}]
+alert(ram[0].subhead.sub2)
+</script>
+
+        
+      
+
+    </body>
+</html>
