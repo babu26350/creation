@@ -6,6 +6,73 @@
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
    <link rel="stylesheet" href="study.css">
 
+   <style>
+    #container{
+        width: 70%;
+     background-color: rgb(232, 168, 85);
+     color: #fff;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+box-sizing: border-box;
+     padding: 20px 50px 30px 30px;
+     height: auto;
+    } 
+ .listbar{
+     width:60%;
+     background-color: azure;
+     padding-top: 60px;
+     height:400px;
+     overflow-y:scroll;
+}
+ .red{width:auto;
+     min-width:16.5%;
+     height:70px;
+  background-color: bisque;
+ border: 1px solid red;
+ display: inline-block;
+ margin: -10px -3px;
+ box-sizing: border-box;
+ padding: 5px 10px;
+ 
+}
+#red{min-width:15%;
+     
+     height: 30px;
+  background-color: bisque;
+ border: 1px solid red;
+ display: inline-block;
+ margin: 0px;
+ box-sizing: border-box;
+ padding: 3.5px 30px;
+ }
+ .span{margin-right: 6px;
+     color:white;
+     font-weight:bold;
+     width: 100px;
+  display: inline-block;
+ }
+ .dt{
+     padding: 2px 10px 2px 30px;
+     margin: 20px;
+     width: 300px;
+     height: 40px;
+     display: inline-block;
+ }
+ .id{display:none}
+ .flex{
+   display: flex;
+   flex-direction: column;
+   
+ }
+ #details> p:nth-child(odd){
+   margin-top: 50px;
+
+ }
+ #details > p:nth-of-type(even){
+  margin-top: 50px;
+}
+ </style>
 
 
 
@@ -16,11 +83,13 @@
    <header class="res">
 
       <div id="center">
+        <h1 style="width:350px;font-family: monospace; " 
+        class="co"><span class="first">J</span>OSHI ASTRO 
+        SERVICES</h1>
 
 
 
-
-         <h1 style="width:350px;font-family: monospace;" class="co">How should be the command over life</h1>
+         
 
 
 
@@ -35,9 +104,9 @@
       <li style="font-size: 40px"  class="menu" onclick="showNav()"><a  href="#"><i class="material-icons">menu</i></a></li>
       <li id="listbar" class="menu"><a href="#"></a><i class="material-icons">list</i></a></li>
 
-      <li class="li"><a href="index.html"><a href="#"></a><i class="material-icons">home</i></a></li>
+      <li class="li"><a href="index.html"><i class="material-icons">home</i></a></li>
       <li class="li"><a href="update.html"><i class="material-icons">updates</i></a></li>
-      <li class="li"><a href="#"></a><a href="#"></a><i class="material-icons">start</i></li>
+      <li class="li"><a href="mesaage.html"></a><i class="material-icons">start</i></li>
       <li class="li"><a href="#"><a href="#"></a><i class="material-icons">mail</i></a></li>
    </ul>
    <ul id="ulDup">
@@ -51,82 +120,198 @@
    <div class="main res">
 
 
-      <div class="scroll">
-
-         <div class="ds">
-            <div class="dd">
-               <button class="dd-btn">Health </button>
-
-               <div class="dd-content">
-                  <a href="#"> Definition </a>
-                  <a href="#"> Problems </a>
-                  <a href="#">Maintaining</a>
-               </div>
-            </div>
 
 
-            <div class="dd">
-               <button class="dd-btn">Lifestyle</button>
-               <div class="dd-content">
-                  <a href="#">Starting </a>
-                  <a href="#">Excercise</a>
-                  <a href="#">Innovation </a>
-               </div>
-            </div>
 
-            <div class="dd">
-               <button class="dd-btn">Food</button>
-               <div class="dd-content">
-                  <a href="#">Proper amount of nutritions</a>
-                  <a href="#">Light food</a>
-                  <a href="#"> Low colestrol food </a>
-               </div>
-            </div>
-            <div class="dd">
-               <button class="dd-btn">Food</button>
-               <div class="dd-content">
-                  <a href="#">Proper amount of nutritions</a>
-                  <a href="#">Light food</a>
-                  <a href="#"> Low colestrol food </a>
-               </div>
-            </div>
-            <div class="dd">
-               <button class="dd-btn">Take</button>
-               <div class="dd-content">
-                  <a href="#">Proper amount of nutritions</a>
-                  <a href="#">Light food</a>
-                  <a href="#"> Low colestrol food </a>
-               </div>
-            </div>
-            <div class="dd">
-               <button class="dd-btn">Yoga</button>
-               <div class="dd-content">
-                  <a href="#">Proper amount of nutritions</a>
-                  <a href="#">Light food</a>
-                  <a href="#"> Low colestrol food </a>
-               </div>
-            </div>
-            <div class="dd">
-               <button class="dd-btn">positiveness</button>
-               <div class="dd-content">
-                  <a href="#">Proper amount of nutritions</a>
-                  <a href="#">Light food</a>
-                  <a href="#"> Low colestrol food </a>
-               </div>
-            </div>
-            <div class="dd">
-               <button class="dd-btn">Analizing</button>
-               <div class="dd-content">
-                  <a href="#">Proper amount of nutritions</a>
-                  <a href="#">Light food</a>
-                  <a href="#"> Low colestrol food </a>
-               </div>
-            </div>
-         </div>
-      </div>
 
-      <div class="article res">
-         <div class="box ">
 
+
+
+
+
+
+
+
+
+
+ <div id="container">
+            
+<div id="details" style="font-size: 20px;border:2px solid white;box-sizing:border-box;padding:50px;align-items:center;">
+                <h1 style="width: 100%;">DETAILS</h1>
+                <h3>Please fill the following Details</h3>
+                <p>Full name </p>
+                <p>Date of your Birth</p>
+                <p> Time of your Birth</p>
+                <p>Place of your Birth</p>
+                <p>Contact No</p>
+            </div>
+        </div>
+        <div class="flex"> 
+ <div>
+                <span class="span"></span><input type="text" class="dt" placeholder="Name"><br>
+                <span class="span"></span><input type="date" class="dt" placeholder="DateOfBirth"><br>
+                <span class="span"></span><input type="time" class="dt" placeholder="Time"><br>
+                    <span class="span"></span><input type="text" class="dt" placeholder="BirthPlace"><br>
+                    <span class="span"></span><input type="number" class="dt" placeholder="PhoneNo"><br>
+               </div>
+    
+            <div  style="width: 50%;" class="container">
+                    
+                    <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin:20px;display: inline-block;" type="button" onclick="sendReq()" id="bt2">submit</button>
+                  <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="goBack()" id="bt3">BACK</button>
+          </div>
+           </div>
+        </div>
+          <div style="display: none" class="listbar">
+                
+            <div id="list">
+            </div>
+            
         </div>
     </div>
+          <script>
+             var bt2 = document.getElementById("bt2")
+              var bt3 = document.getElementById("bt3")
+              
+              bt3.style.display="none"
+            var student =[]
+            var apiInex =[]
+    
+            
+      
+    
+        var val = ""
+       
+       var apiId = ""
+        
+        
+       function reFresh(){ 
+    
+        async function test(){
+                    
+                    const responce =await fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1")
+                    const student = responce.json();
+                    return student;
+        }
+     test().then((res)=>{
+                    var js = [JSON.stringify(res)];
+                    var par =JSON.parse(js)
+            
+            for(var i=5;i<par.length;i++){
+            
+          
+          
+              val+=`<div class="parent"><p class="red">${par[i].Name}</p>
+                         <p class="red">${par[i].Name}</p>
+                         <p class="red">${par[i].DateOfBirth}</p>
+                        <p class="red">${par[i].Time}</p>
+                         <p class="red">${par[i].BirthPlace}</p> 
+                         <p class="id">${par[i].phoneNo}</p>
+                          <button class="edit" type="button">EDIT</button>
+                        <button class="delet" type="button">DELETE</button></div><br>`
+              document.getElementById("list").innerHTML = val
+                         
+              var button = document.getElementsByClassName("edit")
+              var input = document.getElementsByClassName("dt")
+              var bt1 = document.getElementById("bt1")
+              var listBar = document.getElementsByClassName("listbar")[0]
+                                
+              for(var x =0;x<button.length;x++){
+              
+            button[x].onclick = function(){
+                apiId = this.parentElement.children[5].innerHTML
+                input[0].value = this.parentElement.children[0].innerHTML
+                input[1].value = this.parentElement.children[1].innerHTML
+                input[2].value = this.parentElement.children[2].innerHTML
+                input[3].value = this.parentElement.children[3].innerHTML
+                input[4].value = this.parentElement.children[4].innerHTML
+            
+                alert(apiId)
+            
+    bt1.style.display ="none"
+    listBar.style.display ="none"
+    bt2.style.display="inline-block"
+    bt3.style.display="inline-block"
+            
+            
+            } 
+    var delet =document.getElementsByClassName("delet")
+            for(var a=0;a<delet.length;a++){
+                delet[a].onclick =function(){
+                apiId = this.parentElement.children[5].innerHTML
+                alert(apiId)
+                var x =window.confirm("Are yor sure to delete this record ?")
+              
+        if(x==true){
+                deleteApi();
+               }
+            }
+            }
+            
+        
+            
+            }
+              };    
+     }).catch((err)=>{alert(err)});
+    }
+    
+    var listBar = document.getElementsByClassName("listbar")[0]
+    var bt1 = document.getElementById("bt1")
+    
+    function goBack(){
+        bt1.style.display ="block"
+    listBar.style.display ="block"
+    bt2.style.display ="none"
+    bt3.style.display ="none"
+    }
+    
+    
+    function sendReq(){      
+             //  alert(apiId)
+            
+               var input = document.getElementsByClassName("dt")
+                var string = {"Name":input[0].value,
+                    "DateOfBirth":input[1].value,
+                              "Time":input[2].value,
+                               "BithPlace":input[3].value,
+                    "PhoneNo":  input[4].value }
+                
+                fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1",{
+    method:"POST",
+    headers:{
+    'content-type':'application/json'
+    },
+    body:JSON.stringify(string)
+                }).then((res)=>res.json())
+                .then((json)=>alert(JSON.stringify(json)));
+             goBack()
+                reFresh(1); 
+            }
+    function deleteApi(){
+                fetch("https://6555dd2084b36e3a431e83be.mockapi.io/getinfo/1/"+apiId+"",{
+    method:"DELETE",
+    headers:{
+    'content-type':'application/json'
+    },
+    
+                }).then((res)=>res.json())
+                .then((json)=>console.log(JSON.stringify(json)));
+             reFresh(2);  
+            }
+             
+    reFresh();
+    
+    var ram=[{"Heading":"Education","subhead":{"sub1":"Ram","sub2":"shyam","sub3":"suresh"},"content1":"raam ji ki sawari","content2":"jay shri ram","content3":"sitaraam hanuman"}]
+
+    </script>
+        <footer style="background-color: #333; color: #fff; padding: 20px;">
+            <div style="text-align: center;">
+                <p>&copy; 2024 Your Company. All rights reserved.</p>
+                <p>Address: 123 Main Street, City, State, ZIP</p>
+                <p>Email: info@yourcompany.com | Phone: +1 (123) 456-7890</p>
+            </div>
+        </footer>
+        
+    
+    </body>
+    </html>

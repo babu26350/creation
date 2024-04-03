@@ -6,7 +6,12 @@
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
    <link rel="stylesheet" href="study.css">
 
-
+<style>
+   html{scroll-behavior: smooth;}
+   button > a{
+    text-decoration: none;
+      color: #f8f9f9}
+</style>
 
 
 </head>
@@ -38,14 +43,14 @@
       <li class="li"><a href="#"><a href="#"></a><i class="material-icons">home</i></a></li>
       <li class="li"><a href="update.html"><i class="material-icons">updates</i></a></li>
       <li class="li"><a href="#"></a><a href="#"></a><i class="material-icons">start</i></li>
-      <li class="li"><a href="mesaage.html"><a href="mesaage.html"></a><i class="material-icons">mail</i></a></li>
+      <li class="li"><a href="mesaage.html"><i class="material-icons">mail</i></a></li>
    </ul>
    <ul id="ulDup">
 
       <li><a href="#"><a href="#"></a><i class="material-icons">HOME</i></a></li>
       <li><a href="#"></a><i class="material-icons">updates</i></li>
       <li><a href="#"></a><a href="#"></a><i class="material-icons">start</i></li>
-      <li><a href="#"><a href="#"></a><i class="material-icons">mail</i></a></li>
+      <li><a href="mesaage.html"></a><i class="material-icons">mail</i></a></li>
    </ul>
 
    <div class="main res">
@@ -141,8 +146,8 @@
                
                उपाय : यहाँ पर आप कुछ दान भी कर सकते है जैसे कि तांबे के बर्तन, लाल वस्तु, फल, फूल, मिठाई आदि। यहाँ पर आपको तांबे के बर्तन से पानी पीना शुभ रहेगा और देवी का पाठ करना शुभ रहेगा।
                
-               <button class="btn">READ</button>
-               <button class="btn">BACK</button>
+               <button id="one" class="btn">BACK</button>
+               <button id="two" class="btn"><a href="#three">NEXT</a></button>
             </div>
             
             <div class="content"><img id="img"
@@ -153,23 +158,26 @@
 
                   उदाहरण स्वरूप मान लो किसी जातक का जन्म रविवार को प्रात: 9 बजे हुआ तो उसका जन्म दिन और जन्मसमय दोनों का ग्रह सूर्य हुआ. तो उस जातक को सूर्य से कभी भी अहित नही मिलेगा. जातक के जीवन में सूर्य के प्रभाव स्वरुप सम्मान एव लाभ प्राप्त होता है. लाल किताब के नियमों का पालन करते हुए यदि इन बातों को समझा जाए तो ग्रहों के उचित उपाय द्वारा व्यक्ति अनुकूल फलों की प्राप्ति में सफल हो सकता है.</p>
                
-                  <button class="btn">READ</button>
-               <button class="btn">BACK</button>
+                  <button id="three"  class="btn"><a href="#one">BACK</a></button>
+               <button id="four" href="#five" class="btn"><a href="#five">NEXT<a><button>
             </div>
             
          </div>
       </div>
    </div>
-<div class="aside res">
-   <div class="asidBox">
-      <img id="smallimg" src="../index.html/images/images/my new image.jpg">
-      <p></p>
-   </div>
+
+   
    
 </div>
+<footer style="background-color: #333; color: #fff; padding: 20px;">
+   <div style="text-align: center;">
+       <p>&copy; 2024 Your Company. All rights reserved.</p>
+       <p>Address: 123 Main Street, City, State, ZIP</p>
+       <p>Email: info@yourcompany.com | Phone: +1 (123) 456-7890</p>
+   </div>
+</footer>
 
-
-   <script src="study.js"></script>
+<script src="study.js"></script>
 </body>
 
 </html>

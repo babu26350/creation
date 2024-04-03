@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>res</title>
+    </head>
+    <body>
+        <script>
+
+
+           const url = 'https://breachdirectory.p.rapidapi.com/?func=auto&term=someone%40example.com/1';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key':'a9b7b15901msh7bd1f7b89123526p1ba6fcjsn2eeb2b84dfcb',
+		'X-RapidAPI-Host': 'breachdirectory.p.rapidapi.com'
+	}
+};
+async function getRes(){
+try {
+	const response =  await fetch(url, options);
+	const result =  await response.text();
+	alert(result);
+} catch (error) {
+	console.error(error);
+} 
+      }   
+      getRes();
+         </script>
+    </body>
+</html>

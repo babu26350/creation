@@ -5,7 +5,7 @@ var ul=document.getElementsByTagName("ul")[0]
 var listBar =document.getElementById("listbar")
 listBar.setAttribute("onclick","newFun()")
   
-
+var date=new Date()
 function newFun(){
   scroll.style.display="inline-block"
 scroll.style.width ="200px"
@@ -64,7 +64,7 @@ function goBack(){
  var val2 = ""
  async function test(){
                 
-  const responce =await fetch("https://654f6363358230d8f0cd4325.mockapi.io/content/ret")
+  const responce =await fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2")
   const student = responce.json();
   return student;
 }
@@ -72,30 +72,31 @@ test().then((res)=>{
   var js = [JSON.stringify(res)];
   var par =JSON.parse(js)
 
-for(var i=3;i<par.length;i++){
+for(var i=0;i<par.length;i++){
 val1+= `<div class="dd">
-<button class="dd-btn">${par[i].Heading}</button>
+<button class="dd-btn"><a href="#${par[i].Heading}">${par[i].Heading}</a></button>
 
 
 </div>`
 
 val2+=`<div class="content">
-<h2 class="padding inline">${par[i].content1}</h2>
+<h1 id="${par[i].Heading}" class="padding inline">${par[i].Heading}</h1>
 <img id="img"
-src="${par[i].content2}"
+src="${par[i].image}"
 style="padding: 20px;text-align:center;">
+<p style="font-size:10px;color:gray;">${date}<p>
+<p class="padding">${par[i].content}</p>
+<button id="${i}" class="btn"><a href="#${i-1}">BACK</a></button>
+<button class="btn"><a href="#${i+1}">NEXT</a></button>
 
-<p class="padding">${par[i].content3}</p>
-<button class="btn">READ</button>
-<button class="btn">BACK</button>
 </div>`
-document.getElementsByClassName("ds")[0].innerHTML+=val1
-document.getElementsByClassName("box")[0].innerHTML+=val2
+document.getElementsByClassName("ds")[0].innerHTML=val1
+document.getElementsByClassName("box")[0].innerHTML=val2
 
-document.getElementsByClassName("aside")[0].innerHTML+=` <div class="asidBox">
-<img id="smallimg" src="${par[i].content2}">
-<p>${par[i].content1}</p>
-</div> `
+//document.getElementsByClassName("aside")[0].innerHTML+=` <div class="asidBox">
+//<img id="smallimg" src="${par[i].content2}">
+//<p>${par[i].content1}</p>
+//</div> `
 
 }});
 var button =document.getElementsByClassName("dd-btn") 

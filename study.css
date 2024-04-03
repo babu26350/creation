@@ -24,7 +24,7 @@
 .scroll {
     height: 35em;
     overflow-y: scroll;
-    width: min-content;
+    width:30%;
     position:sticky;
 
     top: 30px;
@@ -53,10 +53,10 @@
     flex-wrap: wrap;
 
 
-    max-width: 300px;
+    
     width: 100%;
     height: fit-content;
-    justify-content: space-around;
+    
 }
 .inline{
     display: inline-block;
@@ -65,10 +65,10 @@
     position: relative;
     font-family: monospace;
     box-sizing: border-box;
-    max-width: 350px;
+    
     display: inline-block;
-    min-width: 200px;
-    width: 30%;
+
+    width: 100%;
     border-bottom: 1px solid white;
     font-size: large;
 
@@ -102,7 +102,8 @@
     height: auto;
     display: flex;
     justify-content: center;
-
+border: 1px solid gray;
+border-radius: 5px;
     flex-wrap: wrap;
 
 
@@ -128,12 +129,12 @@
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
-    margin: 20px;
+    margin: 20px 10px;
     height: auto;
-    max-width: 400px;
+    max-width: 700px;
     border-bottom: 2px solid orange;
     border-radius: 4px;
-
+line-height: 70px;
     margin-top: 10px;
     box-sizing: border-box;
 
@@ -318,7 +319,13 @@ position: fixed;
         opacity: 90%;
         
     }
-
+    button > a{
+        text-decoration: none;
+        color: #f8f9f9;
+    }
+html{
+    scroll-behavior: smooth;
+}
     .article {
         width: 100%;
     }

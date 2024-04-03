@@ -48,29 +48,82 @@
             padding: 2px 10px 2px 30px;
         }
         .id{display:none}
+        #size{width: 30px;
+        height: 30px;
+        }
+       .customers, #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.customers td, .customers th, #customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.customers , #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+#content{
+    height: 300px;
+    margin: 20px 0px;
+}
+input{height: 50px;}
         </style>
         
     </head>
     <body>
         
+    
      <div id="container">
+        <img src="https://www.google.com/imgres?imgurl=https://e1.pxfuel.com/desktop-wallpaper/1006/241/desktop-wallpaper-astrology.jpg&tbnid=bFIvw8ocSbvBNM&vet=1&imgrefurl=https://www.pxfuel.com/en/desktop-wallpaper-fahsm&docid=WBRzFmspAt9D9M&w=850&h=531&source=sh/x/im/m1/1&kgs=2749e5d615c5ee7a&shem=abme,trie"/>
+
             <h1>Type the details of the student</h1>
-            <span class="span">Head</span><input type="text" class="dt" placeholder="Name"><br>
-            <span class="span">sub1</span><input type="text" class="dt" placeholder="Name"><br>
-            <span class="span">sub2</span><input type="text" class="dt" placeholder="Name"><br>
-                <span class="span">sub3</span><input type="text" class="dt" placeholder="Age"><br>
-                <span class="span">content1</span><input type="text" class="dt" placeholder="class"><br>
-                <span class="span">content2</span><input type="text" class="dt" placeholder="Father"><br>
-                <span class="span">content3</span><input type="text" class="dt" placeholder="Mother"><br>
-                <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="setValue()" id="bt1">SUBMIT</button>
+            <span class="span">Heading</span><input type="text"  class="dt" placeholder="Heading"><br>
+            <span class="span">Content</span><input type="text" id="content" class="dt" placeholder="Content"><br>
+            <span class="span">Image src</span><input type="text" id="image" class="dt" placeholder="Image link"><br>
+            
+                <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="deleteApi('1')" id="bt1">Edit Now</button>
                 <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="sendReq()" id="bt2">submit</button>
               <button style="border-radius:5px;border:0px;font-weight:bold;background-color:blue;padding: 10px 30px;color:white;margin-left: 140px;margin-top:20px;" type="button" onclick="goBack()" id="bt3">BACK</button>
       </div>
-      <div class="listbar">
-            
-        <div id="list">
-        </div>
-        </div> 
+      <table id="customers">
+        <thead>
+            <tr>
+                <th>Heading</th>
+                <th>Content</th>
+                <th>Image</th>
+                <th>DELETE</th>
+               <th>EDIT</th>
+            </tr>
+        </thead>    
+    <tbody id="lis">
+
+    </tbody>
+      </table>
+        
+        <table class="customers">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Date of birth</th>
+                  <th>BirthTime</th>
+                  <th>BirthPlace</th>
+                 <th>ContactNo</th>
+              </tr>
+          </thead>    
+      <tbody id="list">
+      </tbody>
+        </table>
       <script>
          var bt2 = document.getElementById("bt2")
           var bt3 = document.getElementById("bt3")
@@ -78,20 +131,19 @@
           bt3.style.display="none"
         var student =[]
         var apiInex =[]
-
-        
+var meth="POST"
+  var fetchV=''      
   
 
     var val = ""
    
    var apiId = ""
-    
-    
+ var id=  ['https://6555dd2084b36e3a431e83be.mockapi.io/getinfo/1/','https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2']
    function reFresh(){ 
 
     async function test(){
                 
-                const responce =await fetch("https://6555dd2084b36e3a431e83be.mockapi.io/getinfo/1/")
+                const responce =await fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2")
                 const student = responce.json();
                 return student;
     }
@@ -99,19 +151,18 @@
                 var js = [JSON.stringify(res)];
                 var par =JSON.parse(js)
         
-        for(var i=5;i<par.length;i++){
+        for(var i=0;i<par.length;i++){
         
       
       
-          val+=`<div class="parent"><p class="red">${par[i].Name}</p>
-                     <p class="red">${par[i].Age}</p>
-                     <p class="red">${par[i].Class}</p>
-                    <p class="red">${par[i].Father}</p>
-                     <p class="red">${par[i].Mother}</p> 
-                     <p class="id">${par[i].id}</p>
-                      <button class="edit" type="button">EDIT</button>
-                    <button class="delet" type="button">DELETE</button></div><br>`
-          document.getElementById("list").innerHTML = val
+          val+=`<tr><td id="${par[i].Heading}">${par[i].Heading}</td>
+            <td>${par[i].content}</td>
+              <td>   <img id="size" src=${par[i].image}/></td>   
+            <td><button type="button" class="delet" data1="${par[i].id}">DELET</button></td>
+            <td><button class="edit" data2="${par[i].id}" Heading="${par[i].Heading}" content="${par[i].content}" image="${par[i].image}" type="button">EDIT</button></td>
+              <tr>`
+          document.getElementById("lis").innerHTML = val
+          
                      
           var button = document.getElementsByClassName("edit")
           var input = document.getElementsByClassName("dt")
@@ -121,27 +172,32 @@
           for(var x =0;x<button.length;x++){
           
         button[x].onclick = function(){
-            apiId = this.parentElement.children[5].innerHTML
-            input[0].value = this.parentElement.children[0].innerHTML
-            input[1].value = this.parentElement.children[1].innerHTML
-            input[2].value = this.parentElement.children[2].innerHTML
-            input[3].value = this.parentElement.children[3].innerHTML
-            input[4].value = this.parentElement.children[4].innerHTML
+            meth="PUT"
+          var  apiP = this.getAttributeNode("data2").value
+            apiId=JSON.parse(apiP)
+            input[0].value = this.getAttributeNode("Heading").value
+            input[1].value = this.getAttributeNode("content").value
+            input[2].value = this.getAttributeNode("image").value
+        fetchV=`https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2/${apiId}`    
         
             alert(apiId)
         
-bt1.style.display ="none"
+bt1.style.display ="inline-block"
 listBar.style.display ="none"
-bt2.style.display="inline-block"
+bt2.style.display="none"
 bt3.style.display="inline-block"
         
-        
+        }
         } 
-var delet =document.getElementsByClassName("delet")
+var delet =document.getElementsByClassName("delet");
         for(var a=0;a<delet.length;a++){
             delet[a].onclick =function(){
-            apiId = this.parentElement.children[5].innerHTML
-            alert(apiId)
+            
+            var api=JSON.parse(this.getAttributeNode("data1").value);
+            apiId = api
+
+            
+            alert(apiId+meth)
             var x =window.confirm("Are yor sure to delete this record ?")
           
     if(x==true){
@@ -152,7 +208,7 @@ var delet =document.getElementsByClassName("delet")
         
     
         
-        }
+        
           };    
  }).catch((err)=>{alert(err)});
 }
@@ -173,40 +229,89 @@ function sendReq(){
         
            var input = document.getElementsByClassName("dt")
             var string = {"Heading":input[0].value,
-                "subhead":{"sub1":input[1].value,
-                          "sub2":input[2].value,
-                           "sub3":input[3].value,},
-                "content1":  input[4].value,
-                "content2":  input[5].value,
-                 "content3":input[6].value}
-            
-            fetch("https://654f6363358230d8f0cd4325.mockapi.io/content/ret",{
-method:"POST",
+                "content":input[1].value,
+                          "image":input[2].value
+                           }
+     var v =  ["https://654f6363358230d8f0cd4325.mockapi.io/content/ret"]
+           if(meth=="POST"){fetchV= "https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2"} 
+            fetch(fetchV,{
+method:meth,
 headers:{
 'content-type':'application/json'
 },
 body:JSON.stringify(string)
             }).then((res)=>res.json())
             .then((json)=>alert(JSON.stringify(json)));
+            meth="POST"
          goBack()
             reFresh(1); 
         }
 function deleteApi(){
-            fetch("https://6555dd2084b36e3a431e83be.mockapi.io/getinfo/1/"+apiId+"",{
+    
+            fetch(`https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2/${apiId}`,{
 method:"DELETE",
 headers:{
 'content-type':'application/json'
 },
 
+
             }).then((res)=>res.json())
             .then((json)=>alert(JSON.stringify(json)));
          reFresh(2);  
+bt1.style.display="none"
+bt2.style.display="inline-block"
+      
         }
          
-reFresh();
 
-var ram=[{"Heading":"Education","subhead":{"sub1":"Ram","sub2":"shyam","sub3":"suresh"},"content1":"raam ji ki sawari","content2":"jay shri ram","content3":"sitaraam hanuman"}]
-alert(ram[0].subhead.sub2)
+
+/*get*/ 
+  ;
+ function get1(){
+     async function test(){
+                 
+                 const responce =await fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1")
+                 const rest = responce.json();
+                 return rest;
+     }
+  test().then((res)=>{
+                 var js = [JSON.stringify(res)];
+                 var pa =JSON.parse(js)
+         
+         for(var i=0;i<pa.length;i++){
+         
+       
+       document.getElementById("list").innerHTML+=`<tr>
+                      <td>${pa[i].Name}</td>
+                      <td>${pa[i].DateOfBirth}</td>
+                     <td>${pa[i].Time}</td>
+                      <td>${pa[i].BirthPlace}</td><td>${pa[i].PhoneNo}</td></tr>`
+                  
+                    }
+                 
+
+
+
+
+
+
+
+
+
+      
+  }).catch((err)=>{alert(err)})
+ }
+  reFresh();  
+ get1();
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
 </script>
 
         
