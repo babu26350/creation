@@ -90,15 +90,18 @@ style="padding: 20px;text-align:center;">
 <button class="btn"><a href="#${i+1}">NEXT</a></button>
 
 </div>`
-document.getElementsByClassName("ds")[0].innerHTML=val1
-document.getElementsByClassName("box")[0].innerHTML=val2
+
 
 //document.getElementsByClassName("aside")[0].innerHTML+=` <div class="asidBox">
 //<img id="smallimg" src="${par[i].content2}">
 //<p>${par[i].content1}</p>
 //</div> `
 
-}});
+}
+document.getElementsByClassName("ds")[0].innerHTML=val1
+document.getElementsByClassName("box")[0].innerHTML+=val2
+
+});
 var button =document.getElementsByClassName("dd-btn") 
   for(var i=0;i<button.length;i++){
    button[i].onclick=function(){
