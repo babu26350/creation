@@ -47,7 +47,7 @@
     <button class="no-print" onclick="setFun()">SAVE AND SUBMIT</button>
     <button class="no-print" onclick="window.print()">Print Table</button>
     
-    <span>Weekly Test. class=6th </span>
+    <span>Weekly Test. class=7th </span>
     
     <table id="studentTable">
         <thead>
@@ -77,8 +77,14 @@
             "RAJ WARDHAN SINGH", "RAKESH", "RAMCHANDRA", "RAVI SUTHAR", "RONAK SARAN", "SANDEEP", "SUNITA PRAJAPAT",
             "VALINEE", "VINAY RATHORE"
         ];
-        class6.sort()
-
+        const class7 = [
+            "AEENA", "ATAY SINGH", "AMBIKA", "ANIL", "ANKIT SARAN", "AYUSH", "DINESH KUMAR",
+            "DIPIKA KANWAR", "GAJANAND", "JAY PRAKASH MEGHWAL", "KRISHNA KUMARI", "LUCKY SAINI",
+            "MANISH", "NARENDRA KUMAR PRAJAPAT", "NARMADA JANGIR", "PANKAJ", "PRITAM SINGH",
+            "RADHIKA SUTHAR", "RAMESH", "RENUKA SWAMI", "SANDHYA KANWAR", "SAPNA", "SARITA",
+            "SONU", "SUBHASH KUMAR", "SUNIL", "SWATI", "VIJAY KUMAR", "SURYA PRAKASH", "ANUJ"
+        ];
+        class7.sort()
         // Subject passwords
         const passwords = {
             maths: 'maths123',
@@ -133,7 +139,7 @@
             tableBody.innerHTML = ''; // Clear existing rows if any
 
             // Populate table with class6 data
-            class6.forEach((name, index) => {
+            class7.forEach((name, index) => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${index + 1}</td>
@@ -150,10 +156,10 @@
                 tableBody.appendChild(row);
             });
         }
-
+        const id = 7; // Class ID
         // Update table with API data
         function fetchData() {
-            const id = 6; // Class ID
+          
             const apiUrl = `https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/${id}`;
 
             fetch(apiUrl, {

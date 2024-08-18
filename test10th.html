@@ -47,7 +47,7 @@
     <button class="no-print" onclick="setFun()">SAVE AND SUBMIT</button>
     <button class="no-print" onclick="window.print()">Print Table</button>
     
-    <span>Weekly Test. class=6th </span>
+    <span>Weekly Test. class=10th </span>
     
     <table id="studentTable">
         <thead>
@@ -77,8 +77,63 @@
             "RAJ WARDHAN SINGH", "RAKESH", "RAMCHANDRA", "RAVI SUTHAR", "RONAK SARAN", "SANDEEP", "SUNITA PRAJAPAT",
             "VALINEE", "VINAY RATHORE"
         ];
-        class6.sort()
-
+        const class7 = [
+            "AEENA", "ATAY SINGH", "AMBIKA", "ANIL", "ANKIT SARAN", "AYUSH", "DINESH KUMAR",
+            "DIPIKA KANWAR", "GAJANAND", "JAY PRAKASH MEGHWAL", "KRISHNA KUMARI", "LUCKY SAINI",
+            "MANISH", "NARENDRA KUMAR PRAJAPAT", "NARMADA JANGIR", "PANKAJ", "PRITAM SINGH",
+            "RADHIKA SUTHAR", "RAMESH", "RENUKA SWAMI", "SANDHYA KANWAR", "SAPNA", "SARITA",
+            "SONU", "SUBHASH KUMAR", "SUNIL", "SWATI", "VIJAY KUMAR", "SURYA PRAKASH", "ANUJ"
+        ];
+        const class8 = ["Anand Kumar",
+    "Anil Kumar",
+    "Chandarkala 1St",
+    "Chandarkala 2nd",
+    "Digvijay Singh",
+    "Hitesh Saini",
+    "Khushi",
+    "Krishna",
+    "Lakshami",
+    "Mamata",
+    "Mamta",
+    "Manisha",
+    "Narendra Singh",
+    "Naresh Kumar",
+    "Nirmal",
+    "Palak Rathore",
+    "Paradeep prajapat",
+    "Raksha1st",
+    "Raksha2nd",
+    "Ravishankar",
+    "Sanwarmal",
+    "Sharada",
+    "Sunita Kanwar",
+    "Umesh Saran",
+    "Vikash Kumar Saran",
+    "Vishnu",
+    "Yash Rathore"
+]
+const class9 = [
+            "AAINA", "ABHILASHA", "ANIL SARAN", "ANKIT", "ANKUSH", "ANUJ", "CHANDRABHAN",
+            "DEEPIKA", "INDRAJ PRAJAPAT", "KAMLESH MEGHVAL", "KOMAL SARAN", "LALITA",
+            "LOKESH SARAN", "MANISHA", "MAYA", "NARESH MEGHVAL", "NIDHI", "OMPAL SINGH",
+            "PAWAN", "POONAM", "RAHUL SINGH", "RAHUL SINGH", "RAJA", "RAJESH KUMAR", "RAMESH SUTHAR",
+            "RONAK", "SHANTI", "UPASANA", "VIJAY KUMAR"
+        ];
+        const class10 = [
+            "AJAY","AMBIKA", "ANKIT", "ANKITA", "ANURADHA", "DIMPAL", "DIPENDRA SINGH", 
+            "GUNJAN", "JAIPAL SINGH","JITENDRA","KAILASH SARAN","KAMAL SARAN", "KANTA", "KOUSHLYA", 
+            "LALIT", "LILADHAR", "MAHESH SUTHAR", "MANOJ KUMAR SWAMI", "MUKESH KUMAR", "NARESH KUMAR","POOJA", "PUNIT", "RAJANI", "RAMAN SINGH", "RAVINDRA", "RAVINDRA SINGH","REKHA SUTHAR","RITIKA","ROHIT", "SAKSHI KANWAR", 
+            "SARITA","SHIV KISHAN SUTHAR","SUMAN", "SUNIL KUMAR", "SUNITA", 
+            "SUNITA", "SURENDRA SARAN", "VIKASH", "VIKASH"
+        ];
+        const class12 = [
+    "Vikash", "Ramniwash", "Sahil", "Sunil", "Rajesh", "Rukamand", "Parmwishwar", 
+    "Aanand", "Kamlesh", "Ganesh", "Kishanlal", "Sher Shing", "Mukesh", 
+    "Mukesh Swami", "Mahesh", "Dharmal", "Aarati", "Taramani", "Sonu", 
+    "Kalpana", "Nirmala", "Dipu", "Pintu", "Chanda Suthaar", "Dimpal", 
+    "Shushila", "Chanda Prajapat", "Anil", "Manju"
+]
+class10.sort()
         // Subject passwords
         const passwords = {
             maths: 'maths123',
@@ -133,7 +188,7 @@
             tableBody.innerHTML = ''; // Clear existing rows if any
 
             // Populate table with class6 data
-            class6.forEach((name, index) => {
+            class10.forEach((name, index) => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${index + 1}</td>
@@ -150,10 +205,10 @@
                 tableBody.appendChild(row);
             });
         }
-
+        const id = 10; // Class ID
         // Update table with API data
         function fetchData() {
-            const id = 6; // Class ID
+          
             const apiUrl = `https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/${id}`;
 
             fetch(apiUrl, {
