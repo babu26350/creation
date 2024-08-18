@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: left;
+        }
+        th:nth-child(2), td:nth-child(2) {
+            width: 20%; /* Adjust width as needed */
+        }
+        .no-print {
+            margin: 10px;
+        }
+        .name {
+            font-size: 14px;
+        }
+        .editable {
+            background-color: #e0e0e0; /* Highlight editable cells */
+        }
+    </style>
+</head>
+<body>
+    <p id="response"></p>
+
+    <!-- Single password input for all subjects -->
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <button class="no-print" onclick="toggleEditable()">Toggle Editable</button>
+    <button class="no-print" onclick="setFun()">SAVE AND SUBMIT</button>
+    <button class="no-print" onclick="window.print()">Print Table</button>
+    
+    <span>Weekly Test. class=6th </span>
+    
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th contenteditable="false">Students Name</th>
+                <th class="headsub" id="maths-col" contenteditable="false">Maths/10</th>
+                <th class="headsub" id="english-col" contenteditable="false">English/10</th>
+                <th class="headsub" id="science-col" contenteditable="false">Science/10</th>
+                <th class="headsub" id="ssc-col" contenteditable="false">SSC/10</th>
+                <th class="headsub" id="hindi-col" contenteditable="false">Hindi/10</th>
+                <th class="headsub" id="sanskrit-col" contenteditable="false">Sanskrit/10</th>
+                <th>Total</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows are generated dynamically through JavaScript -->
+        </tbody>
+    </table>
+    <p id="data"></p>
+
+    <script>
+        const class6 = [
+            "ANSHUMAN SINGH", "CHANDRAKALA", "GAJANAND SINGH", "GAJENDRA SINGH", "GAYATRI", "JITENDRA KUMAR SUTHAR",
+            "KAMLESH", "MAHENDRA KUMAR", "MAMTA SARAN", "MANOJ KUMAR", "MONU", "NIRMLA", "NISHA", "PRATIGYA",
+            "RAJ WARDHAN SINGH", "RAKESH", "RAMCHANDRA", "RAVI SUTHAR", "RONAK SARAN", "SANDEEP", "SUNITA PRAJAPAT",
+            "VALINEE", "VINAY RATHORE"
+        ];
+
+        // Subject passwords
+        const passwords = {
+            maths: 'maths123',
+            english: 'english123',
+            science: 'science123',
+            ssc: 'ssc123',
+            hindi: 'hindi123',
+            sanskrit: 'sanskrit123'
+        };
+
+        // Function to check password and enable editing for the specified subjects
+        function checkPassword() {
+            const inputPassword = document.getElementById('password').value;
+            let isPasswordValid = false;
+            
+            // Check if the password matches any subject's password
+            for (const subject in passwords) {
+                if (inputPassword === passwords[subject]) {
+                    isPasswordValid = true;
+                    enableEditing(subject);
+                }
+            }
+
+            if (!isPasswordValid) {
+                alert('Incorrect password!');
+            }
+        }
+
+        // Function to enable editing for the specific subject columns
+        function enableEditing(subject) {
+            const subjectColId = `${subject}-col`;
+            const columnIndex = Array.from(document.querySelectorAll('#studentTable th')).findIndex(th => th.id === subjectColId) + 1;
+
+            const cells = document.querySelectorAll(`#studentTable td:nth-child(${columnIndex}), #studentTable th:nth-child(${columnIndex})`);
+            cells.forEach(cell => {
+                cell.contentEditable = "true";
+                cell.classList.add('editable');
+            });
+        }
+
+        // Function to toggle editability of the table
+        function toggleEditable() {
+            const cells = document.querySelectorAll("#studentTable td:nth-child(n+3), #studentTable th:nth-child(n+3)");
+            cells.forEach(cell => {
+                cell.contentEditable = cell.isContentEditable ? "false" : "true";
+            });
+        }
+
+        // Initialize the table with local data
+        function initializeTable() {
+            const tableBody = document.querySelector("#studentTable tbody");
+            tableBody.innerHTML = ''; // Clear existing rows if any
+
+            // Populate table with class6 data
+            class6.forEach((name, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td class="name" contenteditable="true">${name}</td>
+                    <td class="su1" contenteditable="false"></td>
+                    <td class="su2" contenteditable="false"></td>
+                    <td class="su3" contenteditable="false"></td>
+                    <td class="su4" contenteditable="false"></td>
+                    <td class="su5" contenteditable="false"></td>
+                    <td class="su6" contenteditable="false"></td>
+                    <td class="total" contenteditable="false"></td>
+                    <td class="per" contenteditable="false"></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Update table with API data
+        function fetchData() {
+            const id = 6; // Class ID
+            const apiUrl = `https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/${id}`;
+
+            fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                const rows = document.querySelectorAll("#studentTable tbody tr");
+                data.data.forEach((item, index) => {
+                    if (rows[index]) {
+                        rows[index].querySelector(".name").innerText = item.Name;
+                        rows[index].querySelector(".su1").innerText = item.Sub1;
+                        rows[index].querySelector(".su2").innerText = item.Sub2;
+                        rows[index].querySelector(".su3").innerText = item.Sub3;
+                        rows[index].querySelector(".su4").innerText = item.Sub4;
+                        rows[index].querySelector(".su5").innerText = item.Sub5;
+                        rows[index].querySelector(".su6").innerText = item.Sub6;
+                        rows[index].querySelector(".total").innerText = item.Total;
+                        rows[index].querySelector(".per").innerText = item.Per;
+                        rows[index].querySelector(".per").setAttribute('per', item.Per);
+                    }
+                });
+                document.getElementById("response").innerText = "Data received";
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.getElementById("response").innerText = "Error fetching data";
+            });
+        }
+
+        // Set maximum marks
+        var max = 60;
+
+        // Calculate total and percentage every 3 seconds
+        setInterval(() => {
+            const rows = document.querySelectorAll("#studentTable tbody tr");
+            rows.forEach(row => {
+                const su1 = parseFloat(row.querySelector(".su1").innerText) || 0;
+                const su2 = parseFloat(row.querySelector(".su2").innerText) || 0;
+                const su3 = parseFloat(row.querySelector(".su3").innerText) || 0;
+                const su4 = parseFloat(row.querySelector(".su4").innerText) || 0;
+                const su5 = parseFloat(row.querySelector(".su5").innerText) || 0;
+                const su6 = parseFloat(row.querySelector(".su6").innerText) || 0;
+
+                const total = su1 + su2 + su3 + su4 + su5 + su6;
+                const percentage = (total / max) * 100;
+
+                row.querySelector(".total").innerText = total.toFixed(2);
+                row.querySelector(".per").innerText = percentage.toFixed(2) + "%";
+                row.querySelector(".per").setAttribute('per', percentage.toFixed(2));
+            });
+        }, 3000);
+
+        // Initialize table and fetch data
+        initializeTable();
+        fetchData();
+
+        // Function to save and submit data
+        async function setFun(){
+            const data = [];
+            const names = document.getElementsByClassName("name");
+            const sub1 = document.getElementsByClassName("su1");
+            const sub2 = document.getElementsByClassName("su2");
+            const sub3 = document.getElementsByClassName("su3");
+            const sub4 = document.getElementsByClassName("su4");
+            const sub5 = document.getElementsByClassName("su5");
+            const sub6 = document.getElementsByClassName("su6");
+            const total = document.getElementsByClassName("total");
+            const per = document.getElementsByClassName("per");
+
+            for (let a = 0; a < class6.length; a++) {
+                if (names[a].innerText) {
+                    data.push({
+                        "Name": names[a].innerHTML,
+                        "Sub1": sub1[a].innerHTML,
+                        "Sub2": sub2[a].innerHTML,
+                        "Sub3": sub3[a].innerHTML,
+                        "Sub4": sub4[a].innerHTML,
+                        "Sub5": sub5[a].innerHTML,
+                        "Sub6": sub6[a].innerHTML,
+                        "Total": total[a].innerHTML,
+                        "Per": per[a].getAttribute('per')
+                    });
+                }
+            }
+
+            try {
+                const response = await fetch(`https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        class: id,
+                        data: data,
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert("Sent successfully");
+                } else {
+                    alert("Network error");
+                }
+            } catch (error) {
+                document.getElementById('response').innerText = `Network Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
