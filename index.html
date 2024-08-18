@@ -62,7 +62,103 @@
 .custom-show {
   display: block;
 }
+.navbar {
+            background-color: #004d99; /* School theme color */
+            color: white;
+            padding: 10px 0;
+        }
 
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .brand {
+            text-decoration: none;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 14px 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu a:hover {
+            background-color: #003366;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #004080;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #003366;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+            }
+        }
 </style>
 </head>
 
@@ -173,26 +269,26 @@
           </div>
         </div>
       </div>
-      <div class="row">
+     <!--   <div class="row">
         <div class="col-md-12 py-1 disabled-link">
 
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto py-2">
-              <!-- <li class="nav-item d-block d-md-none">
+             <li class="nav-item d-block d-md-none">
                             <a class="nav-link btn btn-primary text-white mr-2" href="https://prabhawatividyapeeth.in/PVform" target="_blank" rel="nofollow" style="text-transform: capitalize;width: 100px;float: right;">Apply Now</a>
-                        </li> -->
+                        </li> 
               <li class="nav-item dropdown">
                 <a class="nav-link active-nav-01 enable-link" href="#" aria-haspopup="true"
                   aria-expanded="false">
                   <i class="fas fa-home"></i>
                 </a>
-                <!-- <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="https://prabhawatividyapeeth.in/">Welcome</a>
                               <a class="dropdown-item" href="#">Open Day</a>
                               <a class="dropdown-item" href="https://prabhawatividyapeeth.in/pdf/PV-brochure.pdf" target="_blank">Prospectus</a>
                               <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-newsletters">News</a>
-                            </div> -->
+                            </div> 
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active-nav-02" href="#" id="navbarDropdown" role="button"
@@ -202,10 +298,10 @@
                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/founder-message">Our Founder</a>
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/our-principal">Our Principal</a>
-                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/ceo-message">Our CEO</a> -->
+                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/ceo-message">Our CEO</a> 
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/about-PV">Our History</a>
-                  <!--      <a class="dropdown-item" href="https://prabhawatividyapeeth.in/about-PV">Our Strategic Vision</a>
-                                <a class="dropdown-item" href="https://prabhawatividyapeeth.in/about-PV">Our Team</a> -->
+                       <a class="dropdown-item" href="https://prabhawatividyapeeth.in/about-PV">Our Strategic Vision</a>
+                                <a class="dropdown-item" href="https://prabhawatividyapeeth.in/about-PV">Our Team</a> 
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/about-PV">Rankings &amp;
                     Recognitions</a>
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-in-numbers">PV in Numbers</a>
@@ -218,12 +314,12 @@
                 </a>
                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-academic-life">Academic Support</a>
-                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/academics">Curriculum and Pedagogy</a> -->
+                  <a class="dropdown-item" href="https://prabhawatividyapeeth.in/academics">Curriculum and Pedagogy</a> 
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-academic-facilities">Facilities</a>
-                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-institutional-tie-ups">Institutional Tie-Ups</a> -->
+                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-institutional-tie-ups">Institutional Tie-Ups</a> 
                 </div>
               </li>
-              <!-- <li class="nav-item dropdown">
+               <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active-nav-04" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Pastoral Care
                             </a>
@@ -237,7 +333,7 @@
                                 <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-community-reach">Outdoor/Travel</a>
                                 <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-community-reach">Celebrations</a>
                             </div>
-                        </li>   -->
+                        </li>   
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active-nav-05" href="#" id="navbarDropdown" role="button"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -247,9 +343,9 @@
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-sport-program">Sports </a>
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/sports-coaches">Training Team</a>
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/sports-amenities">Sports Amenities</a>
-                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-wall-of-fame">Wall of Fame</a> -->
+                  <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-wall-of-fame">Wall of Fame</a> 
                 </div>
-              </li>
+              </li> 
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active-nav-06" href="#" id="navbarDropdown" role="button"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -258,9 +354,9 @@
                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item"
                     href="https://prabhawatividyapeeth.in/PV-admissions-register-an-entry">Register an Entry</a>
-                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-admissions-eligibility-criteria">Eligibility Criteria</a> -->
+                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-admissions-eligibility-criteria">Eligibility Criteria</a> -->
                   <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/admission-jet">PV Excellence Test</a> -->
-                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-admissions-faq">FAQs</a> -->
+                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/PV-admissions-faq">FAQs</a> 
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -271,15 +367,15 @@
                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/news">News</a>
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/events">Events</a>
-                  <!-- <a class="dropdown-item" href="https://prabhawatividyapeeth.in/newsletters">Newsletters</a> -->
+                  <a class="dropdown-item" href="https://prabhawatividyapeeth.in/newsletters">Newsletters</a> 
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/videos">Videos</a>
-                  <!--  <a class="dropdown-item" href="https://prabhawatividyapeeth.in/podcasts">Podcasts</a> -->
+                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/podcasts">Podcasts</a> 
                   <a class="dropdown-item" href="https://prabhawatividyapeeth.in/gallery">Gallery</a>
                 </div>
               </li>
 
 
-       <!--       <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active-nav-07" href="#" id="n1" role="button"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   3rdTest
@@ -296,7 +392,7 @@
 
 
                 </div>
-              </li> -->
+              </li> 
 
               <li class="nav-item custom-dropdown">
                 <a href="6thTest.html">
@@ -316,18 +412,55 @@
               <li class="nav-item enable-link">
                 <a class="nav-link active-nav-08" href="#footer_id">Contact </a>
               </li>
-              <!-- <li class="nav-item d-none d-md-block ml-2">
+               <li class="nav-item d-none d-md-block ml-2">
                             <a class="nav-link btn btn-primary badge-pill btn-sm text-white" type="button"  data-toggle="modal" rel="nofollow" style="text-transform: capitalize;    background-color: #f35806;
                                 border-color: #f35806;padding: 5px 10px;
                                 " data-target="#exampleModal15">Apply Now</a>
-                        </li> -->
+                        </li> 
 
-              <!-- <li class="nav-item d-none d-md-block ml-2">
+               <li class="nav-item d-none d-md-block ml-2">
                             <a class="nav-link btn btn-primary badge-pill btn-sm text-white" type="button" href="https://prabhawatividyapeeth.in/PVform/" style="text-transform: capitalize;    background-color: #f35806;
                                 border-color: #f35806;padding: 5px 10px;" target="_blank">Apply Now</a>
                         </li> -->
 
-
+                        <nav class="navbar">
+                          <div class="container">
+                              <a href="#" class="brand">Gurukul Shikhshan Sansthan</a>
+                              <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+                              <ul class="nav-menu">
+                                  <li><a href="#">Home</a></li>
+                                  <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle">Academics</a>
+                                      <ul class="dropdown-menu">
+                                          <li><a href="#">Departments</a></li>
+                                          <li><a href="#">Curriculum</a></li>
+                                          <li><a href="#">Faculty</a></li>
+                                      </ul>
+                                  </li>
+                                  <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle">Admissions</a>
+                                      <ul class="dropdown-menu">
+                                          <li><a href="#">Apply Now</a></li>
+                                          <li><a href="#">Requirements</a></li>
+                                          <li><a href="#">Scholarships</a></li>
+                                      </ul>
+                                  </li>
+                                  <li><a href="#">Student Life</a></li>
+                                  <li><a href="#">About Us</a></li>
+                                  <li><a href="#">Contact</a></li>
+                              </ul>
+                          </div>
+                      </nav>
+                      <script>
+                          document.addEventListener('DOMContentLoaded', () => {
+                              const menuToggle = document.querySelector('.menu-toggle');
+                              const navMenu = document.querySelector('.nav-menu');
+                  
+                              menuToggle.addEventListener('click', () => {
+                                  navMenu.classList.toggle('active');
+                              });
+                          });
+                      </script>
 
               <span class="d-block d-md-none">
                 <!-- <li class="nav-item">
@@ -350,7 +483,7 @@
       </div>
     </div>
 
-  </nav>
+  </nav> -->
   <!--end of Navbar -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
