@@ -14,7 +14,7 @@
             background-color: #004d99; /* School theme color */
             color: white;
             padding: 10px 0;
-            position: sticky;
+            position: fixed;
             width: 100%;
             top: 0;
             left: 0;
@@ -121,16 +121,7 @@
             }
         }
 
-        .events {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .events img {
-            max-width: 100%;
-            height: auto;
-        }
-        .events, .gallery {
+        .events, .gallery, .faculty {
             padding: 20px;
             text-align: center;
         }
@@ -142,7 +133,6 @@
 
         .gallery {
             background-color: #f5f5f5;
-            
         }
 
         .gallery h2 {
@@ -178,9 +168,8 @@
             color: white;
             
             text-align: center;
-            
+        
             width: 100%;
-            
             
         }
 
@@ -192,8 +181,51 @@
         .footer a:hover {
             text-decoration: underline;
         }
-        .glogo{
+
+        .faculty {
+            background-color: #e0e0e0;
+        }
+
+        .faculty h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .faculty-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .faculty-member {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .faculty-member img {
             border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .faculty-member h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .faculty-member p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
@@ -212,19 +244,18 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Departments</a></li>
                         <li><a href="#">Curriculum</a></li>
-                        <li><a href="faculty.html">Faculty</a></li>
+                        <li><a href="#">Faculty</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">Tests</a>
                     <ul class="dropdown-menu">
-                        <li><a href="6thTest.html">Class6thTest</a></li>
-                        <li><a href="test7th.html">Class7thTest</a></li>
-                        <li><a href="test8th.html">Class8thTest</a></li>
-                        <li><a href="test9th.html">Class9thTest</a></li>
-                        <li><a href="test10th.html">Class10thTest</a></li>
-                        <li><a href="test12th.html">Class-11-12thTest</a></li>
-                        
+                        <li><a href="6thTest.html">Class 6th Test</a></li>
+                        <li><a href="test7th.html">Class 7th Test</a></li>
+                        <li><a href="test8th.html">Class 8th Test</a></li>
+                        <li><a href="test9th.html">Class 9th Test</a></li>
+                        <li><a href="test10th.html">Class 10th Test</a></li>
+                        <li><a href="test12th.html">Class 11-12th Test</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -241,35 +272,53 @@
             </ul>
         </div>
     </nav>
+
     <section class="gallery">
         <h2>Gurukul Shikhshan Sansthan Gallery</h2>
         <div class="gallery-container">
-            <div class="gallery-item"><img src="./gift1.jpg" alt="Event 1"></div>
-            <div class="gallery-item"><img src="./gift2.jpg" alt="Event 2"></div>
-            <div class="gallery-item"><img src="gift3.jpg" alt="Event 3"></div>
-            <div class="gallery-item"><img src="gift4.jpg" alt="Event 4"></div>
-            <div class="gallery-item"><img src="gift5.jpg" alt="Event 5"></div>
-            <div class="gallery-item"><img src="./gift6.jpg" alt="Event 6"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300" alt="Event 1"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300" alt="Event 2"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300" alt="Event 3"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300" alt="Event 4"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300" alt="Event 5"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300" alt="Event 6"></div>
         </div>
     </section>
+
     <section class="events">
         <h1>Upcoming Events</h1>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/x7g2bx4CIeM?si=zFWqnPYiHGO1znYS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/6db1yEqdcOM?si=YIeAe8dbMD87NPoh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/TKVXruWZQeY?si=aO05G0KEZ6_0Nr1I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/R0G2Lv2wHw4?si=rbalwlo5qA6sk_uM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <!-- <img src="https://via.placeholder.com/800x400" alt="Upcoming Events"> -->
+        <img src="https://via.placeholder.com/800x400" alt="Upcoming Events"> <!-- Placeholder image -->
         <p>Stay tuned for our latest events and announcements.</p>
     </section>
-    <section class="events">
-        <h1>Upcoming Events</h1>
-        
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/FNlVCm0zl1w?si=JuPS4JfeoLPCWl5o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-       <!-- <img src="https://via.placeholder.com/800x400" alt="Upcoming Events"> -->
-        <p>Stay tuned for our latest events and announcements.</p>
+
+    <section class="faculty">
+        <h2>Meet Our Faculty</h2>
+        <div class="faculty-container">
+            <div class="faculty-member">
+                <img src="https://via.placeholder.com/100" alt="Faculty Member 1">
+                <h3>Dr. John Doe</h3>
+                <p>Mathematics</p>
+            </div>
+            <div class="faculty-member">
+                <img src="https://via.placeholder.com/100" alt="Faculty Member 2">
+                <h3>Ms. Jane Smith</h3>
+                <p>English</p>
+            </div>
+            <div class="faculty-member">
+                <img src="https://via.placeholder.com/100" alt="Faculty Member 3">
+                <h3>Mr. Robert Brown</h3>
+                <p>Science</p>
+            </div>
+            <div class="faculty-member">
+                <img src="https://via.placeholder.com/100" alt="Faculty Member 4">
+                <h3>Dr. Emily Davis</h3>
+                <p>History</p>
+            </div>
+        </div>
     </section>
+
     <footer class="footer">
-        <p>&copy;BABULAL JOSHI, 2024 Gurukul Shikhshan Sansthan. All rights reserved.</p>
+        <p>&copy; 2024 Gurukul Shikhshan Sansthan. All rights reserved.</p>
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
     </footer>
 
