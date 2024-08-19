@@ -8,6 +8,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            box-sizing: border-box;
         }
 
         .navbar {
@@ -15,9 +16,8 @@
             color: white;
             padding: 10px 0;
             position: sticky;
-            width: 100%;
             top: 0;
-            left: 0;
+            width: 100%;
             z-index: 1000;
         }
 
@@ -26,6 +26,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .brand {
@@ -38,8 +40,8 @@
         }
 
         .brand img {
-            height: 90px; /* Adjust logo size */
-            margin-right: 0px;
+            height: 60px; /* Adjusted logo size */
+            margin-right: 10px;
         }
 
         .menu-toggle {
@@ -102,6 +104,10 @@
                 flex-direction: column;
                 width: 100%;
                 background-color: #004d99;
+                position: absolute;
+                top: 60px; /* Adjust based on navbar height */
+                left: 0;
+                border-top: 1px solid #003366;
             }
 
             .menu-toggle {
@@ -121,28 +127,13 @@
             }
         }
 
-        .events {
+        .gallery, .events {
             padding: 20px;
             text-align: center;
-        }
-
-        .events img {
-            max-width: 100%;
-            height: auto;
-        }
-        .events, .gallery {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .events img, .gallery img {
-            max-width: 100%;
-            height: auto;
         }
 
         .gallery {
             background-color: #f5f5f5;
-            
         }
 
         .gallery h2 {
@@ -176,12 +167,8 @@
         .footer {
             background-color: #003366;
             color: white;
-            
             text-align: center;
-            
-            width: 100%;
-            
-            
+            padding: 10px 20px;
         }
 
         .footer a {
@@ -192,40 +179,51 @@
         .footer a:hover {
             text-decoration: underline;
         }
+
+        .video-container {
+            width: 25%;
+            
+            
+            margin-bottom: 5px;
+        }
+
+        .video-container iframe {
+        
+            
+            width: 100%;
+            
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                width: 100%;
+                padding-top: 56.25%;
+                margin-bottom: 20px;
+            }
+        }
+        .bcont{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+height: min-content;
+        }
         .glogo{
             border-radius: 50%;
         }
+        #sp{
+            font-size: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
 
-        /* Container for the section */
-.events {
-    padding: 20px;
-    text-align: center;
-}
-.bcont{
-    display: flex;
-    flex-wrap: wrap;
-
-}
-/* Video container styling */
-.video-container {
-    
-
-    width: 50%;
-    padding-top: 5.25%; /* 16:9 Aspect Ratio */
-    margin-bottom: 20px; /* Space between videos */
-}
-
-/* Iframe styling */
-
-
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
             <a href="#" class="brand">
-                <img class="glogo" src="./images/glogo.jpg" alt="School Logo"> <!-- Placeholder logo -->
-                Gurukul Shikhshan Sansthan
+                <img class="glogo" src="./images/glogo.jpg" alt="School Logo">
+                <span id="sp">G</span>urukul Shikhshan Sansthan,Sarsar
             </a>
             <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-menu">
@@ -247,7 +245,6 @@
                         <li><a href="test9th.html">Class9thTest</a></li>
                         <li><a href="test10th.html">Class10thTest</a></li>
                         <li><a href="test12th.html">Class-11-12thTest</a></li>
-                        
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -269,41 +266,34 @@
         <div class="gallery-container">
             <div class="gallery-item"><img src="./gift1.jpg" alt="Event 1"></div>
             <div class="gallery-item"><img src="./gift2.jpg" alt="Event 2"></div>
-            <div class="gallery-item"><img src="gift3.jpg" alt="Event 3"></div>
-            <div class="gallery-item"><img src="gift4.jpg" alt="Event 4"></div>
-            <div class="gallery-item"><img src="gift5.jpg" alt="Event 5"></div>
+            <div class="gallery-item"><img src="./gift3.jpg" alt="Event 3"></div>
+            <div class="gallery-item"><img src="./gift4.jpg" alt="Event 4"></div>
+            <div class="gallery-item"><img src="./gift5.jpg" alt="Event 5"></div>
             <div class="gallery-item"><img src="./gift6.jpg" alt="Event 6"></div>
         </div>
     </section>
     <section class="events">
-        <h1>Upcoming Events</h1>
-<div class="bcont">
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/x7g2bx4CIeM?si=zFWqnPYiHGO1znYS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h1> Events of 78th independence day 2024</h1>
+        <div class="bcont">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/x7g2bx4CIeM?si=zFWqnPYiHGO1znYS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/6db1yEqdcOM?si=YIeAe8dbMD87NPoh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/TKVXruWZQeY?si=aO05G0KEZ6_0Nr1I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/R0G2Lv2wHw4?si=rbalwlo5qA6sk_uM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <p>Stay tuned for our latest events and announcements.</p>
         </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/6db1yEqdcOM?si=YIeAe8dbMD87NPoh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/TKVXruWZQeY?si=aO05G0KEZ6_0Nr1I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/R0G2Lv2wHw4?si=rbalwlo5qA6sk_uM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <!-- <img src="https://via.placeholder.com/800x400" alt="Upcoming Events"> -->
-        <p>Stay tuned for our latest events and announcements.</p>
-    </div>
     </section>
-    
-    <section class="events">
-        <h1>Upcoming Events</h1>
-        
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/FNlVCm0zl1w?si=JuPS4JfeoLPCWl5o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-       <!-- <img src="https://via.placeholder.com/800x400" alt="Upcoming Events"> -->
-        <p>Stay tuned for our latest events and announcements.</p>
-    </section>
+   
     <footer class="footer">
-        <p>&copy;BABULAL JOSHI, 2024 Gurukul Shikhshan Sansthan. All rights reserved.</p>
+        <p>&copy; 2024 Gurukul Shikhshan Sansthan. All rights reserved.</p>
+        <p>&copy; prepared by Babulal joshi /Dhadhria banirotan-Faculty gurukul shikhshan sansthan</p>
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
     </footer>
 
