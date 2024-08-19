@@ -314,7 +314,7 @@
     <button id="show" onclick="setData()">2-Show data-></button>
     <button onclick="window.print()">3-print Now-></button>
     <button id="sortButton">4-Sort by GK Marks-></button>
-    <button id="submitButton" onclick="submitGKMarks()" disabled>Submit GK Marks</button>
+    <button id="submitButton" onclick="submitGKMarks()">Submit GK Marks</button>
     
     <table id="dataTable">
         <thead>
@@ -323,7 +323,7 @@
                 <th>Name</th>
                 <th>Class</th>
                 <th>GK Marks</th>
-                <th>Action</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -383,7 +383,7 @@
                     <td>${item.Name}</td>
                     <td>${item.Class}</td>
                     <td contenteditable="true" data-index="${i}">${item.GKMarks || ''}</td>
-                    <td><button onclick="submitGKMarks()">Submit GK Marks</button></td>
+                    
                 `;
                 gkMarksTableBody.appendChild(row);
             });
