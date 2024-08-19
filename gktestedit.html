@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and Display Data</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #004d99; /* School theme color */
+            color: white;
+            padding: 10px 0;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .brand img {
+            height: 90px; /* Adjust logo size */
+            margin-right: 0px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 14px 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu a:hover {
+            background-color: #003366;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #004080;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #003366;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #004d99;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+            }
+        }
+
+        .events {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .events img {
+            max-width: 100%;
+            height: auto;
+        }
+        .events, .gallery {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .events img, .gallery img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .gallery {
+            background-color: #f5f5f5;
+            
+        }
+
+        .gallery h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background-color: #003366;
+            color: white;
+            
+            text-align: center;
+            
+            width: 100%;
+            
+            
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .glogo{
+            border-radius: 50%;
+        }
+
+        /* Container for the section */
+.events {
+    padding: 20px;
+    text-align: center;
+}
+.bcont{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+/* Video container styling */
+.video-container {
+    
+
+    width: 50%;
+    padding-top: 5.25%; /* 16:9 Aspect Ratio */
+    margin-bottom: 20px; /* Space between videos */
+}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        td[contenteditable="true"]:focus {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="brand">
+                <img class="glogo" src="./images/glogo.jpg" alt="School Logo">
+                <span id="sp">G</span>urukul Shikhshan Sansthan,Sarsar
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Academics</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Departments</a></li>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="faculty.html">Faculty</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Tests</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="6thTest.html">Class6thTest</a></li>
+                        <li><a href="test7th.html">Class7thTest</a></li>
+                        <li><a href="test8th.html">Class8thTest</a></li>
+                        <li><a href="test9th.html">Class9thTest</a></li>
+                        <li><a href="test10th.html">Class10thTest</a></li>
+                        <li><a href="test12th.html">Class-11-12thTest</a></li>
+                        <li><a href="test.html">6-12-Overall-Cut-Of</a></li>
+                        <li><a href="gktestedit.html">Gk Test</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Admissions</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Apply Now</a></li>
+                        <li><a href="#">Requirements</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Student Life</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1>GURUKUL SHIKSHAN SANSTHAN GK CUTOFF</h1>
+    <button id="fetchButton" onclick="fetchData()">1-Get Data-></button>
+    <button id="show" onclick="setData()">2-Show data-></button>
+    <button onclick="window.print()">3-print Now-></button>
+    <button id="sortButton">4-Sort by GK Marks-></button>
+    <button id="submitButton" onclick="submitGKMarks()" disabled>Submit GK Marks</button>
+    
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Sr</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>GK Marks</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <!-- Modal for showing detailed marks -->
+    <div id="marksModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Student Report Card</h2>
+            <div id="modalBody">
+                <!-- Detailed student data will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let processedData = [];
+        let isSorted = false;
+        const apiUrl = 'https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/14';
+        const password = '124512';
+
+       // document.getElementById('fetchButton').addEventListener('click', async () => {
+        async function fetchData(){  
+       document.getElementById("fetchButton").innerHTML = 'Processing...';
+            document.getElementById("fetchButton").style.background = "green";
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const result = await response.json();
+
+                processedData = result.data.map(item => ({
+                    Name: item.Name,
+                    Class: item.Class,
+                    GKMarks: item.marks || ''
+                }));
+
+                populateGKMarksTable();
+                document.getElementById("fetchButton").innerHTML = 'Done';
+            } catch (error) {
+                alert('Error fetching data: ' + error.message);
+            }
+        }
+        //});
+
+        function populateGKMarksTable() {
+            const gkMarksTableBody = document.querySelector('#dataTable tbody');
+            gkMarksTableBody.innerHTML = '';
+
+            processedData.forEach((item, i) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${i + 1}</td>
+                    <td>${item.Name}</td>
+                    <td>${item.Class}</td>
+                    <td contenteditable="true" data-index="${i}">${item.GKMarks || ''}</td>
+                    <td><button onclick="submitGKMarks()">Submit GK Marks</button></td>
+                `;
+                gkMarksTableBody.appendChild(row);
+            });
+
+            // Add event listener for cell edits
+            gkMarksTableBody.addEventListener('input', (event) => {
+                if (event.target.contentEditable === 'true') {
+                    const index = event.target.getAttribute('data-index');
+                    processedData[index].GKMarks = event.target.textContent.trim();
+                    validateMarks();
+                }
+            });
+        }
+
+        function validateMarks() {
+            const allMarksFilled = processedData.every(item => item.GKMarks.trim() !== '');
+            document.getElementById('submitButton').disabled = !allMarksFilled;
+        }
+
+        async function submitGKMarks() {
+            const enteredPassword = prompt('Enter password to submit data:');
+            if (enteredPassword !== password) {
+                alert('Incorrect password');
+                return;
+            }
+
+            const dataToPut = {
+                class: processedData.length > 0 ? processedData[0].Class : '',
+                data: processedData.map(item => ({
+                    Name: item.Name,
+                    Class: item.Class,
+                    marks: item.GKMarks
+                })),
+                id: "14"
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToPut),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit GK marks');
+                }
+
+                alert('GK marks submitted successfully');
+            } catch (error) {
+                alert('Error submitting GK marks: ' + error.message);
+            }
+        }
+
+        document.getElementById('sortButton').addEventListener('click', () => {
+            if (isSorted) {
+                desortByGKMarks();
+            } else {
+                sortByGKMarks();
+            }
+        });
+
+        function sortByGKMarks() {
+            let pass=window.prompt("please inter the password")
+            if(pass=="9660175791"){
+            processedData.sort((a, b) => {
+                const markA = parseFloat(a.GKMarks) || 0;
+                const markB = parseFloat(b.GKMarks) || 0;
+                return markB - markA; // For descending order
+            });
+            isSorted = true;
+            populateGKMarksTable(); // Re-populate the table with sorted data
+        }
+    }
+    isSorted = false;
+        function desortByGKMarks() {
+            fetchData()
+            isSorted = false;
+          //  processedData.sort((a, b) => {
+            //    return a.Name.localeCompare(b.Name); // Assuming original order by Name for simplicity
+          //  });
+           // isSorted = false;
+           // populateGKMarksTable(); // Re-populate the table with unsorted data
+        }
+
+        function closeModal() {
+            document.getElementById('marksModal').style.display = 'none';
+        }
+    </script>
+     <footer class="footer">
+        <p>&copy; 2024 Gurukul Shikhshan Sansthan. All rights reserved.</p>
+        <p>&copy; prepared by Babulal joshi /Dhadhria banirotan-Faculty gurukul shikhshan sansthan</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>

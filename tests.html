@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and Display Data</title>
+    <style>
+            <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            background-color: #004d99; /* School theme color */
+            color: white;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .brand img {
+            height: 60px; /* Adjusted logo size */
+            margin-right: 10px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 14px 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu a:hover {
+            background-color: #003366;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #004080;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #003366;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #004d99;
+                position: absolute;
+                top: 60px; /* Adjust based on navbar height */
+                left: 0;
+                border-top: 1px solid #003366;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+            }
+        }
+
+        .gallery, .events {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery {
+            background-color: #f5f5f5;
+        }
+
+        .gallery h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .video-container {
+            width: 25%;
+            
+            
+            margin-bottom: 5px;
+        }
+
+        .video-container iframe {
+        
+            
+            width: 100%;
+            
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                width: 100%;
+                padding-top: 56.25%;
+                margin-bottom: 20px;
+            }
+        }
+        .bcont{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+height: min-content;
+        }
+        .glogo{
+            border-radius: 50%;
+        }
+        #sp{
+            font-size: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 3px;
+            text-align: left;
+            font-size: 15px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="brand">
+                <img class="glogo" src="./images/glogo.jpg" alt="School Logo">
+                <span id="sp">G</span>urukul Shikhshan Sansthan,Sarsar
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Academics</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Departments</a></li>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="faculty.html">Faculty</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Tests</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="6thTest.html">Class6thTest</a></li>
+                        <li><a href="test7th.html">Class7thTest</a></li>
+                        <li><a href="test8th.html">Class8thTest</a></li>
+                        <li><a href="test9th.html">Class9thTest</a></li>
+                        <li><a href="test10th.html">Class10thTest</a></li>
+                        <li><a href="test12th.html">Class-11-12thTest</a></li>
+                        <li><a href="test.html">6-12-Overall-Cut-Of</a></li>
+                        <li><a href="gktestedit.html">Gk Test</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Admissions</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Apply Now</a></li>
+                        <li><a href="#">Requirements</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Student Life</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1>GURUKUL SHIKSHAN SANSTHAN CUTOFF</h1>
+    <button id="fetchButton">1-Get Data-></button>
+    <button id="show" onclick="setData()">2-Show data-></button>
+    <button onclick="window.print()">3-print Now-></button>
+    
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Sr</th>
+                <th>Name</th>
+                <th>Class
+                    <select id="classSelect" onchange="handleClassSelection()">
+                        <option value="All">All</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </th>
+                <th>Total</th>
+                <th>Per</th>
+                <th>Rank</th>
+                <th>View Report Card</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+        <tfoot id="totalsRow">
+            <!-- Totals and averages will be inserted here -->
+        </tfoot>
+    </table>
+
+    <!-- Separate table for subject names and totals -->
+    <table id="subjectsTable" style="display:none;">
+        <thead>
+            <tr id="subjectNamesRow">
+                <!-- Subject names will be inserted here -->
+            </tr>
+        </thead>
+        <tfoot id="subjectTotalsRow">
+            <!-- Subject totals will be inserted here -->
+        </tfoot>
+    </table>
+
+    <!-- Modal for showing detailed marks -->
+    <div id="marksModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Student Report Card</h2>
+            <div id="modalBody">
+                <!-- Detailed student data will be inserted here -->
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Gurukul Shikhshan Sansthan. All rights reserved.</p>
+        <p>&copy; prepared by Babulal joshi /Dhadhria banirotan-Faculty gurukul shikhshan sansthan</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        var processedData = [];
+        var studentDetails = {};
+
+        document.getElementById('fetchButton').addEventListener('click', async () => {
+            document.getElementById("fetchButton").innerHTML = 'Processing...';
+            document.getElementById("fetchButton").style.background = "green";
+
+            try {
+                const urls = [
+                    'https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/6',
+                    'https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/7',
+                    'https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/8',
+                    'https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/9',
+                    'https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/10',
+                    'https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser1/12'
+                ];
+
+                const fetchData = async url => {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                };
+
+                const results = await Promise.all(urls.map(fetchData));
+
+                results.forEach(result => {
+                    if (result && result.data) {
+                        result.data.forEach(item => {
+                            if (item && item.Name && item.Total !== undefined && item.Per !== undefined) {
+                                processedData.push({
+                                    Name: item.Name,
+                                    "Class": result.class,
+                                    Total: item.Total,
+                                    Per: item.Per,
+                                    Sub1: item.Sub1 || '',
+                                    Sub2: item.Sub2 || '',
+                                    Sub3: item.Sub3 || '',
+                                    Sub4: item.Sub4 || '',
+                                    Sub5: item.Sub5 || '',
+                                    Sub6: item.Sub6 || ''
+                                });
+
+                                if (!studentDetails[item.Name]) {
+                                    studentDetails[item.Name] = {
+                                        Name: item.Name,
+                                        Class: result.class,
+                                        Sub1: item.Sub1 || '',
+                                        Sub2: item.Sub2 || '',
+                                        Sub3: item.Sub3 || '',
+                                        Sub4: item.Sub4 || '',
+                                        Sub5: item.Sub5 || '',
+                                        Sub6: item.Sub6 || '',
+                                        Total: item.Total,
+                                        Per: item.Per
+                                    };
+                                } else {
+                                    studentDetails[item.Name].Total = item.Total;
+                                    studentDetails[item.Name].Per = item.Per;
+                                }
+                            }
+                        });
+                    }
+                });
+
+                removeDuplicates();
+                document.getElementById("fetchButton").innerHTML = 'Done';
+            } catch (error) {
+                alert('Error fetching data: ' + error.message);
+            }
+        });
+
+        function removeDuplicates() {
+            const map = new Map();
+            processedData.forEach(item => {
+                const key = `${item.Name}|${item.Class}|${item.Total}|${item.Per}`;
+                if (!map.has(key)) {
+                    map.set(key, item);
+                }
+            });
+            processedData = Array.from(map.values());
+            // Sort by percentage in descending order
+            processedData.sort((a, b) => b.Per - a.Per);
+            assignRanks();
+        }
+
+        function assignRanks() {
+            let currentRank = 0;
+            let previousPer =null;
+            processedData.forEach(item => {
+                if (item.Per !== previousPer) {
+                    previousPer = item.Per;
+currentRank +=1;
+                    item.Rank = currentRank;
+                } else {
+                    item.Rank = currentRank;
+                }
+               // currentRank++;
+            });
+        }
+
+        function setData() {
+            document.getElementById("show").innerHTML = 'Done';
+            const tbody = document.querySelector('#dataTable tbody');
+
+            tbody.innerHTML = '';
+
+            processedData.forEach((item, i) => {
+                if (item.Name && item.Class && item.Total !== undefined && item.Per !== undefined) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${i + 1}</td>
+                        <td>${item.Name}</td>
+                        <td>${item.Class}</td>
+                        <td>${item.Total}</td>
+                        <td>${item.Per}%</td>
+                        <td>${item.Rank}</td>
+                        <td><button onclick="showStudentReportCard('${item.Name}')">View Report Card</button></td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            });
+        }
+
+        function handleClassSelection() {
+            const selectedClass = document.getElementById('classSelect').value;
+            setDataForClass(selectedClass);
+        }
+
+        function setDataForClass(selectedClass) {
+            const tbody = document.querySelector('#dataTable tbody');
+            const tfoot = document.getElementById('totalsRow');
+            const subjectsTable = document.getElementById('subjectsTable');
+            const subjectNamesRow = document.getElementById('subjectNamesRow');
+            const subjectTotalsRow = document.getElementById('subjectTotalsRow');
+
+            tbody.innerHTML = '';
+            tfoot.innerHTML = '';
+            subjectsTable.style.display = 'none';
+            subjectNamesRow.innerHTML = '';
+            subjectTotalsRow.innerHTML = '';
+
+            const filteredData = selectedClass === 'All'
+                ? processedData
+                : processedData.filter(item => item.Class == selectedClass);
+
+            let totals = {};
+            let count = {};
+            let subjects = [];
+
+            if (selectedClass >= 6 && selectedClass <= 10) {
+                subjects = ['Maths', 'English', 'Science', 'SSC', 'Hindi', 'Sanskrit'];
+            } else if (selectedClass == 12) {
+                subjects = ['ani.Hindi', 'English', 'Chitrakala','Hindi', 'Geography'];
+            }
+
+            subjects.forEach(subject => {
+                totals[subject] = 0;
+                count[subject] = 0;
+            });
+
+            filteredData.forEach((item, i) => {
+                if (item.Name && item.Class && item.Total !== undefined && item.Per !== undefined) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${i + 1}</td>
+                        <td>${item.Name}</td>
+                        <td>${item.Class}</td>
+                        <td>${item.Total}</td>
+                        <td>${item.Per}%</td>
+                        <td>${item.Rank}</td>
+                        <td><button onclick="showStudentReportCard('${item.Name}')">View Report Card</button></td>
+                    `;
+                    tbody.appendChild(row);
+
+                    subjects.forEach((subject, index) => {
+                        const subKey = `Sub${index + 1}`;
+                        if (item[subKey] !== undefined && item[subKey] !== '') {
+                            const value = parseFloat(item[subKey]);
+                            if (!isNaN(value)) {
+                                totals[subject] += value;
+                                count[subject] += 1;
+                            }
+                        }
+                    });
+                }
+            });
+
+            subjectsTable.style.display = 'table';
+
+            subjectNamesRow.innerHTML = `<th>Subject</th>${subjects.map(subject => `<th>${subject}</th>`).join('')}`;
+            subjectTotalsRow.innerHTML = `<td>Total</td>${subjects.map(subject => `<td>${totals[subject] || 0}</td>`).join('')}`;
+
+            if (filteredData.length > 0) {
+                const averageRow = document.createElement('tr');
+                averageRow.innerHTML = `<td>Average</td>${subjects.map(subject => `<td>${(count[subject] > 0 ? (totals[subject] / count[subject]).toFixed(2) : 'N/A')}</td>`).join('')}`;
+                subjectTotalsRow.appendChild(averageRow);
+            }
+        }
+
+        function showStudentReportCard(name) {
+            const details = studentDetails[name];
+            if (!details) return;
+
+            const subjectsForClass = details.Class >= 6 && details.Class <= 10
+                ? ['Maths', 'English', 'Science', 'SSC', 'Hindi', 'Sanskrit']
+                : ['Ani.Hindi', 'English', 'Chitrakala','Hindi', 'Geography'];
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h3>${details.Name} - Class ${details.Class}</h3>
+                <table>
+                    ${subjectsForClass.map((subject, index) => `
+                        <tr>
+                            <th>${subject}</th>
+                            <td>${details[`Sub${index + 1}`] || 'N/A'}</td>
+                        </tr>
+                    `).join('')}
+                    <tr><th>Total</th><td>${details.Total || 'N/A'}</td></tr>
+                    <tr><th>Percentage</th><td>${details.Per !== undefined ? details.Per + '%' : 'N/A'}</td></tr>
+                </table>
+            `;
+
+            document.getElementById('marksModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('marksModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
