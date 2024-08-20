@@ -313,9 +313,8 @@
     <button id="fetchButton" onclick="fetchData()">1-Get Data-></button>
     <button id="show" onclick="setData()">2-Show data-></button>
     <button onclick="window.print()">3-print Now-></button>
-    <button id="sortButton">4-Sort by GK Marks-></button>
-    <button id="submitButton" onclick="submitGKMarks()">Submit GK Marks</button>
-     <button onclick="submitGKMarks()">Submit GK Marks</button>
+    
+    
     
     <table id="dataTable">
         <thead>
@@ -367,7 +366,8 @@
 
                 populateGKMarksTable();
                 document.getElementById("fetchButton").innerHTML = 'Done';
-            } catch (error) {
+            sortByGKMarks()
+} catch (error) {
                 alert('Error fetching data: ' + error.message);
             }
         }
@@ -449,8 +449,8 @@
         });
 
         function sortByGKMarks() {
-            let pass=window.prompt("please inter the password")
-            if(pass=="9660175791"){
+            
+            
             processedData.sort((a, b) => {
                 const markA = parseFloat(a.GKMarks) || 0;
                 const markB = parseFloat(b.GKMarks) || 0;
@@ -458,7 +458,7 @@
             });
             isSorted = true;
             populateGKMarksTable(); // Re-populate the table with sorted data
-        }
+        
     }
     isSorted = false;
         function desortByGKMarks() {
@@ -482,4 +482,4 @@
     </footer>
 
 </body>
-</html>
+    </html>
