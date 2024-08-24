@@ -126,7 +126,34 @@
                 position: static;
             }
         }
+        .school-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
 
+.flex-box {
+    flex: 1 1 calc(25% - 40px);
+    margin: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.flex-box h2 {
+    color: #3d85c6;
+    margin-bottom: 15px;
+}
+
+.flex-box p {
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.6;
+        }
         .gallery, .events {
             padding: 20px;
             text-align: center;
@@ -264,6 +291,24 @@ height: min-content;
             </ul>
         </div>
     </nav>
+    <div class="school-container">
+    <div class="flex-box">
+        <h2>Holistic Education</h2>
+        <p>Emphasizing on overall development with a balance of academics, extracurricular activities, and spiritual growth.</p>
+    </div>
+    <div class="flex-box">
+        <h2>Traditional Values</h2>
+        <p>Incorporating ancient Indian education practices with modern teaching methods to instill strong cultural values.</p>
+    </div>
+    <div class="flex-box">
+        <h2>Experienced Faculty</h2>
+        <p>Learn from a team of highly qualified and experienced teachers dedicated to nurturing young minds.</p>
+    </div>
+    <div class="flex-box">
+        <h2>State-of-the-Art Facilities</h2>
+        <p>Equipped with the latest technology and infrastructure to support modern learning environments.</p>
+    </div>
+    </div>
     <section class="gallery">
         <h2>Gurukul Shikhshan Sansthan Gallery</h2>
         <div class="gallery-container">
