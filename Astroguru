@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Astrologer Ramakant Sharma - Expert Astrology Services">
+    <meta name="keywords" content="Astrology, Horoscope, Vedic Astrology, Ramakant Sharma">
+    <meta name="author" content="Ramakant Sharma">
+    <title>Astrologer Ramakant Sharma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #1c1b29;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .intro {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .intro .content {
+            flex: 1;
+            min-width: 280px;
+        }
+        .intro img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1c1b29;
+            color: white;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #ff7f27;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .button:hover {
+            background-color: #e66b1f;
+        }
+        #contact-info {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #contact-info a {
+            color: #ff7f27;
+            text-decoration: none;
+        }
+        #contact-info a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+            .intro {
+                flex-direction: column;
+                text-align: center;
+            }
+            .intro img {
+                margin: 0 auto;
+            }
+        }
+    </style>
+    <script>
+        function showContact() {
+            document.getElementById('contact-info').innerHTML = 
+                '<a href="tel:+919828536226">Contact Number: 9828536226</a>';
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Astrologer Ramakant Sharma</h1>
+    <p>Expert in Vedic Astrology & Horoscope Readings</p>
+</header>
+
+<div class="container">
+    <div class="intro">
+        <div class="content">
+            <h2>About Ramakant Sharma</h2>
+            <p>Astrologer Ramakant Sharma has over 20 years of experience in Vedic Astrology. He offers personalized readings for love, career, health, and more. His deep knowledge of astrology can guide you through life's toughest decisions.</p>
+            <button class="button" onclick="showContact()">Book a Consultation</button>
+            <p id="contact-info"></p> <!-- Contact info will be displayed here -->
+        </div>
+        <div class="image">
+            <img src="IMG_20241001_090832.jpg" alt="Astrologer Ramakant Sharma">
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Astrologer Ramakant Sharma | All rights reserved</p>
+</footer>
+
+</body>
+</html>
