@@ -80,6 +80,76 @@
         #contact-info a:hover {
             text-decoration: underline;
         }
+        
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"], input[type="date"], textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1eb755;
+            }
         @media (max-width: 768px) {
             header h1 {
                 font-size: 24px;
@@ -120,7 +190,51 @@
         </div>
     </div>
 </div>
+<div class="container">
+        <h2>Send Your Birth Details by WhatsApp</h2>
 
+        <div class="button-container">
+            <button class="whatsapp-button" onclick="showForm()">Send Your Birth Detail by WhatsApp</button>
+        </div>
+
+        <form id="birth-details-form" onsubmit="sendWhatsApp(); return false;" style="display:none;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="pob">Place of Birth:</label>
+            <input type="text" id="pob" name="pob" required>
+
+            <label for="contact">Contact No:</label>
+            <input type="text" id="contact" name="contact" required>
+
+            <label for="question">Your Question:</label>
+            <textarea id="question" name="question" rows="4" required></textarea>
+
+            <input type="submit" value="Send via WhatsApp">
+        </form>
+</div>
+    <script>
+        function showForm() {
+            document.getElementById('birth-details-form').style.display = 'block';
+        }
+
+        function sendWhatsApp() {
+            const name = document.getElementById('name').value;
+            const dob = document.getElementById('dob').value;
+            const pob = document.getElementById('pob').value;
+            const contactNo = document.getElementById('contact').value;
+            const question = document.getElementById('question').value;
+            const waContact = "9828536226";
+
+            const message = `Name: ${name}%0ADate of Birth: ${dob}%0APlace of Birth: ${pob}%0AContact No: ${contactNo}%0AQuestion: ${question}`;
+            const url = `https://wa.me/${waContact}?text=${message}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
 <footer>
     <p>&copy; 2024 Astrologer Ramakant Sharma | All rights reserved</p>
 </footer>
