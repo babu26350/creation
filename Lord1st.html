@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshi Astrology Social Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+
+        .form-container {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .common-container {
+            text-align: center;
+        }
+
+        .custom-question {
+            display: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto 20px auto; /* Center and add margin below */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+<img src="lord1st.webp" alt="Astrology Image" style="width:100%; height:auto;">
+        <h1>Joshi Astrology Social Services</h1>
+    </div>
+
+    <div class="common-container">
+        <h2>कृपया बताएं</h2>
+        <p>क्या आपके पास अपने जन्म समय का विवरण है?</p>
+        <button style="background-color:rgb(230,125,0);" onclick="showForm('withDOB')">हाँ</button>
+        <button style="background-color:rgb(230,125,0);" onclick="showForm('withoutDOB')">नहीं</button>
+    </div>
+
+    <div id="withDOB" class="form-container">
+        <h2>उपयोगकर्ता विवरण</h2>
+        <img src="sw1.jpg" alt="Astrology Service Image"> <!-- Replace with actual image URL -->
+        <form onsubmit="return sendWhatsAppMessageWithDOB()">
+            <label for="name">नाम:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="dob">जन्म तिथि और समय:</label>
+            <input type="datetime-local" id="dob" name="dob" required>
+
+            <label for="place">जन्म स्थान:</label>
+            <input type="text" id="place" name="place" required>
+
+            <label for="question">आप क्या पूछना चाहते हैं?</label>
+            <select id="question" name="question" required onchange="toggleCustomQuestion(this.value)">
+                <option value="" disabled selected>एक विकल्प चुनें</option>
+                <option value="career">मेरे करियर के बारे में</option>
+                <option value="marriage">मेरे विवाह के बारे में</option>
+                <option value="study">मेरी पढ़ाई के बारे में</option>
+                <option value="health">मेरी सेहत के बारे में</option>
+                <option value="other">अन्य (कृपया नीचे टाइप करें)</option>
+            </select>
+
+            <div id="custom-question" class="custom-question">
+                <label for="customQuestionInput">कृपया अपना प्रश्न यहाँ टाइप करें:</label>
+                <input type="text" id="customQuestionInput" name="customQuestion">
+            </div>
+
+            <button style="background-color:rgb(230,125,0);" type="submit">संदेश भेजें</button>
+        </form>
+        <button style="background-color:rgb(230,125,0);" onclick="goBack()">पीछे जाएं</button>
+    </div>
+
+    <div id="withoutDOB" class="form-container">
+        <h2>उपयोगकर्ता विवरण</h2>
+        <img src="sw1.jpg" alt="Astrology Service Image"> <!-- Replace with actual image URL -->
+        <form onsubmit="return sendWhatsAppMessageWithoutDOB()">
+            <label for="name2">नाम:</label>
+            <input type="text" id="name2" name="name" required>
+
+            <label for="place2">जन्म स्थान:</label>
+            <input type="text" id="place2" name="place" required>
+
+            <label for="question2">आप क्या पूछना चाहते हैं?</label>
+            <select id="question2" name="question" required onchange="toggleCustomQuestion2(this.value)">
+                <option value="" disabled selected>एक विकल्प चुनें</option>
+                <option value="career">मेरे करियर के बारे में</option>
+                <option value="marriage">मेरे विवाह के बारे में</option>
+                <option value="study">मेरी पढ़ाई के बारे में</option>
+                <option value="health">मेरी सेहत के बारे में</option>
+                <option value="other">अन्य (कृपया नीचे टाइप करें)</option>
+            </select>
+
+            <div id="custom-question2" class="custom-question">
+                <label for="customQuestionInput2">कृपया अपना प्रश्न यहाँ टाइप करें:</label>
+                <input type="text" id="customQuestionInput2" name="customQuestion">
+            </div>
+
+            <button style="background-color:rgb(230,125,0);" type="submit">संदेश भेजें</button>
+        </form>
+        <button style="background-color:rgb(230,125,0);" onclick="goBack()">पीछे जाएं</button>
+    </div>
+
+    <script>
+        function showForm(formType) {
+            document.querySelector('.common-container').style.display = 'none';
+            document.getElementById('withDOB').style.display = 'none';
+            document.getElementById('withoutDOB').style.display = 'none';
+
+            if (formType === 'withDOB') {
+                const form = document.getElementById('withDOB');
+                form.style.display = 'block';
+                setTimeout(() => { form.style.opacity = 1; }, 10);
+            } else if (formType === 'withoutDOB') {
+                const form = document.getElementById('withoutDOB');
+                form.style.display = 'block';
+                setTimeout(() => { form.style.opacity = 1; }, 10);
+            }
+        }
+
+        function goBack() {
+            const currentForm = document.querySelector('.form-container[style*="display: block"]');
+            if (currentForm) {
+                currentForm.style.opacity = 0;
+                setTimeout(() => {
+                    currentForm.style.display = 'none';
+                    document.querySelector('.common-container').style.display = 'block';
+                }, 500);
+            }
+        }
+
+        function toggleCustomQuestion(value) {
+            const customQuestionDiv = document.getElementById('custom-question');
+            customQuestionDiv.style.display = (value === 'other') ? 'block' : 'none';
+        }
+
+        function toggleCustomQuestion2(value) {
+            const customQuestionDiv2 = document.getElementById('custom-question2');
+            customQuestionDiv2.style.display = (value === 'other') ? 'block' : 'none';
+        }
+
+        function sendWhatsAppMessageWithDOB() {
+            const name = document.getElementById('name').value;
+            const dob = document.getElementById('dob').value;
+            const place = document.getElementById('place').value;
+            const question = document.getElementById('question').value;
+            const customQuestion = document.getElementById('customQuestionInput').value;
+
+            let message = `नाम: ${name}\nजन्म तिथि और समय: ${dob}\nजन्म स्थान: ${place}\nप्रश्न: ${question}`;
+            if (question === 'other') {
+                message += `\nअन्य प्रश्न: ${customQuestion}`;
+            }
+
+            const whatsappURL = `https://wa.me/916378918603?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            return false;
+        }
+
+        function sendWhatsAppMessageWithoutDOB() {
+            const name = document.getElementById('name2').value;
+            const place = document.getElementById('place2').value;
+            const question = document.getElementById('question2').value;
+            const customQuestion = document.getElementById('customQuestionInput2').value;
+
+            let message = `नाम: ${name}\nजन्म स्थान: ${place}\nप्रश्न: ${question}`;
+            if (question === 'other') {
+                message += `\nअन्य प्रश्न: ${customQuestion}`;
+            }
+
+            const whatsappURL = `https://wa.me/916378918603?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            return false;
+        }
+    </script>
+</body>
+
+</html>
