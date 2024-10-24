@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joshi Astrology Social Services</title>
     <style>
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #ccc;
+        }
+        .google-location {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            width: 90%;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -93,7 +105,7 @@
 
     <div class="header">
 <img src="lord1st.webp" alt="Astrology Image" style="width:100%; height:auto;">
-        <h1>Joshi Astrology Social Services</h1>
+        <h1>Joshi Astrology</h1>
     </div>
 
     <div class="common-container">
@@ -105,7 +117,7 @@
 
     <div id="withDOB" class="form-container">
         <h2>उपयोगकर्ता विवरण</h2>
-        <img src="sw1.jpg" alt="Astrology Service Image"> <!-- Replace with actual image URL -->
+        <!-- Replace with actual image URL -->
         <form onsubmit="return sendWhatsAppMessageWithDOB()">
             <label for="name">नाम:</label>
             <input type="text" id="name" name="name" required>
@@ -138,7 +150,7 @@
 
     <div id="withoutDOB" class="form-container">
         <h2>उपयोगकर्ता विवरण</h2>
-        <img src="sw1.jpg" alt="Astrology Service Image"> <!-- Replace with actual image URL -->
+         <!-- Replace with actual image URL -->
         <form onsubmit="return sendWhatsAppMessageWithoutDOB()">
             <label for="name2">नाम:</label>
             <input type="text" id="name2" name="name" required>
@@ -148,7 +160,7 @@
 
             <label for="question2">आप क्या पूछना चाहते हैं?</label>
             <select id="question2" name="question" required onchange="toggleCustomQuestion2(this.value)">
-                <option value="" disabled selected>एक विकल्प चुनें</option>
+                <option value="" disabled selected> चुनें</option>
                 <option value="career">मेरे करियर के बारे में</option>
                 <option value="marriage">मेरे विवाह के बारे में</option>
                 <option value="study">मेरी पढ़ाई के बारे में</option>
@@ -237,6 +249,18 @@
             return false;
         }
     </script>
+    <footer>
+    <p></p>
+    <p>Contact No: 6378918603</p>
+    <p>Email ID: <a href="mailto:bj167745@gmail.com">bj167745@gmail.com</a></p>
+    <div class="google-location">
+        <h3>Find Us Here:</h3>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345090545!2d144.95373531567224!3d-37.81627997975183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f7b2d2d%3A0xa2700cbf0dbfefc6!2sYour%20Business%20Location!5e0!3m2!1sen!2sin!4v1615701651053!5m2!1sen!2sin" 
+            width="90%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <p>&copy; 2024 Joshi Astrology And IT Services. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
