@@ -32,6 +32,68 @@
             height: auto;
             margin: 0 10px;
         }
+        * General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background styling */
+        body1 {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+
+        /* Card styling */
+        .puja-card {
+            background: #fff;
+            width: 350px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #333;
+            line-height: 1.6;
+            transition: transform 0.3s ease;
+        }
+
+        /* Title Styling */
+        .puja-card h1 {
+            font-size: 24px;
+            color: #8B0000;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+        }
+
+        /* Content Styling */
+        .puja-card .time-section {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .puja-card .highlight {
+            font-weight: bold;
+            color: #FF4500;
+        }
+
+        /* Hover Effect */
+        .puja-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer Text */
+        .puja-card .footer {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #888;
+            }
     </style>
 </head>
 <body>
@@ -47,15 +109,41 @@
         शुभ दीपावली 2024!<br>
         Congratulations to all on Diwali 2024!
     </div>
+<body1>
+
+<div class="puja-card">
+    <h1>Diwali 2024 Lakshmi Puja Muhurat</h1>
+    <div class="time-section">
+        <span class="highlight">Lakshmi Puja Muhurat:</span> <br>
+        31 October, 5:33 PM to 8:51 PM
+    </div>
+    <div class="time-section">
+        <span class="highlight">Nishita Kaal Muhurat:</span> <br>
+        31 October, 11:39 PM to 1 November, 12:31 AM
+    </div>
+    <div class="time-section">
+        <span class="highlight">Pradosh Kaal:</span> <br>
+        5:48 PM to 8:21 PM
+    </div>
+    <div class="time-section">
+        <span class="highlight">Vrishabh Kaal:</span> <br>
+        6:35 PM to 8:33 PM
+    </div>
+    <div class="footer">
+        Wishing you a blessed Diwali!
+    </div>
+</div>
+
+</body1>
 <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe 
-    src="https://www.youtube.com/embed/WUIQEBrxPH4" 
+    src="https://www.youtube.com/embed/WUIQEBrxPH4?autoplay=1&mute=1" 
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
   </iframe>
-      </div>
+</div>
     <!-- Footer -->
     <footer>
         Copyright Babulal Joshi<br>
