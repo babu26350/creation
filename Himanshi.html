@@ -134,6 +134,49 @@
             margin: 10px auto;
             width: 90%;
             }
+        .share-button {
+
+    background-color: #007bff; /* Blue color */
+
+    color: white;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    display: inline-block;
+
+    transition: background-color 0.3s ease;
+
+  }
+
+
+
+  /* Hover effect */
+
+  .share-button:hover {
+
+    background-color: #0056b3; /* Darker blue on hover */
+
+  }
+
+
+
+  /* Optional: Adding an icon before the text */
+
+  .share-button::before {
+
+    content: '🔗 ';
+
+    margin-right: 5px;
+
+        }
     </style>
 </head>
 <body>
@@ -157,7 +200,49 @@
        class="cta-button rotate-icon"><img  style="width: 50px; height: 50px;" src="What.jpg.png" alt="Icon"></a>
         </div>
     <!-- Footer -->
-    
+    <button class="share-button" onclick="shareContent()">Share</button>
+
+
+
+<!-- JavaScript for the share functionality -->
+
+<script>
+
+  function shareContent() {
+
+    // Check if the Web Share API is available
+
+    if (navigator.share) {
+
+      navigator.share({
+
+        title: 'Check this out!',
+
+        text: 'Here is something interesting for you.',
+
+        url: window.location.href // Current page URL
+
+      }).then(() => {
+
+        console.log('Content shared successfully');
+
+      }).catch((error) => {
+
+        console.error('Error sharing:', error);
+
+      });
+
+    } else {
+
+      // Fallback for browsers that don't support Web Share API
+
+      alert('Sharing not supported on this browser');
+
+    }
+
+  }
+
+</script>
     <script>
         function sendToWhatsApp() {
             const comment = document.getElementById("comment").value;
