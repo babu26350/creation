@@ -100,6 +100,40 @@
             background-color: #FFA500;
             color: #fff;
                 }
+        .rotate-icon img {
+    display: inline-block;
+    transition: transform 0.5s ease; /* Smooth transition */
+
+    width: 50px;
+    height: 50px;
+    animation: slowRotate 10s infinite linear; /* Rotate continuously */
+}
+
+@keyframes slowRotate {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+}
+.rotate-icon:hover img {
+    transform: rotate(360deg); /* Rotate 360 degrees on hover */
+            }footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #ccc;
+        }
+        .google-location {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            width: 90%;
+            }
     </style>
 </head>
 <body>
@@ -139,5 +173,17 @@
             }
         }
     </script>
+    footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #ccc;
+        }
+        .google-location {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            width: 90%;
+        }
 </body>
   </html>
