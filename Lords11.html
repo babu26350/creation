@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshi Astrology Social Services</title>
+    <style>
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #ccc;
+        }
+        .google-location {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            width: 90%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: ;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+
+        .form-container {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .common-container {
+            text-align: center;
+        }
+
+        .custom-question {
+            display: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto 20px auto; /* Center and add margin below */
+        }
+
+        .spiritual-div {
+            font-family: 'Georgia', serif;
+            max-width: 600px;
+            margin: 10px auto;
+            padding: 30px;
+            background: linear-gradient(145deg, orange, rgb(130, 20, 0)); /* Spiritual gradient */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .spiritual-div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .spiritual-div h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: rgb(230,230,0);
+        }
+
+        .spiritual-div p {
+            font-size: 18px;
+            line-height: 1.6;
+            color:white;
+        }
+
+        .spiritual-button {
+            padding: 12px 30px;
+            margin-top: 20px;
+            background-color: rgb(150,20,40);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .spiritual-button:hover {
+            background-color: #00796b;
+        }
+
+        /* Hidden content styles */
+        .hidden-content {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            border-radius: 10px;
+            color: #333;
+        }
+
+        .close-button {
+            display: none;
+            margin-top: 20px;
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .close-button:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="spiritual-div">
+        <h1>कुंडली के अलग-अलग चार्ट और संबंधित फलादेश</h1>
+        <p>कुंडली में विभिन्न प्रकार के चार्ट होते हैं, जो व्यक्ति के जीवन के अलग-अलग पहलुओं की व्याख्या करने में सहायक होते हैं। प्रत्येक चार्ट का अपना विशेष महत्व है और यह जीवन की विशिष्ट घटनाओं और क्षेत्रों को समझने में मदद करता है।</p>
+        <ul>
+            <li><b>लग्न चार्ट (D1):</b> यह व्यक्ति के व्यक्तित्व और जीवन के समग्र पहलुओं को दर्शाता है।</li>
+            <li><b>नवांश चार्ट (D9):</b> वैवाहिक जीवन और भाग्य को दर्शाने वाला महत्वपूर्ण चार्ट।</li>
+            <li><b>दशमांश चार्ट (D10):</b> करियर और समाज में प्रतिष्ठा से संबंधित।</li>
+            <li><b>सप्तमांश चार्ट (D7):</b> परिवार और संतान से जुड़े पहलुओं का विवरण।</li>
+            <li><b>होरा चार्ट (D2):</b> धन और संपत्ति का प्रतिनिधित्व।</li>
+       
+
+        <li><b>त्रिंशांश चार्ट (D30):</b> यह व्यक्ति के जीवन में होने वाली समस्याओं और उनके स्रोत को समझने में सहायक होता है।</li>
+        <li><b>षष्टयांश चार्ट (D60):</b> पूर्वजन्म के कर्म और वर्तमान जीवन में उनके प्रभाव का विश्लेषण।</li>
+        <li><b>चंद्र कुंडली:</b> व्यक्ति के मानसिक स्थिति और भावनात्मक पहलुओं को दर्शाने वाला विशेष चार्ट।</li>
+        <li><b>सूर्य कुंडली:</b> व्यक्ति की प्रतिष्ठा, आत्मविश्वास और समाज में स्थिति को दर्शाने वाला चार्ट।</li>
+    
+ </ul>
+        <p>इन चार्ट्स का सही विश्लेषण जीवन के हर पहलू को समझने में मदद करता है। कुशल ज्योतिषी इनका उपयोग सटीक फलादेश के लिए करते हैं।</p>
+    </div>
+<a href="lord1.html" class="beautiful-button">Jyada jane</a>
+
+<style>
+    .beautiful-button {
+        display: inline-block;
+        background-color: red; /* Red background */
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding for the button */
+        border-radius: 25px; /* Rounded corners */
+        text-decoration: none; /* No underline */
+        font-size: 16px; /* Font size */
+        font-weight: bold; /* Bold text */
+        text-align: center; /* Center the text */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add some shadow */
+    }
+
+    .beautiful-button:hover {
+        background-color: darkred; /* Slightly darker red on hover */
+        transform: scale(1.1); /* Slight zoom effect on hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+    }
+</style>
+
+    <!-- Remaining HTML content... -->
+
+    <footer>
+        <p>&copy; 2024 Joshi Astrology And IT Services. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
