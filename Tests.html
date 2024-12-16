@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test-Quiz</title>
+  <style>
+    /* Your existing styles remain unchanged */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      width: 90%;
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #007BFF;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      width: 100%;
+      background: #f5deb3;
+      color: black;
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    button:active, button:focus, button:hover {
+      background: #f5deb3; /* No hover or active effect */
+    }
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .hidden {
+      display: none;
+    }
+    .loading {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Test-Quiz</h1>
+    <div id="startScreen">
+      <button id="class12Button" onclick="startQuiz('class12')">Test Class 12th</button>
+      <button id="class10Button" onclick="startQuiz('class10')">Test Class 10th</button>
+    </div>
+    <div id="quizContainer" class="hidden">
+      <div id="loadingMessage" class="loading hidden">Wait Please</div>
+    </div>
+    <button id="backButton" class="hidden" onclick="prevQuestion()">Back</button>
+    <button id="nextButton" class="hidden" onclick="nextQuestion()">Next</button>
+    <button id="submitButton" class="hidden" onclick="submitQuiz()">Submit Quiz</button>
+    <div id="result" class="result hidden"></div>
+  </div>
+
+  <script>
+    const API_URLS = {
+      class12: "https://654f6363358230d8f0cd4325.mockapi.io/content/ret",
+      class10: "https://654f6363358230d8f0cd4325.mockapi.io/content/person"
+    };
+
+    let quizData = [];
+    let currentQuestionIndex = 0;
+
+    function startQuiz(classType) {
+      const apiUrl = API_URLS[classType];
+      document.getElementById("startScreen").classList.add("hidden");
+      document.getElementById("quizContainer").classList.remove("hidden");
+      fetchQuizData(apiUrl);
+    }
+
+    async function fetchQuizData(apiUrl) {
+      try {
+        document.getElementById("loadingMessage").classList.remove("hidden");
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // Add user-selected answers to the data
+        quizData = data.map(item => ({
+          ...item,
+          userAnswer: null // Initialize with no answer selected
+        }));
+
+        document.getElementById("loadingMessage").classList.add("hidden");
+        renderQuestion();
+      } catch (error) {
+        console.error("Error fetching quiz data:", error);
+        document.getElementById("quizContainer").innerHTML = "<p>Failed to load quiz. Please try again later.</p>";
+      }
+    }
+
+    function renderQuestion() {
+      const quizContainer = document.getElementById("quizContainer");
+      const questionData = quizData[currentQuestionIndex];
+
+      quizContainer.innerHTML = `
+        <div class="question">
+          <p>${currentQuestionIndex + 1}. ${questionData.question.label}</p>
+          ${questionData.options
+            .map(
+              option => `
+            <label>
+              <input type="radio" name="q${questionData.id}" value="${option.id}" ${
+                questionData.userAnswer === option.id ? "checked" : ""
+              }>
+              ${option.label}
+            </label>
+          `
+            )
+            .join("")}
+        </div>
+      `;
+
+      // Toggle button visibility
+      document.getElementById("backButton").classList.toggle("hidden", currentQuestionIndex === 0);
+      document.getElementById("nextButton").classList.toggle("hidden", currentQuestionIndex === quizData.length - 1);
+      document.getElementById("submitButton").classList.toggle("hidden", currentQuestionIndex !== quizData.length - 1);
+    }
+
+    function nextQuestion() {
+      saveAnswer();
+      if (currentQuestionIndex < quizData.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      saveAnswer();
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuestion();
+      }
+    }
+
+    function saveAnswer() {
+      const selectedOption = document.querySelector(`input[name="q${quizData[currentQuestionIndex].id}"]:checked`);
+      quizData[currentQuestionIndex].userAnswer = selectedOption ? selectedOption.value : null;
+    }
+
+    function submitQuiz() {
+      saveAnswer();
+
+      let score = 0;
+      let resultHTML = "<h2>Results:</h2>";
+      quizData.forEach(item => {
+        if (item.userAnswer) {
+          const isCorrect = item.userAnswer === item.correctAnswerId;
+          if (isCorrect) score++;
+          resultHTML += `
+            <p>
+              ${item.question.label} <br>
+              Your Answer: <span style="color: ${isCorrect ? 'green' : 'red'}">
+                ${item.options.find(option => option.id === item.userAnswer).label}
+              </span> <br>
+              Correct Answer: <span style="color: green">
+                ${item.options.find(option => option.id === item.correctAnswerId).label}
+              </span>
+            </p>
+          `;
+        } else {
+          resultHTML += `
+            <p>
+              ${item.question.label} <br>
+              Your Answer: <span style="color: red">Not Attempted</span> <br>
+              Correct Answer: <span style="color: green">
+                ${item.options.find(option => option.id === item.correctAnswerId).label}
+              </span>
+            </p>
+          `;
+        }
+      });
+
+      const totalQuestions = quizData.length;
+      const attemptedQuestions = quizData.filter(item => item.userAnswer !== null).length;
+      const percentage = (score / totalQuestions) * 100;
+      resultHTML += `
+        <p><strong>Score:</strong> ${score} out of ${totalQuestions} (${percentage.toFixed(2)}%)</p>
+        <p><strong>Attempted:</strong> ${attemptedQuestions} out of ${totalQuestions}</p>
+      `;
+      document.getElementById("result").innerHTML = resultHTML;
+      document.getElementById("result").classList.remove("hidden");
+
+      // Hide quiz and buttons
+      document.getElementById("quizContainer").classList.add("hidden");
+      document.getElementById("backButton").classList.add("hidden");
+      document.getElementById("nextButton").classList.add("hidden");
+      document.getElementById("submitButton").classList.add("hidden");
+    }
+  </script>
+</body>
+  </html>
