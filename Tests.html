@@ -158,34 +158,6 @@
       document.getElementById("nextButton").classList.toggle("hidden", currentQuestionIndex === currentTestData.length - 1);
       document.getElementById("submitButton").classList.toggle("hidden", currentQuestionIndex !== currentTestData.length - 1);
     }
-
-    function nextQuestion() {
-      saveAnswer();
-      if (currentQuestionIndex < quizData[currentTest].length - 1) {
-        currentQuestionIndex++;
-        renderQuestion();
-      }
-    }
-
-    function prevQuestion() {
-      saveAnswer();
-      if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        renderQuestion();
-      } else {
-        document.getElementById("quizContainer").classList.add("hidden");
-        document.getElementById("backButton").classList.add("hidden");
-        document.getElementById("testButtonsContainer").classList.add("hidden");
-        document.getElementById("startScreen").classList.remove("hidden");
-      }
-    }
-
-    function saveAnswer() {
-      const selectedOption = document.querySelector(
-        `input[name="q${quizData[currentTest][currentQuestionIndex].id}"]:checked`
-      );
-      quizData[currentTest][currentQuestionIndex].userAnswer = selectedOption ? selectedOption.value : null;
-    }
 function submitQuiz() {
       saveAnswer();
 
@@ -221,21 +193,42 @@ function submitQuiz() {
         }
       });
 
-      const totalQuestions = currentTestData.length;
-      const percentage = (score / totalQuestions) * 100;
-      resultHTML += `
-        <p><strong>Score:</strong> ${score} out of ${totalQuestions} (${percentage.toFixed(2)}%)</p>
-      `;
-      document.getElementById("result").innerHTML = resultHTML;
-      document.getElementById("result").classList.remove("hidden");
-
-      // Hide quiz and buttons, show back to test selection
-      document.getElementById("quizContainer").classList.add("hidden");
+      resultHTML += `<h3>Your Score: ${score}/${currentTestData.length}</h3>`;
+      document.getElementById("quizContainer").innerHTML = resultHTML;
+      document.getElementById("submitButton").classList.add("hidden");
       document.getElementById("backButton").classList.add("hidden");
       document.getElementById("nextButton").classList.add("hidden");
-      document.getElementById("submitButton").classList.add("hidden");
       document.getElementById("backToTestSelection").classList.remove("hidden");
+      document.getElementById("backToTestListButton").classList.add("hidden");
     }
+    function nextQuestion() {
+      saveAnswer();
+      if (currentQuestionIndex < quizData[currentTest].length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      saveAnswer();
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuestion();
+      } else {
+        document.getElementById("quizContainer").classList.add("hidden");
+        document.getElementById("backButton").classList.add("hidden");
+        document.getElementById("testButtonsContainer").classList.add("hidden");
+        document.getElementById("startScreen").classList.remove("hidden");
+      }
+    }
+
+    function saveAnswer() {
+      const selectedOption = document.querySelector(
+        `input[name="q${quizData[currentTest][currentQuestionIndex].id}"]:checked`
+      );
+      quizData[currentTest][currentQuestionIndex].userAnswer = selectedOption ? selectedOption.value : null;
+    }
+
     function backToClassSelection() {
       document.getElementById("backToClassSelectionButton").classList.add("hidden");
       document.getElementById("startScreen").classList.remove("hidden");
