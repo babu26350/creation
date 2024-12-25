@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test-Quiz</title>
   <style>
-    /* Your existing styles remain unchanged */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -82,12 +81,12 @@
     <div id="quizContainer" class="hidden">
       <div id="loadingMessage" class="loading hidden">Wait Please</div>
     </div>
+    <div id="testButtonsContainer" class="hidden"></div>
     <button id="backButton" class="hidden" onclick="prevQuestion()">Back</button>
     <button id="nextButton" class="hidden" onclick="nextQuestion()">Next</button>
     <button id="submitButton" class="hidden" onclick="submitQuiz()">Submit Quiz</button>
-    <a href="sar.html" class="link-button">Go to chapter</a>
-
     <div id="result" class="result hidden"></div>
+    <button id="backToTestSelection" class="hidden" onclick="backToTestSelection()">Back to Test Selection</button>
   </div>
 
   <script>
@@ -96,39 +95,62 @@
       class10: "https://654f6363358230d8f0cd4325.mockapi.io/content/person"
     };
 
-    let quizData = [];
+    let quizData = {};
+    let currentTest = 1;
     let currentQuestionIndex = 0;
 
     function startQuiz(classType) {
       const apiUrl = API_URLS[classType];
       document.getElementById("startScreen").classList.add("hidden");
-      document.getElementById("quizContainer").classList.remove("hidden");
+      document.getElementById("loadingMessage").classList.remove("hidden");
       fetchQuizData(apiUrl);
     }
 
     async function fetchQuizData(apiUrl) {
       try {
-        document.getElementById("loadingMessage").classList.remove("hidden");
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        // Add user-selected answers to the data
-        quizData = data.map(item => ({
-          ...item,
-          userAnswer: null // Initialize with no answer selected
-        }));
+        // Split data into tests of 10 questions each
+        quizData = {};
+        for (let i = 0; i < data.length; i += 10) {
+          quizData[`test${i / 10 + 1}`] = data.slice(i, i + 10).map(item => ({
+            ...item,
+            userAnswer: null
+          }));
+        }
 
         document.getElementById("loadingMessage").classList.add("hidden");
-        renderQuestion();
+        renderTestButtons();
       } catch (error) {
         console.error("Error fetching quiz data:", error);
         document.getElementById("quizContainer").innerHTML = "<p>Failed to load quiz. Please try again later.</p>";
       }
     }
 
+    function renderTestButtons() {
+      const testButtonsContainer = document.getElementById("testButtonsContainer");
+      testButtonsContainer.innerHTML = Object.keys(quizData)
+        .map(
+          (testKey, index) =>
+            `<button onclick="startTest('${testKey}')">Start Test ${index + 1}</button>`
+        )
+        .join("");
+      testButtonsContainer.classList.remove("hidden");
+    }
+
+    function startTest(testKey) {
+      currentTest = testKey;
+      currentQuestionIndex = 0;
+      document.getElementById("testButtonsContainer").classList.add("hidden");
+      document.getElementById("quizContainer").classList.remove("hidden");
+      renderQuestion();
+    }
+
     function renderQuestion() {
       const quizContainer = document.getElementById("quizContainer");
-      const questionData = quizData[currentQuestionIndex];
+      const currentTestData = quizData[currentTest];
+      const questionData = currentTestData[currentQuestionIndex];
 
       quizContainer.innerHTML = `
         <div class="question">
@@ -148,15 +170,14 @@
         </div>
       `;
 
-      // Toggle button visibility
       document.getElementById("backButton").classList.toggle("hidden", currentQuestionIndex === 0);
-      document.getElementById("nextButton").classList.toggle("hidden", currentQuestionIndex === quizData.length - 1);
-      document.getElementById("submitButton").classList.toggle("hidden", currentQuestionIndex !== quizData.length - 1);
+      document.getElementById("nextButton").classList.toggle("hidden", currentQuestionIndex === currentTestData.length - 1);
+      document.getElementById("submitButton").classList.toggle("hidden", currentQuestionIndex !== currentTestData.length - 1);
     }
 
     function nextQuestion() {
       saveAnswer();
-      if (currentQuestionIndex < quizData.length - 1) {
+      if (currentQuestionIndex < quizData[currentTest].length - 1) {
         currentQuestionIndex++;
         renderQuestion();
       }
@@ -171,16 +192,18 @@
     }
 
     function saveAnswer() {
-      const selectedOption = document.querySelector(`input[name="q${quizData[currentQuestionIndex].id}"]:checked`);
-      quizData[currentQuestionIndex].userAnswer = selectedOption ? selectedOption.value : null;
+      const selectedOption = document.querySelector(`input[name="q${quizData[currentTest][currentQuestionIndex].id}"]:checked`);
+      quizData[currentTest][currentQuestionIndex].userAnswer = selectedOption ? selectedOption.value : null;
     }
 
     function submitQuiz() {
       saveAnswer();
 
+      const currentTestData = quizData[currentTest];
       let score = 0;
-      let resultHTML = "<h2>Results:</h2>";
-      quizData.forEach(item => {
+      let resultHTML = `<h2>Results for ${currentTest}:</h2>`;
+
+      currentTestData.forEach(item => {
         if (item.userAnswer) {
           const isCorrect = item.userAnswer === item.correctAnswerId;
           if (isCorrect) score++;
@@ -208,22 +231,27 @@
         }
       });
 
-      const totalQuestions = quizData.length;
-      const attemptedQuestions = quizData.filter(item => item.userAnswer !== null).length;
+      const totalQuestions = currentTestData.length;
       const percentage = (score / totalQuestions) * 100;
       resultHTML += `
         <p><strong>Score:</strong> ${score} out of ${totalQuestions} (${percentage.toFixed(2)}%)</p>
-        <p><strong>Attempted:</strong> ${attemptedQuestions} out of ${totalQuestions}</p>
       `;
       document.getElementById("result").innerHTML = resultHTML;
       document.getElementById("result").classList.remove("hidden");
 
-      // Hide quiz and buttons
+      // Hide quiz and buttons, show back to test selection
       document.getElementById("quizContainer").classList.add("hidden");
       document.getElementById("backButton").classList.add("hidden");
       document.getElementById("nextButton").classList.add("hidden");
       document.getElementById("submitButton").classList.add("hidden");
+      document.getElementById("backToTestSelection").classList.remove("hidden");
+    }
+
+    function backToTestSelection() {
+      document.getElementById("result").classList.add("hidden");
+      document.getElementById("backToTestSelection").classList.add("hidden");
+      document.getElementById("startScreen").classList.remove("hidden");
     }
   </script>
 </body>
-  </html>
+</html>
