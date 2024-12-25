@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>अंतिम पाठ</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+    .lesson-card { border: 1px solid #ccc; padding: 10px; margin: 10px 0; border-radius: 5px; background-color: #fff; }
+    .lesson-card h3 { margin: 0; color: #2c3e50; }
+    .lesson-card p { margin: 5px 0; }
+    .lesson-type { font-size: 0.9em; color: #7f8c8d; }
+  </style>
+</head>
+<body>
+  <h1>अंतिम पाठ</h1>
+  <div id="lesson-container"></div>
+
+  <script>
+    const lessonsData = [
+  {
+    id: 1,
+    title: "कहानी का सारांश",
+    description: "कहानी 'अंतिम पाठ' फ्रांको-प्रशियन युद्ध के दौरान की है, जब जर्मन शासकों ने फ्रांस के अलसैस और लोरेन क्षेत्रों में फ्रेंच भाषा पढ़ाने पर प्रतिबंध लगा दिया। यह कहानी सांस्कृतिक पहचान और राष्ट्रीय गौरव के खोने का प्रतीक है।",
+    type: "सारांश"
+  },
+  {
+    id: 2,
+    title: "कहानी का आरंभ",
+    description: "फ्रांज, एक छोटा लड़का, जो हमेशा पढ़ाई में लापरवाह था, स्कूल देर से पहुँचता है। उसे डर है कि शिक्षक एम. हैमेल उसे डांटेंगे। वह गाँव में अजीब सा माहौल देखता है, जहाँ बुजुर्ग उदास बैठे हैं और चारों ओर शांति है।",
+    type: "कथानक"
+  },
+  {
+    id: 3,
+    title: "स्कूल का परिवेश",
+    description: "स्कूल में सामान्य दिनों के विपरीत एक गंभीर वातावरण होता है। बच्चे चुपचाप बैठे हैं, एम. हैमेल ने अपनी विशेष पोशाक पहनी है, और पीछे की बेंचों पर गाँव के बुजुर्ग बैठे हैं।",
+    type: "कथानक"
+  },
+  {
+    id: 4,
+    title: "अंतिम पाठ की घोषणा",
+    description: "एम. हैमेल बताते हैं कि यह उनका अंतिम फ्रेंच पाठ है, क्योंकि अगले दिन से जर्मन भाषा को अनिवार्य कर दिया जाएगा। फ्रांज को पहली बार अपनी भाषा और पढ़ाई की उपेक्षा का एहसास होता है।",
+    type: "कथानक"
+  },
+  {
+    id: 5,
+    title: "फ्रांज की आत्मा की यात्रा",
+    description: "फ्रांज समझता है कि भाषा केवल संवाद का माध्यम नहीं है, बल्कि यह उनकी सांस्कृतिक विरासत और राष्ट्रीय पहचान का हिस्सा है। एम. हैमेल कहते हैं कि जब तक लोग अपनी भाषा को थामे रहते हैं, तब तक वे अपनी स्वतंत्रता को बनाए रखते हैं।",
+    type: "भावनात्मक यात्रा"
+  },
+  {
+    id: 6,
+    title: "गाँव का दुःख",
+    description: "गाँव के बुजुर्ग, जो पहले शिक्षा को महत्व नहीं देते थे, अब अपनी गलतियों को स्वीकारते हैं और भाषा के संरक्षण की आवश्यकता को समझते हैं।",
+    type: "भावनात्मक यात्रा"
+  },
+  {
+    id: 7,
+    title: "एम. हैमेल की विदाई",
+    description: "एम. हैमेल भावुकता के साथ कक्षा समाप्त करते हैं। उनका अंतिम शब्द 'विवा ला फ्रांस!' (फ्रांस अमर रहे) पूरे कक्षा में गहरी उदासी छोड़ देता है।",
+    type: "भावनात्मक विदाई"
+  },
+  {
+    id: 8,
+    title: "मातृभाषा का महत्व",
+    description: "कहानी बताती है कि भाषा किसी देश की संस्कृति, पहचान और इतिहास को दर्शाती है। अपनी भाषा खो देना अपनी जड़ों से कटने जैसा है।",
+    type: "संदेश"
+  },
+  {
+    id: 9,
+    title: "शिक्षा का महत्व",
+    description: "शिक्षा को गंभीरता से लेना चाहिए, क्योंकि समय बीतने के बाद पछतावा करना व्यर्थ है।",
+    type: "संदेश"
+  },
+  {
+    id: 10,
+    title: "राष्ट्रप्रेम और संस्कृति",
+    description: "कहानी में मातृभाषा और मातृभूमि के प्रति प्रेम और गर्व की भावना प्रबल रूप से उभरती है।",
+    type: "संदेश"
+  },
+  {
+    id: 11,
+    title: "स्वतंत्रता और आत्मसम्मान",
+    description: "अपनी भाषा और संस्कृति को बचाए रखना स्वतंत्रता और आत्मसम्मान का प्रतीक है।",
+    type: "संदेश"
+  },
+  {
+    id: 12,
+    title: "गहराई का प्रतिबिंब",
+    description: "'अंतिम पाठ' हमें चेतावनी देता है कि किसी संस्कृति, भाषा या परंपरा को संरक्षित करना कितना महत्वपूर्ण है।",
+    type: "संदेश"
+  }
+];
+
+    const lessonContainer = document.getElementById('lesson-container');
+
+    lessonsData.forEach(lesson => {
+      const lessonCard = document.createElement('div');
+      lessonCard.classList.add('lesson-card');
+
+      const lessonTitle = document.createElement('h3');
+      lessonTitle.textContent = lesson.title;
+
+      const lessonDescription = document.createElement('p');
+      lessonDescription.textContent = lesson.description;
+
+      const lessonType = document.createElement('p');
+      lessonType.classList.add('lesson-type');
+      lessonType.textContent = `प्रकार: ${lesson.type}`;
+
+      lessonCard.appendChild(lessonTitle);
+      lessonCard.appendChild(lessonDescription);
+      lessonCard.appendChild(lessonType);
+
+      lessonContainer.appendChild(lessonCard);
+    });
+  </script>
+</body>
+  </html>
