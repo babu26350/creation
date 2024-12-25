@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -63,12 +63,6 @@
     .hidden {
       display: none;
     }
-    .loading {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
@@ -78,15 +72,12 @@
       <button id="class12Button" onclick="startQuiz('class12')">Test Class 12th</button>
       <button id="class10Button" onclick="startQuiz('class10')">Test Class 10th</button>
     </div>
-    <div id="quizContainer" class="hidden">
-      <div id="loadingMessage" class="loading hidden">Wait Please</div>
-    </div>
     <div id="testButtonsContainer" class="hidden"></div>
+    <button id="backToClassSelectionButton" class="hidden" onclick="backToClassSelection()">Back</button>
+    <div id="quizContainer" class="hidden"></div>
     <button id="backButton" class="hidden" onclick="prevQuestion()">Back</button>
     <button id="nextButton" class="hidden" onclick="nextQuestion()">Next</button>
     <button id="submitButton" class="hidden" onclick="submitQuiz()">Submit Quiz</button>
-    <div id="result" class="result hidden"></div>
-    <button id="backToTestSelection" class="hidden" onclick="backToTestSelection()">Back to Test Selection</button>
   </div>
 
   <script>
@@ -96,13 +87,13 @@
     };
 
     let quizData = {};
-    let currentTest = 1;
+    let currentTest = "";
     let currentQuestionIndex = 0;
 
     function startQuiz(classType) {
       const apiUrl = API_URLS[classType];
       document.getElementById("startScreen").classList.add("hidden");
-      document.getElementById("loadingMessage").classList.remove("hidden");
+      document.getElementById("backToClassSelectionButton").classList.remove("hidden");
       fetchQuizData(apiUrl);
     }
 
@@ -120,21 +111,16 @@
           }));
         }
 
-        document.getElementById("loadingMessage").classList.add("hidden");
         renderTestButtons();
       } catch (error) {
         console.error("Error fetching quiz data:", error);
-        document.getElementById("quizContainer").innerHTML = "<p>Failed to load quiz. Please try again later.</p>";
       }
     }
 
     function renderTestButtons() {
       const testButtonsContainer = document.getElementById("testButtonsContainer");
       testButtonsContainer.innerHTML = Object.keys(quizData)
-        .map(
-          (testKey, index) =>
-            `<button onclick="startTest('${testKey}')">Start Test ${index + 1}</button>`
-        )
+        .map((testKey, index) => `<button onclick="startTest('${testKey}')">Start Test ${index + 1}</button>`)
         .join("");
       testButtonsContainer.classList.remove("hidden");
     }
@@ -156,16 +142,14 @@
         <div class="question">
           <p>${currentQuestionIndex + 1}. ${questionData.question.label}</p>
           ${questionData.options
-            .map(
-              option => `
-            <label>
-              <input type="radio" name="q${questionData.id}" value="${option.id}" ${
-                questionData.userAnswer === option.id ? "checked" : ""
-              }>
-              ${option.label}
-            </label>
-          `
-            )
+            .map(option => `
+              <label>
+                <input type="radio" name="q${questionData.id}" value="${option.id}" ${
+                  questionData.userAnswer === option.id ? "checked" : ""
+                }>
+                ${option.label}
+              </label>
+            `)
             .join("")}
         </div>
       `;
@@ -188,15 +172,21 @@
       if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         renderQuestion();
+      } else {
+        document.getElementById("quizContainer").classList.add("hidden");
+        document.getElementById("backButton").classList.add("hidden");
+        document.getElementById("testButtonsContainer").classList.add("hidden");
+        document.getElementById("startScreen").classList.remove("hidden");
       }
     }
 
     function saveAnswer() {
-      const selectedOption = document.querySelector(`input[name="q${quizData[currentTest][currentQuestionIndex].id}"]:checked`);
+      const selectedOption = document.querySelector(
+        `input[name="q${quizData[currentTest][currentQuestionIndex].id}"]:checked`
+      );
       quizData[currentTest][currentQuestionIndex].userAnswer = selectedOption ? selectedOption.value : null;
     }
-
-    function submitQuiz() {
+function submitQuiz() {
       saveAnswer();
 
       const currentTestData = quizData[currentTest];
@@ -246,12 +236,13 @@
       document.getElementById("submitButton").classList.add("hidden");
       document.getElementById("backToTestSelection").classList.remove("hidden");
     }
-
-    function backToTestSelection() {
-      document.getElementById("result").classList.add("hidden");
-      document.getElementById("backToTestSelection").classList.add("hidden");
+    function backToClassSelection() {
+      document.getElementById("backToClassSelectionButton").classList.add("hidden");
       document.getElementById("startScreen").classList.remove("hidden");
-      
+      document.getElementById("testButtonsContainer").classList.add("hidden");
+document.getElementById("quizContainer").classList.add("hidden");
+document.getElementById("nextButton").classList.add("hidden");
+document.getElementById("backButton").classList.add("hidden");
     }
   </script>
 </body>
