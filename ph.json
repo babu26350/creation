@@ -1,0 +1,132 @@
+[
+  {
+    "question": {
+      "id": "1",
+      "label": "What does 'come across' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To meet by chance | संयोग से मिलना" },
+      { "id": "2", "label": "To appear or be found | दिखाई देना या मिलना" },
+      { "id": "3", "label": "To travel | यात्रा करना" },
+      { "id": "4", "label": "To leave | छोड़ देना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "2",
+      "label": "What does 'come up' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To rise or appear | उभरना या दिखाई देना" },
+      { "id": "2", "label": "To leave | छोड़ देना" },
+      { "id": "3", "label": "To stay still | रुका रहना" },
+      { "id": "4", "label": "To travel | यात्रा करना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "3",
+      "label": "What does 'come out' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To reveal or make known | प्रकट होना या उजागर करना" },
+      { "id": "2", "label": "To come to an end | समाप्त होना" },
+      { "id": "3", "label": "To leave | छोड़ देना" },
+      { "id": "4", "label": "To arrive | आना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "4",
+      "label": "What does 'come over' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To visit | दौरा करना" },
+      { "id": "2", "label": "To rise above | ऊपर उठना" },
+      { "id": "3", "label": "To travel | यात्रा करना" },
+      { "id": "4", "label": "To arrive | आना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "5",
+      "label": "What does 'come into' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To inherit something | कुछ विरासत में प्राप्त करना" },
+      { "id": "2", "label": "To make a decision | निर्णय लेना" },
+      { "id": "3", "label": "To enter | प्रवेश करना" },
+      { "id": "4", "label": "To change | बदलना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "6",
+      "label": "What does 'come in' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To enter | प्रवेश करना" },
+      { "id": "2", "label": "To participate | भाग लेना" },
+      { "id": "3", "label": "To stay | ठहरना" },
+      { "id": "4", "label": "To leave | छोड़ देना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "7",
+      "label": "What does 'come down' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To descend or fall | गिरना या नीचे आना" },
+      { "id": "2", "label": "To stay | ठहरना" },
+      { "id": "3", "label": "To rise | ऊपर जाना" },
+      { "id": "4", "label": "To travel | यात्रा करना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "8",
+      "label": "What does 'come back' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To return | लौटना" },
+      { "id": "2", "label": "To give | देना" },
+      { "id": "3", "label": "To leave | छोड़ देना" },
+      { "id": "4", "label": "To accept | स्वीकार करना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "9",
+      "label": "What does 'come along' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To accompany | साथ जाना" },
+      { "id": "2", "label": "To refuse | मना करना" },
+      { "id": "3", "label": "To stay | ठहरना" },
+      { "id": "4", "label": "To leave | छोड़ देना" }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "10",
+      "label": "What does 'come to' mean?"
+    },
+    "options": [
+      { "id": "1", "label": "To regain consciousness | होश में आना" },
+      { "id": "2", "label": "To enter | प्रवेश करना" },
+      { "id": "3", "label": "To move away | दूर जाना" },
+      { "id": "4", "label": "To participate | भाग लेना" }
+    ],
+    "correctAnswerId": "1"
+  }
+]
