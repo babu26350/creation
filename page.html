@@ -244,6 +244,73 @@ height: min-content;
             border-radius: 50%;
 
         }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 0px;
+            text-align: center;
+            font-size: 2.9em;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .controls select {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .news-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+        }
+        .news-container::-webkit-scrollbar {
+            height: 10px;
+        }
+        .news-container::-webkit-scrollbar-thumb {
+            background: #007bff;
+            border-radius: 5px;
+        }
+        .news-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            overflow: hidden;
+            flex: 0 0 auto;
+        }
+        .news-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .news-content {
+            padding: 15px;
+        }
+        .news-title {
+            font-size: 1.2em;
+            color: #007bff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .news-title:hover {
+            text-decoration: underline;
+        }
+        .news-description {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .news-source {
+            font-size: 0.8em;
+            color: #495057;
+        }
     </style>
 </head>
 <body>
@@ -293,6 +360,97 @@ height: min-content;
             </ul>
         </div>
     </nav>
+    <header>समाचार</header>
+<div class="controls">
+    <label for="category">Select News Category: </label>
+    <select id="category">
+        <option value="education">Education</option>
+        <option value="technology">Technology</option>
+        <option value="health">Health</option>
+        <option value="business">Business</option>
+        <option value="sports">Sports</option>
+        <option value="science">Science</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="rajasthan">Rajasthan</option>
+    </select>
+</div>
+
+<div class="news-container" id="newsContainer">
+    <!-- News will be dynamically inserted here -->
+</div>
+
+<script>
+    const apiKey = "pub_635936938c83f07761210bea416cc12d4edd4";
+    const country = "in";
+    const language = "hi";
+    const newsContainer = document.getElementById("newsContainer");
+    const categorySelect = document.getElementById("category");
+
+    // Fetch news based on the selected category
+    async function fetchNews(category) {
+        try {
+            newsContainer.innerHTML = "<p>Loading news...</p>"; // Show loading text
+
+            let apiURL = `https://newsdata.io/api/1/latest?apikey=${apiKey}&country=${country}&language=${language}`;
+
+            if (category !== "rajasthan") {
+                apiURL += `&q=${category}`;
+            } else {
+                apiURL += `&q=rajasthan`;
+            }
+
+            const response = await fetch(apiURL);
+            const data = await response.json();
+
+            newsContainer.innerHTML = ""; // Clear previous news
+
+            if (data.results && data.results.length > 0) {
+                data.results.forEach(news => {
+                    const newsCard = document.createElement("div");
+                    newsCard.className = "news-card";
+
+                    const image = news.image_url 
+                        ? `<img src="${news.image_url}" alt="News Image" class="news-image">` 
+                        : `<div class="news-image" style="background-color: #e9ecef;"></div>`;
+
+                    const description = news.description ? news.description : "Description not available.";
+
+                    newsCard.innerHTML = `
+                        ${image}
+                        <div class="news-content">
+                            <a href="${news.link}" target="_blank" class="news-title">${news.title}</a>
+                            <p class="news-description">${description}</p>
+                            <p class="news-source">Source: ${news.source_name}</p>
+                        </div>
+                    `;
+
+                    newsContainer.appendChild(newsCard);
+                });
+            } else {
+                newsContainer.innerHTML = "<p>No news found for the selected category.</p>";
+            }
+        } catch (error) {
+            newsContainer.innerHTML = "<p>Error loading news. Please try again later.</p>";
+            console.error("Error fetching news:", error);
+        }
+    }
+
+    // Fetch news when the page loads
+    fetchNews(categorySelect.value);
+
+    // Fetch news when the category changes
+    categorySelect.addEventListener("change", () => {
+        fetchNews(categorySelect.value);
+    });
+
+    // Auto-scroll the news-container
+    setInterval(() => {
+        newsContainer.scrollBy({ left: 1, behavior: "smooth" });
+        if (newsContainer.scrollLeft + newsContainer.clientWidth >= newsContainer.scrollWidth) {
+            newsContainer.scrollTo({ left: 0, behavior: "smooth" });
+        }
+    }, 3000);
+</script>
     <div class="school-container">
     <div class="flex-box">
         <h2><a href="details.html?id=0">समग्र शिक्षा</a></h2>
