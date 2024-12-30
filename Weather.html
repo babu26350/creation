@@ -40,14 +40,15 @@
     <h1>किसानों और पशुओं के लिए मौसम पूर्वानुमान</h1>
 
     <label for="district">जिले का चयन करें:</label>
-    <select id="district">
-        <option value="Jaipur">जयपुर</option>
+    <select onchange="getWeatherAndPrediction()" id="district">
+       <option value="Churu">चुरू</option>
+ <option value="Jaipur">जयपुर</option>
         <option value="Jodhpur">जोधपुर</option>
         <option value="Udaipur">उदयपुर</option>
         <option value="Bikaner">बीकानेर</option>
         <option value="Ajmer">अजमेर</option>
         <option value="Alwar">अलवर</option>
-        <option value="Churu">चुरू</option>
+        
         <option value="Kota">कोटा</option>
         <option value="Sikar">सीकर</option>
         <option value="Pali">पाली</option>
@@ -55,7 +56,7 @@
     </select>
 
     
-    <button onclick="getWeatherAndPrediction()">जानकारी प्राप्त करें</button>
+    
 
     <div class="weather-report" id="weather-report">
         <p>कृपया जिले और दिनों की संख्या का चयन करें।</p>
@@ -74,7 +75,7 @@
 
     <script>
         const apiKey = 'd74508c2b76c3255d82687434242da88'; // Replace with your Weatherstack API key
-
+getWeatherAndPrediction()
         async function getWeatherAndPrediction() {
             const district = document.getElementById('district').value;
              
@@ -84,9 +85,9 @@
                 const currentResponse = await fetch(url);
                 
                 const currentData = await currentResponse.json();
-                const forecastData = await forecastResponse.json();
+                
 
-                if (currentData.success === false || forecastData.success === false) {
+                if (currentData.success === false) {
                     document.getElementById('weather-report').innerHTML = `<p>त्रुटि: ${currentData.error?.info || forecastData.error?.info}</p>`;
                     document.getElementById('forecast-report').style.display = 'none';
                     document.getElementById('predictions').style.display = 'none';
@@ -132,7 +133,7 @@
                 prediction.farmer = "गर्मी अधिक है। पानी की व्यवस्था करें।";
             }
             if (temperature <= 20) {
-                prediction.cattle = "ठंड अधिक है। गुड़ और गर्म पानी दें।";
+                prediction.cattle = "ठंड अधिक है।स्वास्थ्य का ध्यान रखें ,पशुओं  को सर्दी से बचायें।";
             }
             return prediction;
         }
