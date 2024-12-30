@@ -54,14 +54,7 @@
         <option value="Tonk">टोंक</option>
     </select>
 
-    <label for="forecast-days">दिनों की संख्या चुनें:</label>
-    <select id="forecast-days">
-        <option value="1">1 दिन</option>
-        <option value="3">3 दिन</option>
-        <option value="5">5 दिन</option>
-        <option value="7">7 दिन</option>
-    </select>
-
+    
     <button onclick="getWeatherAndPrediction()">जानकारी प्राप्त करें</button>
 
     <div class="weather-report" id="weather-report">
@@ -84,14 +77,12 @@
 
         async function getWeatherAndPrediction() {
             const district = document.getElementById('district').value;
-            const forecastDays = document.getElementById('forecast-days').value;
+             
             const url = `https://api.weatherstack.com/current?access_key=${apiKey}&query=${district}`;
-            const forecastUrl = `https://api.weatherstack.com/forecast?access_key=${apiKey}&query=${district}&forecast_days=${forecastDays}`;
-
+            
             try {
                 const currentResponse = await fetch(url);
-                const forecastResponse = await fetch(forecastUrl);
-
+                
                 const currentData = await currentResponse.json();
                 const forecastData = await forecastResponse.json();
 
@@ -113,16 +104,7 @@
                 `;
 
                 // Forecast weather
-                const forecastDaysData = forecastData.forecast;
-                const forecastHtml = Object.keys(forecastDaysData).map(date => {
-                    const dayData = forecastDaysData[date];
-                    return `
-                        <p><strong>${date}:</strong> तापमान: ${dayData.maxtemp}°C / ${dayData.mintemp}°C, वर्षा: ${dayData.daily_chance_of_rain}%</p>
-                    `;
-                }).join('');
-                document.getElementById('forecast-data').innerHTML = forecastHtml;
-                document.getElementById('forecast-report').style.display = 'block';
-
+                
                 // Generate predictions for farmers and cattle
                 const predictions = getPrediction(
                     current.temperature,
