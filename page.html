@@ -311,20 +311,7 @@ height: min-content;
             font-size: 0.8em;
             color: #495057;
         }
-    </style>
-</head>
-<body>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मौसम पूर्वानुमान</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
-            background-color: #f9f9f9;
-        }
+    
         select, button {
             padding: 10px;
             margin: 10px;
@@ -351,6 +338,54 @@ height: min-content;
     </style>
 </head>
 <body>
+
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="brand">
+                <img class="glogo" src="./images/glogo.jpg" alt="School Logo">
+                <span id="sp">G</span>urukul Shikhshan Sansthan,Sarsar
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Academics</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Departments</a></li>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="faculty.html">Faculty</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Tests</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sar.html">flemingo summary</a></li>
+                        <li><a href="Tests.html">Start Test now </a></li>
+                        <li><a href="6thTest.html">Class6thTest</a></li>
+                        <li><a href="test7th.html">Class7thTest</a></li>
+                        <li><a href="test8th.html">Class8thTest</a></li>
+                        <li><a href="test9th.html">Class9thTest</a></li>
+                        <li><a href="test10th.html">Class10thTest</a></li>
+                        <li><a href="test12th.html">Class-11-12thTest</a></li>
+                        <li><a href="tests.html">6-12-Overall-Cut-Of</a></li>
+                        <li><a href="gktestedit.html">Gk Test</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Admissions</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Apply Now</a></li>
+                        <li><a href="#">Requirements</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Student Life</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
     <h1>मौसम पूर्वानुमान</h1>
     <label for="district">जिले का चयन करें:</label>
     <select id="district" onchange="getWeatherAndPrediction()">
@@ -468,53 +503,6 @@ height: min-content;
             }
         }
     </script>
-</body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="brand">
-                <img class="glogo" src="./images/glogo.jpg" alt="School Logo">
-                <span id="sp">G</span>urukul Shikhshan Sansthan,Sarsar
-            </a>
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-            <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">Academics</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Departments</a></li>
-                        <li><a href="#">Curriculum</a></li>
-                        <li><a href="faculty.html">Faculty</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">Tests</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="sar.html">flemingo summary</a></li>
-                        <li><a href="Tests.html">Start Test now </a></li>
-                        <li><a href="6thTest.html">Class6thTest</a></li>
-                        <li><a href="test7th.html">Class7thTest</a></li>
-                        <li><a href="test8th.html">Class8thTest</a></li>
-                        <li><a href="test9th.html">Class9thTest</a></li>
-                        <li><a href="test10th.html">Class10thTest</a></li>
-                        <li><a href="test12th.html">Class-11-12thTest</a></li>
-                        <li><a href="tests.html">6-12-Overall-Cut-Of</a></li>
-                        <li><a href="gktestedit.html">Gk Test</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">Admissions</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Apply Now</a></li>
-                        <li><a href="#">Requirements</a></li>
-                        <li><a href="#">Scholarships</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Student Life</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
     <header>समाचार</header>
 <div class="controls">
     <label for="category">Select News Category: </label>
