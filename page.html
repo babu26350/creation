@@ -335,6 +335,12 @@ height: min-content;
         .prediction-container {
             display: none;
         }
+        iframe {
+            width: 100%;
+            max-width: 1200px;
+            border: none;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -499,6 +505,19 @@ height: min-content;
         }
     }, 3000);
 </script>
+    <script>
+        function adjustIframeHeight() {
+            const iframe = document.getElementById('weather-iframe');
+            if (iframe.contentWindow) {
+                iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+            }
+        }
+    </script>
+    <iframe 
+        id="weather-iframe" 
+        src="https://babu26350.github.io/creation/Weather.html" 
+        onload="adjustIframeHeight()">
+    </iframe>
     <div class="school-container">
     <div class="flex-box">
         <h2><a href="details.html?id=0">समग्र शिक्षा</a></h2>
