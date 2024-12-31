@@ -342,6 +342,49 @@ height: min-content;
             border: none;
             overflow: hidden;
         }
+        #masterFrame {
+      width: 100%;
+      height:250px;
+      border: none;
+padding:0px;
+margin:0px;
+    }
+
+    /* Scrollable container */
+    .video-icons {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      width: 100%;
+      padding: 10px 0;
+      background-color: #fff;
+      scrollbar-width: thin;
+      scrollbar-color: #007BFF transparent;
+    }
+
+    /* Scrollbar styling for Chrome/Edge/Safari */
+    .video-icons::-webkit-scrollbar {
+      height: 8px;
+    }
+    .video-icons::-webkit-scrollbar-thumb {
+      background-color: #007BFF;
+      border-radius: 5px;
+    }
+
+    /* Video thumbnail styling */
+    .video-icons img {
+      width: 150px;
+      height: 100px;
+      cursor: pointer;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .video-icons img:hover {
+      transform: scale(1.1);
+      border-color: #007BFF;
+    }
     </style>
 </head>
 <body>
@@ -433,7 +476,24 @@ height: min-content;
 <div class="news-container" id="newsContainer">
     <!-- News will be dynamically inserted here -->
 </div>
+<iframe id="masterFrame" src="https://www.youtube.com/embed/v17F0tcHqJE?autoplay=1" allowfullscreen></iframe>
 
+  <!-- Scrollable thumbnails -->
+  <div class="video-icons">
+    <img src="https://img.youtube.com/vi/v17F0tcHqJE/0.jpg" alt="Video 1" onclick="playVideo('https://www.youtube.com/embed/v17F0tcHqJE?autoplay=1')">
+    <img src="https://img.youtube.com/vi/1B2p5gKyjxc/0.jpg" alt="Video 2" onclick="playVideo('https://www.youtube.com/embed/1B2p5gKyjxc?autoplay=1')">
+    <img src="https://img.youtube.com/vi/sOuLCU-kSAE/0.jpg" alt="Video 3" onclick="playVideo('https://www.youtube.com/embed/sOuLCU-kSAE?autoplay=1')">
+    <img src="https://img.youtube.com/vi/08wl-IutKVw/0.jpg" alt="Video 4" onclick="playVideo('https://www.youtube.com/embed/08wl-IutKVw?autoplay=1')">
+    <img src="https://img.youtube.com/vi/UudiKiXuKSM/0.jpg" alt="Video 5" onclick="playVideo('https://www.youtube.com/embed/UudiKiXuKSM?autoplay=1')">
+    <img src="https://img.youtube.com/vi/e2pVbTWbwAQ/0.jpg" alt="Video 6" onclick="playVideo('https://www.youtube.com/embed/e2pVbTWbwAQ?autoplay=1')">
+  </div>
+
+  <script>
+    // Function to play a video in the master iframe
+    function playVideo(url) {
+      document.getElementById('masterFrame').src = url;
+    }
+  </script>
 <script>
     const apiKey = "pub_635936938c83f07761210bea416cc12d4edd4";
     const country = "in";
