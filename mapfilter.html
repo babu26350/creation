@@ -4,8 +4,6 @@
   <title>Farm Map</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
   <style>
@@ -17,7 +15,7 @@
     .control-panel {
       position: absolute;
       top: 10px;
-      left: 10px;
+      left: 65%;
       z-index: 1000;
       background: white;
       padding: 10px;
@@ -66,14 +64,13 @@
   <strong>Status Legend:</strong><br>
   <div><span style="background: green;"></span> Sold</div>
   <div><span style="background: blue;"></span> Available</div>
-  <div><span style="background: red;"></span> Highlighted</div>
+  <div><span style="background: orange;"></span> Highlighted</div>
 </div>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-  const map = L.map('map').setView([51.015722, -113.862306], 15);
+  const map = L.map('map').setView([51.015, -113.861], 16);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
@@ -82,133 +79,150 @@
   const statusColors = {
     sold: 'green',
     available: 'blue',
-    highlight: 'orange'
+    highlight: 'orange',
+    Highlighted: 'orange' // in case of typo
   };
 
   const farms = {
-  farm1: {
-    coords: [
-      [51.015722, -113.862306],
-      [51.01575, -113.861861],
-      [51.016096, -113.861889],
-      [51.016096, -113.862298]
-    ],
-    status:'sold'
-  },
-  farm2: {
-    coords: [
-      [51.01476, -113.86165],
-      [51.01475, -113.86061],
-      [51.0156, -113.86062],
-      [51.01563, -113.86063],
-      [51.01566, -113.86067],
-      [51.01568, -113.86073],
-      [51.01568, -113.86156],
-      [51.01566, -113.86162],
-      [51.01563, -113.86165],
-      [51.01537, -113.86165]
-    ],
-    status: 'available'
-  },
-  farm3: {
-    coords: [
-      [51.01477, -113.86165],
-      [51.01401, -113.86166],
-      [51.01397, -113.86162],
-      [51.01395, -113.86156],
-      [51.01395, -113.86072],
-      [51.01398, -113.86064],
-      [51.01403, -113.86062],
-      [51.01475, -113.86062]
-    ],
-    status: 'available'
-  },
-  farm4: {
-    coords: [
-      [51.01575, -113.861861],
-      [51.01581, -113.86172],
-      [51.01581, -113.86161],
-      [51.016096, -113.86161],
-      [51.016096, -113.861889]
-    ],
-    status: 'available'
-  },
-  farm5: {
-    coords: [
-      [51.01577, -113.86156],
-      [51.01577, -113.86144],
-      [51.01578, -113.86114],
-      [51.016096, -113.86118],
-      [51.016096, -113.86161],
-      [51.01581, -113.86161]
-    ],
-    status: 'highlight'
-  },
-  farm6: {
-    coords: [
-      [51.01577, -113.86107],
-      [51.01577, -113.8608],
-      [51.01579, -113.86068],
-      [51.016096, -113.86067],
-      [51.016096, -113.86118],
-      [51.01578, -113.86114]
-    ],
-    status: 'available'
-  },
-  farm7: {
-    coords: [
-      [51.01579, -113.86068],
-      [51.01579, -113.86063],
-      [51.01578, -113.86055],
-      [51.01575, -113.86049],
-      [51.0157, -113.86044],
-      [51.01562, -113.86046],
-      [51.01538, -113.86048],
-      [51.01532, -113.86046],
-      [51.0153, -113.86038],
-      [51.01531, -113.85995],
-      [51.016096, -113.85995],
-      [51.016096, -113.86067]
-    ],
-    status:'highlight'
-  },
-  farm8: {
-    coords: [
-      [51.015722, -113.862306],
-      [51.01575, -113.861861],
-      [51.01568, -113.86184],
-      [51.01562, -113.86182],
-      [51.01556, -113.86181],
-      [51.01539, -113.8618],
-      [51.01534, -113.86182],
-      [51.01531, -113.86187],
-      [51.0153, -113.86194],
-      [51.0153, -113.862298]
-    ],
-    status: 'available'
-  },
-  // ... Baaki farms ke liye bhi aise hi convert karna padega.
-};
+    farm1: {
+      coords: [
+        [51.015722, -113.862306],
+        [51.01575, -113.861861],
+        [51.016096, -113.861889],
+        [51.016096, -113.862298]
+      ],
+      status:'sold'
+    },
+    farm2: {
+      coords: [
+        [51.01476, -113.86165],
+        [51.01475, -113.86061],
+        [51.0156, -113.86062],
+        [51.01563, -113.86063],
+        [51.01566, -113.86067],
+        [51.01568, -113.86073],
+        [51.01568, -113.86156],
+        [51.01566, -113.86162],
+        [51.01563, -113.86165],
+        [51.01537, -113.86165]
+      ],
+      status: 'available'
+    },
+    farm3: {
+      coords: [
+        [51.01477, -113.86165],
+        [51.01401, -113.86166],
+        [51.01397, -113.86162],
+        [51.01395, -113.86156],
+        [51.01395, -113.86072],
+        [51.01398, -113.86064],
+        [51.01403, -113.86062],
+        [51.01475, -113.86062]
+      ],
+      status: 'available'
+    },
+    farm4: {
+      coords: [
+        [51.01575, -113.861861],
+        [51.01581, -113.86172],
+        [51.01581, -113.86161],
+        [51.016096, -113.86161],
+        [51.016096, -113.861889]
+      ],
+      status: 'available'
+    },
+    farm5: {
+      coords: [
+        [51.01577, -113.86156],
+        [51.01577, -113.86144],
+        [51.01578, -113.86114],
+        [51.016096, -113.86118],
+        [51.016096, -113.86161],
+        [51.01581, -113.86161]
+      ],
+      status: 'highlight'
+    },
+    farm6: {
+      coords: [
+        [51.01577, -113.86107],
+        [51.01577, -113.8608],
+        [51.01579, -113.86068],
+        [51.016096, -113.86067],
+        [51.016096, -113.86118],
+        [51.01578, -113.86114]
+      ],
+      status: 'available'
+    },
+    farm7: {
+      coords: [
+        [51.01579, -113.86068],
+        [51.01579, -113.86063],
+        [51.01578, -113.86055],
+        [51.01575, -113.86049],
+        [51.0157, -113.86044],
+        [51.01562, -113.86046],
+        [51.01538, -113.86048],
+        [51.01532, -113.86046],
+        [51.0153, -113.86038],
+        [51.01531, -113.85995],
+        [51.016096, -113.85995],
+        [51.016096, -113.86067]
+      ],
+      status:'Highlighted'
+    },
+    farm8: {
+      coords: [
+        [51.015722, -113.862306],
+        [51.01575, -113.861861],
+        [51.01568, -113.86184],
+        [51.01562, -113.86182],
+        [51.01556, -113.86181],
+        [51.01539, -113.8618],
+        [51.01534, -113.86182],
+        [51.01531, -113.86187],
+        [51.0153, -113.86194],
+        [51.0153, -113.862298]
+      ],
+      status: 'available'
+    }
+  };
 
   const polygonLayers = {};
 
-  function drawPolygons(filter = 'all') {
-    Object.entries(polygonLayers).forEach(([name, layer]) => {
-      map.removeLayer(layer);
-    });
+  function getFillColor(status) {
+    return statusColors[status.toLowerCase()] || 'gray';
+  }
 
+  function drawPolygons(filter = 'all') {
     Object.entries(farms).forEach(([name, farm]) => {
-      if (filter === 'all' || farm.status === filter) {
-        const polygon = L.polygon(farm.coords, {
-          color: statusColors[farm.status],
+      let layer = polygonLayers[name];
+
+      if (!layer) {
+        layer = L.polygon(farm.coords, {
+          color: 'black', // border
           weight: 2,
+          fillColor: getFillColor(farm.status),
           fillOpacity: 0.4
         })
         .bindPopup(`<strong>${name.toUpperCase()}</strong><br>Status: ${farm.status}`)
         .bindTooltip(name)
         .addTo(map);
 
-        polygonLayers[name] = polygon;
+        polygonLayers[name] = layer;
+      }
+
+      layer.addTo(map); // always show
+
+      if (filter === 'all' || farm.status.toLowerCase() === filter.toLowerCase()) {
+        layer.setStyle({
+          fillColor: getFillColor(farm.status),
+          fillOpacity: 0.4
+        });
+      } else {
+        layer.setStyle({
+          fillColor: '#ffffff',
+          fillOpacity: 0.1
+        });
       }
     });
   }
@@ -242,4 +256,262 @@
 </script>
 
 </body>
-</html>
+  </html><!DOCTYPE html>
+<html>
+<head>
+  <title>Farm Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+
+    .control-panel {
+      position: absolute;
+      top: 10px;
+      left: 65%;
+      z-index: 1000;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .legend {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    }
+
+    .legend span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<div class="control-panel">
+  <select id="filterStatus">
+    <option value="all">Show All</option>
+    <option value="sold">Sold</option>
+    <option value="available">Available</option>
+    <option value="highlight">Highlighted</option>
+  </select>
+
+  <select id="zoomToFarm">
+    <option value="">Select Farm</option>
+  </select>
+</div>
+
+<div id="map"></div>
+
+<div class="legend">
+  <strong>Status Legend:</strong><br>
+  <div><span style="background: green;"></span> Sold</div>
+  <div><span style="background: blue;"></span> Available</div>
+  <div><span style="background: orange;"></span> Highlighted</div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  const map = L.map('map').setView([51.015, -113.861], 16);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const statusColors = {
+    sold: 'green',
+    available: 'blue',
+    highlight: 'orange',
+    Highlighted: 'orange' // in case of typo
+  };
+
+  const farms = {
+    farm1: {
+      coords: [
+        [51.015722, -113.862306],
+        [51.01575, -113.861861],
+        [51.016096, -113.861889],
+        [51.016096, -113.862298]
+      ],
+      status:'sold'
+    },
+    farm2: {
+      coords: [
+        [51.01476, -113.86165],
+        [51.01475, -113.86061],
+        [51.0156, -113.86062],
+        [51.01563, -113.86063],
+        [51.01566, -113.86067],
+        [51.01568, -113.86073],
+        [51.01568, -113.86156],
+        [51.01566, -113.86162],
+        [51.01563, -113.86165],
+        [51.01537, -113.86165]
+      ],
+      status: 'available'
+    },
+    farm3: {
+      coords: [
+        [51.01477, -113.86165],
+        [51.01401, -113.86166],
+        [51.01397, -113.86162],
+        [51.01395, -113.86156],
+        [51.01395, -113.86072],
+        [51.01398, -113.86064],
+        [51.01403, -113.86062],
+        [51.01475, -113.86062]
+      ],
+      status: 'available'
+    },
+    farm4: {
+      coords: [
+        [51.01575, -113.861861],
+        [51.01581, -113.86172],
+        [51.01581, -113.86161],
+        [51.016096, -113.86161],
+        [51.016096, -113.861889]
+      ],
+      status: 'available'
+    },
+    farm5: {
+      coords: [
+        [51.01577, -113.86156],
+        [51.01577, -113.86144],
+        [51.01578, -113.86114],
+        [51.016096, -113.86118],
+        [51.016096, -113.86161],
+        [51.01581, -113.86161]
+      ],
+      status: 'highlight'
+    },
+    farm6: {
+      coords: [
+        [51.01577, -113.86107],
+        [51.01577, -113.8608],
+        [51.01579, -113.86068],
+        [51.016096, -113.86067],
+        [51.016096, -113.86118],
+        [51.01578, -113.86114]
+      ],
+      status: 'available'
+    },
+    farm7: {
+      coords: [
+        [51.01579, -113.86068],
+        [51.01579, -113.86063],
+        [51.01578, -113.86055],
+        [51.01575, -113.86049],
+        [51.0157, -113.86044],
+        [51.01562, -113.86046],
+        [51.01538, -113.86048],
+        [51.01532, -113.86046],
+        [51.0153, -113.86038],
+        [51.01531, -113.85995],
+        [51.016096, -113.85995],
+        [51.016096, -113.86067]
+      ],
+      status:'Highlighted'
+    },
+    farm8: {
+      coords: [
+        [51.015722, -113.862306],
+        [51.01575, -113.861861],
+        [51.01568, -113.86184],
+        [51.01562, -113.86182],
+        [51.01556, -113.86181],
+        [51.01539, -113.8618],
+        [51.01534, -113.86182],
+        [51.01531, -113.86187],
+        [51.0153, -113.86194],
+        [51.0153, -113.862298]
+      ],
+      status: 'available'
+    }
+  };
+
+  const polygonLayers = {};
+
+  function getFillColor(status) {
+    return statusColors[status.toLowerCase()] || 'gray';
+  }
+
+  function drawPolygons(filter = 'all') {
+    Object.entries(farms).forEach(([name, farm]) => {
+      let layer = polygonLayers[name];
+
+      if (!layer) {
+        layer = L.polygon(farm.coords, {
+          color: 'black', // border
+          weight: 2,
+          fillColor: getFillColor(farm.status),
+          fillOpacity: 0.4
+        })
+        .bindPopup(`<strong>${name.toUpperCase()}</strong><br>Status: ${farm.status}`)
+        .bindTooltip(name)
+        .addTo(map);
+
+        polygonLayers[name] = layer;
+      }
+
+      layer.addTo(map); // always show
+
+      if (filter === 'all' || farm.status.toLowerCase() === filter.toLowerCase()) {
+        layer.setStyle({
+          fillColor: getFillColor(farm.status),
+          fillOpacity: 0.4
+        });
+      } else {
+        layer.setStyle({
+          fillColor: '#ffffff',
+          fillOpacity: 0.1
+        });
+      }
+    });
+  }
+
+  function populateFarmDropdown() {
+    const zoomSelect = document.getElementById('zoomToFarm');
+    zoomSelect.innerHTML = `<option value="">Select Farm</option>`;
+    Object.keys(farms).forEach((name) => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name.toUpperCase();
+      zoomSelect.appendChild(opt);
+    });
+  }
+
+  document.getElementById('filterStatus').addEventListener('change', (e) => {
+    drawPolygons(e.target.value);
+  });
+
+  document.getElementById('zoomToFarm').addEventListener('change', (e) => {
+    const farm = farms[e.target.value];
+    if (farm) {
+      const bounds = L.latLngBounds(farm.coords);
+      map.fitBounds(bounds);
+    }
+  });
+
+  // Initialize
+  drawPolygons();
+  populateFarmDropdown();
+</script>
+
+</body>
+  </html>
