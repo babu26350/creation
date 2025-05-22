@@ -40,7 +40,6 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const farmPolygons=  'https://babu26350.github.io/creation/poligons.json'
   const map = L.map('map').setView([51.0158, -113.8615], 17);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -53,7 +52,7 @@ const farmPolygons=  'https://babu26350.github.io/creation/poligons.json'
     [51.0133299, -113.8625999], // Southwest
     [51.0162200, -113.8544791], // Northeast
   ];
-  const imageUrl = 'assets/img/about/grandhome.jpg'; // Replace with your image
+  const imageUrl = 'assets/img/about/grandhome.jpg'; // Make sure this path is correct
   L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
   const filters = {
@@ -67,7 +66,9 @@ const farmPolygons=  'https://babu26350.github.io/creation/poligons.json'
     sold: 'rgba(255,0,0,0.3)',
     new: 'rgba(0,0,255,0.3)',
   };
-const polygonLayers = {};
+
+  const polygonLayers = {};
+  let farmPolygons = {}; // will hold fetched data
 
   function renderPolygons() {
     Object.entries(farmPolygons).forEach(([id, farm]) => {
@@ -76,8 +77,8 @@ const polygonLayers = {};
       }
 
       polygonLayers[id] = L.polygon(farm.coordinates, {
-        color: 'black',                // always visible border
-        weight: .5,
+        color: 'black',
+        weight: 0.5,
         fillColor: filters[farm.status] ? colorMap[farm.status] : 'transparent',
         fillOpacity: 1,
       }).addTo(map);
@@ -89,8 +90,16 @@ const polygonLayers = {};
     renderPolygons();
   }
 
-  renderPolygons();
+  // Fetch data from GitHub and render
+  fetch('https://babu26350.github.io/creation/poligons.json')
+    .then(res => res.json())
+    .then(data => {
+      farmPolygons = data;
+      renderPolygons();
+    })
+    .catch(err => console.error('Failed to load JSON:', err));
 </script>
 
 </body>
 </html>
+
