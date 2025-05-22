@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Leaflet Farm Polygons with Filters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; }
+    .filter-buttons {
+      position: absolute;
+      top: 20px;
+      left: 60px;
+      z-index: 1000;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    .filter-buttons button {
+      margin: 2px;
+      padding: 5px 10px;
+      border: 2px solid;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .sale { border-color: green; color: green; }
+    .sold { border-color: red; color: red; }
+    .new { border-color: blue; color: blue; }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+<div class="filter-buttons">
+  <button class="sale" onclick="toggleFilter('sale')">SALE</button>
+  <button class="sold" onclick="toggleFilter('sold')">SOLD</button>
+  <button class="new" onclick="toggleFilter('new')">NEW</button>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const farmPolygons=  'https://babu26350.github.io/creation/poligons.json'
+  const map = L.map('map').setView([51.0158, -113.8615], 17);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 22,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Add image overlay
+  const imageBounds = [
+    [51.0133299, -113.8625999], // Southwest
+    [51.0162200, -113.8544791], // Northeast
+  ];
+  const imageUrl = 'assets/img/about/grandhome.jpg'; // Replace with your image
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+  const filters = {
+    sale: true,
+    sold: true,
+    new: true,
+  };
+
+  const colorMap = {
+    sale: 'rgba(0,128,0,0.3)',
+    sold: 'rgba(255,0,0,0.3)',
+    new: 'rgba(0,0,255,0.3)',
+  };
+const polygonLayers = {};
+
+  function renderPolygons() {
+    Object.entries(farmPolygons).forEach(([id, farm]) => {
+      if (polygonLayers[id]) {
+        map.removeLayer(polygonLayers[id]);
+      }
+
+      polygonLayers[id] = L.polygon(farm.coordinates, {
+        color: 'black',                // always visible border
+        weight: .5,
+        fillColor: filters[farm.status] ? colorMap[farm.status] : 'transparent',
+        fillOpacity: 1,
+      }).addTo(map);
+    });
+  }
+
+  function toggleFilter(status) {
+    filters[status] = !filters[status];
+    renderPolygons();
+  }
+
+  renderPolygons();
+</script>
+
+</body>
+</html>
