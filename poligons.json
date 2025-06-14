@@ -2174,9 +2174,7 @@ farm189: {
   ],
   status: 'new',
   area: 3200,  // estimate
-}
+       }
 
 
-
-    // ➕ Add other farms (farm6, farm7, ..., farm14) here using same structure
   };
