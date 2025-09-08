@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Try It Yourself </title>
+  <style type="text/css">
+    p {
+      color: red;
+    }
+.content{
+display:flex;
+justify-content:space-between;
+color: green;
+
+}
+.content1{
+width:50%;
+
+color: green;
+
+}
+.video-player{
+padding:0px;
+margin:0px;
+box-sizing:border-box;
+object-fit: cover; /* या contain, ज़रूरत के अनुसार */
+    display: block;
+}
+  </style>
+</head>
+<body>
+<div class="content">
+<div class="content1">  <input type="file" id="videoInput" accept="video/*" onchange="loadVideo()">
+        <video controls width="100%" height="290" class="video-player" id="videoPlayer" src="" autoplay />
+            
+        </div>
+<div class="content1">
+<div class="image-gallery">
+            <img id="galleryImage" width="100%" height="290" src="https://picsum.photos/seed/1/400/200" alt="Gallery Image">
+        </div>
+        <div class="buttons">
+            <button onclick="prevImage()">Previous</button>
+            <button onclick="nextImage()">Next</button>
+        </div>
+    </div></div>
+</div>
+  <p> Lorem ipsum dolor sit amet. </p>
+<script>
+  // इमेज URLs
+  const images = [
+    "https://picsum.photos/seed/1/400/200",
+    "https://picsum.photos/seed/2/400/200",
+    "https://picsum.photos/seed/3/400/200",
+    "https://picsum.photos/seed/4/400/200",
+    "https://picsum.photos/seed/5/400/200"
+  ];
+  let currentIndex = 0;
+
+  function updateImage() {
+    const img = document.getElementById('galleryImage');
+    img.src = images[currentIndex];
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  }
+
+  // वीडियो लोड करने का फंक्शन
+  function loadVideo() {
+    const input = document.getElementById('videoInput');
+    const video = document.getElementById('videoPlayer');
+input.style.display ="none"
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const url = URL.createObjectURL(file);
+      video.src = url;
+      video.load();
+      video.play();
+    }
+  }
+</script>
+</body>
+</html>
