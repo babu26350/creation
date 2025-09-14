@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Audio Noise Reducer with Threshold Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+        input, button, select {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        audio {
+            margin-top: 20px;
+        }
+        #meter {
+            width: 300px;
+            height: 20px;
+            background-color: #ddd;
+            margin: 10px auto;
+            position: relative;
+        }
+        #level {
+            height: 100%;
+            background-color: green;
+            width: 0%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Noise Reducer</h1>
+    <input type="file" id="fileInput" accept="audio/*,video/*" />
+    <br/>
+    <label for="thresholdSlider">Reduce sounds below (dB): </label>
+    <input type="range" id="thresholdSlider" min="-60" max="0" value="-40" step="1">
+    <span id="thresholdValue">-40 dB</span>
+    <br/>
+    <button onclick="processAudio()">Process and Listen</button>
+    <div id="status">Please select a file.</div>
+    <div id="meter"><div id="level"></div></div>
+    <audio id="resultAudio" controls></audio>
+
+    <script>
+        let selectedFile = null;
+        let audioCtx = null;
+        let analyser = null;
+        let dataArray = null;
+        let animationId = null;
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            selectedFile = event.target.files[0];
+            document.getElementById('status').textContent = "File selected: " + selectedFile.name;
+        });
+
+        document.getElementById('thresholdSlider').addEventListener('input', function() {
+            document.getElementById('thresholdValue').textContent = this.value + " dB";
+        });
+
+        async function processAudio() {
+            if (!selectedFile) {
+                alert("Please select a file first.");
+                return;
+            }
+
+            const status = document.getElementById('status');
+            status.textContent = "Processing...";
+
+            try {
+                const arrayBuffer = await selectedFile.arrayBuffer();
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+                const source = audioCtx.createBufferSource();
+                source.buffer = audioBuffer;
+
+                // High-pass filter
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = "highpass";
+                filter.frequency.value = 1000;
+
+                // Compressor
+                const compressor = audioCtx.createDynamicsCompressor();
+                compressor.threshold.value = parseFloat(document.getElementById('thresholdSlider').value);
+                compressor.knee.value = 40;
+                compressor.ratio.value = 20;
+                compressor.attack.value = 0.005;
+                compressor.release.value = 0.2;
+
+                // Analyser for real-time volume visualization
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+
+                // Output
+                const dest = audioCtx.createMediaStreamDestination();
+
+                // Connect nodes
+                source.connect(filter);
+                filter.connect(compressor);
+                compressor.connect(analyser);
+                analyser.connect(dest);
+
+                // Setup MediaRecorder
+                const mediaRecorder = new MediaRecorder(dest.stream);
+                let chunks = [];
+                mediaRecorder.ondataavailable = e => {
+                    chunks.push(e.data);
+                };
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'audio/webm' });
+                    const audioURL = URL.createObjectURL(blob);
+                    document.getElementById('resultAudio').src = audioURL;
+                    status.textContent = "Processing complete. You can now listen.";
+                };
+
+                mediaRecorder.start();
+                source.start();
+
+                // Animate volume meter
+                animateMeter();
+
+                setTimeout(() => {
+                    mediaRecorder.stop();
+                    cancelAnimationFrame(animationId);
+                }, audioBuffer.duration * 1000 + 500);
+
+            } catch (error) {
+                console.error("Error processing audio:", error);
+                status.textContent = "Error during processing.";
+            }
+        }
+
+        function animateMeter() {
+            analyser.getByteFrequencyData(dataArray);
+            let max = Math.max(...dataArray);
+            document.getElementById('level').style.width = (max / 255 * 100) + "%";
+            animationId = requestAnimationFrame(animateMeter);
+        }
+    </script>
+</body>
+</html>
