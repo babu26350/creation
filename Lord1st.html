@@ -212,11 +212,24 @@ font-family: 'Georgia', serif;
         transform: scale(1.1); /* Slight zoom effect on hover */
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
     }
+    .container {
+      display: flex;
+      justify-content: center; /* क्षैतिज बीच में */
+      align-items: center;     /* ऊर्ध्वाधर बीच में */
+      height: 100vh;           /* पूरी स्क्रीन की ऊँचाई */
+    }
+
+    .beautiful-button:hover {
+      background: linear-gradient(135deg, #d63384, #ff6f61);
+      transform: scale(1.05);
+        }
 </style>
     </div>
     
 </div>
-
+<div class="container">
+    <a href="Lords11.html" class="beautiful-button">कुण्डली के चार्टस के बारे मे</a>
+</div>
 <script>
     function showContent() {
         document.getElementById("additional-content").style.display = "block";
