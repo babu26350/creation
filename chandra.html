@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ग्रहण विचार</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:"Noto Sans Devanagari",sans-serif;
+    color:white;
+    overflow-x:hidden;
+    background:black;
+}
+
+/* ⭐ Moving Stars Canvas */
+#stars{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+/* Header */
+.header{
+    text-align:center;
+    padding:40px 20px;
+    background:rgba(0,0,0,0.6);
+}
+
+.header h1{
+    color:#ffd700;
+    font-size:42px;
+}
+
+/* Container */
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+/* Sections */
+.section{
+    background:rgba(255,255,255,0.08);
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:12px;
+    backdrop-filter:blur(6px);
+    box-shadow:0 0 20px rgba(255,215,0,0.2);
+}
+
+.section h2{
+    color:#ffd700;
+    border-bottom:2px solid #ffd700;
+    padding-bottom:8px;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    background:black;
+    color:#aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="header">
+<h1>🌕 ग्रहण विचार</h1>
+<p>3 मार्च 2026 का चन्द्रग्रहण — ज्योतिषीय प्रभाव, सूतक काल एवं आध्यात्मिक महत्व</p>
+</div>
+
+<div class="container">
+
+<div class="section">
+<h2>🌑 चन्द्रग्रहण का ज्योतिषीय अर्थ</h2>
+<p>
+3 मार्च 2026 को लगने वाला चन्द्रग्रहण भारतीय ज्योतिष की दृष्टि से अत्यंत महत्वपूर्ण माना जा रहा है।
+यह ग्रहण मन, भावनाओं, पारिवारिक स्थितियों तथा मानसिक संतुलन पर विशेष प्रभाव डालने वाला रहेगा,
+क्योंकि चन्द्रमा स्वयं मन, मातृत्व, भावनाओं और मानसिक स्थिरता का कारक ग्रह है।
+</p>
+
+<p>
+वैदिक ज्योतिष के अनुसार जब चन्द्रमा पर छाया ग्रह राहु अथवा केतु का प्रभाव पड़ता है,
+तब चन्द्रग्रहण बनता है।
+</p>
+</div>
+
+<div class="section">
+<h2>🕉 सूतक काल</h2>
+<p>
+राजस्थान में यह ग्रहण लगभग सुबह 9:30–10:00 बजे से सूतक काल मान्य रहेगा।
+मंदिरों के पट बंद, पूजा व भोजन वर्जित माना जाता है।
+</p>
+</div>
+
+<div class="section">
+<h2>🙏 ग्रहण काल में क्या करें</h2>
+<ul>
+<li>भगवान का नाम स्मरण</li>
+<li>मंत्र जाप</li>
+<li>ध्यान</li>
+<li>महामृत्युंजय मंत्र</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🌕 ग्रहण समाप्ति</h2>
+<p>
+लगभग शाम 6:46 बजे ग्रहण समाप्त होगा।
+इसके बाद स्नान, शुद्धि और पुनः पूजा करना शुभ माना जाता है।
+</p>
+</div>
+
+</div>
+
+<div class="footer">
+© ग्रहण विचार | ज्योतिषीय लेख
+</div>
+
+<script>
+
+/* ⭐ Moving Stars Animation */
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<200;i++){
+    stars.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        radius:Math.random()*1.5,
+        speed:Math.random()*0.5
+    });
+}
+
+function drawStars(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="white";
+
+    stars.forEach(star=>{
+        ctx.beginPath();
+        ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);
+        ctx.fill();
+
+        star.y += star.speed;
+
+        if(star.y>canvas.height){
+            star.y=0;
+            star.x=Math.random()*canvas.width;
+        }
+    });
+
+    requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+window.addEventListener("resize",()=>{
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+});
+
+</script>
+
+</body>
+</html>
