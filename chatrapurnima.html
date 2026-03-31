@@ -11,7 +11,28 @@
             background: #0b0d17; color: #fff;
             line-height: 1.6;
         }
+/* इमेज को कंटेनर के अनुसार फिट करने के लिए */
+.image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* नीचे के कंटेंट से दूरी */
+}
 
+.top-image {
+    width: 100%;        /* मोबाइल पर पूरी चौड़ाई */
+    max-width: 600px;   /* डेस्कटॉप पर अधिकतम चौड़ाई ताकि बहुत बड़ी न दिखे */
+    height: auto;       /* ऊंचाई अपने आप सेट होगी */
+    border-radius: 15px; /* किनारों को गोल करने के लिए */
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.5); /* हल्का गोल्डन ग्लो (चाँद की रोशनी जैसा) */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* इमेज पर होवर (Hover) इफेक्ट */
+.top-image:hover {
+    transform: scale(1.02);
+    }
         /* Full Moon Background */
         .bg-image {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
@@ -43,7 +64,10 @@
     </style>
 </head>
 <body>
-
+<!-- Responsive Image Tag -->
+<div class="image-wrapper">
+    <img src="chandra.jpg" alt="Chandra Purnima" class="top-image">
+</div>
 <div class="bg-image">
     <div class="main-container">
         <h1>चैत्र पूर्णिमा: ग्रह दोष निवारण पर्व</h1>
