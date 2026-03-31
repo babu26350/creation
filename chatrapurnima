@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>चैत्र पूर्णिमा: ज्योतिषीय समाधान</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #0b0d17; color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Full Moon Background */
+        .bg-image {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1476067848443-30f1d6b82a98?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-attachment: fixed;
+            min-height: 100vh; padding: 40px 20px;
+        }
+
+        .main-container {
+            max-width: 1000px; margin: auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 15px; padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 { color: #f1c40f; text-align: center; font-size: 2.5em; text-shadow: 0 0 10px #f1c40f; }
+        h2 { color: #e67e22; border-bottom: 2px solid #e67e22; padding-bottom: 10px; margin-top: 40px; }
+        
+        .card {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px; border-radius: 10px;
+            margin: 20px 0; border-left: 5px solid #3498db;
+        }
+
+        .highlight { color: #f1c40f; font-weight: bold; }
+
+        .footer { text-align: center; margin-top: 50px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="bg-image">
+    <div class="main-container">
+        <h1>चैत्र पूर्णिमा: ग्रह दोष निवारण पर्व</h1>
+        
+        <p style="text-align: center; font-size: 1.2em;">
+            यह दिन केवल एक तिथि नहीं, बल्कि ब्रह्मांडीय ऊर्जा का एक शक्तिशाली द्वार है।
+        </p>
+
+        <div class="card">
+            <h2>🌙 कमजोर चंद्रमा के लिए</h2>
+            <p>जिनका चंद्रमा कमजोर है, उन्हें अक्सर <strong>'चंद्र ग्रहण दोष'</strong> या मानसिक अस्थिरता का सामना करना पड़ता है। चैत्र पूर्णिमा का पूर्ण चंद्रमा तुला राशि में होकर मन को शीतलता प्रदान करता है।</p>
+            <p><span class="highlight">उपाय:</span> रात के समय चंद्रमा को दूध मिश्रित जल से अर्घ्य दें। यह आपके अवचेतन मन को शांत करेगा।</p>
+        </div>
+
+        <div class="card" style="border-left-color: #e74c3c;">
+            <h2>🔥 कमजोर मंगल और मांगलिक दोष</h2>
+            <p>मंगल की कमजोरी व्यक्ति को 'शक्तिहीन' महसूस कराती है, जबकि मांगलिक होना ऊर्जा की अधिकता या असंतुलन दिखाता है।</p>
+            <p><strong>हनुमान जयंती का संयोग:</strong> हनुमान जी मंगल के अधिपति हैं। इस दिन उनकी आराधना करने से मंगल का उग्र स्वभाव शांत होता है और मांगलिक दोष का प्रभाव न्यूनतम हो जाता है।</p>
+            <p><span class="highlight">विशेष:</span> मंगल को बल देने के लिए इस दिन हनुमान जी को चमेली का तेल और सिंदूर चढ़ाएं।</p>
+        </div>
+
+        <h2>किनके लिए यह दिन 'वरदान' है?</h2>
+        <ul>
+            <li><strong>विद्यार्थी:</strong> एकाग्रता बढ़ाने के लिए।</li>
+            <li><strong>कर्ज से परेशान लोग:</strong> मंगल ऋणहर्ता है, हनुमान जी की पूजा से कर्ज मुक्ति के रास्ते खुलते हैं।</li>
+            <li><strong>भयभीत जातक:</strong> जिन्हें अनजाना डर रहता है, उनके लिए हनुमान जी का 'अभय' कवच इस दिन सबसे प्रभावी होता है।</li>
+        </ul>
+
+        <div class="footer">
+            ज्योतिषीय मार्गदर्शन: चैत्र पूर्णिमा महात्म्य
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
