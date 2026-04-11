@@ -1,88 +1,133 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<title>Organic Reactions Flowchart</title>
-
-<style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f4f6f9;
-    text-align: center;
-}
-
-h1 {
-    margin-top: 20px;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.box {
-    background: white;
-    border: 2px solid #333;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px;
-    width: 220px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    transition: 0.3s;
-}
-
-.box:hover {
-    transform: scale(1.05);
-    background: #e3f2fd;
-}
-
-.arrow {
-    font-size: 25px;
-    margin: 10px;
-}
-
-.sub-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Reactions Flowchart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 1000px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .main-node {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .branches {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 40px;
+            position: relative;
+        }
+        .branch {
+            width: 30%;
+            background-color: white;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .branch h2 {
+            font-size: 1.1em;
+            color: #e67e22;
+            margin-top: 0;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 5px;
+        }
+        .sub-types {
+            text-align: left;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .tag {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #2980b9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .rule {
+            color: #c0392b;
+            font-style: italic;
+            font-weight: bold;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>कार्बनिक अभिक्रियाएँ (Flowchart)</h1>
-
 <div class="container">
-    <div class="box">
-        <b>कार्बनिक अभिक्रियाएँ</b>
+    <h1>कार्बनिक अभिक्रियाओं का वर्गीकरण</h1>
+    
+    <div class="flowchart">
+        <div class="main-node">कार्बनिक अभिक्रियाएं (Organic Reactions)</div>
+        
+        <div class="branches">
+            <div class="branch">
+                <h2>1. प्रतिस्थापन (Substitution)</h2>
+                <div class="sub-types">
+                    • <b>S<sub>N</sub>1:</b> 2 चरण, कार्बोकैटायन <br>
+                    • <b>S<sub>N</sub>2:</b> 1 चरण, Walden Inversion <br>
+                    • <b>इलेक्ट्रॉनस्नेही:</b> बेंजीन वलय में <br>
+                    <span class="tag">पहचान: एक हटता है, दूसरा जुड़ता है</span>
+                </div>
+            </div>
+
+            <div class="branch">
+                <h2>2. योगात्मक (Addition)</h2>
+                <div class="sub-types">
+                    • <b>इलेक्ट्रॉनस्नेही:</b> ऐल्कीन + HBr <br>
+                    • <b>नाभिकस्नेही:</b> C=O + HCN <br>
+                    • <span class="rule">नियम: मार्कोनीकॉफ नियम</span> <br>
+                    <span class="tag">पहचान: π बंध → σ बंध</span>
+                </div>
+            </div>
+
+            <div class="branch">
+                <h2>3. विलोपन (Elimination)</h2>
+                <div class="sub-types">
+                    • <b>निर्जलीकरण:</b> अल्कोहल से जल निकलना <br>
+                    • <b>डीहाइड्रोहैलोजनीकरण:</b> अल्कोहलीय KOH <br>
+                    • <span class="rule">नियम: सेटजेफ नियम</span> <br>
+                    <span class="tag">पहचान: σ बंध → π बंध (द्वि-बंध)</span>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <p style="margin-top: 40px; color: #7f8c8d;">
+        <i>टिप: "जलीय KOH" प्रतिस्थापन करता है, जबकि "अल्कोहलीय KOH" विलोपन करता है।</i>
+    </p>
 </div>
 
-<div class="arrow">↓</div>
-
-<div class="container">
-    <div class="box">
-        <b>प्रतिस्थापन</b>
-    </div>
-    <div class="box">
-        <b>योगात्मक</b>
-    </div>
-    <div class="box">
-        <b>विलोपन</b>
-    </div>
-</div>
-
-<div class="arrow">↓</div>
-
-<div class="sub-container">
-
-    <div class="box">
-        <b>SN1</b><br>
-        2 चरण<br>
-        Carbocation<br>
+</body>
+</html>
         3° > 2° > 1°
     </div>
 
