@@ -2,7 +2,7 @@
 async function loadQuestions() {
     try {
         // 'data.json' फाइल से डेटा मांगना (Fetch करना)
-        const response = await fetch('data.json');
+        const response = await fetch('./data.json');
         
         // चेक करें कि फाइल मिली या नहीं
         if (!response.ok) {
