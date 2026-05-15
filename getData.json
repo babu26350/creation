@@ -1,1 +1,502 @@
-[{"question":{"id":"1","label":"Which tense is indicated by the word 'always'? / 'हमेशा' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Present Simple / सरल वर्तमान"},{"id":"2","label":"Past Simple / सरल भूतकाल"},{"id":"3","label":"Future Simple / सरल भविष्यकाल"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"},{"question":{"id":"2","label":"Which tense is likely used with the phrase 'at this time'? / 'इस समय' वाक्यांश किस काल के साथ प्रयोग होता है?"},"options":[{"id":"1","label":"Present Continuous / वर्तमान जारी"},{"id":"2","label":"Past Continuous / भूतकाल जारी"},{"id":"3","label":"Future Continuous / भविष्यकाल जारी"},{"id":"4","label":"Present Simple / सरल वर्तमान"}],"correctAnswerId":"1"},{"question":{"id":"3","label":"Which tense is indicated by the word 'yesterday'? / 'कल' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Past Simple / सरल भूतकाल"},{"id":"2","label":"Present Simple / सरल वर्तमान"},{"id":"3","label":"Future Simple / सरल भविष्यकाल"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"},{"question":{"id":"4","label":"Which tense is typically used with 'now'? / 'अब' शब्द आमतौर पर किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Present Continuous / वर्तमान जारी"},{"id":"2","label":"Past Continuous / भूतकाल जारी"},{"id":"3","label":"Future Continuous / भविष्यकाल जारी"},{"id":"4","label":"Past Simple / सरल भूतकाल"}],"correctAnswerId":"1"},{"question":{"id":"5","label":"Which tense does the word 'tomorrow' indicate? / 'कल' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Future Simple / सरल भविष्यकाल"},{"id":"2","label":"Present Simple / सरल वर्तमान"},{"id":"3","label":"Past Simple / सरल भूतकाल"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"},{"question":{"id":"6","label":"Which tense is implied by the word 'often'? / 'अक्सर' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Present Simple / सरल वर्तमान"},{"id":"2","label":"Past Simple / सरल भूतकाल"},{"id":"3","label":"Future Simple / सरल भविष्यकाल"},{"id":"4","label":"Present Perfect / पूर्ण वर्तमान"}],"correctAnswerId":"1"},{"question":{"id":"7","label":"Which tense is usually associated with 'just now'? / 'अभी-अभी' शब्द आमतौर पर किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Past Simple / सरल भूतकाल"},{"id":"2","label":"Present Perfect / पूर्ण वर्तमान"},{"id":"3","label":"Present Continuous / वर्तमान जारी"},{"id":"4","label":"Future Simple / सरल भविष्यकाल"}],"correctAnswerId":"1"},{"question":{"id":"8","label":"Which tense is used with 'since morning'? / 'सुबह से' शब्द किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Present Perfect Continuous / वर्तमान पूर्ण जारी"},{"id":"2","label":"Past Perfect Continuous / भूतकाल पूर्ण जारी"},{"id":"3","label":"Future Perfect Continuous / भविष्य पूर्ण जारी"},{"id":"4","label":"Present Simple / सरल वर्तमान"}],"correctAnswerId":"1"},{"question":{"id":"9","label":"Which tense does the word 'frequently' indicate? / 'अक्सर' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Present Simple / सरल वर्तमान"},{"id":"2","label":"Past Continuous / भूतकाल जारी"},{"id":"3","label":"Future Continuous / भविष्यकाल जारी"},{"id":"4","label":"Past Perfect / पूर्ण भूतकाल"}],"correctAnswerId":"1"},{"question":{"id":"10","label":"Which tense is likely used with the word 'already'? / 'पहले से ही' शब्द किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Present Perfect / पूर्ण वर्तमान"},{"id":"2","label":"Past Perfect / पूर्ण भूतकाल"},{"id":"3","label":"Future Perfect / भविष्य पूर्ण"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"}]
+[
+  {
+    "question": {
+      "id": "11",
+      "label": "Which tense is indicated by the word 'daily'? / 'प्रतिदिन' शब्द किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Simple / सरल वर्तमान"
+      },
+      {
+        "id": "2",
+        "label": "Past Continuous / भूतकाल जारी"
+      },
+      {
+        "id": "3",
+        "label": "Future Perfect / भविष्य पूर्ण"
+      },
+      {
+        "id": "4",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "12",
+      "label": "Which tense is commonly used with 'right now'? / 'अभी इसी समय' वाक्यांश किस काल के साथ प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Continuous / वर्तमान जारी"
+      },
+      {
+        "id": "2",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "3",
+        "label": "Future Simple / सरल भविष्यकाल"
+      },
+      {
+        "id": "4",
+        "label": "Past Perfect / पूर्ण भूतकाल"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "13",
+      "label": "Which tense is indicated by 'last year'? / 'पिछले वर्ष' शब्द किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "2",
+        "label": "Present Simple / सरल वर्तमान"
+      },
+      {
+        "id": "3",
+        "label": "Future Continuous / भविष्यकाल जारी"
+      },
+      {
+        "id": "4",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "14",
+      "label": "Which tense is usually used with 'next week'? / 'अगले सप्ताह' किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Future Simple / सरल भविष्यकाल"
+      },
+      {
+        "id": "2",
+        "label": "Past Continuous / भूतकाल जारी"
+      },
+      {
+        "id": "3",
+        "label": "Present Simple / सरल वर्तमान"
+      },
+      {
+        "id": "4",
+        "label": "Past Perfect Continuous / पूर्ण भूतकाल जारी"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "15",
+      "label": "Which tense is indicated by 'for two hours'? / 'दो घंटे से' किस काल में प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Perfect Continuous / वर्तमान पूर्ण जारी"
+      },
+      {
+        "id": "2",
+        "label": "Future Perfect / भविष्य पूर्ण"
+      },
+      {
+        "id": "3",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "4",
+        "label": "Present Simple / सरल वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "16",
+      "label": "Which tense is associated with 'every Sunday'? / 'प्रत्येक रविवार' किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Simple / सरल वर्तमान"
+      },
+      {
+        "id": "2",
+        "label": "Past Perfect / पूर्ण भूतकाल"
+      },
+      {
+        "id": "3",
+        "label": "Future Continuous / भविष्यकाल जारी"
+      },
+      {
+        "id": "4",
+        "label": "Present Continuous / वर्तमान जारी"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "17",
+      "label": "Which tense is generally used with 'while'? / 'जबकि' शब्द सामान्यतः किस काल में प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Past Continuous / भूतकाल जारी"
+      },
+      {
+        "id": "2",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      },
+      {
+        "id": "3",
+        "label": "Future Perfect / भविष्य पूर्ण"
+      },
+      {
+        "id": "4",
+        "label": "Present Simple / सरल वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "18",
+      "label": "Which tense is indicated by 'by next month'? / 'अगले महीने तक' किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Future Perfect / भविष्य पूर्ण"
+      },
+      {
+        "id": "2",
+        "label": "Present Continuous / वर्तमान जारी"
+      },
+      {
+        "id": "3",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "4",
+        "label": "Present Simple / सरल वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "19",
+      "label": "Which tense is commonly used with 'recently'? / 'हाल ही में' किस काल में प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      },
+      {
+        "id": "2",
+        "label": "Past Continuous / भूतकाल जारी"
+      },
+      {
+        "id": "3",
+        "label": "Future Continuous / भविष्यकाल जारी"
+      },
+      {
+        "id": "4",
+        "label": "Present Simple / सरल वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "20",
+      "label": "Which tense is indicated by 'tonight'? / 'आज रात' किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Future Simple / सरल भविष्यकाल"
+      },
+      {
+        "id": "2",
+        "label": "Past Perfect / पूर्ण भूतकाल"
+      },
+      {
+        "id": "3",
+        "label": "Present Perfect Continuous / वर्तमान पूर्ण जारी"
+      },
+      {
+        "id": "4",
+        "label": "Past Continuous / भूतकाल जारी"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "21",
+      "label": "Which tense is usually used with 'still'? / 'अब भी' शब्द किस काल में प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Continuous / वर्तमान जारी"
+      },
+      {
+        "id": "2",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "3",
+        "label": "Future Perfect / भविष्य पूर्ण"
+      },
+      {
+        "id": "4",
+        "label": "Past Perfect / पूर्ण भूतकाल"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "22",
+      "label": "Which tense is indicated by 'long ago'? / 'बहुत समय पहले' किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "2",
+        "label": "Present Continuous / वर्तमान जारी"
+      },
+      {
+        "id": "3",
+        "label": "Future Continuous / भविष्यकाल जारी"
+      },
+      {
+        "id": "4",
+        "label": "Present Perfect Continuous / वर्तमान पूर्ण जारी"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "23",
+      "label": "Which tense is commonly used with 'these days'? / 'इन दिनों' किस काल के साथ प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Continuous / वर्तमान जारी"
+      },
+      {
+        "id": "2",
+        "label": "Past Perfect / पूर्ण भूतकाल"
+      },
+      {
+        "id": "3",
+        "label": "Future Perfect Continuous / भविष्य पूर्ण जारी"
+      },
+      {
+        "id": "4",
+        "label": "Past Simple / सरल भूतकाल"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "24",
+      "label": "Which tense is indicated by 'before'? / 'पहले' शब्द सामान्यतः किस काल से जुड़ा होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Past Perfect / पूर्ण भूतकाल"
+      },
+      {
+        "id": "2",
+        "label": "Present Simple / सरल वर्तमान"
+      },
+      {
+        "id": "3",
+        "label": "Future Simple / सरल भविष्यकाल"
+      },
+      {
+        "id": "4",
+        "label": "Present Continuous / वर्तमान जारी"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "25",
+      "label": "Which tense is used with 'for many years'? / 'कई वर्षों से' किस काल में प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Perfect Continuous / वर्तमान पूर्ण जारी"
+      },
+      {
+        "id": "2",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "3",
+        "label": "Future Continuous / भविष्यकाल जारी"
+      },
+      {
+        "id": "4",
+        "label": "Present Simple / सरल वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "26",
+      "label": "Which tense is indicated by 'soon'? / 'शीघ्र' शब्द किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Future Simple / सरल भविष्यकाल"
+      },
+      {
+        "id": "2",
+        "label": "Past Continuous / भूतकाल जारी"
+      },
+      {
+        "id": "3",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      },
+      {
+        "id": "4",
+        "label": "Past Perfect Continuous / पूर्ण भूतकाल जारी"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "27",
+      "label": "Which tense is generally used with 'at the moment'? / 'इस क्षण' किस काल के साथ प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Continuous / वर्तमान जारी"
+      },
+      {
+        "id": "2",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "3",
+        "label": "Future Perfect / भविष्य पूर्ण"
+      },
+      {
+        "id": "4",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "28",
+      "label": "Which tense is indicated by 'once upon a time'? / 'एक समय की बात है' किस काल का संकेत देता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Past Simple / सरल भूतकाल"
+      },
+      {
+        "id": "2",
+        "label": "Present Simple / सरल वर्तमान"
+      },
+      {
+        "id": "3",
+        "label": "Future Continuous / भविष्यकाल जारी"
+      },
+      {
+        "id": "4",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "29",
+      "label": "Which tense is commonly used with 'never'? / 'कभी नहीं' शब्द सामान्यतः किस काल में प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Perfect / पूर्ण वर्तमान"
+      },
+      {
+        "id": "2",
+        "label": "Future Continuous / भविष्यकाल जारी"
+      },
+      {
+        "id": "3",
+        "label": "Past Continuous / भूतकाल जारी"
+      },
+      {
+        "id": "4",
+        "label": "Present Continuous / वर्तमान जारी"
+      }
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "30",
+      "label": "Which tense is indicated by 'all day'? / 'पूरा दिन' किस काल के साथ प्रयोग होता है?"
+    },
+    "options": [
+      {
+        "id": "1",
+        "label": "Present Perfect Continuous / वर्तमान पूर्ण जारी"
+      },
+      {
+        "id": "2",
+        "label": "Present Simple / सरल वर्तमान"
+      },
+      {
+        "id": "3",
+        "label": "Future Perfect / भविष्य पूर्ण"
+      },
+      {
+        "id": "4",
+        "label": "Past Perfect / पूर्ण भूतकाल"
+      }
+    ],
+    "correctAnswerId": "1"
+  }
+  ,{"question":{"id":"1","label":"Which tense is indicated by the word 'always'? / 'हमेशा' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Present Simple / सरल वर्तमान"},{"id":"2","label":"Past Simple / सरल भूतकाल"},{"id":"3","label":"Future Simple / सरल भविष्यकाल"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"},{"question":{"id":"2","label":"Which tense is likely used with the phrase 'at this time'? / 'इस समय' वाक्यांश किस काल के साथ प्रयोग होता है?"},"options":[{"id":"1","label":"Present Continuous / वर्तमान जारी"},{"id":"2","label":"Past Continuous / भूतकाल जारी"},{"id":"3","label":"Future Continuous / भविष्यकाल जारी"},{"id":"4","label":"Present Simple / सरल वर्तमान"}],"correctAnswerId":"1"},{"question":{"id":"3","label":"Which tense is indicated by the word 'yesterday'? / 'कल' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Past Simple / सरल भूतकाल"},{"id":"2","label":"Present Simple / सरल वर्तमान"},{"id":"3","label":"Future Simple / सरल भविष्यकाल"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"},{"question":{"id":"4","label":"Which tense is typically used with 'now'? / 'अब' शब्द आमतौर पर किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Present Continuous / वर्तमान जारी"},{"id":"2","label":"Past Continuous / भूतकाल जारी"},{"id":"3","label":"Future Continuous / भविष्यकाल जारी"},{"id":"4","label":"Past Simple / सरल भूतकाल"}],"correctAnswerId":"1"},{"question":{"id":"5","label":"Which tense does the word 'tomorrow' indicate? / 'कल' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Future Simple / सरल भविष्यकाल"},{"id":"2","label":"Present Simple / सरल वर्तमान"},{"id":"3","label":"Past Simple / सरल भूतकाल"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"},{"question":{"id":"6","label":"Which tense is implied by the word 'often'? / 'अक्सर' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Present Simple / सरल वर्तमान"},{"id":"2","label":"Past Simple / सरल भूतकाल"},{"id":"3","label":"Future Simple / सरल भविष्यकाल"},{"id":"4","label":"Present Perfect / पूर्ण वर्तमान"}],"correctAnswerId":"1"},{"question":{"id":"7","label":"Which tense is usually associated with 'just now'? / 'अभी-अभी' शब्द आमतौर पर किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Past Simple / सरल भूतकाल"},{"id":"2","label":"Present Perfect / पूर्ण वर्तमान"},{"id":"3","label":"Present Continuous / वर्तमान जारी"},{"id":"4","label":"Future Simple / सरल भविष्यकाल"}],"correctAnswerId":"1"},{"question":{"id":"8","label":"Which tense is used with 'since morning'? / 'सुबह से' शब्द किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Present Perfect Continuous / वर्तमान पूर्ण जारी"},{"id":"2","label":"Past Perfect Continuous / भूतकाल पूर्ण जारी"},{"id":"3","label":"Future Perfect Continuous / भविष्य पूर्ण जारी"},{"id":"4","label":"Present Simple / सरल वर्तमान"}],"correctAnswerId":"1"},{"question":{"id":"9","label":"Which tense does the word 'frequently' indicate? / 'अक्सर' शब्द किस काल का संकेत देता है?"},"options":[{"id":"1","label":"Present Simple / सरल वर्तमान"},{"id":"2","label":"Past Continuous / भूतकाल जारी"},{"id":"3","label":"Future Continuous / भविष्यकाल जारी"},{"id":"4","label":"Past Perfect / पूर्ण भूतकाल"}],"correctAnswerId":"1"},{"question":{"id":"10","label":"Which tense is likely used with the word 'already'? / 'पहले से ही' शब्द किस काल में प्रयोग होता है?"},"options":[{"id":"1","label":"Present Perfect / पूर्ण वर्तमान"},{"id":"2","label":"Past Perfect / पूर्ण भूतकाल"},{"id":"3","label":"Future Perfect / भविष्य पूर्ण"},{"id":"4","label":"Present Continuous / वर्तमान जारी"}],"correctAnswerId":"1"}]
