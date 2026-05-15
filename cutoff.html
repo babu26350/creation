@@ -1,1 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Cutoff & Rank Table</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+  color:white;
+  min-height:100vh;
+  padding:20px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+
+.card{
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:700;
+  background:linear-gradient(90deg,#38bdf8,#818cf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.refresh-btn{
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
+  border:none;
+  color:white;
+  padding:12px 18px;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.refresh-btn:hover{
+  transform:translateY(-2px);
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.stat-box{
+  background:rgba(255,255,255,0.05);
+  border-radius:18px;
+  padding:22px;
+  text-align:center;
+}
+
+.stat-number{
+  font-size:34px;
+  font-weight:700;
+  margin-top:10px;
+  color:#38bdf8;
+}
+
+.table-container{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+}
+
+th,td{
+  padding:16px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+th{
+  background:rgba(255,255,255,0.08);
+  font-size:15px;
+}
+
+tr:hover{
+  background:rgba(255,255,255,0.05);
+}
+
+.rank-badge{
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.rank-1{
+  background:#facc15;
+  color:black;
+}
+
+.rank-2{
+  background:#cbd5e1;
+  color:black;
+}
+
+.rank-3{
+  background:#fb923c;
+  color:black;
+}
+
+.pass{
+  color:#4ade80;
+  font-weight:600;
+}
+
+.fail{
+  color:#f87171;
+  font-weight:600;
+}
+
+.loading{
+  text-align:center;
+  padding:40px;
+  font-size:20px;
+}
+
+.hidden{
+  display:none;
+}
+
+.cutoff-box{
+  margin-top:25px;
+  background:rgba(255,255,255,0.05);
+  border-radius:18px;
+  padding:20px;
+}
+
+.cutoff-title{
+  font-size:22px;
+  margin-bottom:16px;
+}
+
+.cutoff-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;
+}
+
+.cutoff-item{
+  background:rgba(255,255,255,0.05);
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+}
+
+.cutoff-item h3{
+  margin-bottom:10px;
+}
+
+@media(max-width:700px){
+
+  th,td{
+    padding:12px;
+    font-size:13px;
+  }
+
+  .logo{
+    font-size:24px;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+
+    <div class="logo">Quiz Rank & Cutoff</div>
+
+    <button class="refresh-btn" onclick="loadLeaderboard()">
+      Refresh
+    </button>
+
+  </div>
+
+  <div class="stats-grid">
+
+    <div class="stat-box">
+      <div>Total Candidates</div>
+      <div class="stat-number" id="totalCandidates">0</div>
+    </div>
+
+    <div class="stat-box">
+      <div>Highest Score</div>
+      <div class="stat-number" id="highestScore">0</div>
+    </div>
+
+    <div class="stat-box">
+      <div>Average Score</div>
+      <div class="stat-number" id="averageScore">0</div>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Rank</th>
+            <th>Candidate ID</th>
+            <th>Test ID</th>
+            <th>Marks</th>
+            <th>Percentage</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="leaderboardBody"></tbody>
+
+      </table>
+
+    </div>
+
+    <div class="loading hidden" id="loading">
+      Loading...
+    </div>
+
+  </div>
+
+  <div class="cutoff-box">
+
+    <div class="cutoff-title">Cutoff Categories</div>
+
+    <div class="cutoff-grid">
+
+      <div class="cutoff-item">
+        <h3>Excellent</h3>
+        <p>90%+</p>
+      </div>
+
+      <div class="cutoff-item">
+        <h3>Good</h3>
+        <p>75%+</p>
+      </div>
+
+      <div class="cutoff-item">
+        <h3>Average</h3>
+        <p>50%+</p>
+      </div>
+
+      <div class="cutoff-item">
+        <h3>Needs Improvement</h3>
+        <p>Below 50%</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const RESULT_API =
+'https://654f6363358230d8f0cd4325.mockapi.io/content/results';
+
+async function loadLeaderboard(){
+
+  try{
+
+    document.getElementById('loading')
+      .classList
+      .remove('hidden');
+
+    const response = await fetch(RESULT_API);
+
+    const data = await response.json();
+
+    // VALID DATA ONLY
+    const validData = data.filter(item=>{
+
+      return (
+        item.id &&
+        item.id !== 'NaN' &&
+        !isNaN(Number(item.obtainedMarks)) &&
+        !isNaN(Number(item.totalMarks)) &&
+        !isNaN(Number(item.durationSeconds)) &&
+        item.submittedAt &&
+        item.submittedAt.includes('T')
+      );
+
+    });
+
+    // FIRST ATTEMPT ONLY
+    const uniqueMap = {};
+
+    validData.forEach(item=>{
+
+      const key = `${item.candidateId}_${item.testId}`;
+
+      if(!uniqueMap[key]){
+        uniqueMap[key] = item;
+      }
+
+    });
+
+    const filteredData = Object.values(uniqueMap);
+
+    // SORTING
+    filteredData.sort((a,b)=>{
+
+      if(
+        Number(b.obtainedMarks) !==
+        Number(a.obtainedMarks)
+      ){
+
+        return (
+          Number(b.obtainedMarks) -
+          Number(a.obtainedMarks)
+        );
+      }
+
+      return (
+        Number(a.durationSeconds) -
+        Number(b.durationSeconds)
+      );
+
+    });
+
+    // STATS
+    document.getElementById('totalCandidates')
+      .innerText = filteredData.length;
+
+    const highest =
+      Math.max(
+        ...filteredData.map(
+          item=>Number(item.obtainedMarks)
+        )
+      );
+
+    document.getElementById('highestScore')
+      .innerText = highest;
+
+    const avg =
+      filteredData.reduce((acc,item)=>{
+
+        return acc + Number(item.obtainedMarks);
+
+      },0) / filteredData.length;
+
+    document.getElementById('averageScore')
+      .innerText = avg.toFixed(1);
+
+    // TABLE
+    const tbody =
+      document.getElementById('leaderboardBody');
+
+    tbody.innerHTML = '';
+
+    filteredData.forEach((item,index)=>{
+
+      const percentage =
+        (
+          Number(item.obtainedMarks) /
+          Number(item.totalMarks)
+        ) * 100;
+
+      let status = '';
+      let statusClass = '';
+
+      if(percentage >= 50){
+        status = 'PASS';
+        statusClass = 'pass';
+      }else{
+        status = 'FAIL';
+        statusClass = 'fail';
+      }
+
+      let rankBadge = '';
+
+      if(index === 0){
+        rankBadge =
+          '<span class=\"rank-badge rank-1\">#1</span>';
+      }
+      else if(index === 1){
+        rankBadge =
+          '<span class=\"rank-badge rank-2\">#2</span>';
+      }
+      else if(index === 2){
+        rankBadge =
+          '<span class=\"rank-badge rank-3\">#3</span>';
+      }
+      else{
+        rankBadge = `#${index+1}`;
+      }
+
+      tbody.innerHTML += `
+
+        <tr>
+
+          <td>${rankBadge}</td>
+
+          <td>${item.candidateId}</td>
+
+          <td>${item.testId}</td>
+
+          <td>
+            ${item.obtainedMarks}/${item.totalMarks}
+          </td>
+
+          <td>
+            ${percentage.toFixed(1)}%
+          </td>
+
+          <td>
+            ${item.durationSeconds}s
+          </td>
+
+          <td class="${statusClass}">
+            ${status}
+          </td>
+
+        </tr>
+
+      `;
+
+    });
+
+    document.getElementById('loading')
+      .classList
+      .add('hidden');
+
+  }catch(error){
+
+    console.log(error);
+
+    alert('Failed To Load Leaderboard');
+  }
+}
+
+loadLeaderboard();
+
+</script>
+
+</body>
+  </html>
