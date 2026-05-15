@@ -19,7 +19,7 @@ async function loadQuestions() {
         console.error("Error:", error);
         document.getElementById('quiz-container').innerHTML = "टेस्ट लोड करने में विफल।";
     }
-}
+}//data
 
 // प्रश्नों को स्क्रीन पर दिखाने का फंक्शन
 function displayQuestions(questions) {
