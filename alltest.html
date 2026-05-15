@@ -347,7 +347,7 @@ const API_URLS = {
   class10: './getData.json'
 };
 
-const RESULT_API = 'https://your-api-url.com/results';
+const RESULT_API = "https://654f6363358230d8f0cd4325.mockapi.io/content/person";
 
 let quizData = {};
 let currentTest = '';
@@ -552,7 +552,7 @@ async function submitQuiz(){
 
   const alreadySubmitted = localStorage.getItem(uniqueKey);
 
-  if(!alreadySubmitted){
+  //if(!alreadySubmitted){
 
     localStorage.setItem(uniqueKey, 'submitted');
 
@@ -564,7 +564,7 @@ async function submitQuiz(){
       durationSeconds: seconds,
       submittedAt: new Date().toISOString()
     });
-  }
+  //}
 
   showResults(score, testData);
 }
@@ -585,11 +585,11 @@ async function submitResultToAPI(payload){
       throw new Error('API Failed');
     }
 
-    console.log('Result Submitted');
+    alert('Result Submitted');
 
   }catch(error){
 
-    console.log(error);
+    alert(error);
   }
 }
 
