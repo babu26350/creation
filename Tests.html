@@ -171,7 +171,7 @@ function submitQuiz() {
           const isCorrect = item.userAnswer === item.correctAnswerId;
           if (isCorrect) score++;
           resultHTML += `
-            <p>
+            <p>${item.question.id}.
               ${item.question.label} <br>
               Your Answer: <span style="color: ${isCorrect ? 'green' : 'red'}">
                 ${item.options.find(option => option.id === item.userAnswer).label}
