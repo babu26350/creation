@@ -6,7 +6,8 @@
 
 <title>Forward Coaching Institute</title>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style>
 
@@ -17,30 +18,34 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-body{
-    background:#f4f7fb;
+html,body{
+    width:100%;
+    overflow-x:hidden;
+    background:#f1f5f9;
 }
 
 /* NAVBAR */
 
 header{
     width:100%;
-    background:linear-gradient(45deg,#0d47a1,#1976d2);
-    color:white;
-    position:sticky;
+    position:fixed;
     top:0;
+    left:0;
     z-index:1000;
-    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+    background:linear-gradient(45deg,#0d47a1,#1976d2);
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
 .navbar{
+    width:100%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 20px;
+    padding:14px 18px;
 }
 
 .logo{
+    color:white;
     font-size:28px;
     font-weight:bold;
 }
@@ -49,78 +54,90 @@ header{
     color:#ffeb3b;
 }
 
-ul{
-    display:flex;
-    list-style:none;
-    gap:20px;
-    transition:0.5s;
-}
-
-ul li a{
+.menu{
     color:white;
-    text-decoration:none;
-    font-size:18px;
-    transition:0.3s;
-}
-
-ul li a:hover{
-    color:#ffeb3b;
-}
-
-#listbar{
-    display:none;
     cursor:pointer;
-    font-size:32px;
+    font-size:34px;
+    user-select:none;
 }
 
-/* MOBILE MENU */
+/* LEFT SIDEBAR */
 
 .scroll{
     width:0;
-    overflow:hidden;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    overflow-x:hidden;
     transition:0.5s;
-    background:#1565c0;
+    background:#0d47a1;
+    z-index:2000;
+    padding-top:80px;
 }
 
 .scroll ul{
+    display:flex;
     flex-direction:column;
-    padding:20px;
+    list-style:none;
 }
 
 .scroll ul li{
-    padding:12px 0;
+    width:100%;
 }
 
-/* HERO SECTION */
+.scroll ul li a{
+    display:block;
+    padding:16px 25px;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    transition:0.3s;
+}
+
+.scroll ul li a:hover{
+    background:#1565c0;
+    padding-left:35px;
+}
+
+/* HERO */
 
 .hero{
-    height:90vh;
+    width:100%;
+    min-height:100vh;
     background:
-    linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200') center/cover;
-    
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1400")
+    center/cover no-repeat;
+
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
+    padding:120px 20px 60px;
+}
+
+.hero-content{
+    width:100%;
+    max-width:1000px;
     color:white;
-    padding:20px;
 }
 
 .hero-content h1{
-    font-size:55px;
+    font-size:60px;
     margin-bottom:20px;
 }
 
 .hero-content p{
-    font-size:22px;
-    margin-bottom:25px;
+    font-size:24px;
+    margin-bottom:30px;
 }
 
 .hero-content button{
-    padding:14px 30px;
+    padding:15px 35px;
     border:none;
-    border-radius:30px;
+    border-radius:40px;
     background:#ff9800;
     color:white;
     font-size:18px;
@@ -132,45 +149,91 @@ ul li a:hover{
     background:#ff5722;
 }
 
-/* MAIN SECTION */
+/* CONTENT FULL WIDTH */
 
 .main{
-    display:flex;
-    gap:20px;
-    padding:30px;
+    width:100%;
+    padding:30px 15px;
 }
 
-/* SIDEBAR */
+.box{
+    width:100%;
+}
 
-.aside{
-    width:25%;
+/* DYNAMIC CONTENT */
+
+.content{
+    width:100%;
     background:white;
-    border-radius:15px;
+    margin-bottom:30px;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    animation:fade 0.5s linear;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0px);
+    }
+}
+
+.content h1{
+    background:#1976d2;
+    color:white;
     padding:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    height:fit-content;
+    font-size:32px;
 }
 
-.aside h2{
-    margin-bottom:20px;
-    color:#0d47a1;
+#img{
+    width:100%;
+    max-height:500px;
+    object-fit:cover;
 }
 
-.dd{
-    margin-bottom:15px;
+.padding{
+    padding:20px;
+    font-size:18px;
+    line-height:1.9;
+}
+
+.btn{
+    margin:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#1976d2;
+}
+
+.btn a{
+    color:white;
+    text-decoration:none;
+}
+
+/* SUBJECT BUTTONS */
+
+.ds{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    padding:20px 0;
 }
 
 .dd-btn{
-    width:100%;
-    padding:12px;
     border:none;
-    background:#1976d2;
-    border-radius:10px;
+    background:#0d47a1;
+    padding:12px 18px;
+    border-radius:30px;
     transition:0.3s;
 }
 
 .dd-btn:hover{
-    background:#0d47a1;
+    background:#ff9800;
 }
 
 .dd-btn a{
@@ -179,79 +242,34 @@ ul li a:hover{
     font-size:16px;
 }
 
-/* CONTENT */
-
-.box{
-    width:75%;
-}
-
-.content{
-    background:white;
-    margin-bottom:25px;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.content h1{
-    color:#0d47a1;
-    margin-bottom:15px;
-}
-
-#img{
-    width:100%;
-    border-radius:12px;
-    margin:15px 0;
-}
-
-.padding{
-    padding:10px 0;
-    line-height:1.8;
-}
-
-.btn{
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    background:#1976d2;
-    margin-top:15px;
-    margin-right:10px;
-}
-
-.btn a{
-    color:white;
-    text-decoration:none;
-}
-
 /* FOOTER */
 
 footer{
+    width:100%;
     background:#0d47a1;
     color:white;
     text-align:center;
-    padding:20px;
-    margin-top:40px;
+    padding:30px 15px;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:768px){
 
-.main{
-    flex-direction:column;
+.hero-content h1{
+    font-size:38px;
 }
 
-.aside,
-.box{
-    width:100%;
+.hero-content p{
+    font-size:18px;
 }
 
-ul{
-    display:none;
+.content h1{
+    font-size:24px;
 }
 
-#listbar{
-    display:block;
+.padding{
+    font-size:16px;
 }
 
 }
@@ -261,6 +279,8 @@ ul{
 
 <body>
 
+<!-- HEADER -->
+
 <header>
 
     <div class="navbar">
@@ -269,31 +289,30 @@ ul{
             Forward <span>Coaching</span>
         </div>
 
-        <ul id="ulDup">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Courses</a></li>
-            <li><a href="#">Teachers</a></li>
-            <li><a href="#">Notes</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-
-        <div id="listbar">
-            <i class="material-icons">list</i>
+        <div class="menu" onclick="openNav()">
+            <i class="material-icons">menu</i>
         </div>
 
     </div>
 
-    <div class="scroll">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Courses</a></li>
-            <li><a href="#">Teachers</a></li>
-            <li><a href="#">Notes</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-
 </header>
+
+<!-- LEFT SIDEBAR -->
+
+<div class="scroll" id="sidebar">
+
+    <ul>
+
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Rajasthan GK</a></li>
+        <li><a href="#">Notes</a></li>
+        <li><a href="#">Mock Tests</a></li>
+        <li><a href="#">Contact</a></li>
+
+    </ul>
+
+</div>
 
 <!-- HERO -->
 
@@ -304,10 +323,12 @@ ul{
         <h1>Forward Coaching Institute</h1>
 
         <p>
-            Competitive Exams की बेहतरीन तैयारी अब आसान
+            राजस्थान GK, REET, Patwar, CET और सभी प्रतियोगी परीक्षाओं की तैयारी
         </p>
 
-        <button>Start Learning</button>
+        <button>
+            Start Learning
+        </button>
 
     </div>
 
@@ -317,19 +338,13 @@ ul{
 
 <section class="main">
 
-    <!-- SIDEBAR -->
+    <!-- SUBJECT BUTTONS -->
 
-    <aside class="aside">
+    <div class="ds">
 
-        <h2>Subjects</h2>
+    </div>
 
-        <div class="ds">
-
-        </div>
-
-    </aside>
-
-    <!-- CONTENT -->
+    <!-- API CONTENT -->
 
     <div class="box">
 
@@ -337,17 +352,43 @@ ul{
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
 
-    <h3>© 2026 Forward Coaching Institute</h3>
+    <h2>Forward Coaching Institute</h2>
 
-    <p>Best Coaching Platform for Students</p>
+    <p>
+        Best Educational Platform For Competitive Exams
+    </p>
 
 </footer>
 
-<!-- IMPORT JS FILE -->
+<!-- YOUR JS FILE -->
 
 <script src="study.js"></script>
 
+<!-- SIDEBAR SCRIPT -->
+
+<script>
+
+function openNav(){
+
+    document.getElementById("sidebar").style.width="260px";
+
+    document.querySelector(".menu").innerHTML=
+    `<i class="material-icons" onclick="closeNav()">close</i>`;
+}
+
+function closeNav(){
+
+    document.getElementById("sidebar").style.width="0";
+
+    document.querySelector(".menu").innerHTML=
+    `<i class="material-icons" onclick="openNav()">menu</i>`;
+}
+
+</script>
+
 </body>
-</html>
+    </html>
