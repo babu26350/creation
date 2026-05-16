@@ -273,7 +273,46 @@ footer{
 }
 
 }
+.aside{
+    width:100%;
+    padding:20px;
+}
 
+.side-title{
+    color:white;
+    margin-bottom:20px;
+    font-size:28px;
+    border-bottom:2px solid rgba(255,255,255,0.2);
+    padding-bottom:10px;
+}
+
+.ds{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.dd-btn{
+    width:100%;
+    border:none;
+    background:#1565c0;
+    padding:14px;
+    border-radius:12px;
+    transition:0.3s;
+    text-align:left;
+}
+
+.dd-btn:hover{
+    background:#ff9800;
+    transform:translateX(5px);
+}
+
+.dd-btn a{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    display:block;
+    }
 </style>
 </head>
 
@@ -335,7 +374,25 @@ footer{
 </section>
 
 <!-- MAIN CONTENT -->
+<!-- LEFT SIDEBAR -->
 
+<div class="scroll" id="sidebar">
+
+    <div class="aside">
+
+        <h2 class="side-title">
+            Subjects
+        </h2>
+
+        <!-- API SUBJECTS -->
+
+        <div class="ds">
+
+        </div>
+
+    </div>
+
+</div>
 <section class="main">
 
     <!-- SUBJECT BUTTONS -->
