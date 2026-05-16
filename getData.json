@@ -1,6 +1,396 @@
 [
   {
     "question": {
+      "id": "1",
+      "label": "Which is the longest National Highway passing through Rajasthan according to the new numbering system? / नई नंबरिंग प्रणाली के अनुसार राजस्थान से गुजरने वाला सबसे लंबा राष्ट्रीय राजमार्ग कौन सा है?"
+    },
+    "options": [
+      {"id": "1", "label": "NH-11"},
+      {"id": "2", "label": "NH-48"},
+      {"id": "3", "label": "NH-52"},
+      {"id": "4", "label": "NH-68"}
+    ],
+    "correctAnswerId": "3"
+  },
+  {
+    "question": {
+      "id": "2",
+      "label": "In which year was the Rajasthan State Road Transport Corporation (RSRTC) established? / राजस्थान राज्य पथ परिवहन निगम (RSRTC) की स्थापना किस वर्ष की गई थी?"
+    },
+    "options": [
+      {"id": "1", "label": "1961"},
+      {"id": "2", "label": "1964"},
+      {"id": "3", "label": "1972"},
+      {"id": "4", "label": "1980"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "3",
+      "label": "Which city of Rajasthan has the first operational Metro Rail system? / राजस्थान के किस शहर में पहली चालू मेट्रो रेल प्रणाली है?"
+    },
+    "options": [
+      {"id": "1", "label": "Jodhpur / जोधपुर"},
+      {"id": "2", "label": "Kota / कोटा"},
+      {"id": "3", "label": "Jaipur / जयपुर"},
+      {"id": "4", "label": "Udaipur / उदयपुर"}
+    ],
+    "correctAnswerId": "3"
+  },
+  {
+    "question": {
+      "id": "4",
+      "label": "Where is the only international airport of Rajasthan located? / राजस्थान का एकमात्र अंतर्राष्ट्रीय हवाई अड्डा कहाँ स्थित है?"
+    },
+    "options": [
+      {"id": "1", "label": "Sanganer (Jaipur) / सांगानेर (जयपुर)"},
+      {"id": "2", "label": "Nal (Bikaner) / नाल (बीकानेर)"},
+      {"id": "3", "label": "Dabok (Udaipur) / डबोक (उदयपुर)"},
+      {"id": "4", "label": "Ratanda (Jodhpur) / रातानाडा (जोधपुर)"}
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "5",
+      "label": "Which National Highway connects Agra to Bikaner via Jaipur? / कौन सा राष्ट्रीय राजमार्ग जयपुर होते हुए आगरा को बीकानेर से जोड़ता है?"
+    },
+    "options": [
+      {"id": "1", "label": "NH-21"},
+      {"id": "2", "label": "NH-11"},
+      {"id": "3", "label": "NH-48"},
+      {"id": "4", "label": "NH-62"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "6",
+      "label": "In which city is the headquarters of the North Western Railway zone located? / उत्तर पश्चिम रेलवे जोन का मुख्यालय किस शहर में स्थित है?"
+    },
+    "options": [
+      {"id": "1", "label": "Ajmer / अजमेर"},
+      {"id": "2", "label": "Jaipur / जयपुर"},
+      {"id": "3", "label": "Jodhpur / जोधपुर"},
+      {"id": "4", "label": "Bikaner / बीकानेर"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "7",
+      "label": "Which district of Rajasthan has the highest road density? / राजस्थान के किस जिले में सड़क घनत्व (Road Density) सबसे अधिक है?"
+    },
+    "options": [
+      {"id": "1", "label": "Rajsamand / राजसमंद"},
+      {"id": "2", "label": "Jaisalmer / जैसलमेर"},
+      {"id": "3", "label": "Jaipur / जयपुर"},
+      {"id": "4", "label": "Churu / चूरू"}
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "8",
+      "label": "Which district of Rajasthan has the lowest road density? / राजस्थान के किस जिले में सड़क घनत्व सबसे कम है?"
+    },
+    "options": [
+      {"id": "1", "label": "Barmer / बाड़मेर"},
+      {"id": "2", "label": "Jaisalmer / जैसलमेर"},
+      {"id": "3", "label": "Bikaner / बीकानेर"},
+      {"id": "4", "label": "Jalore / जालौर"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "9",
+      "label": "The first train in Rajasthan ran between which two stations in 1874? / 1874 में राजस्थान में पहली ट्रेन किन दो स्टेशनों के बीच चली थी?"
+    },
+    "options": [
+      {"id": "1", "label": "Jaipur to Ajmer / जयपुर से अजमेर"},
+      {"id": "2", "label": "Bandikui to Agra Fort / बांदीकुई से आगरा फोर्ट"},
+      {"id": "3", "label": "Marwar to Jodhpur / मारवाड़ से जोधपुर"},
+      {"id": "4", "label": "Kota to Baran / कोटा से बारां"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "10",
+      "label": "Which is the shortest National Highway in Rajasthan? / राजस्थान में सबसे छोटा राष्ट्रीय राजमार्ग कौन सा है?"
+    },
+    "options": [
+      {"id": "1", "label": "NH-919 (Old NH-71B)"},
+      {"id": "2", "label": "NH-11"},
+      {"id": "3", "label": "NH-44"},
+      {"id": "4", "label": "NH-79"}
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "11",
+      "label": "Under which project are rural roads being constructed in Rajasthan? / राजस्थान में ग्रामीण सड़कों का निर्माण किस परियोजना के तहत किया जा रहा है?"
+    },
+    "options": [
+      {"id": "1", "label": "Rajasthan Road Project / राजस्थान सड़क परियोजना"},
+      {"id": "2", "label": "Pradhan Mantri Gram Sadak Yojana / प्रधानमंत्री ग्राम सड़क योजना"},
+      {"id": "3", "label": "M मुख्यमंत्री सड़क योजना / मुख्यमंत्री सड़क योजना"},
+      {"id": "4", "label": "Bharatmala Project / भारतमाला परियोजना"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "12",
+      "label": "Which transport mode handles the maximum freight traffic in Rajasthan? / राजस्थान में कौन सा परिवहन माध्यम अधिकतम माल यातायात संभालता है?"
+    },
+    "options": [
+      {"id": "1", "label": "Rail Transport / रेल परिवहन"},
+      {"id": "2", "label": "Road Transport / सड़क परिवहन"},
+      {"id": "3", "label": "Air Transport / वायु परिवहन"},
+      {"id": "4", "label": "Pipeline Transport / पाइपलाइन परिवहन"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "13",
+      "label": "Where is the 'Nal' military airport located in Rajasthan? / राजस्थान में 'नाल' सैन्य हवाई अड्डा कहाँ स्थित है?"
+    },
+    "options": [
+      {"id": "1", "label": "Jodhpur / जोधपुर"},
+      {"id": "2", "label": "Uttarlai / उत्तरलाई"},
+      {"id": "3", "label": "Bikaner / बीकानेर"},
+      {"id": "4", "label": "Suratgarh / सूरतगढ़"}
+    ],
+    "correctAnswerId": "3"
+  },
+  {
+    "question": {
+      "id": "14",
+      "label": "Which highway is known as the 'Lifeline of Lifeline' connecting Delhi to Mumbai via Jaipur? / जयपुर होते हुए दिल्ली को मुंबई से जोड़ने वाले किस राजमार्ग को लाइफलाइन कहा जाता है?"
+    },
+    "options": [
+      {"id": "1", "label": "NH-48 (Old NH-8)"},
+      {"id": "2", "label": "NH-15"},
+      {"id": "3", "label": "NH-52"},
+      {"id": "4", "label": "NH-62"}
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "15",
+      "label": "In which city was Rajasthan's first flying school established? / राजस्थान का पहला फ्लाइंग स्कूल किस शहर में स्थापित किया गया था?"
+    },
+    "options": [
+      {"id": "1", "label": "Jaipur / जयपुर"},
+      {"id": "2", "label": "Jodhpur / जोधपुर"},
+      {"id": "3", "label": "Kota / कोटा"},
+      {"id": "4", "label": "Bikaner / बीकानेर"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "16",
+      "label": "Which district of Rajasthan has only one National Highway passing through it, which is the shortest? / राजस्थान का कौन सा जिला है जिससे केवल एक ही राष्ट्रीय राजमार्ग गुजरता है, जो सबसे छोटा है?"
+    },
+    "options": [
+      {"id": "1", "label": "Dholpur / धौलपुर"},
+      {"id": "2", "label": "Dungarpur / डूंगरपुर"},
+      {"id": "3", "label": "Pratapgarh / प्रतापगढ़"},
+      {"id": "4", "label": "Banswara / बांसवाड़ा"}
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "17",
+      "label": "What is the vehicle registration code for Churu district? / चूरू जिले का वाहन पंजीकरण कोड (RTO Code) क्या है?"
+    },
+    "options": [
+      {"id": "1", "label": "RJ-07"},
+      {"id": "2", "label": "RJ-10"},
+      {"id": "3", "label": "RJ-23"},
+      {"id": "4", "label": "RJ-14"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "18",
+      "label": "The 'Mega Highway Project' in Rajasthan is being implemented by which agency? / राजस्थान में 'मेगा हाईवे प्रोजेक्ट' किस एजेंसी द्वारा क्रियान्वित किया जा रहा है?"
+    },
+    "options": [
+      {"id": "1", "label": "NHAI"},
+      {"id": "2", "label": "RIDCOR / रिडकोर"},
+      {"id": "3", "label": "RSMDC"},
+      {"id": "4", "label": "PWD / सार्वजनिक निर्माण विभाग"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "19",
+      "label": "Which is the main eco-friendly transport initiative launched in major historical cities of Rajasthan? / राजस्थान के प्रमुख ऐतिहासिक शहरों में शुरू की गई मुख्य पर्यावरण-अनुकूल परिवहन पहल कौन सी है?"
+    },
+    "options": [
+      {"id": "1", "label": "CNG Buses / सीएनजी बसें"},
+      {"id": "2", "label": "E-Rickshaws and Electric Buses / ई-रिक्शा और इलेक्ट्रिक बसें"},
+      {"id": "3", "label": "Diesel Trackers / डीजल ट्रैकर्स"},
+      {"id": "4", "label": "Metro Expansion / मेट्रो विस्तार"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "20",
+      "label": "Which railway station of Rajasthan was first developed as a world-class station on the lines of Germany? / राजस्थान का कौन सा रेलवे स्टेशन जर्मनी की तर्ज पर विश्व स्तरीय स्टेशन के रूप में सबसे पहले विकसित किया गया?"
+    },
+    "options": [
+      {"id": "1", "label": "Jaipur Junction / जयपुर जंक्शन"},
+      {"id": "2", "label": "Gandhinagar Jaipur / गांधीनगर जयपुर"},
+      {"id": "3", "label": "Habibganj Style (Udaipur) / उदयपुर"},
+      {"id": "4", "label": "Jodhpur Railway Station / जोधपुर रेलवे स्टेशन"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "21",
+      "label": "Which luxury train operates in Rajasthan to promote royal tourism? / शाही पर्यटन को बढ़ावा देने के लिए राजस्थान में कौन सी लक्जरी ट्रेन संचालित होती है?"
+    },
+    "options": [
+      {"id": "1", "label": "Palace on Wheels / पैलेस ऑन व्हील्स"},
+      {"id": "2", "label": "Maharajas' Express / महाराजा एक्सप्रेस"},
+      {"id": "3", "label": "Royal Rajasthan on Wheels / रॉयल राजस्थान ऑन व्हील्स"},
+      {"id": "4", "label": "All of the above / उपरोक्त सभी"}
+    ],
+    "correctAnswerId": "4"
+  },
+  {
+    "question": {
+      "id": "22",
+      "label": "Which international border outpost in Rajasthan has a rail link with Pakistan? / राजस्थान की किस अंतर्राष्ट्रीय सीमा चौकी का पाकिस्तान के साथ रेल संपर्क है?"
+    },
+    "options": [
+      {"id": "1", "label": "Hindumalkot / हिन्दूमलकोट"},
+      {"id": "2", "label": "Munabao / मुनाबाव"},
+      {"id": "3", "label": "Gadra Road / गदरा रोड"},
+      {"id": "4", "label": "Bakhasar / बाखासर"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "23",
+      "label": "What was the theme or slogan of Rajasthan Road Safety Policy? / राजस्थान सड़क सुरक्षा नीति का मुख्य उद्देश्य या नारा क्या है?"
+    },
+    "options": [
+      {"id": "1", "label": "Drive Fast, Reach Safe / तेज चलें, सुरक्षित पहुंचें"},
+      {"id": "2", "label": "Sadak Suraksha - Jeevan Raksha / सड़क सुरक्षा - जीवन रक्षा"},
+      {"id": "3", "label": "No Helmet, No Ride / नो हेलमेट, नो राइड"},
+      {"id": "4", "label": "Eco-friendly Driving / पर्यावरण-अनुकूल ड्राइविंग"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "24",
+      "label": "Through how many districts does the Delhi-Mumbai Expressway pass in Rajasthan? / दिल्ली-मुंबई एक्सप्रेसवे राजस्थान में कितने जिलों से होकर गुजरता है?"
+    },
+    "options": [
+      {"id": "1", "label": "5 districts / 5 जिले"},
+      {"id": "2", "label": "7 districts / 7 जिले"},
+      {"id": "3", "label": "9 districts / 9 जिले"},
+      {"id": "4", "label": "4 districts / 4 जिले"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "25",
+      "label": "Which city of Rajasthan is known as the 'Kishangarh Airport' serving nearby areas? / राजस्थान का कौन सा शहर पास के क्षेत्रों की सेवा करने वाले 'किशनगढ़ हवाई अड्डे' के लिए जाना जाता है?"
+    },
+    "options": [
+      {"id": "1", "label": "Ajmer / अजमेर"},
+      {"id": "2", "label": "Bhilwara / भीलवाड़ा"},
+      {"id": "3", "label": "Tonk / टोंक"},
+      {"id": "4", "label": "Nagaur / नागौर"}
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "26",
+      "label": "Which highway was formerly numbered as NH-15, which passes through western desert districts? / किस राजमार्ग को पहले NH-15 नंबर दिया गया था, जो पश्चिमी मरुस्थलीय जिलों से गुजरता है?"
+    },
+    "options": [
+      {"id": "1", "label": "NH-68, NH-11, and NH-62 / एनएच-68, एनएच-11, और एनएच-62"},
+      {"id": "2", "label": "NH-48"},
+      {"id": "3", "label": "NH-52"},
+      {"id": "4", "label": "NH-21"}
+    ],
+    "correctAnswerId": "1"
+  },
+  {
+    "question": {
+      "id": "27",
+      "label": "Which scheme was introduced by RSRTC for online bus ticket booking? / ऑनलाइन बस टिकट बुकिंग के लिए RSRTC द्वारा कौन सी योजना/प्रणाली शुरू की गई थी?"
+    },
+    "options": [
+      {"id": "1", "label": "E-Mitra Ticket / ई-मित्र टिकट"},
+      {"id": "2", "label": "RFID Smart Card & Online Reservation / आरएफआईडी स्मार्ट कार्ड और ऑनलाइन आरक्षण"},
+      {"id": "3", "label": "Chalo App / चलो ऐप"},
+      {"id": "4", "label": "Rajasthan Bus Android / राजस्थान बस एंड्रॉइड"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "28",
+      "label": "Which part of Rajasthan has the highest density of railway network? / राजस्थान के किस भाग में रेलवे नेटवर्क का घनत्व सबसे अधिक है?"
+    },
+    "options": [
+      {"id": "1", "label": "Western Part / पश्चिमी भाग"},
+      {"id": "2", "label": "Eastern and South-Eastern Part / पूर्वी और दक्षिण-पूर्वी भाग"},
+      {"id": "3", "label": "Northern Part / उत्तरी भाग"},
+      {"id": "4", "label": "Southern Desert / दक्षिणी मरुस्थल"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "29",
+      "label": "Where is the head office of Rajasthan State Road Development and Construction Corporation Limited located? / राजस्थान राज्य सड़क विकास एवं निर्माण निगम लिमिटेड का मुख्य कार्यालय कहाँ स्थित है?"
+    },
+    "options": [
+      {"id": "1", "label": "Jodhpur / जोधपुर"},
+      {"id": "2", "label": "Jaipur / जयपुर"},
+      {"id": "3", "label": "Ajmer / अजमेर"},
+      {"id": "4", "label": "Udaipur / उदयपुर"}
+    ],
+    "correctAnswerId": "2"
+  },
+  {
+    "question": {
+      "id": "30",
+      "label": "Which state highway is developed as the first model solar highway in Rajasthan? / किस राज्य राजमार्ग को राजस्थान में पहले मॉडल सोलर हाईवे के रूप में विकसित किया जा रहा है?"
+    },
+    "options": [
+      {"id": "1", "label": "SH-12"},
+      {"id": "2", "label": "SH-40"},
+      {"id": "3", "label": "Jaipur-Mahwa Highway / जयपुर-महवा हाईवे"},
+      {"id": "4", "label": "Barmer-Jalore Section / बाड़मेर-जालौर सेक्शन"}
+    ],
+    "correctAnswerId": "3"
+  },
+  {
+    "question": {
       "id": "11",
       "label": "Which tense is indicated by the word 'daily'? / 'प्रतिदिन' शब्द किस काल का संकेत देता है?"
     },
