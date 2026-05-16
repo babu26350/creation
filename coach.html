@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forward Coaching Institute</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+}
+
+/* NAVBAR */
+
+header{
+    width:100%;
+    background:linear-gradient(45deg,#0d47a1,#1976d2);
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#ffeb3b;
+}
+
+ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+    transition:0.5s;
+}
+
+ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    transition:0.3s;
+}
+
+ul li a:hover{
+    color:#ffeb3b;
+}
+
+#listbar{
+    display:none;
+    cursor:pointer;
+    font-size:32px;
+}
+
+/* MOBILE MENU */
+
+.scroll{
+    width:0;
+    overflow:hidden;
+    transition:0.5s;
+    background:#1565c0;
+}
+
+.scroll ul{
+    flex-direction:column;
+    padding:20px;
+}
+
+.scroll ul li{
+    padding:12px 0;
+}
+
+/* HERO SECTION */
+
+.hero{
+    height:90vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200') center/cover;
+    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero-content h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:22px;
+    margin-bottom:25px;
+}
+
+.hero-content button{
+    padding:14px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff9800;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.hero-content button:hover{
+    background:#ff5722;
+}
+
+/* MAIN SECTION */
+
+.main{
+    display:flex;
+    gap:20px;
+    padding:30px;
+}
+
+/* SIDEBAR */
+
+.aside{
+    width:25%;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    height:fit-content;
+}
+
+.aside h2{
+    margin-bottom:20px;
+    color:#0d47a1;
+}
+
+.dd{
+    margin-bottom:15px;
+}
+
+.dd-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#1976d2;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.dd-btn:hover{
+    background:#0d47a1;
+}
+
+.dd-btn a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+}
+
+/* CONTENT */
+
+.box{
+    width:75%;
+}
+
+.content{
+    background:white;
+    margin-bottom:25px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.content h1{
+    color:#0d47a1;
+    margin-bottom:15px;
+}
+
+#img{
+    width:100%;
+    border-radius:12px;
+    margin:15px 0;
+}
+
+.padding{
+    padding:10px 0;
+    line-height:1.8;
+}
+
+.btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#1976d2;
+    margin-top:15px;
+    margin-right:10px;
+}
+
+.btn a{
+    color:white;
+    text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.main{
+    flex-direction:column;
+}
+
+.aside,
+.box{
+    width:100%;
+}
+
+ul{
+    display:none;
+}
+
+#listbar{
+    display:block;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Forward <span>Coaching</span>
+        </div>
+
+        <ul id="ulDup">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Teachers</a></li>
+            <li><a href="#">Notes</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <div id="listbar">
+            <i class="material-icons">list</i>
+        </div>
+
+    </div>
+
+    <div class="scroll">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Teachers</a></li>
+            <li><a href="#">Notes</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Forward Coaching Institute</h1>
+
+        <p>
+            Competitive Exams की बेहतरीन तैयारी अब आसान
+        </p>
+
+        <button>Start Learning</button>
+
+    </div>
+
+</section>
+
+<!-- MAIN CONTENT -->
+
+<section class="main">
+
+    <!-- SIDEBAR -->
+
+    <aside class="aside">
+
+        <h2>Subjects</h2>
+
+        <div class="ds">
+
+        </div>
+
+    </aside>
+
+    <!-- CONTENT -->
+
+    <div class="box">
+
+    </div>
+
+</section>
+
+<footer>
+
+    <h3>© 2026 Forward Coaching Institute</h3>
+
+    <p>Best Coaching Platform for Students</p>
+
+</footer>
+
+<!-- IMPORT JS FILE -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
