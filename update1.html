@@ -10,6 +10,9 @@
 
 <style>
 
+
+
+
 *{
     margin:0;
     padding:0;
@@ -18,52 +21,62 @@
 
 body{
     font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    background:linear-gradient(
+    135deg,
+    #1f1f1f,
+    #2b2b2b,
+    #3b3b3b
+    );
     min-height:100vh;
     padding:20px;
-    color:white;
+    color:#fff;
 }
 
 /* HEADER */
 
 .header{
     width:100%;
-    padding:20px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.05);
     backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
     margin-bottom:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
 }
 
 .header h1{
     text-align:center;
     font-size:2.2rem;
     font-weight:700;
+    color:#ffffff;
+    letter-spacing:1px;
 }
 
-/* MAIN GRID */
+/* GRID */
 
 .main-grid{
     display:grid;
-    grid-template-columns:350px 1fr;
+    grid-template-columns:360px 1fr;
     gap:25px;
 }
 
-/* FORM CARD */
+/* FORM */
 
 .form-card{
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
     backdrop-filter:blur(12px);
-    border-radius:20px;
+    border-radius:22px;
     padding:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
     height:fit-content;
 }
 
 .form-card h2{
-    margin-bottom:20px;
     text-align:center;
+    margin-bottom:22px;
+    font-size:1.5rem;
 }
 
 .input-group{
@@ -74,40 +87,49 @@ body{
     display:block;
     margin-bottom:8px;
     font-weight:600;
+    color:#e2e2e2;
 }
 
 .input-group input,
 .input-group textarea{
     width:100%;
-    padding:14px;
     border:none;
-    border-radius:12px;
     outline:none;
+    padding:15px;
+    border-radius:14px;
     font-size:15px;
-    background:rgba(255,255,255,0.15);
-    color:white;
+    background:rgba(255,255,255,0.08);
+    color:#fff;
+    transition:0.3s;
+    border:1px solid transparent;
 }
 
 .input-group textarea{
-    height:130px;
+    height:140px;
     resize:none;
 }
 
 .input-group input::placeholder,
 .input-group textarea::placeholder{
-    color:#ddd;
+    color:#bdbdbd;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    border:1px solid #00b894;
+    background:rgba(255,255,255,0.12);
 }
 
 /* IMAGE PREVIEW */
 
 .preview-box{
     width:100%;
-    height:200px;
-    border-radius:15px;
+    height:210px;
+    border-radius:18px;
     overflow:hidden;
+    background:#222;
+    border:2px dashed rgba(255,255,255,0.12);
     margin-top:10px;
-    background:#111;
-    border:2px dashed rgba(255,255,255,0.2);
 }
 
 .preview-box img{
@@ -120,21 +142,27 @@ body{
 
 .button-group{
     display:flex;
-    gap:10px;
+    gap:12px;
     flex-wrap:wrap;
-    margin-top:20px;
+    margin-top:25px;
 }
 
 button{
     flex:1;
     border:none;
     padding:14px;
-    border-radius:12px;
-    font-weight:600;
+    border-radius:14px;
     cursor:pointer;
-    transition:0.3s;
     font-size:15px;
+    font-weight:600;
+    transition:0.3s;
 }
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+/* BUTTON COLORS */
 
 .submit-btn{
     background:#00b894;
@@ -142,8 +170,7 @@ button{
 }
 
 .submit-btn:hover{
-    background:#019874;
-    transform:translateY(-2px);
+    background:#00a884;
 }
 
 .edit-btn{
@@ -152,7 +179,7 @@ button{
 }
 
 .edit-btn:hover{
-    background:#086cc0;
+    background:#0a74c9;
 }
 
 .back-btn{
@@ -161,71 +188,96 @@ button{
 }
 
 .back-btn:hover{
-    background:#b71c1c;
+    background:#c0392b;
 }
 
 /* TABLE SECTION */
 
 .table-section{
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
     backdrop-filter:blur(12px);
-    border-radius:20px;
+    border-radius:22px;
     padding:20px;
     overflow:auto;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
 }
 
 .table-section h2{
     margin-bottom:20px;
+    font-size:1.5rem;
 }
+
+/* TABLE */
 
 table{
     width:100%;
+    min-width:850px;
     border-collapse:collapse;
-    min-width:800px;
+    overflow:hidden;
+    border-radius:16px;
+}
+
+thead{
+    background:rgba(255,255,255,0.08);
 }
 
 th{
-    background:#00b894;
-    color:white;
-    padding:15px;
+    padding:16px;
     text-align:left;
+    color:#fff;
+    font-weight:600;
+    border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 td{
-    padding:15px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    color:white;
+    padding:16px;
+    color:#e8e8e8;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+tr{
+    transition:0.3s;
 }
 
 tr:hover{
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.05);
 }
+
+/* IMAGE */
 
 .table-image{
     width:70px;
     height:70px;
-    border-radius:10px;
     object-fit:cover;
+    border-radius:12px;
+    border:2px solid rgba(255,255,255,0.1);
 }
 
 /* ACTION BUTTONS */
 
 .action-btn{
     border:none;
-    padding:8px 15px;
-    border-radius:8px;
-    color:white;
+    padding:9px 16px;
+    border-radius:10px;
     cursor:pointer;
+    font-size:14px;
     font-weight:600;
+    transition:0.3s;
+}
+
+.action-btn:hover{
+    transform:scale(1.05);
 }
 
 .delete{
     background:#e74c3c;
+    color:white;
 }
 
 .update{
     background:#3498db;
+    color:white;
 }
 
 /* SECOND TABLE */
@@ -234,7 +286,83 @@ tr:hover{
     margin-top:30px;
 }
 
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#2a2a2a;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#555;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#777;
+}
+
 /* RESPONSIVE */
+
+@media(max-width:950px){
+
+.main-grid{
+    grid-template-columns:1fr;
+}
+
+.header h1{
+    font-size:1.7rem;
+}
+
+.form-card,
+.table-section{
+    padding:18px;
+}
+
+table{
+    min-width:700px;
+}
+
+}
+
+@media(max-width:600px){
+
+body{
+    padding:12px;
+}
+
+.header{
+    padding:18px;
+}
+
+.header h1{
+    font-size:1.4rem;
+}
+
+.form-card h2,
+.table-section h2{
+    font-size:1.2rem;
+}
+
+button{
+    width:100%;
+}
+
+.button-group{
+    flex-direction:column;
+}
+
+.input-group input,
+.input-group textarea{
+    padding:13px;
+}
+
+    }
 
 @media(max-width:900px){
 
