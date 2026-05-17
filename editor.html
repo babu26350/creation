@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>HTML Word Editor</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* =========================
+GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    #101820,
+    #172a36,
+    #203848
+    );
+
+    min-height:100vh;
+
+    padding:20px;
+
+    color:white;
+}
+
+/* =========================
+CONTAINER
+========================= */
+
+.editor-container{
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:auto;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.editor-header{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:1px solid
+    rgba(255,255,255,0.06);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    backdrop-filter:blur(10px);
+}
+
+.editor-header h1{
+
+    font-size:32px;
+
+    text-align:center;
+}
+
+/* =========================
+TOOLBAR
+========================= */
+
+.toolbar{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border-radius:20px;
+
+    padding:18px;
+
+    border:1px solid
+    rgba(255,255,255,0.06);
+}
+
+/* BUTTONS */
+
+.tool-btn{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.tool-btn:hover{
+
+    background:#00a884;
+
+    transform:translateY(-2px);
+}
+
+/* =========================
+MAIN GRID
+========================= */
+
+.editor-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+}
+
+/* =========================
+EDITOR
+========================= */
+
+.editor-box{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border-radius:20px;
+
+    border:1px solid
+    rgba(255,255,255,0.06);
+
+    overflow:hidden;
+}
+
+/* TITLE */
+
+.box-title{
+
+    padding:16px 20px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border-bottom:1px solid
+    rgba(255,255,255,0.06);
+
+    font-size:18px;
+
+    font-weight:600;
+}
+
+/* TEXTAREA */
+
+textarea{
+
+    width:100%;
+
+    height:70vh;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    color:white;
+
+    padding:20px;
+
+    font-size:15px;
+
+    line-height:1.7;
+}
+
+/* PREVIEW */
+
+.preview{
+
+    padding:20px;
+
+    height:70vh;
+
+    overflow:auto;
+
+    color:white;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#3c5d73;
+
+    border-radius:20px;
+}
+
+/* =========================
+BOTTOM BUTTONS
+========================= */
+
+.bottom-buttons{
+
+    margin-top:20px;
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.action-btn{
+
+    flex:1;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+/* COPY */
+
+.copy-btn{
+
+    background:#00a884;
+
+    color:white;
+}
+
+.copy-btn:hover{
+
+    background:#008d72;
+}
+
+/* CLEAR */
+
+.clear-btn{
+
+    background:#d64545;
+
+    color:white;
+}
+
+.clear-btn:hover{
+
+    background:#bb3030;
+}
+
+/* DOWNLOAD */
+
+.download-btn{
+
+    background:#2878c8;
+
+    color:white;
+}
+
+.download-btn:hover{
+
+    background:#1f67ae;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.editor-grid{
+
+    grid-template-columns:1fr;
+}
+
+textarea,
+.preview{
+
+    height:50vh;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="editor-container">
+
+    <!-- HEADER -->
+
+    <div class="editor-header">
+
+        <h1>
+            ✨ HTML Word Editor
+        </h1>
+
+    </div>
+
+    <!-- TOOLBAR -->
+
+    <div class="toolbar">
+
+        <button class="tool-btn"
+        onclick="insertTag('h1')">
+
+            H1
+        </button>
+
+        <button class="tool-btn"
+        onclick="insertTag('h2')">
+
+            H2
+        </button>
+
+        <button class="tool-btn"
+        onclick="insertTag('p')">
+
+            Paragraph
+        </button>
+
+        <button class="tool-btn"
+        onclick="insertTag('b')">
+
+            Bold
+        </button>
+
+        <button class="tool-btn"
+        onclick="insertTag('i')">
+
+            Italic
+        </button>
+
+        <button class="tool-btn"
+        onclick="insertTag('ul')">
+
+            UL
+        </button>
+
+        <button class="tool-btn"
+        onclick="insertTag('li')">
+
+            LI
+        </button>
+
+        <button class="tool-btn"
+        onclick="insertImage()">
+
+            Image
+        </button>
+
+    </div>
+
+    <!-- MAIN GRID -->
+
+    <div class="editor-grid">
+
+        <!-- HTML CODE -->
+
+        <div class="editor-box">
+
+            <div class="box-title">
+                HTML Editor
+            </div>
+
+            <textarea
+            id="editor"
+
+            placeholder=
+            "Write HTML here..."></textarea>
+
+        </div>
+
+        <!-- LIVE PREVIEW -->
+
+        <div class="editor-box">
+
+            <div class="box-title">
+                Live Preview
+            </div>
+
+            <div class="preview"
+            id="preview">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="bottom-buttons">
+
+        <button
+        class="action-btn copy-btn"
+        onclick="copyHTML()">
+
+            📋 Copy HTML
+        </button>
+
+        <button
+        class="action-btn clear-btn"
+        onclick="clearEditor()">
+
+            🗑 Clear
+        </button>
+
+        <button
+        class="action-btn download-btn"
+        onclick="downloadHTML()">
+
+            ⬇ Download HTML
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+ELEMENTS
+========================= */
+
+const editor =
+document.getElementById(
+"editor"
+);
+
+const preview =
+document.getElementById(
+"preview"
+);
+
+/* =========================
+LIVE PREVIEW
+========================= */
+
+editor.addEventListener(
+"input",
+function(){
+
+    preview.innerHTML =
+    editor.value;
+}
+);
+
+/* =========================
+INSERT TAG
+========================= */
+
+function insertTag(tag){
+
+    let text = "";
+
+    if(tag == "ul"){
+
+        text =
+`<ul>
+
+<li>List Item</li>
+
+</ul>
+`;
+
+    }
+
+    else{
+
+        text =
+`<${tag}>
+
+</${tag}>
+`;
+    }
+
+    editor.value += text;
+
+    preview.innerHTML =
+    editor.value;
+}
+
+/* =========================
+INSERT IMAGE
+========================= */
+
+function insertImage(){
+
+    const url =
+    prompt(
+    "Enter Image URL"
+    );
+
+    if(url){
+
+        editor.value +=
+`<img src="${url}" alt="" style="width:100%; border-radius:12px;">`;
+
+        preview.innerHTML =
+        editor.value;
+    }
+}
+
+/* =========================
+COPY HTML
+========================= */
+
+function copyHTML(){
+
+    navigator.clipboard.writeText(
+    editor.value
+    );
+
+    alert(
+    "HTML Copied Successfully"
+    );
+}
+
+/* =========================
+CLEAR
+========================= */
+
+function clearEditor(){
+
+    const ok =
+    confirm(
+    "Clear Editor?"
+    );
+
+    if(ok){
+
+        editor.value = "";
+
+        preview.innerHTML = "";
+    }
+}
+
+/* =========================
+DOWNLOAD
+========================= */
+
+function downloadHTML(){
+
+    const blob =
+    new Blob(
+    [editor.value],
+    {
+        type:"text/html"
+    }
+    );
+
+    const a =
+    document.createElement(
+    "a"
+    );
+
+    a.href =
+    URL.createObjectURL(
+    blob
+    );
+
+    a.download =
+    "editor.html";
+
+    a.click();
+}
+
+</script>
+
+</body>
+</html>
