@@ -11,68 +11,73 @@
 <style>
 
 
-
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+/* ===== BODY ===== */
 
 body{
     font-family:'Poppins',sans-serif;
-    background:#f1f3f6;
-    )
+
+    /* पहले वाला तेज चमक वाला gradient हटाया */
+    background:
+    radial-gradient(circle at top left,#1c2b36 0%,transparent 40%),
+    radial-gradient(circle at bottom right,#243847 0%,transparent 35%),
+    linear-gradient(135deg,#111827,#16222d,#1f2f3d);
+
     min-height:100vh;
     padding:20px;
-    color:#fff;
+    color:#eef3f7;
+
+    /* white glare कम करने के लिए */
+    overflow-x:hidden;
 }
 
-/* HEADER */
+/* ===== SOFT GLASS EFFECT ===== */
+
+.header,
+.form-card,
+.table-section{
+
+    /* white transparency कम की */
+    background:rgba(20,28,36,0.72);
+
+    /* blur थोड़ा कम */
+    backdrop-filter:blur(8px);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* ===== HEADER ===== */
 
 .header{
     width:100%;
-    padding:25px;
+    padding:22px;
     border-radius:22px;
-    background:#f1f3f6;
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,0.08);
     margin-bottom:25px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.35);
 }
 
 .header h1{
     text-align:center;
-    font-size:2.2rem;
+    font-size:2.1rem;
     font-weight:700;
-    color:#ffffff;
+    color:#f5f7fa;
     letter-spacing:1px;
 }
 
-/* GRID */
-
-.main-grid{
-    display:grid;
-    grid-template-columns:360px 1fr;
-    gap:25px;
-}
-
-/* FORM */
+/* ===== FORM ===== */
 
 .form-card{
-    background:#f1f3f6;
-    border:1px solid rgba(255,255,255,0.08);
-    backdrop-filter:blur(12px);
     border-radius:22px;
     padding:25px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.35);
     height:fit-content;
 }
 
 .form-card h2{
+    margin-bottom:20px;
     text-align:center;
-    margin-bottom:22px;
-    font-size:1.5rem;
+    color:#f2f5f7;
 }
 
 .input-group{
@@ -83,49 +88,69 @@ body{
     display:block;
     margin-bottom:8px;
     font-weight:600;
-    color:#e2e2e2;
+    color:#dbe7ef;
 }
 
 .input-group input,
 .input-group textarea{
+
     width:100%;
-    border:none;
-    outline:none;
-    padding:15px;
+    padding:14px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
     border-radius:14px;
+
+    outline:none;
+
     font-size:15px;
-    background:rgba(255,255,255,0.08);
-    color:#fff;
+
+    /* bright white हटाया */
+    background:rgba(255,255,255,0.05);
+
+    color:#eef2f5;
+
     transition:0.3s;
-    border:1px solid transparent;
+}
+
+/* focus glow soft */
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+    border:1px solid rgba(0,184,148,0.5);
+
+    box-shadow:
+    0 0 0 3px rgba(0,184,148,0.12);
+
+    background:rgba(255,255,255,0.07);
 }
 
 .input-group textarea{
-    height:140px;
+    height:130px;
     resize:none;
 }
 
 .input-group input::placeholder,
 .input-group textarea::placeholder{
-    color:#bdbdbd;
+    color:#aebdc7;
 }
 
-.input-group input:focus,
-.input-group textarea:focus{
-    border:1px solid #00b894;
-    background:rgba(255,255,255,0.12);
-}
-
-/* IMAGE PREVIEW */
+/* ===== PREVIEW ===== */
 
 .preview-box{
     width:100%;
     height:210px;
+
     border-radius:18px;
+
     overflow:hidden;
-    background:#222;
-    border:2px dashed rgba(255,255,255,0.12);
+
     margin-top:10px;
+
+    background:#0d141b;
+
+    border:1px dashed rgba(255,255,255,0.08);
 }
 
 .preview-box img{
@@ -134,102 +159,114 @@ body{
     object-fit:cover;
 }
 
-/* BUTTONS */
+/* ===== BUTTONS ===== */
 
 .button-group{
     display:flex;
     gap:12px;
     flex-wrap:wrap;
-    margin-top:25px;
+    margin-top:22px;
 }
 
 button{
+
     flex:1;
+
     border:none;
+
     padding:14px;
+
     border-radius:14px;
-    cursor:pointer;
-    font-size:15px;
+
     font-weight:600;
+
+    cursor:pointer;
+
     transition:0.3s;
-}
 
-button:hover{
-    transform:translateY(-3px);
-}
+    font-size:15px;
 
-/* BUTTON COLORS */
+    letter-spacing:0.4px;
+}
 
 .submit-btn{
-    background:#00b894;
+    background:#00a884;
     color:white;
 }
 
 .submit-btn:hover{
-    background:#00a884;
+    background:#009174;
+    transform:translateY(-2px);
 }
 
 .edit-btn{
-    background:#0984e3;
+    background:#1976d2;
     color:white;
 }
 
 .edit-btn:hover{
-    background:#0a74c9;
+    background:#135fb0;
+    transform:translateY(-2px);
 }
 
 .back-btn{
-    background:#d63031;
+    background:#d64545;
     color:white;
 }
 
 .back-btn:hover{
-    background:#c0392b;
+    background:#ba3030;
+    transform:translateY(-2px);
 }
 
-/* TABLE SECTION */
+/* ===== TABLE ===== */
 
 .table-section{
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.08);
-    backdrop-filter:blur(12px);
+
     border-radius:22px;
-    padding:20px;
+
+    padding:22px;
+
     overflow:auto;
-    box-shadow:0 8px 30px rgba(0,0,0,0.35);
 }
 
 .table-section h2{
     margin-bottom:20px;
-    font-size:1.5rem;
+    color:#f4f7f9;
 }
-
-/* TABLE */
 
 table{
     width:100%;
-    min-width:850px;
     border-collapse:collapse;
-    overflow:hidden;
-    border-radius:16px;
+    min-width:800px;
 }
 
-thead{
-    background:rgba(255,255,255,0.08);
-}
+/* table header glare कम */
 
 th{
+
+    background:#00a884;
+
+    color:white;
+
     padding:16px;
+
     text-align:left;
-    color:#fff;
+
     font-weight:600;
+
     border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 td{
-    padding:16px;
-    color:#e8e8e8;
+
+    padding:15px;
+
     border-bottom:1px solid rgba(255,255,255,0.06);
+
+    color:#dde7ee;
+
+    background:rgba(255,255,255,0.015);
 }
 
 tr{
@@ -237,75 +274,77 @@ tr{
 }
 
 tr:hover{
-    background:rgba(255,255,255,0.05);
-}
 
-/* IMAGE */
+    background:rgba(255,255,255,0.04);
+
+    transform:scale(1.002);
+}
 
 .table-image{
     width:70px;
     height:70px;
-    object-fit:cover;
     border-radius:12px;
-    border:2px solid rgba(255,255,255,0.1);
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,0.08);
 }
 
-/* ACTION BUTTONS */
+/* ===== ACTION BUTTONS ===== */
 
 .action-btn{
     border:none;
-    padding:9px 16px;
+    padding:9px 15px;
     border-radius:10px;
+    color:white;
     cursor:pointer;
-    font-size:14px;
     font-weight:600;
     transition:0.3s;
 }
 
-.action-btn:hover{
-    transform:scale(1.05);
+.delete{
+    background:#cf3f3f;
 }
 
-.delete{
-    background:#e74c3c;
-    color:white;
+.delete:hover{
+    background:#b52d2d;
 }
 
 .update{
-    background:#3498db;
-    color:white;
+    background:#2878c8;
 }
 
-/* SECOND TABLE */
+.update:hover{
+    background:#1b63aa;
+}
+
+/* ===== SECOND TABLE ===== */
 
 .second-table{
     margin-top:30px;
 }
 
-/* SCROLLBAR */
+/* ===== SCROLLBAR ===== */
 
 ::-webkit-scrollbar{
-    width:8px;
-    height:8px;
+    width:10px;
+    height:10px;
 }
 
 ::-webkit-scrollbar-track{
-    
-    border-radius:10px;
+    background:#17232d;
 }
 
 ::-webkit-scrollbar-thumb{
-    
-    border-radius:10px;
+    background:#2e4758;
+    border-radius:20px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    
+    background:#3f6278;
 }
 
-/* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 
-@media(max-width:950px){
+@media(max-width:900px){
 
 .main-grid{
     grid-template-columns:1fr;
@@ -320,57 +359,11 @@ tr:hover{
     padding:18px;
 }
 
-table{
-    min-width:700px;
-}
-
-}
-
-@media(max-width:600px){
-
-body{
-    padding:12px;
-}
-
-.header{
-    padding:18px;
-}
-
-.header h1{
-    font-size:1.4rem;
-}
-
-.form-card h2,
-.table-section h2{
-    font-size:1.2rem;
-}
-
 button{
-    width:100%;
-}
-
-.button-group{
-    flex-direction:column;
-}
-
-.input-group input,
-.input-group textarea{
-    padding:13px;
+    min-width:100%;
 }
 
     }
-
-@media(max-width:900px){
-
-.main-grid{
-    grid-template-columns:1fr;
-}
-
-.header h1{
-    font-size:1.7rem;
-}
-
-}
 
 </style>
 </head>
