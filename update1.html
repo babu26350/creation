@@ -631,15 +631,10 @@ Delete
 
 <td>
 
-<button
-class="action-btn edit-btn"
-
-onclick='editData(
-'${item}'
-)
->
-Edit
-</button>
+<button class="action-btn edit-btn" 
+                        onclick="editData('${item.id}', \`${item.Heading.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`, \`${item.content.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`, '${item.image}')">
+                        Edit
+                    </button>
 
 </td>
 
@@ -725,25 +720,20 @@ alert("Submit Error");
 
 /* EDIT DATA */
 
-function editData(item){
+function editData(id, itemHeading, itemContent, itemImage){
+    // सीधे पैरामीटर्स से वैल्यू लें
+    apiId = id;
+    
+    // JSON.stringify() हटा दिया गया है ताकि एक्स्ट्रा कोट्स (" ") न आएं
+    heading.value = itemHeading;
+    content.value = itemContent;
+    image.value = itemImage;
+    previewImage.src = itemImage;
 
-apiId = item.id;
-
-heading.value = JSON.stringify(item.Heading);
-
-content.value = JSON.stringify(item.content);
-
-image.value = JSON.stringify(item.image);
-
-previewImage.src = JSON.stringify(item.image);
-
-window.scrollTo({
-
-top:0,
-behavior:"smooth"
-
-});
-
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 /* UPDATE */
