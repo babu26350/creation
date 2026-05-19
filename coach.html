@@ -181,7 +181,39 @@ header{
     display:none;
     z-index:500;
 }
+ /* NORMAL IMAGE */
+.click-image{
+  width:100%;
+  cursor:pointer;
+  border-radius:10px;
+  transition:0.3s;
+}
 
+.click-image:hover{
+  transform:scale(1.02);
+}
+
+/* FULL SCREEN BACKGROUND */
+#imageViewer{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100vh;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+  padding:20px;
+}
+
+/* FULL IMAGE */
+#fullImage{
+  max-width:95%;
+  max-height:95vh;
+  border-radius:12px;
+  box-shadow:0 0 25px rgba(255,255,255,0.2);
+    }
 /* ===== RESPONSIVE ===== */
 
 @media(max-width:768px){
@@ -252,7 +284,10 @@ header{
     </main>
 
 </div>
-
+<!-- FULL SCREEN VIEWER -->
+<div id="imageViewer" onclick="closeImage()">
+  <img id="fullImage">
+</div>
 <script>
 
 var scroll = document.getElementsByClassName("scroll")[0];
@@ -357,8 +392,13 @@ test().then((par)=>{
 
             <p class="date">${date}</p>
 
-            <img src="${par[i].image}"
-            alt="image">
+             <!-- IMAGE -->
+<img 
+  src="${par[i].image}" 
+  alt="image"
+  class="click-image"
+  onclick="openImage(this.src)"
+>
 
             <p>${par[i].content}</p>
 
@@ -411,6 +451,14 @@ test().then((par)=>{
 
     console.log(err);
 });
+function openImage(src){
+  document.getElementById("imageViewer").style.display = "flex";
+  document.getElementById("fullImage").src = src;
+}
+
+function closeImage(){
+  document.getElementById("imageViewer").style.display = "none";
+}
 
 </script>
 
