@@ -729,13 +729,13 @@ function editData(item){
 
 apiId = item.id;
 
-heading.value = item.Heading;
+heading.value = JSON.stringify(item.Heading);
 
-content.value = item.content;
+content.value = JSON.stringify(item.content);
 
-image.value = item.image;
+image.value = JSON.stringify(item.image);
 
-previewImage.src = item.image;
+previewImage.src = JSON.stringify(item.image);
 
 window.scrollTo({
 
