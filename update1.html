@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Astro Dashboard</title>
+<title>Astro Content Dashboard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@ body{
 font-family:'Poppins',sans-serif;
 
 background:
-radial-gradient(circle at top left,#1d2a35 0%,transparent 40%),
+radial-gradient(circle at top left,#1c2b36 0%,transparent 40%),
 radial-gradient(circle at bottom right,#243847 0%,transparent 35%),
 linear-gradient(135deg,#111827,#16222d,#1f2f3d);
 
@@ -30,7 +30,7 @@ min-height:100vh;
 
 padding:20px;
 
-color:#ecf2f7;
+color:#eef3f7;
 
 overflow-x:hidden;
 }
@@ -47,14 +47,14 @@ border-radius:22px;
 
 margin-bottom:25px;
 
-background:rgba(20,28,36,0.75);
+background:rgba(20,28,36,0.72);
 
 backdrop-filter:blur(8px);
 
-border:1px solid rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.06);
 
 box-shadow:
-0 10px 25px rgba(0,0,0,0.35),
+0 8px 20px rgba(0,0,0,0.35),
 inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
@@ -86,18 +86,18 @@ align-items:start;
 
 .card{
 
-background:rgba(20,28,36,0.75);
+background:rgba(20,28,36,0.72);
 
 backdrop-filter:blur(8px);
 
-border:1px solid rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.06);
 
 border-radius:22px;
 
-padding:24px;
+padding:25px;
 
 box-shadow:
-0 10px 25px rgba(0,0,0,0.35),
+0 8px 20px rgba(0,0,0,0.35),
 inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
@@ -127,45 +127,58 @@ margin-bottom:8px;
 
 font-weight:600;
 
-color:#dce8f0;
+color:#dbe7ef;
 }
 
-.input-group input{
+.input-group input,
+.input-group textarea{
 
 width:100%;
 
 padding:14px;
 
-border:none;
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,0.05);
 
 outline:none;
 
-border-radius:14px;
+font-size:15px;
 
 background:rgba(255,255,255,0.05);
 
-color:#fff;
-
-font-size:15px;
-
-border:1px solid rgba(255,255,255,0.04);
+color:#eef2f5;
 
 transition:0.3s;
+
+font-family:'Poppins',sans-serif;
 }
 
-.input-group input:focus{
+.input-group textarea{
+
+height:140px;
+
+resize:none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
 
 border:1px solid rgba(0,184,148,0.5);
 
-box-shadow:0 0 0 3px rgba(0,184,148,0.12);
+box-shadow:
+0 0 0 3px rgba(0,184,148,0.12);
+
+background:rgba(255,255,255,0.07);
 }
 
-.input-group input::placeholder{
+.input-group input::placeholder,
+.input-group textarea::placeholder{
 
-color:#b7c4cc;
+color:#aebdc7;
 }
 
-/* IMAGE PREVIEW */
+/* PREVIEW */
 
 .preview-box{
 
@@ -177,11 +190,11 @@ border-radius:18px;
 
 overflow:hidden;
 
-background:#10161c;
+margin-top:10px;
+
+background:#0d141b;
 
 border:1px dashed rgba(255,255,255,0.08);
-
-margin-top:15px;
 }
 
 .preview-box img{
@@ -201,9 +214,9 @@ display:flex;
 
 gap:12px;
 
-margin-top:22px;
-
 flex-wrap:wrap;
+
+margin-top:22px;
 }
 
 button{
@@ -216,20 +229,20 @@ padding:14px;
 
 border-radius:14px;
 
-font-size:15px;
-
 font-weight:600;
 
 cursor:pointer;
 
 transition:0.3s;
+
+font-size:15px;
 }
 
 .submit-btn{
 
 background:#00a884;
 
-color:#fff;
+color:white;
 }
 
 .submit-btn:hover{
@@ -241,14 +254,14 @@ transform:translateY(-2px);
 
 .update-btn{
 
-background:#2878c8;
+background:#1976d2;
 
-color:#fff;
+color:white;
 }
 
 .update-btn:hover{
 
-background:#1c65ad;
+background:#135fb0;
 
 transform:translateY(-2px);
 }
@@ -257,12 +270,12 @@ transform:translateY(-2px);
 
 background:#d64545;
 
-color:#fff;
+color:white;
 }
 
 .reset-btn:hover{
 
-background:#be3131;
+background:#ba3030;
 
 transform:translateY(-2px);
 }
@@ -296,22 +309,24 @@ th{
 
 background:#00a884;
 
+color:white;
+
 padding:16px;
 
 text-align:left;
-
-color:white;
 
 font-weight:600;
 }
 
 td{
 
-padding:16px;
+padding:15px;
 
-border-bottom:1px solid rgba(255,255,255,0.05);
+border-bottom:1px solid rgba(255,255,255,0.06);
 
 background:rgba(255,255,255,0.015);
+
+color:#dde7ee;
 }
 
 tr{
@@ -334,7 +349,7 @@ object-fit:cover;
 
 border-radius:14px;
 
-border:2px solid rgba(255,255,255,0.06);
+border:2px solid rgba(255,255,255,0.08);
 }
 
 /* ACTION BUTTONS */
@@ -347,8 +362,6 @@ padding:10px 15px;
 
 border-radius:10px;
 
-font-size:14px;
-
 font-weight:600;
 
 cursor:pointer;
@@ -358,16 +371,6 @@ transition:0.3s;
 color:white;
 }
 
-.edit-btn{
-
-background:#2878c8;
-}
-
-.edit-btn:hover{
-
-background:#1c65ad;
-}
-
 .delete-btn{
 
 background:#cf3f3f;
@@ -375,7 +378,17 @@ background:#cf3f3f;
 
 .delete-btn:hover{
 
-background:#b72f2f;
+background:#b52d2d;
+}
+
+.edit-btn{
+
+background:#2878c8;
+}
+
+.edit-btn:hover{
+
+background:#1b63aa;
 }
 
 /* SCROLLBAR */
@@ -383,7 +396,6 @@ background:#b72f2f;
 ::-webkit-scrollbar{
 
 width:10px;
-
 height:10px;
 }
 
@@ -394,28 +406,38 @@ background:#17232d;
 
 ::-webkit-scrollbar-thumb{
 
-background:#314858;
+background:#2e4758;
 
 border-radius:20px;
 }
 
+::-webkit-scrollbar-thumb:hover{
+
+background:#3f6278;
+}
+
 /* RESPONSIVE */
 
-@media(max-width:950px){
+@media(max-width:900px){
 
 .main-grid{
 
 grid-template-columns:1fr;
 }
 
+.header h1{
+
+font-size:1.7rem;
+}
+
+.card{
+
+padding:18px;
+}
+
 button{
 
 min-width:100%;
-}
-
-.header h1{
-
-font-size:1.6rem;
 }
 
 }
@@ -431,11 +453,11 @@ font-size:1.6rem;
 <h1>✨ Astro Content Dashboard</h1>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN GRID -->
 
 <div class="main-grid">
 
-<!-- LEFT FORM -->
+<!-- FORM -->
 
 <div class="card">
 
@@ -443,12 +465,32 @@ font-size:1.6rem;
 
 <div class="input-group">
 <label>Heading</label>
-<input type="text" id="heading" placeholder="Enter heading">
+<input
+type="text"
+id="heading"
+placeholder="Enter heading"
+>
+</div>
+
+<div class="input-group">
+<label>Content</label>
+
+<textarea
+id="content"
+placeholder="Write content here..."
+></textarea>
+
 </div>
 
 <div class="input-group">
 <label>Image URL</label>
-<input type="text" id="image" placeholder="Paste image url">
+
+<input
+type="text"
+id="image"
+placeholder="Paste image URL"
+>
+
 </div>
 
 <div class="preview-box">
@@ -463,15 +505,24 @@ alt="preview"
 
 <div class="button-group">
 
-<button class="submit-btn" onclick="sendReq()">
+<button
+class="submit-btn"
+onclick="sendReq()"
+>
 Submit
 </button>
 
-<button class="update-btn" onclick="updateData()">
+<button
+class="update-btn"
+onclick="updateData()"
+>
 Update
 </button>
 
-<button class="reset-btn" onclick="resetForm()">
+<button
+class="reset-btn"
+onclick="resetForm()"
+>
 Reset
 </button>
 
@@ -479,11 +530,13 @@ Reset
 
 </div>
 
-<!-- RIGHT TABLE -->
+<!-- TABLE -->
 
 <div class="card">
 
-<h2 class="table-title">📚 Content List</h2>
+<h2 class="table-title">
+📚 Content List
+</h2>
 
 <div class="table-wrapper">
 
@@ -519,6 +572,7 @@ let apiId = "";
 /* INPUTS */
 
 const heading = document.getElementById("heading");
+const content = document.getElementById("content");
 const image = document.getElementById("image");
 const previewImage = document.getElementById("previewImage");
 
@@ -555,11 +609,13 @@ document.getElementById("lis").innerHTML += `
 <td>${item.Heading}</td>
 
 <td>
+
 <img
 class="table-image"
 src="${item.image}"
 alt="img"
 >
+
 </td>
 
 <td>
@@ -577,9 +633,11 @@ Delete
 
 <button
 class="action-btn edit-btn"
+
 onclick='editData(
 "${item.id}",
 ${JSON.stringify(item.Heading)},
+${JSON.stringify(item.content)},
 ${JSON.stringify(item.image)}
 )'
 >
@@ -611,8 +669,11 @@ alert("API Fetch Error");
 function sendReq(){
 
 if(
+
 heading.value.trim() == "" ||
+content.value.trim() == "" ||
 image.value.trim() == ""
+
 ){
 
 alert("Please fill all fields");
@@ -624,6 +685,7 @@ return;
 const obj = {
 
 Heading: heading.value,
+content: content.value,
 image: image.value
 
 };
@@ -664,11 +726,13 @@ alert("Submit Error");
 
 /* EDIT DATA */
 
-function editData(id,h,img){
+function editData(id,h,c,img){
 
 apiId = id;
 
 heading.value = h;
+
+content.value = c;
 
 image.value = img;
 
@@ -698,6 +762,7 @@ return;
 const obj = {
 
 Heading: heading.value,
+content: content.value,
 image: image.value
 
 };
@@ -775,6 +840,8 @@ alert("Delete Error");
 function resetForm(){
 
 heading.value = "";
+
+content.value = "";
 
 image.value = "";
 
