@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Astro Content Dashboard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -391,6 +392,25 @@ background:#2878c8;
 background:#1b63aa;
 }
 
+/* CONTENT PREVIEW */
+
+.content-preview{
+
+max-width:300px;
+
+overflow:hidden;
+
+display:-webkit-box;
+
+-webkit-line-clamp:2;
+
+-webkit-box-orient:vertical;
+
+font-size:14px;
+
+line-height:1.6;
+}
+
 /* SCROLLBAR */
 
 ::-webkit-scrollbar{
@@ -440,6 +460,11 @@ button{
 min-width:100%;
 }
 
+table{
+
+min-width:100%;
+}
+
 }
 
 </style>
@@ -450,7 +475,9 @@ min-width:100%;
 <!-- HEADER -->
 
 <div class="header">
+
 <h1>✨ Astro Content Dashboard</h1>
+
 </div>
 
 <!-- MAIN GRID -->
@@ -464,15 +491,19 @@ min-width:100%;
 <h2 class="form-title">Add New Content</h2>
 
 <div class="input-group">
+
 <label>Heading</label>
+
 <input
 type="text"
 id="heading"
 placeholder="Enter heading"
->
+/>
+
 </div>
 
 <div class="input-group">
+
 <label>Content</label>
 
 <textarea
@@ -483,13 +514,14 @@ placeholder="Write content here..."
 </div>
 
 <div class="input-group">
+
 <label>Image URL</label>
 
 <input
 type="text"
 id="image"
 placeholder="Paste image URL"
->
+/>
 
 </div>
 
@@ -499,7 +531,7 @@ placeholder="Paste image URL"
 id="previewImage"
 src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop"
 alt="preview"
->
+/>
 
 </div>
 
@@ -548,6 +580,7 @@ Reset
 
 <th>Heading</th>
 <th>Image</th>
+<th>Content</th>
 <th>Delete</th>
 <th>Edit</th>
 
@@ -567,16 +600,26 @@ Reset
 
 <script>
 
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
 let apiId = "";
 
-/* INPUTS */
+let allData = [];
+
+/* =========================
+   INPUTS
+========================= */
 
 const heading = document.getElementById("heading");
 const content = document.getElementById("content");
 const image = document.getElementById("image");
 const previewImage = document.getElementById("previewImage");
 
-/* IMAGE PREVIEW */
+/* =========================
+   IMAGE PREVIEW
+========================= */
 
 image.addEventListener("input",()=>{
 
@@ -584,37 +627,66 @@ if(image.value.trim() !== ""){
 
 previewImage.src = image.value;
 
+}else{
+
+previewImage.src =
+"https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop";
+
 }
 
 });
 
-/* FETCH DATA */
+/* =========================
+   FETCH DATA
+========================= */
 
 function reFresh(){
 
 fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2")
 
-.then(res => res.json())
+.then(res => {
+
+if(!res.ok){
+
+throw new Error("API Response Error");
+
+}
+
+return res.json();
+
+})
 
 .then(data => {
 
+allData = data.reverse();
+
 document.getElementById("lis").innerHTML = "";
 
-data.reverse().forEach(item => {
+allData.forEach(item => {
 
 document.getElementById("lis").innerHTML += `
 
 <tr>
 
-<td>${item.Heading}</td>
+<td>${safeValue(item.Heading)}</td>
 
 <td>
 
 <img
 class="table-image"
-src="${item.image}"
+src="${safeValue(item.image)}"
 alt="img"
->
+/>
+
+</td>
+
+<td>
+
+<div class="content-preview">
+
+${escapeHtml(removeHtmlTags(item.content))}
+
+</div>
 
 </td>
 
@@ -631,10 +703,12 @@ Delete
 
 <td>
 
-<button class="action-btn edit-btn" 
-                        onclick="editData('${item.id}', \`${item.Heading.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`, \`${item.content.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`, '${item.image}')">
-                        Edit
-                    </button>
+<button
+class="action-btn edit-btn"
+onclick="editData('${item.id}')"
+>
+Edit
+</button>
 
 </td>
 
@@ -656,7 +730,59 @@ alert("API Fetch Error");
 
 }
 
-/* ADD DATA */
+/* =========================
+   SAFE VALUE
+========================= */
+
+function safeValue(value){
+
+if(value == null || value == undefined){
+
+return "";
+
+}
+
+return value;
+
+}
+
+/* =========================
+   REMOVE HTML TAGS
+========================= */
+
+function removeHtmlTags(str){
+
+if(!str){
+
+return "";
+
+}
+
+const div = document.createElement("div");
+
+div.innerHTML = str;
+
+return div.textContent || div.innerText || "";
+
+}
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(text){
+
+const div = document.createElement("div");
+
+div.innerText = text;
+
+return div.innerHTML;
+
+}
+
+/* =========================
+   ADD DATA
+========================= */
 
 function sendReq(){
 
@@ -677,7 +803,9 @@ return;
 const obj = {
 
 Heading: heading.value,
+
 content: content.value,
+
 image: image.value
 
 };
@@ -694,7 +822,17 @@ body:JSON.stringify(obj)
 
 })
 
-.then(res => res.json())
+.then(res => {
+
+if(!res.ok){
+
+throw new Error("Submit Error");
+
+}
+
+return res.json();
+
+})
 
 .then(() => {
 
@@ -716,27 +854,51 @@ alert("Submit Error");
 
 }
 
-/* EDIT DATA */
+/* =========================
+   EDIT DATA
+========================= */
 
-/* EDIT DATA */
+function editData(id){
 
-function editData(id, itemHeading, itemContent, itemImage){
-    // सीधे पैरामीटर्स से वैल्यू लें
-    apiId = id;
-    
-    // JSON.stringify() हटा दिया गया है ताकि एक्स्ट्रा कोट्स (" ") न आएं
-    heading.value = itemHeading;
-    content.value = itemContent;
-    image.value = itemImage;
-    previewImage.src = itemImage;
+apiId = id;
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+/* ARRAY ME ID MATCH */
+
+const matchedData = allData.find(item => item.id == id);
+
+if(!matchedData){
+
+alert("Data Not Found");
+
+return;
+
 }
 
-/* UPDATE */
+/* FORM FILL */
+
+heading.value = safeValue(matchedData.Heading);
+
+content.value = safeValue(matchedData.content);
+
+image.value = safeValue(matchedData.image);
+
+previewImage.src = safeValue(matchedData.image);
+
+/* TOP SCROLL */
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+/* =========================
+   UPDATE DATA
+========================= */
 
 function updateData(){
 
@@ -748,10 +910,26 @@ return;
 
 }
 
+if(
+
+heading.value.trim() == "" ||
+content.value.trim() == "" ||
+image.value.trim() == ""
+
+){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
 const obj = {
 
 Heading: heading.value,
+
 content: content.value,
+
 image: image.value
 
 };
@@ -768,7 +946,17 @@ body:JSON.stringify(obj)
 
 })
 
-.then(res => res.json())
+.then(res => {
+
+if(!res.ok){
+
+throw new Error("Update Error");
+
+}
+
+return res.json();
+
+})
 
 .then(() => {
 
@@ -790,7 +978,9 @@ alert("Update Error");
 
 }
 
-/* DELETE */
+/* =========================
+   DELETE
+========================= */
 
 function deleteApi(id){
 
@@ -801,6 +991,18 @@ if(confirmDelete){
 fetch(`https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2/${id}`,{
 
 method:"DELETE"
+
+})
+
+.then(res => {
+
+if(!res.ok){
+
+throw new Error("Delete Error");
+
+}
+
+return res.json();
 
 })
 
@@ -824,7 +1026,9 @@ alert("Delete Error");
 
 }
 
-/* RESET */
+/* =========================
+   RESET
+========================= */
 
 function resetForm(){
 
@@ -841,11 +1045,13 @@ apiId = "";
 
 }
 
-/* INITIAL LOAD */
+/* =========================
+   INITIAL LOAD
+========================= */
 
 reFresh();
 
 </script>
 
 </body>
-    </html>
+  </html>
