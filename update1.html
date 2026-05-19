@@ -10,31 +10,683 @@
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 /* ===== BODY ===== */
 
 body{
-    font-family:'Poppins',sans-serif;
+font-family:'Poppins',sans-serif;
 
-    /* पहले वाला तेज चमक वाला gradient हटाया */
-    background:
-    radial-gradient(circle at top left,#1c2b36 0%,transparent 40%),
-    radial-gradient(circle at bottom right,#243847 0%,transparent 35%),
-    linear-gradient(135deg,#111827,#16222d,#1f2f3d);
+background:
+radial-gradient(circle at top left,#1c2b36 0%,transparent 40%),
+radial-gradient(circle at bottom right,#243847 0%,transparent 35%),
+linear-gradient(135deg,#111827,#16222d,#1f2f3d);
 
-    min-height:100vh;
-    padding:20px;
-    color:#eef3f7;
-
-    /* white glare कम करने के लिए */
-    overflow-x:hidden;
+min-height:100vh;
+padding:20px;
+color:#eef3f7;
+overflow-x:hidden;
 }
 
-/* ===== SOFT GLASS EFFECT ===== */
+/* ===== GRID ===== */
+
+.main-grid{
+display:grid;
+grid-template-columns:380px 1fr;
+gap:25px;
+align-items:start;
+}
+
+/* ===== COMMON ===== */
 
 .header,
 .form-card,
 .table-section{
+
+background:rgba(20,28,36,0.72);
+
+backdrop-filter:blur(8px);
+
+border:1px solid rgba(255,255,255,0.06);
+
+box-shadow:
+0 8px 20px rgba(0,0,0,0.35),
+inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* ===== HEADER ===== */
+
+.header{
+width:100%;
+padding:22px;
+border-radius:22px;
+margin-bottom:25px;
+}
+
+.header h1{
+text-align:center;
+font-size:2.1rem;
+font-weight:700;
+color:#f5f7fa;
+letter-spacing:1px;
+}
+
+/* ===== FORM ===== */
+
+.form-card{
+border-radius:22px;
+padding:25px;
+height:fit-content;
+}
+
+.form-card h2{
+margin-bottom:20px;
+text-align:center;
+color:#f2f5f7;
+}
+
+.input-group{
+margin-bottom:18px;
+}
+
+.input-group label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#dbe7ef;
+}
+
+.input-group input,
+.input-group textarea{
+
+width:100%;
+padding:14px;
+
+border:1px solid rgba(255,255,255,0.05);
+
+border-radius:14px;
+
+outline:none;
+
+font-size:15px;
+
+background:rgba(255,255,255,0.05);
+
+color:#eef2f5;
+
+transition:0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+border:1px solid rgba(0,184,148,0.5);
+
+box-shadow:
+0 0 0 3px rgba(0,184,148,0.12);
+
+background:rgba(255,255,255,0.07);
+}
+
+.input-group textarea{
+height:130px;
+resize:none;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder{
+color:#aebdc7;
+}
+
+/* ===== PREVIEW ===== */
+
+.preview-box{
+width:100%;
+height:210px;
+
+border-radius:18px;
+
+overflow:hidden;
+
+margin-top:10px;
+
+background:#0d141b;
+
+border:1px dashed rgba(255,255,255,0.08);
+}
+
+.preview-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* ===== BUTTONS ===== */
+
+.button-group{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:22px;
+}
+
+button{
+
+flex:1;
+
+border:none;
+
+padding:14px;
+
+border-radius:14px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+
+font-size:15px;
+
+letter-spacing:0.4px;
+}
+
+.submit-btn{
+background:#00a884;
+color:white;
+}
+
+.submit-btn:hover{
+background:#009174;
+transform:translateY(-2px);
+}
+
+.edit-btn{
+background:#1976d2;
+color:white;
+}
+
+.edit-btn:hover{
+background:#135fb0;
+transform:translateY(-2px);
+}
+
+.back-btn{
+background:#d64545;
+color:white;
+}
+
+.back-btn:hover{
+background:#ba3030;
+transform:translateY(-2px);
+}
+
+/* ===== TABLE ===== */
+
+.table-section{
+
+border-radius:22px;
+
+padding:22px;
+
+overflow:auto;
+}
+
+.table-section h2{
+margin-bottom:20px;
+color:#f4f7f9;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:600px;
+}
+
+th{
+
+background:#00a884;
+
+color:white;
+
+padding:16px;
+
+text-align:left;
+
+font-weight:600;
+
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+td{
+
+padding:15px;
+
+border-bottom:1px solid rgba(255,255,255,0.06);
+
+color:#dde7ee;
+
+background:rgba(255,255,255,0.015);
+}
+
+tr{
+transition:0.3s;
+}
+
+tr:hover{
+
+background:rgba(255,255,255,0.04);
+
+transform:scale(1.002);
+}
+
+.table-image{
+width:70px;
+height:70px;
+border-radius:12px;
+object-fit:cover;
+border:2px solid rgba(255,255,255,0.08);
+}
+
+/* ===== ACTION BUTTONS ===== */
+
+.action-btn{
+border:none;
+padding:9px 15px;
+border-radius:10px;
+color:white;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+.delete{
+background:#cf3f3f;
+}
+
+.delete:hover{
+background:#b52d2d;
+}
+
+.update{
+background:#2878c8;
+}
+
+.update:hover{
+background:#1b63aa;
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar{
+width:10px;
+height:10px;
+}
+
+::-webkit-scrollbar-track{
+background:#17232d;
+}
+
+::-webkit-scrollbar-thumb{
+background:#2e4758;
+border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background:#3f6278;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:900px){
+
+.main-grid{
+grid-template-columns:1fr;
+}
+
+.header h1{
+font-size:1.7rem;
+}
+
+.form-card,
+.table-section{
+padding:18px;
+}
+
+button{
+min-width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>✨ Astro Content Dashboard</h1>
+</div>
+
+<div class="main-grid">
+
+<!-- LEFT FORM -->
+
+<div class="form-card">
+
+<h2>Add New Content</h2>
+
+<div class="input-group">
+<label>Heading</label>
+<input type="text" id="heading" placeholder="Enter heading">
+</div>
+
+<div class="input-group">
+<label>Content</label>
+<textarea id="content" placeholder="Write content here..."></textarea>
+</div>
+
+<div class="input-group">
+<label>Image URL</label>
+<input type="text" id="image" placeholder="Paste image URL">
+</div>
+
+<div class="preview-box">
+<img id="previewImage"
+src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop"
+alt="">
+</div>
+
+<div class="button-group">
+<button class="submit-btn" onclick="sendReq()">Submit</button>
+<button class="edit-btn" onclick="updateData()">Update</button>
+<button class="back-btn" onclick="resetForm()">Reset</button>
+</div>
+
+</div>
+
+<!-- RIGHT TABLE -->
+
+<div class="table-section">
+
+<h2>📚 Content List</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Heading</th>
+<th>Image</th>
+<th>Delete</th>
+<th>Edit</th>
+</tr>
+</thead>
+
+<tbody id="lis"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let apiId = "";
+
+const heading = document.getElementById("heading");
+const content = document.getElementById("content");
+const image = document.getElementById("image");
+const previewImage = document.getElementById("previewImage");
+
+/* IMAGE PREVIEW */
+
+image.addEventListener("input", () => {
+
+if(image.value.trim() !== ""){
+previewImage.src = image.value;
+}
+
+});
+
+/* FETCH CONTENT */
+
+function reFresh(){
+
+fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2")
+
+.then(res => res.json())
+
+.then(data => {
+
+document.getElementById("lis").innerHTML = "";
+
+data.forEach(item => {
+
+document.getElementById("lis").innerHTML += `
+
+<tr>
+
+<td>${item.Heading}</td>
+
+<td>
+<img class="table-image" src="${item.image}">
+</td>
+
+<td>
+<button class="action-btn delete"
+onclick="deleteApi('${item.id}')">
+Delete
+</button>
+</td>
+
+<td>
+<button class="action-btn update"
+onclick='editData(
+"${item.id}",
+${JSON.stringify(item.Heading)},
+${JSON.stringify(item.content)},
+${JSON.stringify(item.image)}
+)'>
+Edit
+</button>
+</td>
+
+</tr>
+
+`;
+
+});
+
+})
+
+.catch(error => {
+
+console.log(error);
+
+alert("API Error");
+
+});
+
+}
+
+/* ADD DATA */
+
+function sendReq(){
+
+const obj = {
+
+Heading: heading.value,
+content: content.value,
+image: image.value
+
+};
+
+fetch("https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2",{
+
+method:"POST",
+
+headers:{
+"content-type":"application/json"
+},
+
+body:JSON.stringify(obj)
+
+})
+
+.then(res => res.json())
+
+.then(() => {
+
+alert("Data Added Successfully");
+
+resetForm();
+
+reFresh();
+
+})
+
+.catch(error => {
+
+console.log(error);
+
+alert("Submit Error");
+
+});
+
+}
+
+/* EDIT */
+
+function editData(id,h,c,img){
+
+apiId = id;
+
+heading.value = h;
+content.value = c;
+image.value = img;
+
+previewImage.src = img;
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+/* UPDATE */
+
+function updateData(){
+
+if(apiId == ""){
+alert("Select data first");
+return;
+}
+
+const obj = {
+
+Heading: heading.value,
+content: content.value,
+image: image.value
+
+};
+
+fetch(`https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2/${apiId}`,{
+
+method:"PUT",
+
+headers:{
+"content-type":"application/json"
+},
+
+body:JSON.stringify(obj)
+
+})
+
+.then(res => res.json())
+
+.then(() => {
+
+alert("Updated Successfully");
+
+resetForm();
+
+reFresh();
+
+})
+
+.catch(error => {
+
+console.log(error);
+
+alert("Update Error");
+
+});
+
+}
+
+/* DELETE */
+
+function deleteApi(id){
+
+const confirmDelete = confirm("Delete this item?");
+
+if(confirmDelete){
+
+fetch(`https://660ac426ccda4cbc75dbc0e1.mockapi.io/ser1/astroser2/${id}`,{
+
+method:"DELETE"
+
+})
+
+.then(() => {
+
+alert("Deleted Successfully");
+
+reFresh();
+
+})
+
+.catch(error => {
+
+console.log(error);
+
+alert("Delete Error");
+
+});
+
+}
+
+}
+
+/* RESET */
+
+function resetForm(){
+
+heading.value = "";
+content.value = "";
+image.value = "";
+
+previewImage.src =
+"https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop";
+
+apiId = "";
+
+}
+
+/* INITIAL LOAD */
+
+reFresh();
+
+</script>
+
+</body>
+</html>.table-section{
 
     /* white transparency कम की */
     background:rgba(20,28,36,0.72);
