@@ -635,10 +635,7 @@ Delete
 class="action-btn edit-btn"
 
 onclick='editData(
-"${item.id}",
-${JSON.stringify(item.Heading)},
-${JSON.stringify(item.content)},
-${JSON.stringify(item.image)}
+${JSON.stringify(item)}
 )'
 >
 Edit
@@ -726,17 +723,19 @@ alert("Submit Error");
 
 /* EDIT DATA */
 
-function editData(id,h,c,img){
+/* EDIT DATA */
 
-apiId = id;
+function editData(item){
 
-heading.value = h;
+apiId = item.id;
 
-content.value = c;
+heading.value = item.Heading;
 
-image.value = img;
+content.value = item.content;
 
-previewImage.src = img;
+image.value = item.image;
+
+previewImage.src = item.image;
 
 window.scrollTo({
 
