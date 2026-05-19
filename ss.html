@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forward Coaching Institute</title>
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* ===== HEADER ===== */
+
+header{
+    width:100%;
+    height:60px;
+    background:#0d47a1;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0px 20px;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    box-shadow:0px 2px 10px rgba(0,0,0,0.2);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+#listbar{
+    cursor:pointer;
+    font-size:32px;
+}
+
+/* ===== MAIN LAYOUT ===== */
+
+.container{
+    display:flex;
+    width:100%;
+    margin-top:60px;
+}
+
+/* ===== SIDEBAR ===== */
+
+.scroll{
+    width:0px;
+    overflow-y:auto;
+    height:calc(100vh - 60px);
+    background:#ffffff;
+    position:fixed;
+    top:60px;
+    left:0;
+    transition:0.4s;
+    box-shadow:2px 0px 10px rgba(0,0,0,0.1);
+    z-index:999;
+}
+
+.ds{
+    padding:15px;
+}
+
+.dd{
+    margin-bottom:10px;
+}
+
+.dd-btn{
+    width:100%;
+    border:none;
+    background:#1976d2;
+    padding:12px;
+    border-radius:6px;
+    text-align:left;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.dd-btn:hover{
+    background:#0d47a1;
+}
+
+.dd-btn a{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+    display:block;
+}
+
+/* ===== CONTENT ===== */
+
+.main{
+    width:100%;
+    padding:0px;
+    transition:0.4s;
+}
+
+.box{
+    width:100%;
+}
+
+.content{
+    width:100%;
+    background:white;
+    margin-bottom:30px;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0px 2px 10px rgba(0,0,0,0.08);
+}
+
+.content h1{
+    margin-bottom:15px;
+    color:#0d47a1;
+}
+
+.content img{
+    width:100%;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:10px;
+    margin:15px 0px;
+}
+
+.content p{
+    line-height:28px;
+    color:#333;
+    font-size:17px;
+}
+
+.date{
+    color:gray;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.btn-box{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.btn{
+    border:none;
+    background:#1976d2;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn a{
+    color:white;
+    text-decoration:none;
+}
+
+/* ===== OVERLAY ===== */
+
+.overlay{
+    position:fixed;
+    top:60px;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    z-index:500;
+}
+ /* NORMAL IMAGE */
+.click-image{
+  width:100%;
+  cursor:pointer;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.click-image:hover{
+  transform:scale(1.02);
+}
+
+/* FULL SCREEN BACKGROUND */
+#imageViewer{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100vh;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+  padding:20px;
+}
+
+/* FULL IMAGE */
+#fullImage{
+  max-width:95%;
+  max-height:95vh;
+  border-radius:12px;
+  box-shadow:0 0 25px rgba(255,255,255,0.2);
+    }
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+    .logo{
+        font-size:18px;
+    }
+
+    .main{
+        padding:1px;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .content h1{
+        font-size:24px;
+    }
+
+    .content p{
+        font-size:15px;
+        line-height:25px;
+    }
+}
+#imageViewer{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100vh;
+
+background:rgba(0,0,0,0.92);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+
+padding:20px;
+}
+
+/* FULL IMAGE */
+
+#fullImage{
+
+max-width:95%;
+max-height:90vh;
+
+border-radius:14px;
+
+box-shadow:0 0 30px rgba(255,255,255,0.15);
+}
+
+/* CLOSE BUTTON */
+
+#closeBtn{
+
+position:absolute;
+
+top:20px;
+right:25px;
+
+width:45px;
+height:45px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(5px);
+
+color:white;
+
+font-size:28px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:0.3s;
+
+border:1px solid rgba(255,255,255,0.15);
+}
+
+#closeBtn:hover{
+
+background:#ff3b3b;
+
+transform:rotate(90deg) scale(1.08);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+
+<header>
+
+    <div class="logo">
+        Forward Coaching Institute
+    </div>
+
+    <div id="listbar">
+        <i class="material-icons">menu</i>
+    </div>
+
+</header>
+
+<!-- ===== OVERLAY ===== -->
+
+<div class="overlay" id="overlay"></div>
+
+<!-- ===== CONTAINER ===== -->
+
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+
+    <aside class="scroll">
+
+        <div class="ds"></div>
+
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+
+    <main class="main">
+
+        <div class="box"></div>
+
+    </main>
+
+</div>
+<!-- FULL SCREEN VIEWER -->
+<!-- IMAGE VIEWER -->
+
+<div id="imageViewer">
+
+  <!-- CLOSE BUTTON -->
+
+  <span id="closeBtn" onclick="closeImage(event)">
+    ✕
+  </span>
+
+  <!-- FULL IMAGE -->
+
+  <img id="fullImage">
+
+</div>
+
+<script>
+
+var scroll = document.getElementsByClassName("scroll")[0];
+var listBar = document.getElementById("listbar");
+var overlay = document.getElementById("overlay");
+
+let sidebarOpen = false;
+
+/* ===== SIDEBAR OPEN CLOSE ===== */
+
+listBar.onclick = function(){
+
+    if(sidebarOpen){
+
+        closeSidebar();
+
+    }else{
+
+        openSidebar();
+    }
+};
+
+function openSidebar(){
+
+    scroll.style.width = "260px";
+
+    listBar.innerHTML = "&times;";
+
+    overlay.style.display = "block";
+
+    sidebarOpen = true;
+}
+
+function closeSidebar(){
+
+    scroll.style.width = "0px";
+
+    listBar.innerHTML =
+    `<i class="material-icons">menu</i>`;
+
+    overlay.style.display = "none";
+
+    sidebarOpen = false;
+}
+
+overlay.onclick = function(){
+    closeSidebar();
+};
+
+/* ===== DATE ===== */
+
+var date = new Date().toDateString();
+
+/* ===== FETCH API ===== */
+
+var val1 = "";
+var val2 = "";
+
+async function test(){
+
+    const response = await fetch(
+    "https://6a0c6aee5aa893e1015be4b8.mockapi.io/Task/sspro"
+    );
+
+    const student = await response.json();
+
+    return student;
+}
+
+test().then((par)=>{
+
+    for(var i=0; i<par.length; i++){
+
+        /* ===== SIDEBAR MENU ===== */
+
+        val1 += `
+
+        <div class="dd">
+
+            <button class="dd-btn">
+
+                <a href="#section${i}"
+                onclick="closeSidebar()">
+
+                ${par[i].Heading}
+
+                </a>
+
+            </button>
+
+        </div>
+
+        `;
+
+        /* ===== CONTENT ===== */
+
+        val2 += `
+
+        <div class="content" id="section${i}">
+
+            <h1>${par[i].Heading}</h1>
+
+            <p class="date">${date}</p>
+
+             <!-- IMAGE -->
+<img 
+  src="${par[i].image}" 
+  alt="image"
+  class="click-image"
+  onclick="openImage(this.src)"
+>
+
+            <p>${par[i].content}</p>
+
+            <div class="btn-box">
+
+                <button class="btn">
+
+                    <a href="#section${i-1}">
+                    BACK
+                    </a>
+
+                </button>
+
+                <button class="btn">
+
+                    <a href="#section${i+1}">
+                    NEXT
+                    </a>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+    }
+
+    document.getElementsByClassName("ds")[0]
+    .innerHTML = val1;
+
+    document.getElementsByClassName("box")[0]
+    .innerHTML = val2;
+
+})
+.catch((err)=>{
+
+    document.getElementsByClassName("box")[0]
+    .innerHTML = `
+
+    <div class="content">
+
+    <h1>Data Load Error</h1>
+
+    <p>API data load nahi ho raha.</p>
+
+    </div>
+
+    `;
+
+    console.log(err);
+});
+function openImage(src){
+  document.getElementById("imageViewer").style.display = "flex";
+  document.getElementById("fullImage").src = src;
+}
+
+function closeImage(){
+  document.getElementById("imageViewer").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
