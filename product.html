@@ -1133,6 +1133,30 @@ document.getElementById("navLinks")
 .classList.toggle("active");
 
  }
+ /* DELETE PRODUCT */
+
+function deleteCartItem(title){
+
+const confirmDelete = confirm(
+"Remove this product from cart?"
+);
+
+if(!confirmDelete){
+return;
+}
+
+cart = cart.filter(item => item.title !== title);
+
+localStorage.setItem(
+"ssCart",
+JSON.stringify(cart)
+);
+
+updateCartCount();
+
+renderCart();
+
+ }
 </script>
 
 </body>
