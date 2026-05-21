@@ -521,11 +521,10 @@ footer{
 
         <span class="hero-tag">SS Group (SS Printing Press) • Sardarshahar</span>
 
-        <h1>
-            <span class="blue-text">SS Group</span><br>
-            कम्पलीट सर्विस एवं प्रिंटिंग हब
-        </h1><br>
-
+        <h1 class="hero-title">
+    <span class="blue-text">SS Group</span>
+    <span class="title-line">कम्पलीट सर्विस एवं प्रिंटिंग हब</span>
+        </h1>
         <p>
             कम्प्यूटर एजुकेशन, प्रिंटिंग से संबंधित सभी कार्य,
             कम्प्यूटर हार्डवेयर और सॉफ्टवेयर, स्टेशनरी (स्कूल/कॉलेज),
@@ -634,7 +633,16 @@ footer{
     flex-wrap:wrap;
     margin-bottom:30px;
 }
+.hero-title{
+    display:flex;
+    flex-direction:column;
+    gap:18px; /* ऊपर-नीचे gap */
+}
 
+
+.title-line{
+    display:block;
+ }
 .hero-buttons button{
     padding:15px 34px;
     border:none;
