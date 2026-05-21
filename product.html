@@ -515,23 +515,200 @@ footer{
 
 <section class="hero">
 
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
 
-        <h1>Modern Tech E-Shop</h1>
+        <span class="hero-tag">SS Group (SS Printing Press) • Sardarshahar</span>
+
+        <h1>
+            <span class="blue-text">SS Group</span><br>
+            कम्पलीट सर्विस एवं प्रिंटिंग हब
+        </h1>
 
         <p>
-            Explore latest laptops, mobiles, accessories, computer services,
-            IT solutions and smart digital products with SS INFOTECH.
+            कम्प्यूटर एजुकेशन, प्रिंटिंग से संबंधित सभी कार्य,
+            कम्प्यूटर हार्डवेयर और सॉफ्टवेयर, स्टेशनरी (स्कूल/कॉलेज),
+            स्पोर्ट्स सम्मान, सीसीटीवी कैमरा सर्विस एवं आपकी जरूरत के
+            अनुरूप सभी सामग्री SS Group के साथ प्राप्त करें।
         </p>
 
         <div class="hero-buttons">
-            <button class="primary-btn">Shop Now</button>
-            <button class="secondary-btn">Explore Products</button>
+            <button class="primary-btn">ऑर्डर करें</button>
+            <button class="secondary-btn">हमारी सेवाएँ</button>
+        </div>
+
+        <div class="hero-note">
+            ⚡ नोट: ऑर्डर कन्फ़र्म करने के बाद माल की त्वरित सप्लाई कर दी जाएगी।
         </div>
 
     </div>
 
 </section>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.hero{
+    width:100%;
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+
+    background:
+    linear-gradient(rgba(8,15,35,0.82),rgba(8,15,35,0.88)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+
+    font-family:'Poppins',sans-serif;
+
+    padding:40px 20px;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at top right,
+    rgba(0,140,255,0.25),
+    transparent 40%);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:850px;
+    text-align:center;
+    animation:fadeUp 1s ease;
+}
+
+.hero-tag{
+    display:inline-block;
+    background:rgba(255,255,255,0.12);
+    color:#d9e8ff;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:14px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+}
+
+.hero-content h1{
+    font-size:clamp(2.4rem,6vw,5rem);
+    line-height:1.2;
+    color:#fff;
+    font-weight:800;
+    margin-bottom:25px;
+    text-shadow:0 4px 20px rgba(0,0,0,0.4);
+}
+
+.blue-text{
+    color:#2da7ff;
+}
+
+.hero-content p{
+    color:#d7dce5;
+    font-size:1.1rem;
+    line-height:1.9;
+    max-width:760px;
+    margin:auto;
+    margin-bottom:35px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.hero-buttons button{
+    padding:15px 34px;
+    border:none;
+    border-radius:12px;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.35s ease;
+}
+
+.primary-btn{
+    background:#148cff;
+    color:#fff;
+    box-shadow:0 10px 25px rgba(20,140,255,0.35);
+}
+
+.primary-btn:hover{
+    transform:translateY(-4px);
+    background:#0d7ae3;
+}
+
+.secondary-btn{
+    background:#fff;
+    color:#111;
+}
+
+.secondary-btn:hover{
+    transform:translateY(-4px);
+    background:#ececec;
+}
+
+.hero-note{
+    display:inline-block;
+    color:#ffe9a8;
+    font-size:15px;
+    padding:12px 20px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(8px);
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:768px){
+
+    .hero{
+        min-height:auto;
+        padding:90px 20px;
+    }
+
+    .hero-content p{
+        font-size:15px;
+        line-height:1.8;
+    }
+
+    .hero-buttons button{
+        width:100%;
+        max-width:300px;
+    }
+
+}
+
+</style>
 
 <!-- PRODUCTS -->
 
