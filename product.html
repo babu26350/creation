@@ -971,7 +971,7 @@ fetch("https://6a0c6aee5aa893e1015be4b8.mockapi.io/Task/products")
 
                     <button
                     class="buy-btn"
-                    onclick="buyNow('${index}')">
+                    onclick="buyNow('${product.id}')">
 
                     Buy Now
 
@@ -979,7 +979,7 @@ fetch("https://6a0c6aee5aa893e1015be4b8.mockapi.io/Task/products")
 
                     <button
                     class="add-btn"
-                    onclick="addToCart('${index}')">
+                    onclick="addToCart('${product.id}')">
 
                     Add Cart
 
@@ -1294,35 +1294,78 @@ window.open(
    BUY NOW
 ========================= */
 
-function buyNow(index){
+function buyNow(productId){
 
-const product = products[index];
+/* =========================
+   FIND PRODUCT USING ID
+========================= */
+
+const product = products.find((item)=>{
+
+    return item.id == productId;
+
+});
+
+if(!product){
+
+    alert("Product Not Found");
+
+    return;
+
+}
+
+/* =========================
+   QUANTITY
+========================= */
 
 let qty = prompt("Enter Quantity");
 
 if(!qty || qty <= 0){
-return;
+
+    return;
+
 }
+
+/* =========================
+   NAME
+========================= */
 
 let name = prompt("Enter Your Name");
 
 if(!name){
-return;
+
+    return;
+
 }
+
+/* =========================
+   CONTACT
+========================= */
 
 let contact = prompt("Enter Contact Number");
 
 if(!contact){
-return;
+
+    return;
+
 }
 
 qty = parseInt(qty);
 
+/* =========================
+   TOTAL
+========================= */
+
 const total = product.price * qty;
+
+/* =========================
+   WHATSAPP MESSAGE
+========================= */
 
 let message = `
 🛍️ DIRECT BUY ORDER %0A%0A
 📦 Product : ${product.title}%0A
+🆔 Product ID : ${product.id}%0A
 🔢 Quantity : ${qty}%0A
 💰 Price : ₹${product.price}%0A
 💵 Total : ₹${total}%0A%0A
@@ -1330,12 +1373,19 @@ let message = `
 📞 Contact : ${contact}
 `;
 
-window.open(
-`https://wa.me/+919414400605?text=${message}`,
-"_blank"
-)
+/* =========================
+   OPEN WHATSAPP
+========================= */
 
-}
+window.open(
+
+`https://wa.me/+919414400605?text=${message}`,
+
+"_blank"
+
+);
+
+ }
 function toggleMenu(){
 
 document.getElementById("navLinks")
