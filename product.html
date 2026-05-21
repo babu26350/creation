@@ -915,97 +915,109 @@ updateCartCount();
    PRODUCT RENDER
 ========================= */
 
-const products = [
 
-{
-    title:"Dell Inspiron",
-    price:50000,
-    image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200",
-    description:"Powerful Dell laptop for professional work."
-},
-
-{
-    title:"Gaming Laptop",
-    price:80000,
-    image:"https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1200",
-    description:"High performance gaming and editing laptop."
-},
-
-{
-    title:"Smart Mobile",
-    price:20000,
-    image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200",
-    description:"Latest android smartphone with premium features."
-},
-
-{
-    title:"Wireless Keyboard",
-    price:2500,
-    image:"https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=1200",
-    description:"Modern RGB wireless keyboard."
-},
-
-{
-    title:"Printer",
-    price:15000,
-    image:"https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=1200",
-    description:"Fast color printer for office and home."
-},
-
-{
-    title:"Headphones",
-    price:3500,
-    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200",
-    description:"Noise cancelling premium headphones."
-}
-
-];
 
 const productGrid = document.getElementById("productGrid");
 
-products.forEach((product,index)=>{
 
-productGrid.innerHTML += `
 
-<div class="product-card">
+fetch("https://6a0c6aee5aa893e1015be4b8.mockapi.io/Task/products")
 
-    <div class="product-image">
+.then((res)=>{
 
-        <img src="${product.image}">
+    if(!res.ok){
 
-        <div class="badge">Latest</div>
+        throw new Error("API Error");
 
-    </div>
+    }
 
-    <div class="product-content">
+    return res.json();
 
-        <h3>${product.title}</h3>
+})
 
-        <p>${product.description}</p>
+.then((products)=>{
 
-        <div class="price">₹${product.price}</div>
+    productGrid.innerHTML = "";
 
-        <div class="product-buttons">
+    products.forEach((product,index)=>{
 
-            <button class="buy-btn"
-            onclick="buyNow(${index})">
-            Buy Now
-            </button>
+        productGrid.innerHTML += `
 
-            <button class="add-btn"
-            onclick="addToCart(${index})">
-            Add Cart
-            </button>
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img src="${product.image}" alt="${product.title}">
+
+                <div class="badge">Latest</div>
+
+            </div>
+
+            <div class="product-content">
+
+                <h3>${product.title}</h3>
+
+                <p>${product.description}</p>
+
+                <div class="price">
+                    ₹${product.price}
+                </div>
+
+                <div class="product-id">
+                    Product ID : ${product.id}
+                </div>
+
+                <div class="product-buttons">
+
+                    <button
+                    class="buy-btn"
+                    onclick="buyNow('${product.id}')">
+
+                    Buy Now
+
+                    </button>
+
+                    <button
+                    class="add-btn"
+                    onclick="addToCart('${product.id}')">
+
+                    Add Cart
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
+        `;
 
-</div>
-
-`
+    });
 
 })
+
+.catch((error)=>{
+
+    console.log(error);
+
+    productGrid.innerHTML = `
+
+    <div style="
+    width:100%;
+    padding:30px;
+    text-align:center;
+    color:white;
+    font-size:20px;
+    ">
+        Products Load Failed
+    </div>
+
+    `;
+
+});
+
+
 
 
 /* =========================
