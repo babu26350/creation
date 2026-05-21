@@ -868,7 +868,16 @@ footer{
 
 </footer>
 
-<script>
+
+   <script>
+
+/* =========================
+   GLOBAL PRODUCTS
+========================= */
+
+let products = [];
+
+
 
 /* =========================
    CART SYSTEM
@@ -880,7 +889,8 @@ const cartBtn = document.querySelector(".cart-btn");
 
 cartBtn.innerHTML = `
 <i class="fa-solid fa-cart-shopping"></i>
-Cart <span id="cartCount"
+Cart
+<span id="cartCount"
 style="
 background:red;
 color:white;
@@ -888,135 +898,169 @@ padding:2px 8px;
 border-radius:50px;
 font-size:12px;
 margin-left:6px;
-"
->0</span>
+">
+0
+</span>
 `;
 
-/* CART COUNT */
+
+
+/* =========================
+   UPDATE CART COUNT
+========================= */
 
 function updateCartCount(){
 
 let total = 0;
 
 cart.forEach(item=>{
+
 total += item.quantity;
-})
+
+});
 
 document.getElementById("cartCount").innerText = total;
 
-localStorage.setItem("ssCart",JSON.stringify(cart));
+localStorage.setItem(
+"ssCart",
+JSON.stringify(cart)
+);
 
 }
 
 updateCartCount();
 
 
+
 /* =========================
    PRODUCT RENDER
 ========================= */
 
+const productGrid =
+document.getElementById("productGrid");
 
-
-const productGrid = document.getElementById("productGrid");
-
-
-
-fetch("https://6a0c6aee5aa893e1015be4b8.mockapi.io/Task/products")
+fetch(
+"https://6a0c6aee5aa893e1015be4b8.mockapi.io/Task/products"
+)
 
 .then((res)=>{
 
-    if(!res.ok){
+if(!res.ok){
 
-        throw new Error("API Error");
+throw new Error("API Error");
 
-    }
+}
 
-    return res.json();
+return res.json();
 
 })
 
-.then((products)=>{
+.then((data)=>{
 
-    productGrid.innerHTML = "";
+/* STORE GLOBALLY */
 
-    products.forEach((product,index)=>{
+products = data;
 
-        productGrid.innerHTML += `
+productGrid.innerHTML = "";
 
-        <div class="product-card">
+products.forEach((product)=>{
 
-            <div class="product-image">
+productGrid.innerHTML += `
 
-                <img src="${product.image}" alt="${product.title}">
+<div class="product-card">
 
-                <div class="badge">Latest</div>
+    <div class="product-image">
 
-            </div>
+        <img src="${product.image}"
+        alt="${product.title}">
 
-            <div class="product-content">
+        <div class="badge">
+        Latest
+        </div>
 
-                <h3>${product.title}</h3>
+    </div>
 
-                <p>${product.description}</p>
+    <div class="product-content">
 
-                <div class="price">
-                    ₹${product.price}
-                </div>
+        <h3>${product.title}</h3>
 
-                <div class="product-id">
-                    Product ID : ${product.id}
-                </div>
+        <p>${product.description}</p>
 
-                <div class="product-buttons">
+        <div class="price">
+        ₹${product.price}
+        </div>
 
-                    <button
-                    class="buy-btn"
-                    onclick="buyNow('${product.id}')">
+        <div class="product-id">
+        Product ID : ${product.id}
+        </div>
 
-                    Buy Now
+        <div class="product-buttons">
 
-                    </button>
+            <button
+            class="buy-btn"
+            onclick="buyNow('${product.id}')">
 
-                    <button
-                    class="add-btn"
-                    onclick="addToCart('${product.id}')">
+            Buy Now
 
-                    Add Cart
+            </button>
 
-                    </button>
+            <button
+            class="add-btn"
+            onclick="addToCart('${product.id}')">
 
-                </div>
+            Add Cart
 
-            </div>
+            </button>
 
         </div>
 
-        `;
+    </div>
 
-    });
+</div>
+
+`;
+
+});
 
 })
 
 .catch((error)=>{
 
-    console.log(error);
+console.log(error);
 
-    productGrid.innerHTML = `
+productGrid.innerHTML = `
 
-    <div style="
-    width:100%;
-    padding:30px;
-    text-align:center;
-    color:white;
-    font-size:20px;
-    ">
-        Products Load Failed
-    </div>
+<div style="
+width:100%;
+padding:30px;
+text-align:center;
+color:white;
+font-size:20px;
+">
 
-    `;
+Products Load Failed
+
+</div>
+
+`;
 
 });
 
+
+
+/* =========================
+   FIND PRODUCT BY ID
+========================= */
+
+function getProductById(productId){
+
+return products.find((item)=>{
+
+return String(item.id) === String(productId);
+
+});
+
+}
 
 
 
@@ -1024,19 +1068,33 @@ fetch("https://6a0c6aee5aa893e1015be4b8.mockapi.io/Task/products")
    ADD TO CART
 ========================= */
 
-function addToCart(index){
+function addToCart(productId){
+
+const product = getProductById(productId);
+
+if(!product){
+
+alert("Product Not Found");
+
+return;
+
+}
 
 let qty = prompt("Enter Quantity");
 
 if(!qty || qty <= 0){
+
 return;
+
 }
 
 qty = parseInt(qty);
 
-const product = products[index];
+const existing = cart.find((item)=>{
 
-const existing = cart.find(item=>item.title === product.title);
+return String(item.id) === String(product.id);
+
+});
 
 if(existing){
 
@@ -1045,9 +1103,11 @@ existing.quantity += qty;
 }else{
 
 cart.push({
+
 ...product,
-quantity:qty
-})
+quantity: qty
+
+});
 
 }
 
@@ -1058,11 +1118,13 @@ alert("Product Added To Cart");
 }
 
 
+
 /* =========================
    CART POPUP
 ========================= */
 
-const cartPopup = document.createElement("div");
+const cartPopup =
+document.createElement("div");
 
 cartPopup.id = "cartPopup";
 
@@ -1082,16 +1144,21 @@ transition:0.4s;
 
 document.body.appendChild(cartPopup);
 
+
+
 cartBtn.onclick = function(){
 
 renderCart();
 
 cartPopup.style.right = "0";
 
-}
+};
 
 
-/* CLOSE BUTTON */
+
+/* =========================
+   CLOSE CART
+========================= */
 
 function closeCart(){
 
@@ -1100,7 +1167,10 @@ cartPopup.style.right = "-100%";
 }
 
 
-/* RENDER CART */
+
+/* =========================
+   RENDER CART
+========================= */
 
 function renderCart(){
 
@@ -1115,7 +1185,8 @@ margin-bottom:20px;
 
 <h2>My Cart</h2>
 
-<button onclick="closeCart()"
+<button
+onclick="closeCart()"
 style="
 border:none;
 background:red;
@@ -1124,7 +1195,9 @@ padding:8px 14px;
 border-radius:10px;
 cursor:pointer;
 ">
+
 Close
+
 </button>
 
 </div>
@@ -1136,26 +1209,30 @@ let total = 0;
 if(cart.length === 0){
 
 html += `
-<p style="margin-top:50px;text-align:center;">
+<p style="
+margin-top:50px;
+text-align:center;
+">
 Cart Empty
 </p>
 `;
 
 }else{
 
-cart.forEach(item=>{
+cart.forEach((item)=>{
 
-const subtotal = item.price * item.quantity;
+const subtotal =
+item.price * item.quantity;
 
 total += subtotal;
 
 html += `
+
 <div style="
 padding:15px;
 border:1px solid #eee;
 border-radius:15px;
 margin-bottom:15px;
-position:relative;
 ">
 
 <img src="${item.image}"
@@ -1170,9 +1247,13 @@ border-radius:12px;
 ${item.title}
 </h3>
 
-<p>Quantity : ${item.quantity}</p>
+<p>
+Quantity : ${item.quantity}
+</p>
 
-<p>Price : ₹${item.price}</p>
+<p>
+Price : ₹${item.price}
+</p>
 
 <p style="
 font-weight:bold;
@@ -1182,7 +1263,7 @@ Total : ₹${subtotal}
 </p>
 
 <button
-onclick="deleteCartItem('${item.title}')"
+onclick="deleteCartItem('${item.id}')"
 style="
 margin-top:12px;
 width:100%;
@@ -1194,16 +1275,16 @@ border-radius:12px;
 font-weight:bold;
 cursor:pointer;
 ">
+
 Delete Product
+
 </button>
 
 </div>
 
 `;
 
-
-
-})
+});
 
 html += `
 
@@ -1211,10 +1292,13 @@ html += `
 margin-top:20px;
 color:#0d6efd;
 ">
+
 Grand Total : ₹${total}
+
 </h2>
 
-<button onclick="orderCart()"
+<button
+onclick="orderCart()"
 style="
 width:100%;
 padding:15px;
@@ -1227,7 +1311,9 @@ border-radius:15px;
 cursor:pointer;
 font-weight:bold;
 ">
+
 Order Now
+
 </button>
 
 `;
@@ -1239,55 +1325,35 @@ cartPopup.innerHTML = html;
 }
 
 
+
 /* =========================
-   ORDER CART
+   DELETE CART ITEM
 ========================= */
 
-function orderCart(){
+function deleteCartItem(productId){
 
-let name = prompt("Enter Your Name");
+const confirmDelete = confirm(
+"Remove this product from cart?"
+);
 
-if(!name){
+if(!confirmDelete){
+
 return;
-}
-
-let contact = prompt("Enter Contact Number");
-
-if(!contact){
-return;
-}
-
-let message = `🛒 SS INFOTECH ORDER %0A%0A`;
-
-let total = 0;
-
-cart.forEach(item=>{
-
-const subtotal = item.price * item.quantity;
-
-total += subtotal;
-
-message += `
-📦 Product : ${item.title}%0A
-🔢 Quantity : ${item.quantity}%0A
-💰 Price : ₹${item.price}%0A
-💵 Total : ₹${subtotal}%0A%0A
-`;
-
-})
-
-message += `
-👤 Name : ${name}%0A
-📞 Contact : ${contact}%0A
-💳 Grand Total : ₹${total}
-`;
-
-window.open(
-`https://wa.me/+919414400605?text=${message}`,
-"_blank"
-)
 
 }
+
+cart = cart.filter((item)=>{
+
+return String(item.id) !== String(productId);
+
+});
+
+updateCartCount();
+
+renderCart();
+
+}
+
 
 
 /* =========================
@@ -1296,71 +1362,44 @@ window.open(
 
 function buyNow(productId){
 
-/* =========================
-   FIND PRODUCT USING ID
-========================= */
-
-const product = products.find((item)=>{
-
-    return item.id == productId;
-
-});
+const product =
+getProductById(productId);
 
 if(!product){
 
-    alert("Product Not Found");
+alert("Product Not Found");
 
-    return;
+return;
 
 }
-
-/* =========================
-   QUANTITY
-========================= */
 
 let qty = prompt("Enter Quantity");
 
 if(!qty || qty <= 0){
 
-    return;
+return;
 
 }
-
-/* =========================
-   NAME
-========================= */
 
 let name = prompt("Enter Your Name");
 
 if(!name){
 
-    return;
+return;
 
 }
-
-/* =========================
-   CONTACT
-========================= */
 
 let contact = prompt("Enter Contact Number");
 
 if(!contact){
 
-    return;
+return;
 
 }
 
 qty = parseInt(qty);
 
-/* =========================
-   TOTAL
-========================= */
-
 const total = product.price * qty;
-
-/* =========================
-   WHATSAPP MESSAGE
-========================= */
 
 let message = `
 🛍️ DIRECT BUY ORDER %0A%0A
@@ -1373,9 +1412,67 @@ let message = `
 📞 Contact : ${contact}
 `;
 
+window.open(
+
+`https://wa.me/+919414400605?text=${message}`,
+
+"_blank"
+
+);
+
+}
+
+
+
 /* =========================
-   OPEN WHATSAPP
+   ORDER CART
 ========================= */
+
+function orderCart(){
+
+let name = prompt("Enter Your Name");
+
+if(!name){
+
+return;
+
+}
+
+let contact =
+prompt("Enter Contact Number");
+
+if(!contact){
+
+return;
+
+}
+
+let message =
+`🛒 SS INFOTECH ORDER %0A%0A`;
+
+let total = 0;
+
+cart.forEach((item)=>{
+
+const subtotal =
+item.price * item.quantity;
+
+total += subtotal;
+
+message += `
+📦 Product : ${item.title}%0A
+🔢 Quantity : ${item.quantity}%0A
+💰 Price : ₹${item.price}%0A
+💵 Total : ₹${subtotal}%0A%0A
+`;
+
+});
+
+message += `
+👤 Name : ${name}%0A
+📞 Contact : ${contact}%0A
+💳 Grand Total : ₹${total}
+`;
 
 window.open(
 
@@ -1385,38 +1482,22 @@ window.open(
 
 );
 
- }
+}
+
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
 function toggleMenu(){
 
 document.getElementById("navLinks")
 .classList.toggle("active");
 
- }
- /* DELETE PRODUCT */
-
-function deleteCartItem(title){
-
-const confirmDelete = confirm(
-"Remove this product from cart?"
-);
-
-if(!confirmDelete){
-return;
 }
 
-cart = cart.filter(item => item.title !== title);
-
-localStorage.setItem(
-"ssCart",
-JSON.stringify(cart)
-);
-
-updateCartCount();
-
-renderCart();
-
- }
-</script>
+   </script>
 
 </body>
 </html>
