@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us | SS GROUP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f4f7fb;
+    color:#222;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:9999;
+    background:#fff;
+    box-shadow:0 2px 20px rgba(0,0,0,0.08);
+    padding:15px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#0d6efd;
+}
+
+.menu-btn{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.contact-hero{
+    min-height:65vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 5%;
+
+    background:
+    linear-gradient(rgba(7,20,40,0.82),rgba(7,20,40,0.88)),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+}
+
+.contact-hero-content h1{
+    font-size:65px;
+    color:white;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.contact-hero-content p{
+    color:#dbe7ff;
+    max-width:800px;
+    line-height:1.9;
+    margin:auto;
+    font-size:18px;
+}
+
+/* CONTACT SECTION */
+
+.contact-section{
+    padding:90px 5%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:45px;
+    font-weight:800;
+    color:#111827;
+}
+
+.section-title p{
+    color:#666;
+    margin-top:10px;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+.contact-box{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.contact-item{
+    display:flex;
+    gap:18px;
+    margin-bottom:28px;
+}
+
+.contact-icon{
+    min-width:65px;
+    height:65px;
+    border-radius:18px;
+    background:#0d6efd;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.contact-text h3{
+    margin-bottom:8px;
+    font-size:22px;
+}
+
+.contact-text p,
+.contact-text a{
+    color:#666;
+    line-height:1.8;
+    text-decoration:none;
+}
+
+.map-box{
+    overflow:hidden;
+    border-radius:25px;
+    height:100%;
+    min-height:500px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.map-box iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+/* FORM */
+
+.contact-form{
+    margin-top:50px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.input-box{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-box label{
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.input-box input,
+.input-box textarea{
+    padding:16px;
+    border-radius:14px;
+    border:1px solid #ddd;
+    font-family:'Poppins',sans-serif;
+    outline:none;
+}
+
+.input-box textarea{
+    min-height:160px;
+    resize:none;
+}
+
+.full-width{
+    grid-column:1/-1;
+}
+
+.submit-btn{
+    margin-top:25px;
+    padding:16px 35px;
+    border:none;
+    background:#0d6efd;
+    color:white;
+    border-radius:14px;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.submit-btn:hover{
+    background:#084298;
+    transform:translateY(-4px);
+}
+
+/* FOOTER */
+
+footer{
+    background:#111827;
+    color:white;
+    padding:70px 5% 30px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:40px;
+}
+
+.footer-box h3{
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+.footer-box p{
+    color:#bbb;
+    line-height:1.9;
+}
+
+.footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.footer-links a{
+    color:#bbb;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.footer-links a:hover{
+    color:white;
+    padding-left:8px;
+}
+
+.copyright{
+    margin-top:40px;
+    text-align:center;
+    color:#aaa;
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .nav-links{
+        position:fixed;
+        top:85px;
+        right:-100%;
+        width:280px;
+        height:100vh;
+        background:white;
+        flex-direction:column;
+        padding:40px;
+        transition:0.4s;
+        box-shadow:-10px 0 20px rgba(0,0,0,0.08);
+    }
+
+    .nav-links.active{
+        right:0;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .contact-hero-content h1{
+        font-size:42px;
+    }
+
+    .section-title h2{
+        font-size:34px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="bg-image12.jpg" alt="logo">
+    </div>
+
+    <div class="nav-links" id="navLinks">
+
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+
+    </div>
+
+    <i class="fa-solid fa-bars menu-btn"
+    onclick="toggleMenu()"></i>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="contact-hero">
+
+    <div class="contact-hero-content">
+
+        <h1>Contact Us</h1>
+
+        <p>
+            SS GROUP से जुड़ें और कम्प्यूटर शिक्षा,
+            प्रिंटिंग, वेबसाइट डिजाइन, CCTV एवं IT सेवाओं
+            से संबंधित सहायता प्राप्त करें।
+        </p>
+
+    </div>
+
+</section>
+
+<!-- CONTACT SECTION -->
+
+<section class="contact-section">
+
+    <div class="section-title">
+
+        <h2>हमसे संपर्क करें</h2>
+
+        <p>
+            आपकी सहायता के लिए हमारी टीम हमेशा तैयार है
+        </p>
+
+    </div>
+
+    <div class="contact-grid">
+
+        <!-- LEFT -->
+
+        <div>
+
+            <div class="contact-box">
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <div class="contact-text">
+
+                        <h3>Office Address</h3>
+
+                        <p>
+                            Bohara Complex II,<br>
+                            Behind Private Bus Stand,<br>
+                            Sardarshahar - 331403
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+
+                    <div class="contact-text">
+
+                        <h3>Phone Number</h3>
+
+                        <a href="tel:+919414400605">
+                            +91 94144 00605
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <div class="contact-text">
+
+                        <h3>Email Address</h3>
+
+                        <p>
+                            ssgroup@example.com
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+
+                    <div class="contact-text">
+
+                        <h3>WhatsApp</h3>
+
+                        <a href="https://wa.me/919414400605">
+                            Chat on WhatsApp
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MAP -->
+
+        <div class="map-box">
+
+            <iframe
+            src="https://maps.google.com/maps?q=28.442420,74.505884&z=15&output=embed"
+            loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+
+    <!-- FORM -->
+
+    <div class="contact-form">
+
+        <div class="section-title">
+
+            <h2>Send Message</h2>
+
+            <p>
+                अपनी जानकारी भेजें, हम जल्द संपर्क करेंगे
+            </p>
+
+        </div>
+
+        <form>
+
+            <div class="form-grid">
+
+                <div class="input-box">
+
+                    <label>Full Name</label>
+
+                    <input type="text"
+                    placeholder="Enter your name">
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Phone Number</label>
+
+                    <input type="tel"
+                    placeholder="Enter mobile number">
+
+                </div>
+
+                <div class="input-box full-width">
+
+                    <label>Your Message</label>
+
+                    <textarea
+                    placeholder="Write your message"></textarea>
+
+                </div>
+
+            </div>
+
+            <button type="submit"
+            class="submit-btn">
+
+                Send Message
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div class="footer-box">
+
+            <h3>SS GROUP</h3>
+
+            <p>
+                कम्प्यूटर शिक्षा, प्रिंटिंग,
+                वेबसाइट डिजाइन एवं आधुनिक IT सेवाओं का विश्वसनीय केंद्र।
+            </p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Quick Links</h3>
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Contact Info</h3>
+
+            <div class="footer-links">
+
+                <a href="tel:+919414400605">
+                    +91 94144 00605
+                </a>
+
+                <a href="#">
+                    Sardarshahar, Rajasthan
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 SS GROUP | Developed by SS GROUP
+    </div>
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+
+document
+.getElementById("navLinks")
+.classList.toggle("active");
+
+}
+
+</script>
+
+</body>
+</html>
