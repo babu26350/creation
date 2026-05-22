@@ -533,8 +533,19 @@ footer{
         </p>
 
         <div class="hero-buttons">
-            <button class="primary-btn">ऑर्डर करें</button>
-            <button class="secondary-btn">हमारी सेवाएँ</button>
+
+    <button 
+    class="primary-btn"
+    onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">
+        ऑर्डर करें
+    </button>
+
+    <a href="services.html" style="text-decoration:none;">
+        <button class="secondary-btn">
+            हमारी सेवाएँ
+        </button>
+    </a>
+
         </div>
 
         <div class="hero-note">
