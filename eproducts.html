@@ -808,7 +808,9 @@ document.getElementById("lis").innerHTML += `
 <td>
 ${safeValue(item.title)}
 </td>
-
+<td>
+${safeValue(item.category)}
+</td>
 <td>
 
 <img
@@ -940,8 +942,7 @@ function sendReq(){
 if(
 
 title.value.trim() == "" ||
-
-price.value.trim() == "" ||
+category.value.trim() == "descriptionvalue.trim() == "" ||
 
 description.value.trim() == "" ||
 
@@ -961,7 +962,7 @@ checkAndConvertDriveLink(image.value);
 const obj = {
 
 title:title.value,
-
+category:category.value,
 price:price.value,
 
 description:description.value,
@@ -1035,7 +1036,8 @@ return;
 
 title.value =
 safeValue(matchedData.title);
-
+category.value =
+safeValue(matchedData.category);
 price.value =
 safeValue(matchedData.price);
 
@@ -1075,7 +1077,7 @@ return;
 if(
 
 title.value.trim() == "" ||
-
+category.value.trim() == "" ||
 price.value.trim() == "" ||
 
 description.value.trim() == "" ||
@@ -1096,7 +1098,7 @@ checkAndConvertDriveLink(image.value);
 const obj = {
 
 title:title.value,
-
+category:category.value,
 price:price.value,
 
 description:description.value,
@@ -1205,7 +1207,7 @@ RESET
 function resetForm(){
 
 title.value = "";
-
+category.value = "";
 price.value = "";
 
 description.value = "";
