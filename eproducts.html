@@ -605,15 +605,16 @@ placeholder="Enter product title"
 
 </div>
 <div class="input-group">
+    <label>Category</label>
 
-<label>Category</label>
+    <input
+        type="text"
+        id="category"
+        list="categoryList"
+        placeholder="Select or Enter Category"
+    >
 
-<select id="category">
-
-<option value="">Select Category</option>
-
-</select>
-
+    <datalist id="categoryList"></datalist>
 </div>
 <!-- PRICE -->
 
@@ -765,9 +766,7 @@ const previewImage = document.getElementById("previewImage");
 /* =========================
 GOOGLE DRIVE LINK CONVERTER
 ========================= */
-category.addEventListener("change", () => {
-    newCategory.value = category.value;
-});
+ 
 function checkAndConvertDriveLink(url){
 
 const trimmedUrl = url.trim();
@@ -921,28 +920,25 @@ alert("API Fetch Error");
 }
 function loadCategories(data){
 
-const uniqueCategories = [
-...new Set(
-data
-.map(item => item.category)
-.filter(item => item)
-)
-];
+    const uniqueCategories = [
+        ...new Set(
+            data
+            .map(item => item.category)
+            .filter(item => item)
+        )
+    ];
 
-category.innerHTML =
-'<option value="">Select Category</option>';
+    categoryList.innerHTML = "";
 
-uniqueCategories.forEach(cat=>{
+    uniqueCategories.forEach(cat => {
 
-category.innerHTML += `
-<option value="${cat}">
-${cat}
-</option>
-`;
+        categoryList.innerHTML += `
+            <option value="${cat}">
+        `;
 
-});
+    });
 
-  }
+          }
 /* =========================
 SAFE VALUE
 ========================= */
