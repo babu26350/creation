@@ -945,12 +945,33 @@ function loadCategories(data){
         categoryList.innerHTML += `
             <option value="${cat}">
         `;
-
+categoryDropdown.innerHTML += `
+            <option value="${cat}">
+                ${cat}
+            </option>
+        `;
     });
 
           }
 /* =========================
-SAFE VALUE
+SAFE VALUEfunction loadCategories(data){
+
+    const uniqueCategories = [
+        ...new Set(data.map(item => item.category).filter(Boolean))
+    ];
+
+    categoryDropdown.innerHTML =
+        '<option value="">Select Category</option>';
+
+    uniqueCategories.forEach(cat => {
+
+        categoryDropdown.innerHTML += `
+            <option value="${cat}">
+                ${cat}
+            </option>
+        `;
+
+    });
 ========================= */
 
 function safeValue(value){
