@@ -1596,12 +1596,12 @@ qty = parseInt(qty);
 const total = product.price * qty;
 
 let message = `
-🛍️ DIRECT BUY ORDER %0A%0A
-📦 Product : ${product.title}%0A
-📦 Product : ${product.category}%0A
-🆔 Product ID : ${product.id}%0A
+🛍️ DIRECT BUY ORDER 
+📦 Product : ${product.title}
+📦 Product : ${product.category}
+🆔 Product ID : ${product.id}
 🔢 Quantity : ${qty}%0A
-💰 Price : ₹${product.price}%0A
+💰 Price : ₹${product.price}
 💵 Total : ₹${total}%0A%0A
 👤 Name : ${name}%0A
 📞 Contact : ${contact}
@@ -1638,7 +1638,7 @@ return;
 }
 
 let message =
-`🛒 SS INFOTECH ORDER %0A%0A`;
+`🛒 SS INFOTECH ORDER `;
 
 let total = 0;
 
@@ -1650,17 +1650,17 @@ item.price * item.quantity;
 total += subtotal;
 
 message += `
-📦 Product : ${item.title}%0A
-🔢 Quantity : ${item.quantity}%0A
-💰 Price : ₹${item.price}%0A
-💵 Total : ₹${subtotal}%0A%0A
+📦 Product : ${item.title}
+🔢 Quantity : ${item.quantity}
+💰 Price : ₹${item.price}
+💵 Total : ₹${subtotal}
 `;
 
 });
 
 message += `
-👤 Name : ${name}%0A
-📞 Contact : ${contact}%0A
+👤 Name : ${name}
+📞 Contact : ${contact}
 💳 Grand Total : ₹${total}
 `;
 
