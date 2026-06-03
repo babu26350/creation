@@ -1,27 +1,137 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <title>QR Code Generator</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UPI Payment</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.card{
+width:100%;
+max-width:500px;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+text-align:center;
+}
+
+#qrcode{
+display:flex;
+justify-content:center;
+margin:20px 0;
+}
+
+.amount{
+font-size:32px;
+font-weight:bold;
+color:green;
+margin-bottom:15px;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:15px;
+border:none;
+border-radius:8px;
+font-size:18px;
+margin-top:10px;
+cursor:pointer;
+text-decoration:none;
+}
+
+.pay{
+background:#25D366;
+color:white;
+}
+
+.share{
+background:#2196F3;
+color:white;
+}
+</style>
 </head>
+
 <body>
 
-    <h2>राशि के लिए QR कोड जनरेट करें</h2>
-    
-    <div id="qrcode"></div>
+<div class="card">
 
-    <script>
-        // UPI पेमेंट स्ट्रिंग जिसमें राशि (am=150) तय है
-        var upiString = "upi://pay?pa=example@upi&pn=BabuLal&am=150&cu=INR";
+<h2>UPI Payment</h2>
 
-        // QR कोड जनरेट करने का फंक्शन
-        new QRCode(document.getElementById("qrcode"), {
-            text: upiString,
-            width: 256,
-            height: 256
-        });
-    </script>
+<div class="amount">
+₹ <span id="amount"></span>
+</div>
+
+<div id="qrcode"></div>
+
+<a id="payBtn" class="btn pay">Pay Now</a>
+
+<button class="btn share" onclick="sharePayment()">
+Share Payment Link
+</button>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const amount = params.get("amount") || 0;
+
+document.getElementById("amount").innerText = amount;
+
+const upiString =
+`upi://pay?pa=example@upi&pn=BabuLal&am=${amount}&cu=INR`;
+
+new QRCode(document.getElementById("qrcode"),{
+text:upiString,
+width:300,
+height:300
+});
+
+document.getElementById("payBtn").href = upiString;
+
+async function sharePayment(){
+
+const shareUrl = window.location.href;
+
+if(navigator.share){
+
+await navigator.share({
+title:"UPI Payment",
+text:`₹${amount} Payment`,
+url:shareUrl
+});
+
+}else{
+
+navigator.clipboard.writeText(shareUrl);
+alert("Link Copied");
+
+}
+}
+
+</script>
 
 </body>
-</html>
+    </html>
