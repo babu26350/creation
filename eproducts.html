@@ -613,7 +613,9 @@ placeholder="Enter product title"
         list="categoryList"
         placeholder="Select or Enter Category"
     >
-
+<select id="categoryDropdown">
+        <option value="">Select Category</option>
+</select>
     <datalist id="categoryList"></datalist>
 </div>
 <!-- PRICE -->
@@ -766,7 +768,12 @@ const previewImage = document.getElementById("previewImage");
 /* =========================
 GOOGLE DRIVE LINK CONVERTER
 ========================= */
- 
+ const category = document.getElementById("category");
+const categoryDropdown = document.getElementById("categoryDropdown");
+
+categoryDropdown.addEventListener("change", () => {
+    category.value = categoryDropdown.value;
+});
 function checkAndConvertDriveLink(url){
 
 const trimmedUrl = url.trim();
