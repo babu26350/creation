@@ -790,21 +790,47 @@ footer{
     background:#0d6efd;
     color:#fff;
  }
-</style>
-<section class="category-section">
-    <div id="categoryContainer" class="category-container">
-    </div>
-</section>
-<!-- PRODUCTS -->
-<div class="search-wrapper">
-    <i class="fa-solid fa-magnifying-glass"></i>
+ .filter-bar{
+    position:sticky;
+    top:85px;
+    z-index:999;
+    background:#fff;
+    padding:15px;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
 
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Search products, category..."
-        onkeyup="searchProduct()">
-</div>
+.search-wrapper{
+    max-width:700px;
+    margin:15px auto 0;
+    position:relative;
+}
+
+.search-wrapper input{
+    width:100%;
+    height:55px;
+    border:none;
+    outline:none;
+    border-radius:15px;
+    padding-left:50px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+                         }
+</style>
+ <div class="filter-bar">
+
+    <div id="categoryContainer" class="category-container">
+        <!-- Categories -->
+    </div>
+
+    <div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Product..."
+            onkeyup="searchProduct()">
+    </div>
+
+ </div>
 <section class="products">
 
     <div class="section-title">
