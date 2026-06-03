@@ -1609,7 +1609,8 @@ let message = `
 
 
 window.open(
-`whatsapp://send?phone=919414400605&text=${message}`,"_blank"
+    `https://wa.me/919414400605?text=${encodeURIComponent(message)}`,
+    "_blank"
 );
 }
 
@@ -1666,7 +1667,8 @@ message += `
 `;
 
 window.open(
-`whatsapp://send?phone=919414400605&text=${message}`,"_blank"
+    `https://wa.me/919414400605?text=${encodeURIComponent(message)}`,
+    "_blank"
 );
 
 }
