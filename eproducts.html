@@ -580,7 +580,17 @@ placeholder="Enter product title"
 />
 
 </div>
+<div class="input-group">
 
+<label>Category</label>
+
+<select id="category">
+
+<option value="">Select Category</option>
+
+</select>
+
+</div>
 <!-- PRICE -->
 
 <div class="input-group">
@@ -677,8 +687,9 @@ Reset
 
 <tr>
 
-<th>Title</th>
 
+  th>Title</th>
+th>category</th>
 <th>Image</th>
 
 <th>Price</th>
@@ -718,7 +729,7 @@ INPUTS
 ========================= */
 
 const title = document.getElementById("title");
-
+const category = document.getElementById("category");
 const price = document.getElementById("price");
 
 const description = document.getElementById("description");
@@ -796,7 +807,7 @@ return res.json();
 .then(data => {
 
 allData = data.reverse();
-
+loadCategories(data)
 document.getElementById("lis").innerHTML = "";
 
 allData.forEach(item => {
@@ -882,7 +893,30 @@ alert("API Fetch Error");
 });
 
 }
+function loadCategories(data){
 
+const uniqueCategories = [
+...new Set(
+data
+.map(item => item.category)
+.filter(item => item)
+)
+];
+
+category.innerHTML =
+'<option value="">Select Category</option>';
+
+uniqueCategories.forEach(cat=>{
+
+category.innerHTML += `
+<option value="${cat}">
+${cat}
+</option>
+`;
+
+});
+
+  }
 /* =========================
 SAFE VALUE
 ========================= */
@@ -942,7 +976,7 @@ function sendReq(){
 if(
 
 title.value.trim() == "" ||
-category.value.trim() == "descriptionvalue.trim() == "" ||
+category.value.trim() == "" ||
 
 description.value.trim() == "" ||
 
