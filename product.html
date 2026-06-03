@@ -1608,10 +1608,8 @@ let message = `
 `;
 
 
-window.open(
-    `https://wa.me/919414400605?text=${encodeURIComponent(message)}`,
-    "_blank"
-);
+window.location.href =
+`whatsapp://send?phone=919414400605&text=${encodeURIComponent(message)}`;
 }
 
 
@@ -1666,10 +1664,8 @@ message += `
 💳 Grand Total : ₹${total}
 `;
 
-window.open(
-    `https://wa.me/919414400605?text=${encodeURIComponent(message)}`,
-    "_blank"
-);
+window.location.href =
+`whatsapp://send?phone=919414400605&text=${encodeURIComponent(message)}`;
 
 }
 
