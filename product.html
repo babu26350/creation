@@ -1145,7 +1145,34 @@ return String(item.id) === String(productId);
 }
 
 
+function filterCategory(category,btn){
 
+document
+.querySelectorAll(".category-btn")
+.forEach(item=>{
+
+item.classList.remove("active");
+
+});
+
+btn.classList.add("active");
+
+if(category === "All"){
+
+renderProducts(products);
+
+return;
+
+}
+
+const filteredProducts =
+products.filter(item =>
+item.category === category
+);
+
+renderProducts(filteredProducts);
+
+    }
 /* =========================
    ADD TO CART
 ========================= */
@@ -1328,6 +1355,9 @@ border-radius:12px;
 <h3 style="margin-top:10px;">
 ${item.title}
 </h3>
+<p>
+Quantity : ${item.category}
+</p>
 
 <p>
 Quantity : ${item.quantity}
@@ -1486,6 +1516,7 @@ const total = product.price * qty;
 let message = `
 🛍️ DIRECT BUY ORDER %0A%0A
 📦 Product : ${product.title}%0A
+📦 Product : ${product.category}%0A
 🆔 Product ID : ${product.id}%0A
 🔢 Quantity : ${qty}%0A
 💰 Price : ₹${product.price}%0A
