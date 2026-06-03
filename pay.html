@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <h2>राशि के लिए QR कोड जनरेट करें</h2>
+    
+    <div id="qrcode"></div>
+
+    <script>
+        // UPI पेमेंट स्ट्रिंग जिसमें राशि (am=150) तय है
+        var upiString = "upi://pay?pa=example@upi&pn=BabuLal&am=150&cu=INR";
+
+        // QR कोड जनरेट करने का फंक्शन
+        new QRCode(document.getElementById("qrcode"), {
+            text: upiString,
+            width: 256,
+            height: 256
+        });
+    </script>
+
+</body>
+</html>
