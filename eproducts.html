@@ -945,13 +945,20 @@ function loadCategories(data){
         categoryList.innerHTML += `
             <option value="${cat}">
         `;
-categoryDropdown.innerHTML += `
+
+    });
+categoryDropdown.innerHTML =
+        '<option value="">Select Category</option>';
+
+    uniqueCategories.forEach(cat => {
+
+        categoryDropdown.innerHTML += `
             <option value="${cat}">
                 ${cat}
             </option>
         `;
-    });
 
+    });
           }
 /* =========================
 SAFE VALUEfunction loadCategories(data){
