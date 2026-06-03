@@ -727,9 +727,46 @@ footer{
     }
 
 }
+.category-section{
+    position:sticky;
+    top:85px;
+    z-index:999;
+    background:#fff;
+    padding:12px 15px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
 
+.category-container{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.category-container::-webkit-scrollbar{
+    display:none;
+}
+
+.category-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:30px;
+    background:#eef2ff;
+    color:#0d6efd;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.category-btn.active{
+    background:#0d6efd;
+    color:#fff;
+ }
 </style>
-
+<section class="category-section">
+    <div id="categoryContainer" class="category-container">
+    </div>
+</section>
 <!-- PRODUCTS -->
 
 <section class="products">
@@ -971,68 +1008,11 @@ return res.json();
 /* STORE GLOBALLY */
 
 products = data;
+renderCategories();
 
-productGrid.innerHTML = "";
+renderProducts(products)
 
-products.forEach((product)=>{
-
-productGrid.innerHTML += `
-
-<div class="product-card">
-
-    <div class="product-image">
-
-        <img src="${product.image}"
-        alt="${product.title}">
-
-        <div class="badge">
-        Latest
-        </div>
-
-    </div>
-
-    <div class="product-content">
-
-        <h3>${product.title}</h3>
-
-        <p>${product.description}</p>
-
-        <div class="price">
-        ₹${product.price}
-        </div>
-
-        <div class="product-id">
-        Product ID : ${product.id}
-        </div>
-
-        <div class="product-buttons">
-
-            <button
-            class="buy-btn"
-            onclick="buyNow('${product.id}')">
-
-            Buy Now
-
-            </button>
-
-            <button
-            class="add-btn"
-            onclick="addToCart('${product.id}')">
-
-            Add Cart
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-`;
-
-});
-
+            
 })
 
 .catch((error)=>{
@@ -1057,8 +1037,99 @@ Products Load Failed
 
 });
 
+function renderCategories(){
 
+const categories = [
+    "All",
+    ...new Set(products.map(item => item.category))
+];
 
+const container =
+document.getElementById("categoryContainer");
+
+container.innerHTML = "";
+
+categories.forEach(category=>{
+
+container.innerHTML += `
+<button
+class="category-btn"
+onclick="filterCategory('${category}',this)">
+${category}
+</button>
+`;
+
+});
+
+container
+.querySelector(".category-btn")
+.classList.add("active");
+
+    }
+
+    function renderProducts(data){
+
+productGrid.innerHTML = "";
+
+data.forEach(product=>{
+
+productGrid.innerHTML += `
+
+<div class="product-card">
+
+<div class="product-image">
+
+<img src="${product.image}">
+
+<div class="badge">
+${product.category}
+</div>
+
+</div>
+
+<div class="product-content">
+
+<h3>${product.title}</h3>
+
+<p>${product.description}</p>
+
+<div class="price">
+₹${product.price}
+</div>
+
+<div style="
+font-size:13px;
+color:#666;
+margin-bottom:10px;">
+Category :
+<b>${product.category}</b>
+</div>
+
+<div class="product-buttons">
+
+<button
+class="buy-btn"
+onclick="buyNow('${product.id}')">
+Buy Now
+</button>
+
+<button
+class="add-btn"
+onclick="addToCart('${product.id}')">
+Add Cart
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+    }
 /* =========================
    FIND PRODUCT BY ID
 ========================= */
