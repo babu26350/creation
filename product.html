@@ -451,7 +451,35 @@ footer{
     .nav-links.active{
         right:0;
     }
+.search-wrapper{
+    max-width:700px;
+    margin:25px auto 35px;
+    position:relative;
+}
 
+.search-wrapper i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+}
+
+.search-wrapper input{
+    width:100%;
+    height:58px;
+    border:none;
+    outline:none;
+    padding:0 20px 0 50px;
+    border-radius:16px;
+    background:#fff;
+    font-size:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.search-wrapper input:focus{
+    box-shadow:0 5px 25px rgba(13,110,253,.25);
+        }
     .menu-btn{
         display:block;
     }
@@ -768,7 +796,15 @@ footer{
     </div>
 </section>
 <!-- PRODUCTS -->
+<div class="search-wrapper">
+    <i class="fa-solid fa-magnifying-glass"></i>
 
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search products, category..."
+        onkeyup="searchProduct()">
+</div>
 <section class="products">
 
     <div class="section-title">
@@ -1356,7 +1392,7 @@ border-radius:12px;
 ${item.title}
 </h3>
 <p>
-Quantity : ${item.category}
+Category : ${item.category}
 </p>
 
 <p>
@@ -1437,7 +1473,26 @@ cartPopup.innerHTML = html;
 }
 
 
+function searchProduct(){
 
+const value =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const filtered =
+products.filter(item=>
+
+item.title.toLowerCase().includes(value) ||
+
+item.category.toLowerCase().includes(value)
+
+);
+
+renderProducts(filtered);
+
+       }
 /* =========================
    DELETE CART ITEM
 ========================= */
