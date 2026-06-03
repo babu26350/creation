@@ -2,39 +2,192 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>UPI Payment</title>
+<title>Payment Page</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-*{
+
+body{
 margin:0;
-padding:0;
-box-sizing:border-box;
+padding:20px;
+background:#f4f6f9;
 font-family:Arial,sans-serif;
 }
 
-body{
-background:#f5f5f5;
+.container{
+max-width:500px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.amount{
+font-size:35px;
+font-weight:bold;
+color:green;
+margin:15px 0;
+}
+
+#qrcode{
 display:flex;
 justify-content:center;
-align-items:center;
-min-height:100vh;
-padding:20px;
+margin:20px 0;
 }
 
-.card{
+button,a{
+display:block;
 width:100%;
-max-width:500px;
-background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-text-align:center;
+margin:10px 0;
+padding:15px;
+font-size:16px;
+border:none;
+border-radius:8px;
+text-decoration:none;
+cursor:pointer;
 }
 
+.pay{background:#25D366;color:#fff;}
+.share{background:#2196F3;color:#fff;}
+.download{background:#FF9800;color:#fff;}
+.copy{background:#673AB7;color:#fff;}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>UPI Payment</h2>
+
+<div class="amount">
+₹ <span id="amount">0</span>
+</div>
+
+<div id="qrcode"></div>
+
+<a id="payNow" class="pay">
+💳 Pay Now
+</a>
+
+<button class="copy" onclick="copyUPI()">
+📋 Copy UPI ID
+</button>
+
+<button class="share" onclick="shareLink()">
+🔗 Share Payment Link
+</button>
+
+<button class="share" onclick="shareQR()">
+📤 Share QR Image
+</button>
+
+<button class="download" onclick="downloadQR()">
+⬇ Download QR
+</button>
+
+</div>
+
+<script>
+
+const upiId="example@upi";
+const name="BabuLal";
+
+const params=new URLSearchParams(location.search);
+
+const amount=params.get("amount") || "0";
+
+document.getElementById("amount").innerText=amount;
+
+const upi=
+`upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR`;
+
+new QRCode(
+document.getElementById("qrcode"),
+{
+text:upi,
+width:280,
+height:280
+}
+);
+
+document.getElementById("payNow").href=upi;
+
+function copyUPI(){
+
+navigator.clipboard.writeText(upiId);
+
+alert("UPI ID Copied");
+
+}
+
+async function shareLink(){
+
+if(navigator.share){
+
+await navigator.share({
+title:"Payment",
+text:`₹${amount} Payment`,
+url:location.href
+});
+
+}
+
+}
+
+function downloadQR(){
+
+const img=
+document.querySelector("#qrcode img");
+
+const a=document.createElement("a");
+
+a.href=img.src;
+
+a.download="payment-qr.png";
+
+a.click();
+
+}
+
+async function shareQR(){
+
+const img=
+document.querySelector("#qrcode img");
+
+const response=
+await fetch(img.src);
+
+const blob=
+await response.blob();
+
+const file=
+new File(
+[blob],
+"payment-qr.png",
+{type:"image/png"}
+);
+
+if(navigator.share){
+
+navigator.share({
+title:"Payment QR",
+files:[file]
+});
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
 #qrcode{
 display:flex;
 justify-content:center;
