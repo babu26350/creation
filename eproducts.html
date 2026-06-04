@@ -631,7 +631,17 @@ placeholder="Enter product price"
 />
 
 </div>
+<div class="input-group">
 
+<label>Offer Price</label>
+
+<input
+type="number"
+id="offerPrice"
+placeholder="Enter offer price"
+/>
+
+</div>
 <!-- DESCRIPTION -->
 
 <div class="input-group">
@@ -720,7 +730,7 @@ Reset
 <th>Image</th>
 
 <th>Price</th>
-
+<th>Offer Price</th>
 <th>Description</th>
 
 <th>Delete</th>
@@ -758,7 +768,7 @@ INPUTS
 const title = document.getElementById("title");
 const category = document.getElementById("category");
 const price = document.getElementById("price");
-
+  const offerPrice = document.getElementById("offerPrice");
 const description = document.getElementById("description");
 
 const image = document.getElementById("image");
@@ -866,12 +876,23 @@ alt="img"
 
 <td>
 
-<div class="price-tag">
+<div style="font-weight:bold;color:#ff7675">
+
 ₹ ${safeValue(item.price)}
+
 </div>
 
 </td>
 
+<td>
+
+<div style="font-weight:bold;color:#00d48f">
+
+₹ ${safeValue(item.offerPrice)}
+
+</div>
+
+</td>
 <td>
 
 <div class="content-preview">
@@ -1058,7 +1079,7 @@ const obj = {
 title:title.value,
 category:category.value,
 price:price.value,
-
+offerPrice:offerPrice.value.trim() || "NA",
 description:description.value,
 
 image:finalImageUrl
@@ -1134,7 +1155,8 @@ category.value =
 safeValue(matchedData.category);
 price.value =
 safeValue(matchedData.price);
-
+offerPrice.value =
+safeValue(matchedData.offerPrice);
 description.value =
 safeValue(matchedData.description);
 
@@ -1194,7 +1216,7 @@ const obj = {
 title:title.value,
 category:category.value,
 price:price.value,
-
+offerPrice:offerPrice.value ,
 description:description.value,
 
 image:finalImageUrl
@@ -1303,7 +1325,7 @@ function resetForm(){
 title.value = "";
 category.value = "";
 price.value = "";
-
+offerPrice.value = "";
 description.value = "";
 
 image.value = "";
