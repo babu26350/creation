@@ -1216,7 +1216,7 @@ const obj = {
 title:title.value,
 category:category.value,
 price:price.value,
-offerPrice:offerPrice.value ,
+offerPrice:offerPrice.value.trim() || "NA" ,
 description:description.value,
 
 image:finalImageUrl
