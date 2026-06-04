@@ -928,25 +928,16 @@ footer{
         width:100%;
     }
  }
- .product-buttons{
+
+.product-buttons{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:1fr 1fr;
     gap:10px;
- }.pay-btn{
-    background:linear-gradient(135deg,#00c853,#00e676);
-    color:#fff;
-    border:none;
-    border-radius:14px;
-    padding:12px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.3s;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:6px;
 }
 
+.pay-btn{
+    grid-column:1 / -1;
+ }
 .pay-btn:hover{
     transform:translateY(-3px);
 }
@@ -1355,22 +1346,12 @@ onclick="addToCart('${product.id}')">
 Add Cart
 </button>
 
-${
-product.offerPrice &&
-product.offerPrice !== "NA" &&
-product.offerPrice !== ""
-?
-`
 <button
 class="pay-btn"
 onclick="payProduct('${product.id}')">
 <i class="fa-solid fa-qrcode"></i>
 Pay
-</button>
-`
-:
-""
-}
+   </button>
 
    </div>
 </div>
@@ -1810,13 +1791,23 @@ function searchProduct(){
        }
  function payProduct(productId){
 
-const product = getProductById(productId);
+    const product = getProductById(productId);
 
-if(!product) return;
+    if(!product) return;
 
-window.location.href =
-`pay.html?amount=${product.offerPrice}`;
-    }
+    const amount =
+    product.offerPrice &&
+    product.offerPrice !== "NA" &&
+    product.offerPrice !== ""
+    ?
+    Number(product.offerPrice)
+    :
+    Number(product.price);
+
+    window.location.href =
+    `pay.html?amount=${amount}`;
+
+ }
 /* =========================
    DELETE CART ITEM
 ========================= */
