@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tawk.to API Example</title>
+</head>
+<body>
+
+    <h1>मेरी वेबसाइट में आपका स्वागत है</h1>
+    <p>यदि आपके पास कोई प्रश्न है, तो नीचे दिए गए बटन पर क्लिक करके हमसे लाइव चैट करें।</p>
+
+    <button onclick="openMyChat()" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        हमारे एजेंट से बात करें
+    </button>
+
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    // ध्यान दें: नीचे दिए गए URL में अपनी प्रॉपर्टी ID और विजेट ID डालें
+    s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+
+    <script type="text/javascript">
+    
+    // जब tawk.to पूरी तरह लोड हो जाए, तब यह कोड काम करेगा
+    Tawk_API.onLoad = function(){
+        console.log("Tawk.to चैट विजेट लोड हो गया है!");
+        
+        // यूज़र की जानकारी ऑटोमैटिकली सेट करने के लिए API (visitor object)
+        Tawk_API.setAttributes({
+            'name'  : 'राहुल शर्मा',
+            'email' : 'rahul@example.com'
+        }, function(error){});
+    };
+
+    // कस्टम बटन पर क्लिक करने पर चलने वाला फंक्शन
+    function openMyChat() {
+        // Tawk_API.maximize() चैट बॉक्स को तुरंत स्क्रीन पर खोल देता है
+        if(Tawk_API.maximize) {
+            Tawk_API.maximize();
+        }
+    }
+    </script>
+
+</body>
+</html>
