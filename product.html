@@ -561,7 +561,14 @@ footer{
         </p>
 
         <div class="hero-buttons">
-
+<div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Product..."
+            onkeyup="searchProduct()">
+</div>
     <button 
     class="primary-btn"
     onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">
