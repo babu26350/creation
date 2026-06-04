@@ -1233,10 +1233,31 @@ ${product.category}
 
 <p>${product.description}</p>
 
-<div class="price">
+${product.offerPrice &&
+product.offerPrice !== "NA" &&
+product.offerPrice !== ""
+?
+`
+<div style="color:#999;text-decoration:line-through;">
 ₹${product.price}
 </div>
 
+<div style="
+color:#e53935;
+font-size:28px;
+font-weight:800;
+margin-bottom:10px;
+">
+₹${product.offerPrice}
+</div>
+`
+:
+`
+<div class="price">
+₹${product.price}
+</div>
+`
+}
 <div style="
 font-size:13px;
 color:#666;
@@ -1259,8 +1280,23 @@ onclick="addToCart('${product.id}')">
 Add Cart
 </button>
 
-</div>
+${
+product.offerPrice &&
+product.offerPrice !== "NA" &&
+product.offerPrice !== ""
+?
+`
+<button
+class="pay-btn"
+onclick="payProduct('${product.id}')">
+Pay
+</button>
+`
+:
+""
+}
 
+   </div>
 </div>
 
 </div>
@@ -1536,9 +1572,17 @@ Cart Empty
 
 cart.forEach((item)=>{
 
-const subtotal =
-item.price * item.quantity;
+const itemPrice =
+item.offerPrice &&
+item.offerPrice !== "NA" &&
+item.offerPrice !== ""
+?
+Number(item.offerPrice)
+:
+Number(item.price);
 
+const subtotal =
+itemPrice * item.quantity;
 total += subtotal;
 
 html += `
@@ -1569,10 +1613,31 @@ Category : ${item.category}
 Quantity : ${item.quantity}
 </p>
 
+${
+item.offerPrice &&
+item.offerPrice !== "NA" &&
+item.offerPrice !== ""
+?
+`
+<p style="
+text-decoration:line-through;
+color:#999;">
+MRP : ₹${item.price}
+</p>
+
+<p style="
+color:red;
+font-weight:bold;">
+Offer : ₹${item.offerPrice}
+</p>
+`
+:
+`
 <p>
 Price : ₹${item.price}
 </p>
-
+`
+    }
 <p style="
 font-weight:bold;
 color:#0d6efd;
@@ -1614,7 +1679,22 @@ color:#0d6efd;
 Grand Total : ₹${total}
 
 </h2>
-
+<button
+onclick="payCartNow()"
+style="
+width:100%;
+padding:15px;
+margin-top:10px;
+border:none;
+background:#00a651;
+color:white;
+font-size:18px;
+border-radius:15px;
+font-weight:bold;
+cursor:pointer;
+">
+Pay Now
+</button>
 <button
 onclick="orderCart()"
 style="
@@ -1652,7 +1732,15 @@ function searchProduct(){
 
 
        }
- 
+ function payProduct(productId){
+
+const product = getProductById(productId);
+
+if(!product) return;
+
+window.location.href =
+`pay.html?amount=${product.offerPrice}`;
+    }
 /* =========================
    DELETE CART ITEM
 ========================= */
@@ -1681,7 +1769,29 @@ renderCart();
 
 }
 
+function payCartNow(){
 
+let total = 0;
+
+cart.forEach(item=>{
+
+const amount =
+item.offerPrice &&
+item.offerPrice !== "NA" &&
+item.offerPrice !== ""
+?
+Number(item.offerPrice)
+:
+Number(item.price);
+
+total += amount * item.quantity;
+
+});
+
+window.location.href =
+`pay.html?amount=${total}`;
+
+}
 
 /* =========================
    BUY NOW
