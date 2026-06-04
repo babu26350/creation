@@ -1063,7 +1063,8 @@ footer{
 
 let products = [];
 
-
+let selectedCategory = "All";
+let selectedPrice = Infinity;
 
 /* =========================
    CART SYSTEM
@@ -1147,7 +1148,7 @@ return res.json();
 
 products = data;
 renderCategories();
-
+updatePriceRange()
 renderProducts(products)
 
             
@@ -1285,35 +1286,101 @@ return String(item.id) === String(productId);
 
 
 function filterCategory(category,btn){
+function filterCategory(category,btn){
 
-document
-.querySelectorAll(".category-btn")
-.forEach(item=>{
+    document
+    .querySelectorAll(".category-btn")
+    .forEach(item=>{
+        item.classList.remove("active");
+    });
 
-item.classList.remove("active");
+    btn.classList.add("active");
 
-});
+    selectedCategory = category;
 
-btn.classList.add("active");
+    updatePriceRange();
 
-if(category === "All"){
+    applyFilters();
+ }
+ function updatePriceRange(){
 
-renderProducts(products);
+    let filteredProducts =
+        selectedCategory === "All"
+        ? products
+        : products.filter(
+            item => item.category === selectedCategory
+        );
 
-return;
+    if(filteredProducts.length === 0) return;
 
+    const maxPrice = Math.max(
+        ...filteredProducts.map(
+            item => Number(item.price)
+        )
+    );
+
+    const priceRange =
+    document.getElementById("priceRange");
+
+    if(!priceRange) return;
+
+    priceRange.max = maxPrice;
+    priceRange.value = maxPrice;
+
+    selectedPrice = maxPrice;
+
+    document.getElementById("priceValue")
+    .innerText = `₹0 - ₹${maxPrice}`;
 }
 
-const filteredProducts =
-products.filter(item =>
-item.category === category
-);
+function applyFilters(){
 
-renderProducts(filteredProducts);
+    const searchText =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+    let filtered = [...products];
+
+    if(selectedCategory !== "All"){
+
+        filtered = filtered.filter(item =>
+            item.category === selectedCategory
+        );
 
     }
+
+    filtered = filtered.filter(item =>
+
+        Number(item.price) <= selectedPrice &&
+
+        (
+            item.title.toLowerCase().includes(searchText)
+            ||
+            item.category.toLowerCase().includes(searchText)
+        )
+
+    );
+
+    renderProducts(filtered);
+    }
 /* =========================
-   ADD TO CART
+   ADD TO CARTfunction filterCategory(category, btn){
+
+    document
+    .querySelectorAll(".category-btn")
+    .forEach(item=>{
+        item.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    selectedCategory = category;
+
+    updatePriceRange();
+    applyFilters();
+    }
 ========================= */
 
 function addToCart(productId){
@@ -1757,7 +1824,28 @@ document.getElementById("navLinks")
 .classList.toggle("active");
 
 }
+document.addEventListener("DOMContentLoaded",()=>{
 
+    const priceRange =
+    document.getElementById("priceRange");
+
+    if(priceRange){
+
+        priceRange.addEventListener("input",function(){
+
+            selectedPrice = Number(this.value);
+
+            document.getElementById("priceValue")
+            .innerText =
+            `₹0 - ₹${selectedPrice}`;
+
+            applyFilters();
+
+        });
+
+    }
+
+});
    </script>
 
 </body>
