@@ -506,7 +506,53 @@ footer{
     background:#0d6efd;
     border-radius:20px;
 }
+.product-buttons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
 
+.buy-btn,
+.add-btn,
+.pay-btn{
+    border:none;
+    padding:12px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+}
+
+.buy-btn{
+    background:#0d6efd;
+    color:white;
+}
+
+.buy-btn:hover{
+    background:#084298;
+}
+
+.add-btn{
+    background:#eef4ff;
+    color:#0d6efd;
+}
+
+.add-btn:hover{
+    background:#dbe8ff;
+}
+
+.pay-btn{
+    background:#1e293b;
+    color:white;
+}
+
+.pay-btn:hover{
+    background:#0f172a;
+}
 </style>
 </head>
 <body>
@@ -1297,12 +1343,15 @@ Category :
 <button
 class="buy-btn"
 onclick="buyNow('${product.id}')">
-Buy Now
+ 
+<i class="fa-solid fa-bag-shopping"></i>
+Buy
 </button>
 
 <button
 class="add-btn"
 onclick="addToCart('${product.id}')">
+<i class="fa-solid fa-cart-plus"></i>
 Add Cart
 </button>
 
