@@ -814,12 +814,75 @@ footer{
     padding-left:50px;
     box-shadow:0 3px 15px rgba(0,0,0,.08);
                          }
+ .filter-row{
+    display:flex;
+    gap:15px;
+    align-items:center;
+    max-width:1200px;
+    margin:15px auto 0;
+}
+
+.search-wrapper{
+    flex:2;
+    position:relative;
+}
+
+.search-wrapper i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+}
+
+.search-wrapper input{
+    width:100%;
+    height:55px;
+    border:none;
+    outline:none;
+    border-radius:15px;
+    padding-left:50px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
+
+.price-wrapper{
+    flex:1;
+    min-width:250px;
+    background:#fff;
+    padding:10px 15px;
+    border-radius:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
+
+.price-wrapper span{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.price-wrapper input{
+    width:100%;
+ }
+ @media(max-width:768px){
+
+    .filter-row{
+        flex-direction:column;
+    }
+
+    .search-wrapper,
+    .price-wrapper{
+        width:100%;
+    }
+ }
 </style>
  <div class="filter-bar">
 
     <div id="categoryContainer" class="category-container">
         <!-- Categories -->
     </div>
+
+    <div class="filter-row">
 
     <div class="search-wrapper">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -828,6 +891,19 @@ footer{
             id="searchInput"
             placeholder="Search Product..."
             onkeyup="searchProduct()">
+    </div>
+
+    <div class="price-wrapper">
+        <span id="priceValue">₹0 - ₹50000</span>
+
+        <input
+            type="range"
+            id="priceRange"
+            min="0"
+            max="50000"
+            value="50000">
+    </div>
+
     </div>
 
  </div>
