@@ -1,61 +1,194 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Payment Page</title>
+<title>SS GROUP Payment</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
 padding:20px;
-background:#f4f6f9;
-font-family:Arial,sans-serif;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 .container{
-max-width:500px;
-margin:auto;
+width:100%;
+max-width:520px;
 background:#fff;
-padding:20px;
-border-radius:15px;
+border-radius:30px;
+padding:25px;
+box-shadow:0 15px 40px rgba(13,110,253,.12);
+overflow:hidden;
+}
+
+.header{
 text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+.logo{
+width:70px;
+height:70px;
+background:#0d6efd;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+color:white;
+font-size:30px;
+margin-bottom:15px;
+}
+
+.header h2{
+color:#111827;
+font-size:28px;
+font-weight:800;
+}
+
+.header p{
+color:#666;
+margin-top:8px;
+}
+
+.amount-card{
+background:linear-gradient(135deg,#0d6efd,#3b82f6);
+padding:20px;
+border-radius:20px;
+text-align:center;
+color:white;
+margin-bottom:20px;
+}
+
+.amount-label{
+font-size:14px;
+opacity:.9;
 }
 
 .amount{
-font-size:35px;
-font-weight:bold;
-color:green;
-margin:15px 0;
+font-size:42px;
+font-weight:800;
+margin-top:8px;
 }
 
 #qrcode{
 display:flex;
 justify-content:center;
-margin:20px 0;
+padding:20px;
+background:#f8faff;
+border:2px dashed #d9e6ff;
+border-radius:20px;
+margin-bottom:20px;
 }
 
-button,a{
-display:block;
-width:100%;
-margin:10px 0;
+.upi-box{
+background:#f8faff;
+border-radius:15px;
 padding:15px;
-font-size:16px;
-border:none;
-border-radius:8px;
-text-decoration:none;
-cursor:pointer;
+text-align:center;
+margin-bottom:20px;
 }
 
-.pay{background:#25D366;color:#fff;}
-.share{background:#2196F3;color:#fff;}
-.download{background:#FF9800;color:#fff;}
-.copy{background:#673AB7;color:#fff;}
+.upi-box small{
+display:block;
+color:#666;
+margin-bottom:6px;
+}
+
+.upi-id{
+font-size:18px;
+font-weight:700;
+color:#0d6efd;
+word-break:break-all;
+}
+
+.note{
+background:#eef8ff;
+border-left:4px solid #0d6efd;
+padding:15px;
+border-radius:12px;
+font-size:14px;
+color:#444;
+margin-bottom:20px;
+line-height:1.6;
+}
+
+.btn{
+width:100%;
+border:none;
+padding:15px;
+border-radius:15px;
+margin-bottom:12px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+transition:.3s;
+text-decoration:none;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+}
+
+.pay{
+background:#0d6efd;
+color:white;
+}
+
+.copy{
+background:#eef4ff;
+color:#0d6efd;
+}
+
+.share{
+background:#1e293b;
+color:white;
+}
+
+.download{
+background:#111827;
+color:white;
+}
+
+.success{
+margin-top:15px;
+background:#ecfdf3;
+padding:15px;
+border-radius:12px;
+color:#198754;
+font-size:14px;
+text-align:center;
+font-weight:600;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+font-size:13px;
+color:#888;
+}
 
 </style>
 </head>
@@ -63,59 +196,122 @@ cursor:pointer;
 
 <div class="container">
 
-<h2>UPI Payment</h2>
+<div class="header">
+
+<div class="logo">
+<i class="fa-solid fa-qrcode"></i>
+</div>
+
+<h2>SS GROUP PAYMENT</h2>
+
+<p>
+Secure UPI Payment Gateway
+</p>
+
+</div>
+
+<div class="amount-card">
+
+<div class="amount-label">
+Payable Amount
+</div>
 
 <div class="amount">
 ₹ <span id="amount">0</span>
 </div>
 
+</div>
 
-<button class="copy" onclick="copyUPI()">
-📋 Copy UPI ID
+<div id="qrcode"></div>
+
+<div class="upi-box">
+
+<small>UPI ID</small>
+
+<div class="upi-id" id="upiText">
+example@upi
+</div>
+
+</div>
+
+<div class="note">
+QR Scan करके Payment करें या नीचे दिए गए बटन से सीधे UPI App खोलें।
+</div>
+
+<a id="payNow" class="btn pay">
+<i class="fa-solid fa-credit-card"></i>
+Open UPI App
+</a>
+
+<button class="btn copy" onclick="copyUPI()">
+<i class="fa-solid fa-copy"></i>
+Copy UPI ID
 </button>
 
-<button class="share" onclick="shareLink()">
-🔗 Share Payment Link
+<button class="btn share" onclick="shareLink()">
+<i class="fa-solid fa-share-nodes"></i>
+Share Payment Link
 </button>
 
-<button class="share" onclick="shareQR()">
-📤 Share QR Image
+<button class="btn share" onclick="shareQR()">
+<i class="fa-solid fa-image"></i>
+Share QR Image
 </button>
 
-<button class="download" onclick="downloadQR()">
-⬇ Download QR
+<button class="btn download" onclick="downloadQR()">
+<i class="fa-solid fa-download"></i>
+Download QR
 </button>
+
+<div class="success">
+✓ Payment करने के बाद Screenshot WhatsApp पर भेजें
+</div>
+
+<div class="footer">
+© 2026 SS GROUP
+</div>
 
 </div>
 
 <script>
 
-const upiId="example@upi";
-const name="BabuLal";
+const upiId = "example@upi";
+const name = "SS GROUP";
 
-const params=new URLSearchParams(location.search);
+const params =
+new URLSearchParams(
+window.location.search
+);
 
-const amount=params.get("amount") || "0";
+const amount =
+params.get("amount") || "0";
 
-document.getElementById("amount").innerText=amount;
+document.getElementById("amount")
+.innerText = amount;
 
-const upi=
+document.getElementById("upiText")
+.innerText = upiId;
+
+const upiLink =
 `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR`;
 
 new QRCode(
 document.getElementById("qrcode"),
 {
-text:upi,
-width:280,
-height:280
+text: upiLink,
+width: 260,
+height: 260
 }
 );
 
-document.getElementById("payNow").href=upi;
+document.getElementById("payNow")
+.href = upiLink;
 
 function copyUPI(){
 
-navigator.clipboard.writeText(upiId);
+navigator.clipboard.writeText(
+upiId
+);
 
 alert("UPI ID Copied");
 
@@ -125,11 +321,19 @@ async function shareLink(){
 
 if(navigator.share){
 
+try{
+
 await navigator.share({
-title:"Payment",
-text:`₹${amount} Payment`,
+
+title:"SS GROUP Payment",
+
+text:`₹${amount} Payment Link`,
+
 url:location.href
+
 });
+
+}catch(err){}
 
 }
 
@@ -137,14 +341,18 @@ url:location.href
 
 function downloadQR(){
 
-const img=
+const img =
 document.querySelector("#qrcode img");
 
-const a=document.createElement("a");
+if(!img) return;
 
-a.href=img.src;
+const a =
+document.createElement("a");
 
-a.download="payment-qr.png";
+a.href = img.src;
+
+a.download =
+`payment-${amount}.png`;
 
 a.click();
 
@@ -152,28 +360,39 @@ a.click();
 
 async function shareQR(){
 
-const img=
+const img =
 document.querySelector("#qrcode img");
 
-const response=
+if(!img) return;
+
+const response =
 await fetch(img.src);
 
-const blob=
+const blob =
 await response.blob();
 
-const file=
+const file =
 new File(
 [blob],
-"payment-qr.png",
-{type:"image/png"}
+`payment-${amount}.png`,
+{
+type:"image/png"
+}
 );
 
 if(navigator.share){
 
-navigator.share({
+try{
+
+await navigator.share({
+
 title:"Payment QR",
+
 files:[file]
+
 });
+
+}catch(err){}
 
 }
 
@@ -183,3 +402,4 @@ files:[file]
 
 </body>
 </html>
+
