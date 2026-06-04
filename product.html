@@ -506,7 +506,53 @@ footer{
     background:#0d6efd;
     border-radius:20px;
 }
+.product-buttons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
 
+.buy-btn,
+.add-btn,
+.pay-btn{
+    border:none;
+    padding:12px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+}
+
+.buy-btn{
+    background:#0d6efd;
+    color:white;
+}
+
+.buy-btn:hover{
+    background:#084298;
+}
+
+.add-btn{
+    background:#eef4ff;
+    color:#0d6efd;
+}
+
+.add-btn:hover{
+    background:#dbe8ff;
+}
+
+.pay-btn{
+    background:#1e293b;
+    color:white;
+}
+
+.pay-btn:hover{
+    background:#0f172a;
+}
 </style>
 </head>
 <body>
@@ -882,6 +928,23 @@ footer{
         width:100%;
     }
  }
+
+.product-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.pay-btn{
+    grid-column:1 / -1;
+ }
+.pay-btn:hover{
+    transform:translateY(-3px);
+}
+
+.pay-btn i{
+    font-size:15px;
+ }
 </style>
  <div class="filter-bar">
 
@@ -1233,10 +1296,31 @@ ${product.category}
 
 <p>${product.description}</p>
 
-<div class="price">
+${product.offerPrice &&
+product.offerPrice !== "NA" &&
+product.offerPrice !== ""
+?
+`
+<div style="color:#999;text-decoration:line-through;">
 ₹${product.price}
 </div>
 
+<div style="
+color:#e53935;
+font-size:28px;
+font-weight:800;
+margin-bottom:10px;
+">
+₹${product.offerPrice}
+</div>
+`
+:
+`
+<div class="price">
+₹${product.price}
+</div>
+`
+}
 <div style="
 font-size:13px;
 color:#666;
@@ -1250,17 +1334,26 @@ Category :
 <button
 class="buy-btn"
 onclick="buyNow('${product.id}')">
-Buy Now
+ 
+<i class="fa-solid fa-bag-shopping"></i>
+Buy
 </button>
 
 <button
 class="add-btn"
 onclick="addToCart('${product.id}')">
+<i class="fa-solid fa-cart-plus"></i>
 Add Cart
 </button>
 
-</div>
+<button
+class="pay-btn"
+onclick="payProduct('${product.id}')">
+<i class="fa-solid fa-qrcode"></i>
+Pay
+   </button>
 
+   </div>
 </div>
 
 </div>
@@ -1536,9 +1629,17 @@ Cart Empty
 
 cart.forEach((item)=>{
 
-const subtotal =
-item.price * item.quantity;
+const itemPrice =
+item.offerPrice &&
+item.offerPrice !== "NA" &&
+item.offerPrice !== ""
+?
+Number(item.offerPrice)
+:
+Number(item.price);
 
+const subtotal =
+itemPrice * item.quantity;
 total += subtotal;
 
 html += `
@@ -1569,10 +1670,31 @@ Category : ${item.category}
 Quantity : ${item.quantity}
 </p>
 
+${
+item.offerPrice &&
+item.offerPrice !== "NA" &&
+item.offerPrice !== ""
+?
+`
+<p style="
+text-decoration:line-through;
+color:#999;">
+MRP : ₹${item.price}
+</p>
+
+<p style="
+color:red;
+font-weight:bold;">
+Offer : ₹${item.offerPrice}
+</p>
+`
+:
+`
 <p>
 Price : ₹${item.price}
 </p>
-
+`
+    }
 <p style="
 font-weight:bold;
 color:#0d6efd;
@@ -1614,7 +1736,22 @@ color:#0d6efd;
 Grand Total : ₹${total}
 
 </h2>
-
+<button
+onclick="payCartNow()"
+style="
+width:100%;
+padding:15px;
+margin-top:10px;
+border:none;
+background:#eef4ff;
+    color:#0d6efd;
+font-size:18px;
+border-radius:15px;
+font-weight:bold;
+cursor:pointer;
+">
+Pay Now
+</button>
 <button
 onclick="orderCart()"
 style="
@@ -1652,7 +1789,25 @@ function searchProduct(){
 
 
        }
- 
+ function payProduct(productId){
+
+    const product = getProductById(productId);
+
+    if(!product) return;
+
+    const amount =
+    product.offerPrice &&
+    product.offerPrice !== "NA" &&
+    product.offerPrice !== ""
+    ?
+    Number(product.offerPrice)
+    :
+    Number(product.price);
+
+    window.location.href =
+    `pay.html?amount=${amount}`;
+
+ }
 /* =========================
    DELETE CART ITEM
 ========================= */
@@ -1681,7 +1836,29 @@ renderCart();
 
 }
 
+function payCartNow(){
 
+let total = 0;
+
+cart.forEach(item=>{
+
+const amount =
+item.offerPrice &&
+item.offerPrice !== "NA" &&
+item.offerPrice !== ""
+?
+Number(item.offerPrice)
+:
+Number(item.price);
+
+total += amount * item.quantity;
+
+});
+
+window.location.href =
+`pay.html?amount=${total}`;
+
+}
 
 /* =========================
    BUY NOW
@@ -1839,4 +2016,4 @@ document.addEventListener("DOMContentLoaded",()=>{
    </script>
 
 </body>
-</html>
+ </html>
