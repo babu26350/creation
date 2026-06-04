@@ -1645,26 +1645,14 @@ cartPopup.innerHTML = html;
 
 function searchProduct(){
 
-const value =
-document
-.getElementById("searchInput")
-.value
-.toLowerCase();
 
-const filtered =
-products.filter(item=>
-
-item.title.toLowerCase().includes(value) ||
-
-item.category.toLowerCase().includes(value)
-
-);
 
     applyFilters();
     
-renderProducts(filtered);
+
 
        }
+ 
 /* =========================
    DELETE CART ITEM
 ========================= */
