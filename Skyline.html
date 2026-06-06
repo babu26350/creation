@@ -993,6 +993,55 @@ Skyline Public School विद्यार्थियों को आधु�
 function toggleMenu(){
 document.getElementById("navMenu").classList.toggle("active");
 }
+// आपका API Endpoint (ID: 1 के साथ)
+const apiUrl = 'https://6555dd2084b36e3a431e83be.mockapi.io/Response/1';
+
+async function updateVisitorCount() {
+    try {
+        // 1. API से डेटा GET करना
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log("Original Data:", data);
+
+        // 2. लॉजिक के अनुसार वैल्यूज को बदलना
+        // count को नंबर में बदलकर +1 करना, फिर वापस string बनाना
+        const currentCount = parseInt(data.count, 10) || 0;
+        const newCount = (currentCount + 1).toString();
+
+        // नया डेटा ऑब्जेक्ट तैयार करना
+        const updatedData = {
+            ...data,
+            set: "true",      // set को "true" (string) करना
+            count: newCount   // count में +1 करके string में भेजना
+        };
+
+        // 3. PUT मेथड द्वारा बदला हुआ डेटा वापस भेजना
+        const putResponse = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        });
+
+        if (!putResponse.ok) {
+            throw new Error(`PUT request failed! Status: ${putResponse.status}`);
+        }
+
+        const result = await putResponse.json();
+        console.log("Updated Data Sent Successfully:", result);
+
+    } catch (error) {
+        console.error("Error updating data:", error);
+    }
+}
+
+// वेबसाइट खुलने पर इस फंक्शन को कॉल करें
+updateVisitorCount();
 
 </script>
 
