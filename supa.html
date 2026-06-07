@@ -2,56 +2,49 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supabase डायरेक्ट अपलोडर</title>
-    
+    <title>Supabase Debug Uploader</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; background: #f0f4f2; text-align: center; }
-        .box { background: white; padding: 30px; border-radius: 12px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-        h2 { color: #1c2833; margin-top: 0; }
-        input[type="file"] { width: 100%; padding: 10px; margin: 15px 0; border: 1px dashed #3ecf8e; border-radius: 6px; background: #f9fbf9; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #3ecf8e; color: white; border: none; font-weight: bold; font-size: 16px; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
-        button:hover { background: #2eaf76; }
-        #status { font-weight: bold; margin-top: 15px; color: #555; }
-        .link-box { background: #e8f8f0; border: 1px solid #3ecf8e; padding: 12px; margin-top: 20px; border-radius: 6px; word-break: break-all; text-align: left; display: none; }
-        .link-box a { color: #2eaf76; font-weight: bold; text-decoration: none; }
-        .link-box a:hover { text-decoration: underline; }
+        body { font-family: Arial, sans-serif; padding: 30px; background: #f4f4f4; text-align: center; }
+        .box { background: white; padding: 30px; border-radius: 10px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        input, button { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        button { background: #3ecf8e; color: white; border: none; font-weight: bold; cursor: pointer; }
+        #status { font-weight: bold; margin-top: 15px; color: #333; }
+        .error-box { background: #fde8e8; color: #e53e3e; padding: 10px; border-radius: 5px; margin-top: 15px; display: none; text-align: left; word-break: break-all; }
+        .link-box { background: #e8f8f0; border: 1px solid #3ecf8e; padding: 10px; margin-top: 15px; word-break: break-all; display: none; text-align: left; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h2>Supabase डायरेक्ट अपलोडर</h2>
-    <p style="font-size: 13px; color: #777;">प्रोजेक्ट ID: pxjaphsjxarlehdiwbaq</p>
-    
+    <h2>Supabase डायरेक्ट अपलोडर (Debug Mode)</h2>
     <input type="file" id="myFile">
-    <button onclick="uploadNow()">फाइल अपलोड करें और लिंक पाएं</button>
+    <button onclick="uploadNow()">अपलोड करें</button>
 
     <p id="status"></p>
+    <div id="errorBox" class="error-box"></div>
     
     <div id="linkBox" class="link-box">
-        <strong>✅ फाइल का सीधा लिंक (Public URL):</strong><br>
-        <input type="text" id="urlText" readonly style="width:100%; margin-top:5px; padding:5px; font-size:12px;"><br>
-        <a id="fileUrl" href="#" target="_blank" style="display:inline-block; margin-top:8px;">➡️ नए टैब में फाइल खोलें</a>
+        <strong>✅ फाइल का सीधा लिंक:</strong><br>
+        <a id="fileUrl" href="#" target="_blank"></a>
     </div>
 </div>
 
 <script>
-    // आपकी लाइव क्रेडेंशियल्स यहाँ सेट कर दी गई हैं
     const SUPABASE_URL = "https://pxjaphsjxarlehdiwbaq.supabase.co";
     const SUPABASE_ANON_KEY = "Sb_publishable_8UiOgkP_KAqMLEFpjd7tCw_5f3zpLiY";
 
-    // Supabase क्लाइंट चालू करें
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     async function uploadNow() {
         const fileInput = document.getElementById('myFile');
         const statusText = document.getElementById('status');
+        const errorBox = document.getElementById('errorBox');
         const linkBox = document.getElementById('linkBox');
         const fileUrl = document.getElementById('fileUrl');
-        const urlText = document.getElementById('urlText');
+
+        errorBox.style.display = "none";
+        linkBox.style.display = "none";
 
         if (fileInput.files.length === 0) {
             alert("कृपया पहले एक फाइल चुनें!");
@@ -59,45 +52,38 @@
         }
 
         const file = fileInput.files[0];
-        // फाइल का नाम यूनिक बनाने के लिए आगे टाइमस्टैम्प जोड़ रहे हैं
         const uniqueName = Date.now() + "_" + file.name;
 
-        statusText.innerText = "⏳ फाइल क्लाउड पर अपलोड हो रही है...";
-        statusText.style.color = "#333";
-        linkBox.style.display = "none";
+        statusText.innerText = "⏳ अपलोड हो रहा है... कृपया रुकें...";
 
-        // ⚠️ महत्वपूर्ण नोट: मान लेते हैं आपके Supabase Storage में बकेट का नाम 'my-bucket' है।
-        // अगर आपके बकेट का नाम कुछ और है (जैसे 'images' या 'test-papers'), तो नीचे दोनों जगह 'my-bucket' बदल लें।
-        const bucketName = 'my-bucket'; 
-
-        // 1. फाइल अपलोड करें
+        // यहाँ हमने आपके बकेट का नाम 'my-bucket' रखा है
         const { data, error } = await supabase
             .storage
-            .from(bucketName) 
+            .from('my-bucket') 
             .upload(uniqueName, file);
 
         if (error) {
-            statusText.innerText = "❌ एरर आया: " + error.message;
-            statusText.style.color = "red";
-            console.error(error);
+            statusText.innerText = "❌ अपलोड रुक गया!";
+            errorBox.innerHTML = "<b>Supabase Error:</b> " + error.message + "<br><br><i>सुझाव: जांचें कि आपके बकेट का नाम 'my-bucket' ही है और उसकी RLS Policy ऑन है।</i>";
+            errorBox.style.display = "block";
+            console.error("Full Error Details:", error);
             return;
         }
 
-        // 2. फाइल का डायरेक्ट Public URL प्राप्त करें
+        // URL प्राप्त करना
         const { data: urlData } = supabase
             .storage
-            .from(bucketName)
+            .from('my-bucket')
             .getPublicUrl(uniqueName);
 
-        const finalUrl = urlData.publicUrl;
-
-        // 3. स्क्रीन पर लिंक दिखाएं
-        statusText.innerText = "🚀 अपलोड सफलतापूर्वक पूरा हुआ!";
-        statusText.style.color = "green";
-        
-        urlText.value = finalUrl;
-        fileUrl.href = finalUrl;
-        linkBox.style.display = "block";
+        if(urlData && urlData.publicUrl) {
+            statusText.innerText = "🎉 सफलता!";
+            fileUrl.href = urlData.publicUrl;
+            fileUrl.innerText = urlData.publicUrl;
+            linkBox.style.display = "block";
+        } else {
+            statusText.innerText = "❌ फाइल अपलोड हुई पर लिंक नहीं बन पाया।";
+        }
     }
 </script>
 
