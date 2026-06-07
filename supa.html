@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase ऑल-इन-वन सुपर पेज</title>
+    
+    <!-- 1. Supabase का मुख्य CDN स्क्रिप्ट लिंक -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #3ecf8e; margin-bottom: 30px; }
+        .section { background: #fafafa; border: 1px solid #e1e1e1; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        h3 { margin-top: 0; color: #2c3e50; border-bottom: 2px solid #3ecf8e; padding-bottom: 5px; }
+        input, button, select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+        button { background-color: #3ecf8e; color: white; border: none; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        button:hover { background-color: #2baf74; }
+        .status { font-weight: bold; margin-top: 10px; color: #555; }
+        .success-link { background: #e8f8f0; border-left: 4px solid #3ecf8e; padding: 10px; margin-top: 15px; word-break: break-all; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Supabase Mini Project</h1>
+
+    <!-- सेक्शन 1: यूज़र ऑथेंटिकेशन (लॉग-इन/साइन-अप) -->
+    <div class="section" id="authSection">
+        <h3>1. यूज़र ऑथेंटिकेशन (Auth)</h3>
+        <input type="email" id="authEmail" placeholder="अपना ईमेल दर्ज करें">
+        <input type="password" id="authPassword" placeholder="पासवर्ड दर्ज करें">
+        <div style="display: flex; gap: 10px;">
+            <button onclick="handleSignUp()">Sign Up</button>
+            <button onclick="handleLogin()">Log In</button>
+        </div>
+        <p id="authStatus" class="status"></p>
+    </div>
+
+    <!-- सेक्शन 2: डेटाबेस एंट्री (CRUD) -->
+    <div class="section">
+        <h3>2. डेटाबेस में डेटा भेजें (Database)</h3>
+        <p style="font-size: 13px; color: #666;">मान लेते हैं कि आप लैब असिस्टेंट परीक्षा का कोई प्रश्न या नोट्स ट्रैक कर रहे हैं:</p>
+        <input type="text" id="dbTitle" placeholder="नोट्स या प्रश्न का शीर्षक (e.g. Optics Formulas)">
+        <select id="dbSubject">
+            <option value="Physics">भौतिक विज्ञान (Physics)</option>
+            <option value="Chemistry">रसायन विज्ञान (Chemistry)</option>
+            <option value="Biology">जीव विज्ञान (Biology)</option>
+        </select>
+        <button onclick="saveToDatabase()">डेटाबेस में सेव करें</button>
+        <p id="dbStatus" class="status"></p>
+    </div>
+
+    <!-- सेक्शन 3: स्टोरेज (फाइल अपलोड और डायरेक्ट लिंक) -->
+    <div class="section">
+        <h3>3. फाइल अपलोड और लिंक जनरेटर (Storage)</h3>
+        <input type="file" id="filePicker">
+        <button onclick="uploadAndGetLink()">अपलोड करें और लिंक पाएं</button>
+        <p id="storageStatus" class="status"></p>
+        
+        <div id="linkContainer" class="success-link" style="display: none;">
+            <strong>फाइल का Public URL:</strong><br>
+            <a id="generatedLink" href="#" target="_blank"></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- अपनी Supabase डिटेल्स यहाँ भरें ---
+    const SUPABASE_URL = "https://your-project-id.supabase.co"; 
+    const SUPABASE_ANON_KEY = "your-anon-public-key"; 
+
+    // क्रेडेंशियल्स की मदद से Supabase क्लाइंट इनिशियलाइज करें
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // ==========================================
+    // 1. AUTHENTICATION FUNCTIONS
+    // ==========================================
+    async function handleSignUp() {
+        const email = document.getElementById('authEmail').value;
+        const password = document.getElementById('authPassword').value;
+        const status = document.getElementById('authStatus');
+
+        const { data, error } = await supabase.auth.signUp({ email, password });
+        if (error) {
+            status.innerHTML = "❌ एरर: " + error.message;
+        } else {
+            status.innerHTML = "✅ साइन-अप सफल! कृपया अपना ईमेल वेरिफिकेशन इनबॉक्स चेक करें।";
+        }
+    }
+
+    async function handleLogin() {
+        const email = document.getElementById('authEmail').value;
+        const password = document.getElementById('authPassword').value;
+        const status = document.getElementById('authStatus');
+
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+            status.innerHTML = "❌ लॉग-इन फेल: " + error.message;
+        } else {
+            status.innerHTML = "✅ लॉग-इन सफल! आपका स्वागत है, " + data.user.email;
+        }
+    }
+
+    // ==========================================
+    // 2. DATABASE FUNCTIONS
+    // ==========================================
+    async function saveToDatabase() {
+        const title = document.getElementById('dbTitle').value;
+        const subject = document.getElementById('dbSubject').value;
+        const status = document.getElementById('dbStatus');
+
+        if(!title) { alert("कृपया शीर्षक लिखें!"); return; }
+
+        status.innerText = "डेटा सेव हो रहा है...";
+
+        // मान लेते हैं आपके डेटाबेस में 'notes' नाम की एक टेबल बनी हुई है
+        const { data, error } = await supabase
+            .from('notes') 
+            .insert([{ title: title, subject: subject }]);
+
+        if (error) {
+            status.innerHTML = "❌ डेटाबेस एरर: " + error.message + "<br><small>(जांचें कि 'notes' टेबल बनी है या नहीं)</small>";
+        } else {
+            status.innerHTML = "✅ डेटा सफलतापूर्वक डेटाबेस टेबल में सुरक्षित हो गया!";
+            document.getElementById('dbTitle').value = ""; // इनपुट क्लियर करें
+        }
+    }
+
+    // ==========================================
+    // 3. STORAGE FUNCTIONS (UPLOAD & GET LINK)
+    // ==========================================
+    async function uploadAndGetLink() {
+        const filePicker = document.getElementById('filePicker');
+        const status = document.getElementById('storageStatus');
+        const linkContainer = document.getElementById('linkContainer');
+        const generatedLink = document.getElementById('generatedLink');
+
+        if (filePicker.files.length === 0) {
+            alert("कृपया पहले एक फाइल चुनें!");
+            return;
+        }
+
+        const file = filePicker.files[0];
+        // एक यूनिक नाम तैयार करना (Timestamp के साथ) ताकि फाइलें आपस में ओवरराइट न हों
+        const uniqueFileName = Date.now() + "_" + file.name;
+
+        status.innerText = "फाइल क्लाउड पर जा रही है... कृपया रुकें...";
+        linkContainer.style.display = "none";
+
+        // कस्टमाइज्ड बकेट का नाम (मान लेते हैं आपने 'my-bucket' नाम से बकेट बनाया है)
+        const { data, error } = await supabase
+            .storage
+            .from('my-bucket') 
+            .upload(uniqueFileName, file);
+
+        if (error) {
+            status.innerHTML = "❌ अपलोड फेल: " + error.message + "<br><small>(जांचें कि 'my-bucket' स्टोरेज बकेट पब्लिक है या नहीं)</small>";
+            return;
+        }
+
+        // अपलोड सफल होने के तुरंत बाद डायरेक्ट URL प्राप्त करना
+        const { data: urlData } = supabase
+            .storage
+            .from('my-bucket')
+            .getPublicUrl(uniqueFileName);
+
+        const publicUrl = urlData.publicUrl;
+
+        // स्क्रीन पर लिंक प्रदर्शित करना
+        status.innerText = "🚀 फाइल सफलतापूर्वक अपलोड हो गई है!";
+        generatedLink.href = publicUrl;
+        generatedLink.innerText = publicUrl;
+        linkContainer.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
