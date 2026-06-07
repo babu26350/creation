@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <title>Browser Neural Chat</title>
+</head>
+<body>
+    <h1>ब्राउज़र न्यूरल चैट</h1>
+    <input type="text" id="userInput" placeholder="यहाँ कुछ लिखें...">
+    <button onclick="generateResponse()">पूछें</button>
+    <p id="output">AI सोच रहा है या लोड हो रहा है...</p>
+
+    <!-- Transformers.js लाइब्रेरी को लोड करना -->
+    <script type="module">
+        import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.14.0';
+
+        let generator;
+
+        // न्यूरल नेटवर्क मॉडल को ब्राउज़र में लोड करना
+        async function initAI() {
+            document.getElementById('output').innerText = "मॉडल लोड हो रहा है, कृपया प्रतीक्षा करें...";
+            // बातचीत/टेक्स्ट जनरेशन के लिए एक छोटा मॉडल लोड कर रहे हैं
+            generator = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-78M');
+            document.getElementById('output').innerText = "AI तैयार है! कुछ भी पूछें।";
+        }
+
+        window.generateResponse = async function() {
+            const input = document.getElementById('userInput').value;
+            if(!generator) return;
+            
+            document.getElementById('output').innerText = "AI सोच रहा है...";
+            const output = await generator(input, { max_new_tokens: 50 });
+            
+            document.getElementById('output').innerText = output[0].generated_text;
+        }
+
+        initAI();
+    </script>
+</body>
+</html>
