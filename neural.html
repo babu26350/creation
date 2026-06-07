@@ -1,39 +1,90 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <title>Browser rNeural Chat</title>
+    <meta charset="UTF-8">
+    <title>मेरा पहला न्यूरल चैट ऐप</title>
+    <!-- Brain.js लाइब्रेरी को CDN से लोड कर रहे हैं -->
+    <script src="https://unpkg.com/brain.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9; }
+        #chatbox { width: 400px; height: 300px; border: 1px solid #ccc; background: white; padding: 10px; overflow-y: scroll; margin-bottom: 10px; }
+        input { width: 310px; padding: 8px; }
+        button { padding: 8px; cursor: pointer; }
+        .user { color: blue; margin: 5px 0; }
+        .bot { color: green; margin: 5px 0; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <h1>ब्राउज़र न्यूरल चैट</h1>
-    <input type="text" id="userInput" placeholder="यहाँ कुछ लिखें...">
-    <button onclick="generateResponse()">पूछें</button>
-    <p id="output">AI सोच रहा है या लोड हो रहा है...</p>
 
-    <!-- Transformers.js लाइब्रेरी को लोड करना -->
-    <script type="module">
-        import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.14.0';
+    <h2>ब्राउज़र न्यूरल नेटवर्क बातचीत</h2>
+    <div id="chatbox">
+        <div class="bot">AI: नमस्ते! न्यूरल नेटवर्क तैयार है। मुझसे कुछ पूछें (जैसे: hello, status, bye)</div>
+    </div>
+    <input type="text" id="userInput" placeholder="यहाँ टाइप करें...">
+    <button onclick="sendMessage()">भेजें</button>
 
-        let generator;
+    <script>
+        // 1. न्यूरल नेटवर्क को इनिशियलाइज़ करें
+        const net = new brain.NeuralNetwork();
 
-        // न्यूरल नेटवर्क मॉडल को ब्राउज़र में लोड करना
-        async function initAI() {
-            document.getElementById('output').innerText = "मॉडल लोड हो रहा है, कृपया प्रतीक्षा करें...";
-            // बातचीत/टेक्स्ट जनरेशन के लिए एक छोटा मॉडल लोड कर रहे हैं
-            generator = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-78M');
-            document.getElementById('output').innerText = "AI तैयार है! कुछ भी पूछें।";
-        }
+        // 2. ट्रेनिंग डेटा (AI को सिखाना कि किस शब्द का क्या मतलब है)
+        const trainingData = [
+            { input: "hello", output: { greeting: 1 } },
+            { input: "hi", output: { greeting: 1 } },
+            { input: "kaise ho", output: { status: 1 } },
+            { input: "kya haal hai", output: { status: 1 } },
+            { input: "bye", output: { goodbye: 1 } },
+            { input: "alvida", output: { goodbye: 1 } }
+        ];
 
-        window.generateResponse = async function() {
-            const input = document.getElementById('userInput').value;
-            if(!generator) return;
+        // 3. न्यूरल नेटवर्क को ट्रेन करें (यह तुरंत हो जाता है)
+        net.train(trainingData);
+
+        // जवाबों की डिक्शनरी
+        const responses = {
+            greeting: "नमस्कार! मैं आपकी क्या मदद कर सकता हूँ?",
+            status: "मैं बिल्कुल ठीक हूँ! आप बताइए, आपका अध्ययन या काम कैसा चल रहा है?",
+            goodbye: "बाय-बाय! अपना ख्याल रखिएगा।"
+        };
+
+        function sendMessage() {
+            const inputField = document.getElementById("userInput");
+            const chatbox = document.getElementById("chatbox");
+            const text = inputField.value.trim().toLowerCase();
+
+            if (text === "") return;
+
+            // यूजर का मैसेज स्क्रीन पर दिखाएं
+            chatbox.innerHTML += `<div class="user">आप: ${inputField.value}</div>`;
+
+            // 4. न्यूरल नेटवर्क से प्रेडिक्शन (Run) करवाएं
+            const output = net.run(text);
             
-            document.getElementById('output').innerText = "AI सोच रहा है...";
-            const output = await generator(input, { max_new_tokens: 50 });
-            
-            document.getElementById('output').innerText = output[0].generated_text;
-        }
+            // सबसे ज्यादा संभावना (Probability) वाले आउटपुट को पहचानें
+            let highestScore = 0;
+            let chosenIntent = "unknown";
 
-        initAI();
+            for (let intent in output) {
+                if (output[intent] > highestScore && output[intent] > 0.5) {
+                    highestScore = output[intent];
+                    chosenIntent = intent;
+                }
+            }
+
+            // AI का जवाब तय करना
+            let botReply = "माफ़ कीजिएगा, मैं यह समझ नहीं पाया। क्या आप कुछ और पूछ सकते हैं?";
+            if (chosenIntent !== "unknown" && responses[chosenIntent]) {
+                botReply = responses[chosenIntent];
+            }
+
+            // AI का जवाब स्क्रीन पर दिखाएं
+            setTimeout(() => {
+                chatbox.innerHTML += `<div class="bot">AI: ${botReply}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight; // स्क्रॉल नीचे करें
+            }, 300);
+
+            inputField.value = ""; // इनपुट साफ़ करें
+        }
     </script>
 </body>
 </html>
