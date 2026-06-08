@@ -1656,76 +1656,34 @@ function showToast(message){
     },3000);
     }
     
+
 function addToCart(productId){
 
-    const product = getProductById(productId);
+const product = getProductById(productId);
 
-    if(!product){
-        showToast("Product Not Found");
-        return;
-    }
+if(!product){
 
-    const qty =
-    productQty[productId] || 1;
+showToast("Product Not Found");
 
-    const existing = cart.find(item =>
-        String(item.id) === String(product.id)
-    );
-
-    if(existing){
-
-        existing.quantity += qty;
-
-    }else{
-
-        cart.push({
-            ...product,
-            quantity: qty
-        });
-
-    }
-
-    updateCartCount();
-
-    localStorage.setItem(
-        "ssCart",
-        JSON.stringify(cart)
-    );
-
-    renderCart();
-
-    cartPopup.style.right = "0";
-
-    showToast("Added To Cart");
-    }
-
-const existing = cart.find((item)=>{
-
-return String(item.id) === String(product.id);
-
-});
-
-if(existing){
-
-existing.quantity += qty;
-
-}else{
-
-cart.push({
-
-...product,
-quantity: qty
-
-});
+return;
 
 }
 
-updateCartCount();
+const qty = parseInt(
+        document.getElementById("popupQty").value
+    );
 
-showToast("Product Added To Cart");
+    if(!qty || qty <= 0){
 
- }
+        return;
 
+    }
+const qty =
+productQty[productId] || 1;
+
+document.getElementById("popupQty").value =
+qty;
+}
 let selectedProductId = null;
 let selectedBuyProductId = null;
 
