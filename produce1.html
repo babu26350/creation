@@ -1525,7 +1525,6 @@ return String(item.id) === String(productId);
 
 }
 
-
 function changeQty(productId,type){
 
     if(!productQty[productId]){
@@ -1542,7 +1541,8 @@ function changeQty(productId,type){
         `qty_${productId}`
     ).innerText =
     productQty[productId];
-   letfunction filterCategory(category,btn){
+    }
+    function filterCategory(category,btn){
 
     document
     .querySelectorAll(".category-btn")
