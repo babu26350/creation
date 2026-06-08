@@ -1580,9 +1580,17 @@ return;
 
 }
 
+const qty = parseInt(
+        document.getElementById("popupQty").value
+    );
+
+    if(!qty || qty <= 0){
+
+        return;
+
+    }
 
 
-qty = parseInt(qty);
 
 const existing = cart.find((item)=>{
 
