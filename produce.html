@@ -1686,7 +1686,12 @@ function submitBuyNow() {
         return;
     }
 
-    const total = Number(product.price) * qty;
+    const finalPrice =
+    product.offerPrice && product.offerPrice !== "NA"
+    ? Number(product.offerPrice)
+    : Number(product.price);
+
+const total = finalPrice * qty;
 
     let message = `
 🛍️ DIRECT BUY ORDER
