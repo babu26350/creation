@@ -553,6 +553,46 @@ footer{
 .pay-btn:hover{
     background:#0f172a;
 }
+ .popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.popup-box{
+    width:90%;
+    max-width:350px;
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.popup-box input{
+    width:100%;
+    height:50px;
+    margin:15px 0;
+    padding:0 15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+}
+
+.popup-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.popup-buttons button{
+    flex:1;
+    height:45px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+ }
 </style>
 </head>
 <body>
@@ -1116,7 +1156,33 @@ footer{
         © 2026 SS GROUP | Developed by SS GROUP</div>
 
 </footer>
+<div id="customPopup" class="popup">
 
+    <div class="popup-box">
+
+        <h3 id="popupTitle">Quantity</h3>
+
+        <input
+            type="number"
+            id="popupQty"
+            placeholder="Enter Quantity"
+            min="1">
+
+        <div class="popup-buttons">
+
+            <button onclick="closePopup()">
+                Cancel
+            </button>
+
+            <button onclick="submitPopup()">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
    <script>
 
@@ -1341,7 +1407,7 @@ Buy
 
 <button
 class="add-btn"
-onclick="addToCart('${product.id}')">
+onclick="openPopup('${product.id}')">
 <i class="fa-solid fa-cart-plus"></i>
 Add Cart
 </button>
@@ -1475,14 +1541,40 @@ function applyFilters(){
     applyFilters();
     }
 ========================= */
+function showToast(message){
 
+    const toast =
+    document.createElement("div");
+
+    toast.innerText = message;
+
+    toast.style.cssText = `
+        position:fixed;
+        bottom:30px;
+        right:20px;
+        background:#0d6efd;
+        color:white;
+        padding:15px 25px;
+        border-radius:12px;
+        z-index:999999;
+    `;
+
+    document.body.appendChild(toast);
+
+    setTimeout(()=>{
+
+        toast.remove();
+
+    },3000);
+    }
+    
 function addToCart(productId){
 
 const product = getProductById(productId);
 
 if(!product){
 
-alert("Product Not Found");
+showToast("Product Not Found");
 
 return;
 
@@ -1521,11 +1613,44 @@ quantity: qty
 
 updateCartCount();
 
-alert("Product Added To Cart");
+showToast("Product Added To Cart");
 
+ }
+
+let selectedProductId = null;
+
+function openPopup(productId){
+
+    selectedProductId = productId;
+
+    document.getElementById("popupQty").value = "";
+
+    document.getElementById("customPopup")
+    .style.display = "flex";
 }
 
+function closePopup(){
 
+    document.getElementById("customPopup")
+    .style.display = "none";
+}
+
+function submitPopup(){
+
+    const qty = parseInt(
+        document.getElementById("popupQty").value
+    );
+
+    if(!qty || qty <= 0){
+
+        return;
+
+    }
+
+    addProductToCart(selectedProductId, qty);
+
+    closePopup();
+    }
 
 /* =========================
    CART POPUP
@@ -1871,7 +1996,7 @@ getProductById(productId);
 
 if(!product){
 
-alert("Product Not Found");
+showToast("Products not found");
 
 return;
 
