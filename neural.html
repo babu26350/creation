@@ -2,89 +2,86 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>मेरा पहला न्यूरल चैट ऐप</title>
-    <!-- Brain.js लाइब्रेरी को CDN से लोड कर रहे हैं -->
-    <script src="https://unpkg.com/brain.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS Infotech Animation</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9; }
-        #chatbox { width: 400px; height: 300px; border: 1px solid #ccc; background: white; padding: 10px; overflow-y: scroll; margin-bottom: 10px; }
-        input { width: 310px; padding: 8px; }
-        button { padding: 8px; cursor: pointer; }
-        .user { color: blue; margin: 5px 0; }
-        .bot { color: green; margin: 5px 0; font-weight: bold; }
+        /* पूरे पेज का बैकग्राउंड और अलाइनमेंट */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d0f12; /* डार्क बैकग्राउंड ताकि लाइट अच्छे से दिखे */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial Black', sans-serif;
+            overflow: hidden;
+        }
+
+        /* टेक्स्ट कंटेनर */
+        .text-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* मुख्य बड़ा टेक्स्ट */
+        .animated-text {
+            font-size: 6rem; /* अक्षरों का बड़ा आकार */
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: rgba(255, 255, 255, 0.1); /* हल्का पारदर्शी बेस रंग */
+            background-image: linear-gradient(
+                to right,
+                #4f46e5 0%,    /* पर्पल-ब्लू */
+                #ff007f 25%,   /* नियॉन पिंक */
+                #ffffff 50%,   /* चमकदार सफेद लाइट (रिफ्लेक्शन) */
+                #ff007f 75%,   /* नियॉन पिंक */
+                #4f46e5 100%   /* पर्पल-ब्लू */
+            );
+            background-size: 200% auto; /* रिफ्लेक्शन मूव करने के लिए साइज */
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* ग्लोइंग इफेक्ट (आसपास की चमक) */
+            filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.3));
+            
+            /* CSS एनिमेशन: 3 सेकंड में लाइट शुरू से अंत तक जाएगी और बार-बार चलती रहेगी */
+            animation: shineReflection 3s linear infinite;
+        }
+
+        /* लाइट रिफ्लेक्शन का एनिमेशन */
+        @keyframes shineReflection {
+            0% {
+                background-position: 200% center;
+            }
+            100% {
+                background-position: -200% center;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <h2>ब्राउज़र न्यूरल नेटवर्क बातचीत</h2>
-    <div id="chatbox">
-        <div class="bot">AI: नमस्ते! न्यूरल नेटवर्क तैयार है। मुझसे कुछ पूछें (जैसे: hello, status, bye)</div>
+    <div class="text-container">
+        <h1 class="animated-text" id="logo-text">SS INFOTECH</h1>
     </div>
-    <input type="text" id="userInput" placeholder="यहाँ टाइप करें...">
-    <button onclick="sendMessage()">भेजें</button>
 
     <script>
-        // 1. न्यूरल नेटवर्क को इनिशियलाइज़ करें
-        const net = new brain.NeuralNetwork();
-
-        // 2. ट्रेनिंग डेटा (AI को सिखाना कि किस शब्द का क्या मतलब है)
-        const trainingData = [
-            { input: "hello", output: { greeting: 1 } },
-            { input: "hi", output: { greeting: 1 } },
-            { input: "kaise ho", output: { status: 1 } },
-            { input: "kya haal hai", output: { status: 1 } },
-            { input: "bye", output: { goodbye: 1 } },
-            { input: "alvida", output: { goodbye: 1 } }
-        ];
-
-        // 3. न्यूरल नेटवर्क को ट्रेन करें (यह तुरंत हो जाता है)
-        net.train(trainingData);
-
-        // जवाबों की डिक्शनरी
-        const responses = {
-            greeting: "नमस्कार! मैं आपकी क्या मदद कर सकता हूँ?",
-            status: "मैं बिल्कुल ठीक हूँ! आप बताइए, आपका अध्ययन या काम कैसा चल रहा है?",
-            goodbye: "बाय-बाय! अपना ख्याल रखिएगा।"
-        };
-
-        function sendMessage() {
-            const inputField = document.getElementById("userInput");
-            const chatbox = document.getElementById("chatbox");
-            const text = inputField.value.trim().toLowerCase();
-
-            if (text === "") return;
-
-            // यूजर का मैसेज स्क्रीन पर दिखाएं
-            chatbox.innerHTML += `<div class="user">आप: ${inputField.value}</div>`;
-
-            // 4. न्यूरल नेटवर्क से प्रेडिक्शन (Run) करवाएं
-            const output = net.run(text);
+        // यदि आप भविष्य में जावास्क्रिप्ट से इस एनिमेशन की स्पीड 
+        // या टेक्स्ट को डायनेमिकली बदलना चाहें:
+        document.addEventListener("DOMContentLoaded", () => {
+            const textElement = document.getElementById("logo-text");
             
-            // सबसे ज्यादा संभावना (Probability) वाले आउटपुट को पहचानें
-            let highestScore = 0;
-            let chosenIntent = "unknown";
-
-            for (let intent in output) {
-                if (output[intent] > highestScore && output[intent] > 0.5) {
-                    highestScore = output[intent];
-                    chosenIntent = intent;
-                }
-            }
-
-            // AI का जवाब तय करना
-            let botReply = "माफ़ कीजिएगा, मैं यह समझ नहीं पाया। क्या आप कुछ और पूछ सकते हैं?";
-            if (chosenIntent !== "unknown" && responses[chosenIntent]) {
-                botReply = responses[chosenIntent];
-            }
-
-            // AI का जवाब स्क्रीन पर दिखाएं
-            setTimeout(() => {
-                chatbox.innerHTML += `<div class="bot">AI: ${botReply}</div>`;
-                chatbox.scrollTop = chatbox.scrollHeight; // स्क्रॉल नीचे करें
-            }, 300);
-
-            inputField.value = ""; // इनपुट साफ़ करें
-        }
+            // उदाहरण के लिए: कंसोल में मैसेज देखना कि स्क्रिप्ट लोड हो चुकी है
+            console.log("SS INFOTECH एनिमेशन सफलतापूर्वक लोड हो गया है।");
+            
+            /* आप चाहें तो JS के जरिए यूजर के क्लिक पर स्पीड बदल सकते हैं:
+               textElement.style.animationDuration = "1.5s"; // तेज रिफ्लेक्शन के लिए
+            */
+        });
     </script>
+
 </body>
 </html>
