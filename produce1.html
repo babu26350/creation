@@ -592,7 +592,31 @@ footer{
     border:none;
     border-radius:12px;
     cursor:pointer;
- }
+ } .qty-box{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.qty-box button{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#0d6efd;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.qty-box span{
+    min-width:30px;
+    text-align:center;
+    font-weight:700;
+    font-size:18px;
+     }
 </style>
 </head>
 <body>
@@ -1233,7 +1257,7 @@ footer{
 /* =========================
    GLOBAL PRODUCTS
 ========================= */
-
+let productQty = {};
 let products = [];
 
 let selectedCategory = "All";
@@ -1438,7 +1462,21 @@ margin-bottom:10px;">
 Category :
 <b>${product.category}</b>
 </div>
+<div class="qty-box">
 
+    <button onclick="changeQty('${product.id}',-1)">
+        -
+    </button>
+
+    <span id="qty_${product.id}">
+        1
+    </span>
+
+    <button onclick="changeQty('${product.id}',1)">
+        +
+    </button>
+
+</div>
 <div class="product-buttons">
 
 <button
@@ -1488,8 +1526,23 @@ return String(item.id) === String(productId);
 }
 
 
+function changeQty(productId,type){
 
-function filterCategory(category,btn){
+    if(!productQty[productId]){
+        productQty[productId] = 1;
+    }
+
+    productQty[productId] += type;
+
+    if(productQty[productId] < 1){
+        productQty[productId] = 1;
+    }
+
+    document.getElementById(
+        `qty_${productId}`
+    ).innerText =
+    productQty[productId];
+   letfunction filterCategory(category,btn){
 
     document
     .querySelectorAll(".category-btn")
@@ -1687,9 +1740,12 @@ function submitBuyNow() {
     }
 
     const finalPrice =
-    product.offerPrice && product.offerPrice !== "NA"
-    ? Number(product.offerPrice)
-    : Number(product.price);
+product.offerPrice &&
+product.offerPrice !== "NA"
+?
+Number(product.offerPrice)
+:
+Number(product.price);
 
 const total = finalPrice * qty;
 
@@ -1713,7 +1769,11 @@ function openPopup(productId){
     selectedProductId = productId;
 
     document.getElementById("popupQty").value = "";
+const qty =
+productQty[productId] || 1;
 
+document.getElementById("buyQty").value =
+qty;
     document.getElementById("customPopup")
     .style.display = "flex";
 }
@@ -2009,7 +2069,10 @@ function searchProduct(){
 
     if(!product) return;
 
-    const amount =
+    const qty =
+    productQty[productId] || 1;
+
+    const price =
     product.offerPrice &&
     product.offerPrice !== "NA" &&
     product.offerPrice !== ""
@@ -2018,8 +2081,10 @@ function searchProduct(){
     :
     Number(product.price);
 
+    const amount = price * qty;
+
     window.location.href =
-    `pay.html?amount=${amount}`;
+    `pay.html?amount=${amount}&qty=${qty}&productId=${product.id}`;
 
  }
 /* =========================
