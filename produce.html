@@ -1505,6 +1505,46 @@ function filterCategory(category,btn){
 
     applyFilters();
  }
+    function applyFilters(){
+
+    const searchText =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+    let filtered = [...products];
+
+    if(selectedCategory && selectedCategory !== "All"){
+
+        filtered = filtered.filter(item =>
+            item.category === selectedCategory
+        );
+
+    }
+
+    if(selectedPrice){
+
+        filtered = filtered.filter(item =>
+            Number(item.price) <= Number(selectedPrice)
+        );
+
+    }
+
+    filtered = filtered.filter(item =>
+
+        item.title.toLowerCase().includes(searchText)
+
+        ||
+
+        item.category.toLowerCase().includes(searchText)
+
+    );
+
+    console.log(filtered);
+
+    renderProducts(filtered);
+    }
  function updatePriceRange(){
 
     let filteredProducts =
