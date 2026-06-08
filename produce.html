@@ -1467,7 +1467,7 @@ function filterCategory(category,btn){
         selectedCategory === "All"
         ? products
         : products.filter(
-            item => item.category === selectedCategory
+            item => item.category ===letlectedCategory
         );
 
     if(filteredProducts.length === 0) return;
@@ -1580,13 +1580,7 @@ return;
 
 }
 
-let qty = prompt("Enter Quantity");
 
-if(!qty || qty <= 0){
-
-return;
-
-}
 
 qty = parseInt(qty);
 
