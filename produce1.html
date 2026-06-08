@@ -1678,12 +1678,35 @@ const qty = parseInt(
         return;
 
     }
-const qty =
-productQty[productId] || 1;
 
-document.getElementById("popupQty").value =
-qty;
+
+
+const existing = cart.find((item)=>{
+
+return String(item.id) === String(product.id);
+
+});
+
+if(existing){
+
+existing.quantity += qty;
+
+}else{
+
+cart.push({
+
+...product,
+quantity: qty
+
+});
+
 }
+
+updateCartCount();
+
+showToast("Product Added To Cart");
+
+    }
 let selectedProductId = null;
 let selectedBuyProductId = null;
 
