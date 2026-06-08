@@ -1511,7 +1511,7 @@ function filterCategory(category,btn){
         selectedCategory === "All"
         ? products
         : products.filter(
-            item => item.category ===letlectedCategory
+            item => item.category === selectedCategory
         );
 
     if(filteredProducts.length === 0) return;
@@ -1534,57 +1534,8 @@ function filterCategory(category,btn){
 
     document.getElementById("priceValue")
     .innerText = `₹0 - ₹${maxPrice}`;
-}
-
-function applyFilters(){
-
-    const searchText =
-    document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase();
-
-    let filtered = [...products];
-
-    if(selectedCategory !== "All"){
-
-        filtered = filtered.filter(item =>
-            item.category === selectedCategory
-        );
-
     }
 
-    filtered = filtered.filter(item =>
-
-        Number(item.price) <= selectedPrice &&
-
-        (
-            item.title.toLowerCase().includes(searchText)
-            ||
-            item.category.toLowerCase().includes(searchText)
-        )
-
-    );
-
-    renderProducts(filtered);
-    }
-/* =========================
-   ADD TO CARTfunction filterCategory(category, btn){
-
-    document
-    .querySelectorAll(".category-btn")
-    .forEach(item=>{
-        item.classList.remove("active");
-    });
-
-    btn.classList.add("active");
-
-    selectedCategory = category;
-
-    updatePriceRange();
-    applyFilters();
-    }
-========================= */
 function showToast(message){
 
     const toast =
