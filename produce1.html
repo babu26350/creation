@@ -2036,6 +2036,17 @@ Price : ₹${item.price}
 </p>
 `
     }
+    <div class="qty-container">
+    <!-- Quantity नाम यहाँ बटन के ऊपर दिखेगा -->
+    <span class="qty-label">Quantity</span> 
+    
+    <div class="qty-box">
+        <button class="qty-btn" onclick="changeQty('${product.id}',-1)">−</button>
+        <span class="qty-num" id="qty_${product.id}">1</span>
+        <button class="qty-btn" onclick="changeQty('${product.id}',1)">+</button>
+    </div>
+</div>
+
 <p style="
 font-weight:bold;
 color:#0d6efd;
