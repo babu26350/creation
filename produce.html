@@ -1197,6 +1197,37 @@ footer{
         </div>
     </div>
 </div>
+ <div id="cartOrderPopup" class="popup">
+
+    <div class="popup-box">
+
+        <h3>Complete Your Order</h3>
+
+        <input
+        type="text"
+        id="cartCustomerName"
+        placeholder="Enter Name">
+
+        <input
+        type="tel"
+        id="cartCustomerContact"
+        placeholder="Enter Contact Number">
+
+        <div class="popup-buttons">
+
+            <button onclick="closeCartOrderPopup()">
+                Cancel
+            </button>
+
+            <button onclick="submitCartOrder()">
+                Order Now
+            </button>
+
+        </div>
+
+    </div>
+
+ </div>
    <script>
 
 /* =========================
@@ -1940,7 +1971,7 @@ cursor:pointer;
 Pay Now
 </button>
 <button
-onclick="orderCart()"
+onclick="openCartOrderPopup()"
 style="
 width:100%;
 padding:15px;
@@ -2114,7 +2145,69 @@ window.location.href =
 /* =========================
    ORDER CART
 ========================= */
+ function openCartOrderPopup(){
 
+    document.getElementById("cartCustomerName").value = "";
+    document.getElementById("cartCustomerContact").value = "";
+
+    document.getElementById("cartOrderPopup")
+    .style.display = "flex";
+}
+
+function closeCartOrderPopup(){
+
+    document.getElementById("cartOrderPopup")
+    .style.display = "none";
+    }
+    function submitCartOrder(){
+
+    const name =
+    document.getElementById("cartCustomerName")
+    .value.trim();
+
+    const contact =
+    document.getElementById("cartCustomerContact")
+    .value.trim();
+
+    if(!name || !contact){
+
+        showToast("Please Fill All Fields");
+
+        return;
+    }
+
+    let message = "🛒 SS INFOTECH ORDER\n\n";
+
+    let total = 0;
+
+    cart.forEach(item=>{
+
+        const subtotal =
+        Number(item.price) *
+        Number(item.quantity);
+
+        total += subtotal;
+
+        message += `
+📦 Product : ${item.title}
+🔢 Quantity : ${item.quantity}
+💰 Price : ₹${item.price}
+💵 Total : ₹${subtotal}
+
+`;
+    });
+
+    message += `
+👤 Name : ${name}
+📞 Contact : ${contact}
+💳 Grand Total : ₹${total}
+`;
+
+    window.location.href =
+    `https://wa.me/919414400605?text=${encodeURIComponent(message)}`;
+
+    closeCartOrderPopup();
+    }
 function orderCart(){
 
 let name = prompt("Enter Your Name");
