@@ -616,7 +616,73 @@ footer{
     text-align:center;
     font-weight:700;
     font-size:18px;
-     }
+}
+ /* पूरे क्वांटिटी सेक्शन का कंटेनर */
+.qty-container {
+    display: flex;
+    flex-direction: column; /* नाम ऊपर और बटन नीचे लाने के लिए */
+    gap: 6px;               /* नाम और बटन के बीच की दूरी */
+    align-items: flex-start; /* बाईं तरफ अलाइन करने के लिए (सेंटर के लिए center करें) */
+}
+
+/* "Quantity" नाम की स्टाइल */
+.qty-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c3e50;         /* हल्का ब्लैक / चारकोल रंग */
+    text-transform: uppercase; /* अक्षरों को कैपिटल करने के लिए (वैकल्पिक) */
+    letter-spacing: 0.5px;
+}
+
+/* मुख्य कैप्सूल बॉक्स (हल्का आसमानी बैकग्राउंड) */
+.qty-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e0f2fe; /* बहुत हल्का आसमानी (Light Sky Blue) */
+    border: 1px solid #bae6fd; /* हल्के आसमानी रंग की ही बॉर्डर */
+    border-radius: 50px;       /* कैप्सूल लुक */
+    padding: 4px;
+    width: 130px;              /* सुंदर स्पेसिंग के लिए थोड़ी चौड़ाई बढ़ाई है */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04); /* बेहद हल्की शैडो */
+}
+
+/* प्लस और माइनस बटन */
+.qty-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    background-color: #38bdf8; /* आसमानी थीम कलर (Sky Blue) */
+    color: #ffffff;            /* आइकॉन का रंग सफ़ेद */
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* बटन पर माउस ले जाने या क्लिक करने पर */
+.qty-btn:hover {
+    background-color: #0ea5e9; /* थोड़ा गहरा आसमानी रंग */
+}
+
+.qty-btn:active {
+    transform: scale(0.92);    /* क्लिक करने पर हल्का सा दबेगा */
+}
+
+/* बीच के नंबर (संख्या) की स्टाइल */
+.qty-num {
+    font-size: 16px;
+    font-weight: 700;          /* नंबर को थोड़ा और बोल्ड किया */
+    color: #1e293b;            /* हल्का ब्लैक (Dark Slate) */
+    min-width: 28px;
+    text-align: center;
+    user-select: none;
+}
+
 </style>
 </head>
 <body>
@@ -1462,21 +1528,17 @@ margin-bottom:10px;">
 Category :
 <b>${product.category}</b>
 </div>
-<div class="qty-box">
-
-    <button onclick="changeQty('${product.id}',-1)">
-        -
-    </button>
-
-    <span id="qty_${product.id}">
-        1
-    </span>
-
-    <button onclick="changeQty('${product.id}',1)">
-        +
-    </button>
-
+<div class="qty-container">
+    <!-- Quantity नाम यहाँ बटन के ऊपर दिखेगा -->
+    <span class="qty-label">Quantity</span> 
+    
+    <div class="qty-box">
+        <button class="qty-btn" onclick="changeQty('${product.id}',-1)">−</button>
+        <span class="qty-num" id="qty_${product.id}">1</span>
+        <button class="qty-btn" onclick="changeQty('${product.id}',1)">+</button>
+    </div>
 </div>
+
 <div class="product-buttons">
 
 <button
