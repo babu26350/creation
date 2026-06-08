@@ -1183,7 +1183,20 @@ footer{
     </div>
 
 </div>
+<div id="buyPopup" class="popup">
+    <div class="popup-box">
+        <h3>Buy Now</h3>
 
+        <input type="number" id="buyQty" placeholder="Enter Quantity" min="1">
+        <input type="text" id="buyName" placeholder="Enter Your Name">
+        <input type="text" id="buyContact" placeholder="Enter Contact Number">
+
+        <div class="popup-buttons">
+            <button type="button" onclick="closeBuyPopup()">Cancel</button>
+            <button type="button" onclick="submitBuyNow()">OK</button>
+        </div>
+    </div>
+</div>
    <script>
 
 /* =========================
@@ -1399,7 +1412,7 @@ Category :
 
 <button
 class="buy-btn"
-onclick="buyNow('${product.id}')">
+onclick="openBuyPopup('${product.id}')">
  
 <i class="fa-solid fa-bag-shopping"></i>
 Buy
@@ -1620,7 +1633,54 @@ showToast("Product Added To Cart");
  }
 
 let selectedProductId = null;
+let selectedBuyProductId = null;
 
+function openBuyPopup(productId) {
+    selectedBuyProductId = productId;
+    document.getElementById("buyQty").value = "";
+    document.getElementById("buyName").value = "";
+    document.getElementById("buyContact").value = "";
+    document.getElementById("buyPopup").style.display = "flex";
+}
+
+function closeBuyPopup() {
+    document.getElementById("buyPopup").style.display = "none";
+}
+
+function submitBuyNow() {
+    const qty = parseInt(document.getElementById("buyQty").value);
+    const name = document.getElementById("buyName").value.trim();
+    const contact = document.getElementById("buyContact").value.trim();
+
+    if (!qty || qty <= 0 || !name || !contact) {
+        showToast("Please fill all fields");
+        return;
+    }
+
+    const product = getProductById(selectedBuyProductId);
+
+    if (!product) {
+        showToast("Product not found");
+        return;
+    }
+
+    const total = Number(product.price) * qty;
+
+    let message = `
+🛍️ DIRECT BUY ORDER
+📦 Product : ${product.title}
+📦 Category : ${product.category}
+🆔 Product ID : ${product.id}
+🔢 Quantity : ${qty}
+💰 Price : ₹${product.price}
+💵 Total : ₹${total}
+👤 Name : ${name}
+📞 Contact : ${contact}
+`;
+
+    window.location.href =
+        `https://wa.me/919414400605?text=${encodeURIComponent(message)}`;
+    }
 function openPopup(productId){
 
     selectedProductId = productId;
