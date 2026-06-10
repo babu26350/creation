@@ -1,0 +1,674 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Purnima E-Mitra | राजस्थान एवं भारत सरकार योजनाएं</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#222;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:rgba(255,255,255,.95);
+backdrop-filter:blur(10px);
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+z-index:999;
+}
+
+.navbar{
+max-width:1400px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#0f766e;
+}
+
+.logo span{
+color:#2563eb;
+}
+
+.nav-links{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:#2563eb;
+}
+
+.menu-btn{
+display:none;
+font-size:28px;
+cursor:pointer;
+}
+
+/* NEWS STRIP */
+
+.news-strip{
+margin-top:75px;
+background:#dc2626;
+color:#fff;
+padding:10px;
+display:flex;
+align-items:center;
+overflow:hidden;
+}
+
+.news-title{
+background:#fff;
+color:#dc2626;
+padding:8px 15px;
+font-weight:bold;
+margin-right:15px;
+border-radius:5px;
+white-space:nowrap;
+}
+
+.marquee{
+white-space:nowrap;
+animation:marquee 25s linear infinite;
+}
+
+@keyframes marquee{
+0%{
+transform:translateX(100%);
+}
+100%{
+transform:translateX(-100%);
+}
+}
+
+/* HERO */
+
+.hero{
+min-height:90vh;
+background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1400");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content{
+max-width:900px;
+color:white;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.8;
+}
+
+.hero-buttons{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:14px 28px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+text-decoration:none;
+font-weight:bold;
+}
+
+.btn-primary{
+background:#2563eb;
+color:white;
+}
+
+.btn-success{
+background:#16a34a;
+color:white;
+}
+
+/* SECTION */
+
+section{
+padding:80px 20px;
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:50px;
+}
+
+.section-title h2{
+font-size:40px;
+color:#0f172a;
+margin-bottom:10px;
+}
+
+.section-title p{
+color:#555;
+}
+
+/* ABOUT */
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+align-items:center;
+}
+
+.about-card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.about-card h3{
+margin-bottom:15px;
+color:#2563eb;
+}
+
+/* SERVICES */
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.service-card{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.service-card:hover{
+transform:translateY(-8px);
+}
+
+.service-icon{
+font-size:45px;
+margin-bottom:15px;
+}
+
+/* UPDATES */
+
+.updates-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.update-card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.update-card h3{
+color:#2563eb;
+margin-bottom:10px;
+}
+
+/* CONTACT */
+
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.contact-form,
+.contact-info{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+input,
+textarea{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f172a;
+color:white;
+padding:40px 20px;
+text-align:center;
+}
+
+.footer-links{
+margin:20px 0;
+}
+
+.footer-links a{
+color:white;
+text-decoration:none;
+margin:0 10px;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25d366;
+color:white;
+width:60px;
+height:60px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+font-size:30px;
+text-decoration:none;
+z-index:999;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.nav-links{
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+display:none;
+padding:20px;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.about-grid,
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<nav class="navbar">
+
+<div class="logo">
+Purnima <span>E-Mitra</span>
+</div>
+
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#updates">Updates</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
+
+</nav>
+</header>
+
+<div class="news-strip">
+
+<div class="news-title">
+Latest Updates
+</div>
+
+<div class="marquee" id="newsMarquee">
+Loading latest government schemes...
+</div>
+
+</div>
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>
+पूर्णिमा ई-मित्र
+</h1>
+
+<p>
+राजस्थान एवं भारत सरकार की समस्त योजनाओं,
+ई-मित्र सेवाओं, प्रमाण पत्र, पेंशन, छात्रवृत्ति,
+आयुष्मान कार्ड एवं ऑनलाइन आवेदन की सुविधा।
+</p>
+
+<div class="hero-buttons">
+
+<a href="#services" class="btn btn-primary">
+सेवाएं देखें
+</a>
+
+<a href="#contact" class="btn btn-success">
+संपर्क करें
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="container">
+
+<div class="section-title">
+<h2>हमारे बारे में</h2>
+<p>
+विश्वसनीय एवं डिजिटल सेवाओं का केंद्र
+</p>
+</div>
+
+<div class="about-grid">
+
+<div class="about-card">
+<h3>पूर्णिमा ई-मित्र</h3>
+<p>
+हम राजस्थान एवं भारत सरकार की विभिन्न योजनाओं
+के आवेदन, प्रमाण पत्र, पेंशन, छात्रवृत्ति,
+आयुष्मान कार्ड तथा अन्य ऑनलाइन सेवाएं उपलब्ध कराते हैं।
+</p>
+</div>
+
+<div class="about-card">
+<h3>हमारा उद्देश्य</h3>
+<p>
+हर नागरिक तक सरकारी योजनाओं का लाभ पहुंचाना
+तथा डिजिटल सेवाओं को सरल बनाना।
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<div class="container">
+
+<div class="section-title">
+<h2>हमारी सेवाएं</h2>
+</div>
+
+<div class="services-grid">
+
+<div class="service-card">
+<div class="service-icon">👨‍🌾</div>
+<h3>किसान योजनाएं</h3>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🎓</div>
+<h3>छात्रवृत्ति</h3>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🏥</div>
+<h3>आयुष्मान कार्ड</h3>
+</div>
+
+<div class="service-card">
+<div class="service-icon">👵</div>
+<h3>पेंशन योजनाएं</h3>
+</div>
+
+<div class="service-card">
+<div class="service-icon">📄</div>
+<h3>प्रमाण पत्र</h3>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🏠</div>
+<h3>आवास योजना</h3>
+</div>
+
+<div class="service-card">
+<div class="service-icon">💼</div>
+<h3>रोजगार योजनाएं</h3>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🖥️</div>
+<h3>ई-मित्र सेवाएं</h3>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="updates">
+
+<div class="container">
+
+<div class="section-title">
+<h2>ताजा अपडेट</h2>
+</div>
+
+<div class="updates-grid" id="updatesGrid">
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section-title">
+<h2>संपर्क करें</h2>
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-form">
+
+<input type="text" placeholder="नाम">
+
+<input type="text" placeholder="मोबाइल नंबर">
+
+<textarea placeholder="संदेश लिखें"></textarea>
+
+<button class="btn btn-primary">
+भेजें
+</button>
+
+</div>
+
+<div class="contact-info">
+
+<h3>पूर्णिमा ई-मित्र</h3>
+
+<br>
+
+<p>📍 राजस्थान</p>
+
+<p>📞 6378918603</p>
+
+<p>📧 info@purnimaemitra.in</p>
+
+<p>⏰ सुबह 8 बजे से शाम 8 बजे तक</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2>पूर्णिमा ई-मित्र</h2>
+
+<div class="footer-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
+
+<p>
+© 2026 Purnima E-Mitra | All Rights Reserved
+</p>
+
+</footer>
+
+<a
+class="whatsapp"
+href="https://wa.me/916378918603"
+target="_blank">
+💬
+</a>
+
+<script>
+
+const API =
+"https://6a2963d4f59cb8f65f1d0c82.mockapi.io/update";
+
+function toggleMenu(){
+document
+.getElementById("navLinks")
+.classList.toggle("active");
+}
+
+async function loadUpdates(){
+
+try{
+
+const res =
+await fetch(API);
+
+const data =
+await res.json();
+
+document.getElementById(
+"newsMarquee"
+).innerHTML =
+
+data.map(item =>
+`🔴 ${item.title}`
+).join(" &nbsp;&nbsp;&nbsp;&nbsp; ");
+
+document.getElementById(
+"updatesGrid"
+).innerHTML =
+
+data.slice(0,6).map(item=>`
+
+<div class="update-card">
+
+<h3>${item.title}</h3>
+
+<p>${item.detail}</p>
+
+</div>
+
+`).join("");
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+loadUpdates();
+
+</script>
+
+</body>
+</html>
