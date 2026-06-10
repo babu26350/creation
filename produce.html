@@ -2319,18 +2319,22 @@ function closeCartOrderPopup(){
     let total = 0;
 
     cart.forEach(item=>{
+const finalPrice =
+ item.offerPrice &&
+item.offerPrice !== "NA"
+?
+Number(item.offerPrice)
+:
+Number(item.price);
 
-        const subtotal =
-        Number(item.price) *
-        Number(item.quantity);
-
-        total += subtotal;
+const total = finalPrice * qty;
+        
 
         message += `
 📦 Product : ${item.title}
 🔢 Quantity : ${item.quantity}
 💰 Price : ₹${item.price}
-💵 Total : ₹${subtotal}
+💵 Total : ₹${total}
 
 `;
     });
