@@ -448,14 +448,8 @@ Purnima <span>E-Mitra</span>
 
   </div>
 
-</div>
-<div class="news-strip">
 
 
-
-<div class="marquee" id="newsMarquee">
-Loading latest government schemes...
-</div>
 
 </div>
 
@@ -688,13 +682,7 @@ await fetch(API);
 const data =
 await res.json();
 
-document.getElementById(
-"newsMarquee"
-).innerHTML =
 
-data.map(item =>
-`🔴 ${item.title}`
-).join(" &nbsp;&nbsp;&nbsp;&nbsp; ");
 
 document.getElementById(
 "updatesGrid"
@@ -757,7 +745,7 @@ function startTicker(){
 
   function animate(){
 
-    pos -= 0.4; /* Speed */
+    pos -= 0.2; /* Speed */
 
     if(
       Math.abs(pos) >=
