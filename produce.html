@@ -682,7 +682,46 @@ footer{
     text-align: center;
     user-select: none;
 }
+.popup-loader{
+    position:fixed;
+    inset:0;
+    background:rgba(255,255,255,.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+    backdrop-filter:blur(4px);
+}
 
+.loader-box{
+    text-align:center;
+}
+
+.loader-ring{
+    width:70px;
+    height:70px;
+    border:6px solid #dbeafe;
+    border-top:6px solid #0d6efd;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:auto;
+}
+
+.loader-box h3{
+    margin-top:20px;
+    color:#0d6efd;
+}
+
+.loader-box p{
+    color:#666;
+    margin-top:5px;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+ }
 </style>
 </head>
 <body>
@@ -1318,6 +1357,19 @@ footer{
     </div>
 
  </div>
+ <div id="popupLoader" class="popup-loader">
+
+    <div class="loader-box">
+
+        <div class="loader-ring"></div>
+
+        <h3>Loading...</h3>
+
+        <p>Please wait</p>
+
+    </div>
+
+ </div>
    <script>
 
 /* =========================
@@ -1468,9 +1520,24 @@ container
 .classList.add("active");
 
     }
+function loaderFunction(time = 800){
 
+    const loader =
+    document.getElementById("popupLoader");
+
+    if(!loader) return;
+
+    loader.style.display = "flex";
+
+    setTimeout(()=>{
+
+        loader.style.display = "none";
+
+    },time);
+
+ }
     function renderProducts(data){
-
+loaderFunction()
 productGrid.innerHTML = "";
 
 data.forEach(product=>{
@@ -1720,7 +1787,7 @@ function showToast(message){
     
 
 function addToCart(productId){
-
+loaderFunction()
 const product = getProductById(productId);
 
 if(!product){
@@ -1773,6 +1840,7 @@ let selectedProductId = null;
 let selectedBuyProductId = null;
 
 function openBuyPopup(productId) {
+ loaderFunction()
     selectedBuyProductId = productId;
     document.getElementById("buyQty").value = "";
     document.getElementById("buyName").value = "";
@@ -1790,6 +1858,7 @@ function closeBuyPopup() {
 }
 
 function submitBuyNow() {
+ loaderFunction()
     const qty = parseInt(document.getElementById("buyQty").value);
     const name = document.getElementById("buyName").value.trim();
     const contact = document.getElementById("buyContact").value.trim();
@@ -1832,7 +1901,7 @@ const total = finalPrice * qty;
         `https://wa.me/919414400605?text=${encodeURIComponent(message)}`;
     }
 function openPopup(productId){
-
+loaderFunction()
     selectedProductId = productId;
 
     document.getElementById("popupQty").value = "";
@@ -1852,7 +1921,7 @@ function closePopup(){
 }
 
 function submitPopup(){
-
+loaderFunction()
     const qty = parseInt(
         document.getElementById("popupQty").value
     );
@@ -2221,7 +2290,7 @@ window.location.href =
 ========================= */
 
 function buyNow(productId){
-
+loaderFunction()
 const product =
 getProductById(productId);
 
@@ -2284,7 +2353,7 @@ window.location.href =
    ORDER CART
 ========================= */
  function openCartOrderPopup(){
-
+loaderFunction()
     document.getElementById("cartCustomerName").value = "";
     document.getElementById("cartCustomerContact").value = "";
 
@@ -2293,7 +2362,7 @@ window.location.href =
 }
 
 function closeCartOrderPopup(){
-
+loaderFunction()
     document.getElementById("cartOrderPopup")
     .style.display = "none";
     }
