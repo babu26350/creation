@@ -367,7 +367,49 @@ grid-template-columns:1fr;
 }
 
 }
+.news-strip{
+height:50px;
+background:#d32f2f;
+display:flex;
+align-items:center;
+overflow:hidden;
+color:#fff;
+}
 
+.news-label{
+background:#b71c1c;
+padding:0 20px;
+height:100%;
+display:flex;
+align-items:center;
+font-weight:bold;
+white-space:nowrap;
+}
+
+.ticker-wrapper{
+flex:1;
+overflow:hidden;
+position:relative;
+height:100%;
+display:flex;
+align-items:center;
+}
+
+.ticker{
+display:flex;
+white-space:nowrap;
+position:absolute;
+left:0;
+top:50%;
+transform:translateY(-50%);
+}
+
+.news-item{
+padding-right:80px;
+font-size:15px;
+font-weight:600;
+white-space:nowrap;
+ }
 </style>
 </head>
 <body>
@@ -393,7 +435,20 @@ Purnima <span>E-Mitra</span>
 
 </nav>
 </header>
+<div class="news-strip">
 
+  <div class="news-label">
+    Latest Updates
+  </div>
+
+  <div class="ticker-wrapper">
+
+    <div id="ticker"
+    class="ticker"></div>
+
+  </div>
+
+</div>
 <div class="news-strip">
 
 
@@ -666,7 +721,63 @@ console.log(error);
 }
 
 loadUpdates();
+const API =
+"https://6a2963d4f59cb8f65f1d0c82.mockapi.io/update";
 
+async function loadNews() {
+
+  const res = await fetch(API);
+  const data = await res.json();
+
+  const ticker =
+  document.getElementById("ticker");
+
+  let html = "";
+
+  data.forEach(item => {
+    html += `
+      <div class="news-item">
+        🔴 ${item.title}
+      </div>
+    `;
+  });
+
+  ticker.innerHTML = html + html;
+
+  startTicker();
+
+}
+
+function startTicker(){
+
+  const ticker =
+  document.getElementById("ticker");
+
+  let pos = 0;
+
+  function animate(){
+
+    pos -= 0.4; /* Speed */
+
+    if(
+      Math.abs(pos) >=
+      ticker.scrollWidth / 2
+    ){
+      pos = 0;
+    }
+
+    ticker.style.transform =
+    `translateX(${pos}px)`;
+
+    requestAnimationFrame(
+      animate
+    );
+  }
+
+  animate();
+}
+
+loadNews();
 </script>
 
 </body>
