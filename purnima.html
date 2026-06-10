@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Purnima E-Mitra Dashboard</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+display:flex;
+}
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#1e293b;
+color:#fff;
+position:fixed;
+left:0;
+top:0;
+overflow:auto;
+}
+
+.logo{
+padding:20px;
+font-size:22px;
+font-weight:bold;
+text-align:center;
+background:#0f172a;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+padding:15px 20px;
+border-bottom:1px solid rgba(255,255,255,.1);
+cursor:pointer;
+}
+
+.sidebar ul li:hover{
+background:#334155;
+}
+
+.main{
+margin-left:250px;
+padding:20px;
+width:100%;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.card h3{
+font-size:15px;
+color:#666;
+}
+
+.card h2{
+margin-top:10px;
+color:#2563eb;
+}
+
+.form-box{
+background:#fff;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.form-box h2{
+margin-bottom:15px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:#fff;
+}
+
+.add-btn{
+background:#16a34a;
+}
+
+.update-btn{
+background:#2563eb;
+}
+
+.edit-btn{
+background:#f59e0b;
+padding:8px 12px;
+}
+
+.delete-btn{
+background:#dc2626;
+padding:8px 12px;
+}
+
+.search-box{
+margin-bottom:15px;
+}
+
+.table-box{
+background:#fff;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#2563eb;
+color:#fff;
+}
+
+.loader{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(255,255,255,.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.spinner{
+width:60px;
+height:60px;
+border:6px solid #ddd;
+border-top:6px solid #2563eb;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+@media(max-width:768px){
+
+.sidebar{
+width:100%;
+height:auto;
+position:relative;
+}
+
+.main{
+margin-left:0;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+<div class="spinner"></div>
+</div>
+
+<div class="sidebar">
+<div class="logo">
+Purnima E-Mitra
+</div>
+
+<ul>
+<li>🏠 Dashboard</li>
+<li>📋 All Schemes</li>
+<li>➕ Add Scheme</li>
+<li>⚙️ Settings</li>
+</ul>
+</div>
+
+<div class="main">
+
+<div class="header">
+<h1>योजना डैशबोर्ड</h1>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Records</h3>
+<h2 id="totalRecord">0</h2>
+</div>
+
+<div class="card">
+<h3>Today's Data</h3>
+<h2 id="todayData">0</h2>
+</div>
+
+<div class="card">
+<h3>Active Schemes</h3>
+<h2 id="activeData">0</h2>
+</div>
+
+<div class="card">
+<h3>Portal Status</h3>
+<h2>Online</h2>
+</div>
+
+</div>
+
+<div class="form-box">
+
+<h2>Add / Update Scheme</h2>
+
+<input
+type="text"
+id="title"
+placeholder="Scheme Title">
+
+<textarea
+id="detail"
+placeholder="Scheme Detail"></textarea>
+
+<button
+class="add-btn"
+onclick="addData()">
+Add Data
+</button>
+
+<button
+class="update-btn"
+onclick="updateData()">
+Update Data
+</button>
+
+</div>
+
+<div class="search-box">
+<input
+type="text"
+id="search"
+placeholder="Search..."
+onkeyup="searchData()">
+</div>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Detail</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tbody">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+const API =
+"https://6a2963d4f59cb8f65f1d0c82.mockapi.io/update";
+
+let updateId = null;
+
+function showLoader(){
+
+const loader =
+document.getElementById("loader");
+
+loader.style.display="flex";
+
+setTimeout(()=>{
+loader.style.display="none";
+},800);
+
+}
+
+async function getData(){
+
+showLoader();
+
+const res =
+await fetch(API);
+
+const data =
+await res.json();
+
+document.getElementById(
+"totalRecord"
+).innerText=data.length;
+
+document.getElementById(
+"todayData"
+).innerText=data.length;
+
+document.getElementById(
+"activeData"
+).innerText=data.length;
+
+document.getElementById(
+"tbody"
+).innerHTML=
+
+data.map(item=>`
+
+<tr>
+
+<td>${item.id}</td>
+
+<td>${item.title}</td>
+
+<td>${item.detail}</td>
+
+<td>
+
+<button
+class="edit-btn"
+onclick="editData('${item.id}')">
+Edit
+</button>
+
+<button
+class="delete-btn"
+onclick="deleteData('${item.id}')">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`).join("");
+
+}
+
+async function addData(){
+
+const title =
+document.getElementById("title").value;
+
+const detail =
+document.getElementById("detail").value;
+
+if(!title || !detail){
+alert("Fill all fields");
+return;
+}
+
+showLoader();
+
+await fetch(API,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+title,
+detail
+})
+});
+
+title.value="";
+detail.value="";
+
+getData();
+
+}
+
+async function editData(id){
+
+showLoader();
+
+const res =
+await fetch(`${API}/${id}`);
+
+const data =
+await res.json();
+
+updateId=id;
+
+document.getElementById("title").value =
+data.title;
+
+document.getElementById("detail").value =
+data.detail;
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+async function updateData(){
+
+if(!updateId){
+alert("Select Record First");
+return;
+}
+
+showLoader();
+
+await fetch(`${API}/${updateId}`,{
+
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+title:
+document.getElementById("title").value,
+
+detail:
+document.getElementById("detail").value
+
+})
+
+});
+
+updateId=null;
+
+document.getElementById("title").value="";
+document.getElementById("detail").value="";
+
+getData();
+
+}
+
+async function deleteData(id){
+
+if(!confirm("Delete Record?")){
+return;
+}
+
+showLoader();
+
+await fetch(`${API}/${id}`,{
+method:"DELETE"
+});
+
+getData();
+
+}
+
+function searchData(){
+
+const value =
+document.getElementById("search")
+.value.toLowerCase();
+
+const rows =
+document.querySelectorAll("#tbody tr");
+
+rows.forEach(row=>{
+
+row.style.display=
+row.innerText
+.toLowerCase()
+.includes(value)
+?
+""
+:
+"none";
+
+});
+
+}
+
+getData();
+
+</script>
+
+</body>
+</html>
