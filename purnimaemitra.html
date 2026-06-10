@@ -666,92 +666,116 @@ target="_blank">
 const API =
 "https://6a2963d4f59cb8f65f1d0c82.mockapi.io/update";
 
-function toggleMenu(){
-document
-.getElementById("navLinks")
-.classList.toggle("active");
-}
+/* Mobile Menu */
 
-async function loadUpdates(){
+function toggleMenu() {
 
-try{
-
-const res =
-await fetch(API);
-
-const data =
-await res.json();
-
-
-
-document.getElementById(
-"updatesGrid"
-).innerHTML =
-
-data.slice(0,6).map(item=>`
-
-<div class="update-card">
-
-<h3>${item.title}</h3>
-
-<p>${item.detail}</p>
-
-</div>
-
-`).join("");
-
-}catch(error){
-
-console.log(error);
+  document
+  .getElementById("navLinks")
+  .classList.toggle("active");
 
 }
 
+/* Updates Section */
+
+async function loadUpdates() {
+
+  try {
+
+    const res = await fetch(API);
+    const data = await res.json();
+
+    document.getElementById(
+      "updatesGrid"
+    ).innerHTML =
+
+    data.slice(0, 6).map(item => `
+
+      <div class="update-card">
+
+        <h3>${item.title}</h3>
+
+        <p>${item.detail}</p>
+
+      </div>
+
+    `).join("");
+
+  }
+  catch(error) {
+
+    console.error(
+      "Updates Error:",
+      error
+    );
+
+  }
+
 }
 
-loadUpdates();
-const API =
-"https://6a2963d4f59cb8f65f1d0c82.mockapi.io/update";
+/* News Strip */
 
 async function loadNews() {
 
-  const res = await fetch(API);
-  const data = await res.json();
+  try {
 
-  const ticker =
-  document.getElementById("ticker");
+    const res = await fetch(API);
+    const data = await res.json();
 
-  let html = "";
+    const ticker =
+    document.getElementById("ticker");
 
-  data.forEach(item => {
-    html += `
-      <div class="news-item">
-        🔴 ${item.title}
-      </div>
-    `;
-  });
+    let html = "";
 
-  ticker.innerHTML = html + html;
+    data.forEach(item => {
 
-  startTicker();
+      html += `
+
+        <div class="news-item">
+          🔴 ${item.title}
+        </div>
+
+      `;
+
+    });
+
+    /* Infinite Loop */
+
+    ticker.innerHTML =
+    html + html;
+
+    startTicker();
+
+  }
+  catch(error) {
+
+    console.error(
+      "News Error:",
+      error
+    );
+
+  }
 
 }
 
-function startTicker(){
+function startTicker() {
 
   const ticker =
   document.getElementById("ticker");
 
   let pos = 0;
 
-  function animate(){
+  function animate() {
 
-    pos -= 0.2; /* Speed */
+    pos -= 0.2;
 
-    if(
+    if (
       Math.abs(pos) >=
       ticker.scrollWidth / 2
-    ){
+    ) {
+
       pos = 0;
+
     }
 
     ticker.style.transform =
@@ -760,12 +784,18 @@ function startTicker(){
     requestAnimationFrame(
       animate
     );
+
   }
 
   animate();
+
 }
 
+/* Initial Load */
+
+loadUpdates();
 loadNews();
+
 </script>
 
 </body>
