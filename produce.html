@@ -2317,7 +2317,7 @@ function closeCartOrderPopup(){
     let message = "🛒 SS INFOTECH ORDER\n\n";
 
     let total = 0;
-
+let grandTotal= 0;
     cart.forEach(item=>{
 const finalPrice =
  item.offerPrice &&
@@ -2328,13 +2328,13 @@ Number(item.offerPrice)
 Number(item.price);
 
  total = finalPrice * item.quantity ;
-        
+    grandTotal += total;    
 
         message += `
 📦 Product : ${item.title}
 🔢 Quantity : ${item.quantity}
 💰 Price : ₹${item.price}
-💵 Total : ₹${total}
+💵 Total(After-Less) : ₹${total}
 
 `;
     });
@@ -2342,7 +2342,7 @@ Number(item.price);
     message += `
 👤 Name : ${name}
 📞 Contact : ${contact}
-💳 Grand Total : ₹${total}
+💳 Grand Total : ₹${grandTotal}
 `;
 
     window.location.href =
