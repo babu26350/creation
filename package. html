@@ -1,0 +1,287 @@
+ <!DOCTYPE html>
+
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Website Packages</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+padding:20px;
+}
+
+.header{
+text-align:center;
+padding:40px 20px;
+background:linear-gradient(135deg,#0f4c81,#00a8ff);
+color:white;
+border-radius:15px;
+margin-bottom:25px;
+}
+
+.header h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.header p{
+font-size:18px;
+}
+
+.packages{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+max-width:1200px;
+margin:auto;
+}
+
+.package-card{
+background:white;
+border-radius:18px;
+padding:25px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+position:relative;
+overflow:hidden;
+}
+
+.package-card:hover{
+transform:translateY(-8px);
+}
+
+.price{
+font-size:42px;
+font-weight:bold;
+color:#0f4c81;
+margin:15px 0;
+}
+
+.package-title{
+font-size:24px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.package-card ul{
+list-style:none;
+margin-top:20px;
+}
+
+.package-card ul li{
+padding:8px 0;
+border-bottom:1px solid #eee;
+}
+
+.package-card ul li:last-child{
+border-bottom:none;
+}
+
+.btn{
+display:block;
+text-align:center;
+background:#0f4c81;
+color:white;
+text-decoration:none;
+padding:12px;
+margin-top:20px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#08345a;
+}
+
+.badge{
+position:absolute;
+top:15px;
+right:-35px;
+background:#ff9800;
+color:white;
+padding:8px 40px;
+transform:rotate(45deg);
+font-size:12px;
+font-weight:bold;
+}
+
+.contact{
+margin-top:40px;
+background:white;
+padding:25px;
+border-radius:15px;
+max-width:800px;
+margin-left:auto;
+margin-right:auto;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+text-align:center;
+}
+
+.contact h2{
+margin-bottom:15px;
+color:#0f4c81;
+}
+
+.contact a{
+display:inline-block;
+margin:10px;
+padding:12px 20px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.footer-note{
+margin-top:20px;
+font-size:14px;
+color:#666;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>🌐 Website Packages</h1>
+<p>
+अपने व्यवसाय को ऑनलाइन बढ़ाइए
+और नए ग्राहकों तक पहुँचिए।
+</p>
+</div>
+
+<div class="packages">
+
+<div class="package-card">
+
+<h2 class="package-title">
+₹599 Static Website
+</h2>
+
+<div class="price">
+₹599
+</div>
+
+<ul>
+<li>✅ 1 Live Web Page</li>
+<li>✅ Mobile Friendly Design</li>
+<li>✅ WhatsApp Button</li>
+<li>✅ Contact Details</li>
+<li>✅ Fast Loading</li>
+<li>✅ Google Friendly</li>
+<li>✅ Lifetime Page Access</li>
+<li>✅ कोई छुपा हुआ खर्च नहीं</li>
+</ul>
+
+<a href="#" class="btn">
+Book Now
+</a>
+
+</div>
+
+<div class="package-card">
+
+<div class="badge">
+POPULAR
+</div>
+
+<h2 class="package-title">
+₹999 Dynamic Website
+</h2>
+
+<div class="price">
+₹999
+</div>
+
+<ul>
+<li>✅ Daily Updates Post करें</li>
+<li>✅ Notice / News Section</li>
+<li>✅ Customer Contact Form</li>
+<li>✅ Image Gallery</li>
+<li>✅ Mobile Friendly Design</li>
+<li>✅ WhatsApp Integration</li>
+<li>✅ Updateable Content</li>
+<li>✅ ग्राहक सीधे जुड़ सकते हैं</li>
+<li>✅ कोई छुपा हुआ खर्च नहीं</li>
+</ul>
+
+<a href="#" class="btn">
+Book Now
+</a>
+
+</div>
+
+<div class="package-card">
+
+<h2 class="package-title">
+🏫 School Website
+</h2>
+
+<div class="price">
+₹1899
+</div>
+
+<ul>
+<li>✅ Skyline School Design</li>
+<li>✅ Home Page</li>
+<li>✅ About School</li>
+<li>✅ Staff Section</li>
+<li>✅ School Gallery</li>
+<li>✅ Topper Section</li>
+<li>✅ Admission Information</li>
+<li>✅ Notice Board</li>
+<li>✅ Contact Form</li>
+<li>✅ Responsive Design</li>
+</ul>
+
+<a href="skyline.html" class="btn">
+Live Demo देखें
+</a>
+
+</div>
+
+</div>
+
+<div class="contact">
+
+<h2>📞 अभी संपर्क करें</h2>
+
+<p>
+अपनी वेबसाइट बनवाने के लिए
+अभी WhatsApp या कॉल करें।
+</p>
+
+<a href="https://wa.me/916378918503">
+WhatsApp करें
+</a>
+
+<a href="tel:+916378918503">
+Call Now
+</a>
+
+<div class="footer-note">
+* सभी पैकेज एकमुश्त शुल्क पर उपलब्ध हैं।
+<br>
+* कोई छुपा हुआ चार्ज नहीं।
+<br>
+* Domain और Hosting की आवश्यकता होने पर अलग से उपलब्ध।
+</div>
+
+</div>
+
+</body>
+</html>
