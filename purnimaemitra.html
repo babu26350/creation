@@ -505,7 +505,7 @@ white-space:nowrap;
         transform:scale(1);
         opacity:1;
     }
-                           }
+ }
 </style>
 </head>
 <body>
@@ -939,27 +939,74 @@ function startTicker() {
 
 loadUpdates();
 loadNews();
-/* =========================
-OPEN AFTER 5 SEC
-========================= */
-
 setTimeout(()=>{
 
     document
-    .getElementById("offerPopup")
+    .getElementById("promotionPopup")
     .style.display = "flex";
 
 },5000);
 
-/* =========================
-CLOSE POPUP
-========================= */
-
-function closeOfferPopup(){
+function closePromotionPopup(){
 
     document
-    .getElementById("offerPopup")
+    .getElementById("promotionPopup")
     .style.display = "none";
+
+}
+
+function sendLeadWhatsapp(){
+
+    const name =
+    document.getElementById("leadName").value;
+
+    const mobile =
+    document.getElementById("leadMobile").value;
+
+    if(!name || !mobile){
+
+        alert("कृपया नाम और मोबाइल नंबर भरें");
+
+        return;
+    }
+
+    const msg = `
+नमस्ते,
+
+मैं ${name}
+
+मोबाइल नंबर : ${mobile}
+
+अपने व्यवसाय के लिए वेबसाइट बनवाना चाहता हूँ।
+`;
+
+    window.open(
+    `https://wa.me/919414400605?text=${encodeURIComponent(msg)}`,
+    "_blank"
+    );
+
+}
+
+function sendLeadSMS(){
+
+    const name =
+    document.getElementById("leadName").value;
+
+    const mobile =
+    document.getElementById("leadMobile").value;
+
+    if(!name || !mobile){
+
+        alert("कृपया नाम और मोबाइल नंबर भरें");
+
+        return;
+    }
+
+    const msg =
+    `मैं ${name} (${mobile}) वेबसाइट बनवाना चाहता हूँ`;
+
+    window.location.href =
+    `sms:+919414400605?body=${encodeURIComponent(msg)}`;
 
  }
 </script>
