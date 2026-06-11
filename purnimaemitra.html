@@ -647,6 +647,87 @@ white-space:nowrap;
         opacity:1;
     }
  }
+ .contact-info{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.contact-info h3{
+    font-size:30px;
+    color:#0d6efd;
+    margin-bottom:10px;
+}
+
+.info-card{
+
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+
+    background:#fff;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.info-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.12);
+
+}
+
+.info-icon{
+
+    width:55px;
+    height:55px;
+
+    min-width:55px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0d6efd,
+    #00bfff
+    );
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+}
+
+.info-card h4{
+
+    margin-bottom:5px;
+
+    color:#111;
+
+    font-size:18px;
+}
+
+.info-card p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin:0;
+ }
 </style>
 </head>
 <body>
@@ -873,28 +954,67 @@ Purnima <span>E-Mitra</span>
     <!-- RIGHT SIDE -->
 
     <div class="contact-info">
+ <div class="contact-info">
 
-        <h3>पूर्णिमा ई-मित्र</h3>
+    <h3>पूर्णिमा ई-मित्र</h3>
 
-        <br>
+    <div class="info-card">
 
-        <p>
-        📍 धाधरिया बणीरोतान,
-        तहसील सरदारशहर,
-        जिला चूरू, राजस्थान
-        </p>
+        <div class="info-icon">
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
 
-        <p>
-        📞 +91 63751 30816
-        </p>
+        <div>
+            <h4>पता</h4>
+            <p>
+                धाधरिया बणीरोतान,<br>
+                तहसील चूरू,<br>
+                जिला चूरू, राजस्थान
+            </p>
+        </div>
 
-        <p>
-        📧 info@purnimaemitra.in
-        </p>
+    </div>
 
-        <p>
-        ⏰ सुबह 8 बजे से शाम 8 बजे तक
-        </p>
+    <div class="info-card">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-phone"></i>
+        </div>
+
+        <div>
+            <h4>मोबाइल नंबर</h4>
+            <p>+91 63751 30816</p>
+        </div>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <div>
+            <h4>ईमेल</h4>
+            <p>info@purnimaemitra.in</p>
+        </div>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+
+        <div>
+            <h4>कार्य समय</h4>
+            <p>सुबह 8 बजे से शाम 8 बजे तक</p>
+        </div>
+
+    </div>
+
+ </div>
 
         <div class="map-box">
 
