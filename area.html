@@ -1,0 +1,358 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Land Area Calculator</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+.header{
+background:#0f766e;
+color:white;
+padding:15px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+#map{
+height:70vh;
+width:100%;
+}
+
+.controls{
+padding:15px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+background:white;
+}
+
+button{
+padding:12px 18px;
+border:none;
+border-radius:8px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.areaBtn{
+background:#16a34a;
+color:white;
+}
+
+.bighaBtn{
+background:#2563eb;
+color:white;
+}
+
+.resetBtn{
+background:#dc2626;
+color:white;
+}
+
+.locationBtn{
+background:#f59e0b;
+color:white;
+}
+
+.result{
+padding:15px;
+background:white;
+margin:10px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+font-size:18px;
+line-height:1.8;
+}
+
+.pointCount{
+font-weight:bold;
+color:#0f766e;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+जमीन क्षेत्रफल कैलकुलेटर
+</div>
+
+<div id="map"></div>
+
+<div class="controls">
+
+<button class="locationBtn"
+onclick="getLocation()">
+मेरी लोकेशन
+</button>
+
+<button class="areaBtn"
+onclick="calculateArea()">
+Acre में क्षेत्रफल
+</button>
+
+<button class="bighaBtn"
+onclick="calculateBigha()">
+बीघा में क्षेत्रफल
+</button>
+
+<button class="resetBtn"
+onclick="resetMap()">
+Reset
+</button>
+
+</div>
+
+<div class="result" id="result">
+
+<p class="pointCount">
+कुल पॉइंट: 0
+</p>
+
+<p>
+मैप पर टैप करके खेत की सीमा चुनें।
+</p>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+
+<script>
+
+const map = L.map('map').setView(
+[26.2389,73.0243],
+14
+);
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+attribution:'© OpenStreetMap'
+}
+).addTo(map);
+
+let points = [];
+let markers = [];
+let polygon = null;
+
+function updatePolygon(){
+
+if(polygon){
+map.removeLayer(polygon);
+}
+
+if(points.length >= 3){
+
+polygon = L.polygon(
+points,
+{
+color:'green',
+fillColor:'#22c55e',
+fillOpacity:0.3
+}
+).addTo(map);
+
+}
+
+document.getElementById("result")
+.innerHTML =
+`
+<p class="pointCount">
+कुल पॉइंट: ${points.length}
+</p>
+<p>
+मैप पर टैप करके खेत की सीमा चुनें।
+</p>
+`;
+
+}
+
+map.on("click",function(e){
+
+points.push([
+e.latlng.lng,
+e.latlng.lat
+]);
+
+const marker =
+L.marker(e.latlng).addTo(map);
+
+markers.push(marker);
+
+updatePolygon();
+
+});
+
+function calculateArea(){
+
+if(points.length < 3){
+
+alert("कम से कम 3 पॉइंट चुनें");
+
+return;
+}
+
+const poly = turf.polygon([
+[...points,points[0]]
+]);
+
+const sqm =
+turf.area(poly);
+
+const acre =
+sqm / 4046.8564224;
+
+document.getElementById("result")
+.innerHTML =
+`
+<p><b>क्षेत्रफल</b></p>
+
+<p>
+Square Meter :
+${sqm.toFixed(2)}
+</p>
+
+<p>
+Acre :
+${acre.toFixed(4)}
+</p>
+`;
+
+}
+
+function calculateBigha(){
+
+if(points.length < 3){
+
+alert("कम से कम 3 पॉइंट चुनें");
+
+return;
+}
+
+const poly = turf.polygon([
+[...points,points[0]]
+]);
+
+const sqm =
+turf.area(poly);
+
+const acre =
+sqm / 4046.8564224;
+
+/*
+राजस्थान
+1 बीघा ≈ 0.625 Acre
+*/
+
+const bigha =
+acre / 0.625;
+
+document.getElementById("result")
+.innerHTML =
+`
+<p><b>क्षेत्रफल</b></p>
+
+<p>
+Square Meter :
+${sqm.toFixed(2)}
+</p>
+
+<p>
+Acre :
+${acre.toFixed(4)}
+</p>
+
+<p>
+बीघा :
+${bigha.toFixed(4)}
+</p>
+`;
+
+}
+
+function resetMap(){
+
+markers.forEach(
+m=>map.removeLayer(m)
+);
+
+markers=[];
+
+points=[];
+
+if(polygon){
+map.removeLayer(polygon);
+polygon=null;
+}
+
+document.getElementById("result")
+.innerHTML=
+`
+<p class="pointCount">
+कुल पॉइंट: 0
+</p>
+<p>
+मैप पर टैप करके खेत की सीमा चुनें।
+</p>
+`;
+
+}
+
+function getLocation(){
+
+navigator.geolocation.getCurrentPosition(
+
+(position)=>{
+
+const lat =
+position.coords.latitude;
+
+const lng =
+position.coords.longitude;
+
+map.setView(
+[lat,lng],
+18
+);
+
+L.marker([lat,lng])
+.addTo(map)
+.bindPopup("आप यहाँ हैं")
+.openPopup();
+
+},
+
+()=>{
+alert("लोकेशन प्राप्त नहीं हुई");
+}
+
+);
+
+}
+
+</script>
+
+</body>
+</html>
