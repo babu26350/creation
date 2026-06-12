@@ -1,10 +1,10 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Land Area Calculator</title>
+<title>Land Area Calculator Pro</title>
 
 <link rel="stylesheet"
 href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -32,35 +32,35 @@ font-weight:bold;
 }
 
 #map{
-height:70vh;
+height:65vh;
 width:100%;
 }
 
 .controls{
-padding:15px;
+padding:10px;
 display:flex;
 flex-wrap:wrap;
-gap:10px;
+gap:8px;
 justify-content:center;
 background:white;
 }
 
 button{
-padding:12px 18px;
+padding:10px 15px;
 border:none;
 border-radius:8px;
-font-size:15px;
+font-size:14px;
 font-weight:bold;
 cursor:pointer;
 }
 
-.areaBtn{
-background:#16a34a;
+.locationBtn{
+background:#f59e0b;
 color:white;
 }
 
-.bighaBtn{
-background:#2563eb;
+.areaBtn{
+background:#16a34a;
 color:white;
 }
 
@@ -69,24 +69,28 @@ background:#dc2626;
 color:white;
 }
 
-.locationBtn{
-background:#f59e0b;
+.undoBtn{
+background:#7c3aed;
 color:white;
 }
 
 .result{
-padding:15px;
 background:white;
 margin:10px;
+padding:15px;
 border-radius:10px;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
-font-size:18px;
 line-height:1.8;
+font-size:16px;
 }
 
 .pointCount{
-font-weight:bold;
 color:#0f766e;
+font-weight:bold;
+}
+
+.leaflet-control-layers{
+font-size:14px;
 }
 
 </style>
@@ -94,7 +98,7 @@ color:#0f766e;
 <body>
 
 <div class="header">
-जमीन क्षेत्रफल कैलकुलेटर
+🌾 Land Area Calculator Pro
 </div>
 
 <div id="map"></div>
@@ -103,30 +107,30 @@ color:#0f766e;
 
 <button class="locationBtn"
 onclick="getLocation()">
-मेरी लोकेशन
+📍 My Location
 </button>
 
 <button class="areaBtn"
 onclick="calculateArea()">
-Acre में क्षेत्रफल
+📐 Calculate Area
 </button>
 
-<button class="bighaBtn"
-onclick="calculateBigha()">
-बीघा में क्षेत्रफल
+<button class="undoBtn"
+onclick="undoPoint()">
+↩ Undo
 </button>
 
 <button class="resetBtn"
 onclick="resetMap()">
-Reset
+🗑 Reset
 </button>
 
 </div>
 
-<div class="result" id="result">
+<div id="result" class="result">
 
 <p class="pointCount">
-कुल पॉइंट: 0
+कुल पॉइंट : 0
 </p>
 
 <p>
@@ -141,35 +145,78 @@ Reset
 
 <script>
 
-const map = L.map('map').setView(
-[26.2389,73.0243],
-14
-);
+/* ---------------- MAP LAYERS ---------------- */
 
-L.tileLayer(
+const street = L.tileLayer(
 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 {
 attribution:'© OpenStreetMap'
 }
-).addTo(map);
+);
+
+const satellite = L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+{
+attribution:'© Esri Satellite'
+}
+);
+
+const map = L.map('map',{
+center:[26.2389,73.0243],
+zoom:14,
+layers:[street]
+});
+
+const baseMaps = {
+"🗺 Geography Map": street,
+"🛰 Satellite View": satellite
+};
+
+L.control.layers(baseMaps).addTo(map);
+
+/* ---------------- VARIABLES ---------------- */
 
 let points = [];
 let markers = [];
 let polygon = null;
 
-function updatePolygon(){
+/* ---------------- MAP CLICK ---------------- */
+
+map.on("click",function(e){
+
+const lat = e.latlng.lat;
+const lng = e.latlng.lng;
+
+points.push([lng,lat]);
+
+const marker = L.marker([lat,lng]).addTo(map);
+
+markers.push(marker);
+
+drawPolygon();
+
+});
+
+/* ---------------- DRAW POLYGON ---------------- */
+
+function drawPolygon(){
 
 if(polygon){
+
 map.removeLayer(polygon);
+
 }
 
 if(points.length >= 3){
 
+const latlngs =
+points.map(p=>[p[1],p[0]]);
+
 polygon = L.polygon(
-points,
+latlngs,
 {
-color:'green',
-fillColor:'#22c55e',
+color:"#16a34a",
+weight:3,
 fillOpacity:0.3
 }
 ).addTo(map);
@@ -177,11 +224,12 @@ fillOpacity:0.3
 }
 
 document.getElementById("result")
-.innerHTML =
+.innerHTML=
 `
 <p class="pointCount">
-कुल पॉइंट: ${points.length}
+कुल पॉइंट : ${points.length}
 </p>
+
 <p>
 मैप पर टैप करके खेत की सीमा चुनें।
 </p>
@@ -189,21 +237,7 @@ document.getElementById("result")
 
 }
 
-map.on("click",function(e){
-
-points.push([
-e.latlng.lng,
-e.latlng.lat
-]);
-
-const marker =
-L.marker(e.latlng).addTo(map);
-
-markers.push(marker);
-
-updatePolygon();
-
-});
+/* ---------------- CALCULATE ---------------- */
 
 function calculateArea(){
 
@@ -212,107 +246,118 @@ if(points.length < 3){
 alert("कम से कम 3 पॉइंट चुनें");
 
 return;
+
 }
 
 const poly = turf.polygon([
-[...points,points[0]]
+[...points, points[0]]
 ]);
 
 const sqm =
 turf.area(poly);
 
-const acre =
-sqm / 4046.8564224;
-
-document.getElementById("result")
-.innerHTML =
-`
-<p><b>क्षेत्रफल</b></p>
-
-<p>
-Square Meter :
-${sqm.toFixed(2)}
-</p>
-
-<p>
-Acre :
-${acre.toFixed(4)}
-</p>
-`;
-
-}
-
-function calculateBigha(){
-
-if(points.length < 3){
-
-alert("कम से कम 3 पॉइंट चुनें");
-
-return;
-}
-
-const poly = turf.polygon([
-[...points,points[0]]
-]);
-
-const sqm =
-turf.area(poly);
+const sqft =
+sqm * 10.7639;
 
 const acre =
 sqm / 4046.8564224;
 
-/*
-राजस्थान
-1 बीघा ≈ 0.625 Acre
-*/
+const hectare =
+sqm / 10000;
 
 const bigha =
 acre / 0.625;
 
+/* राजस्थान अनुमानित */
+
 document.getElementById("result")
-.innerHTML =
-`
-<p><b>क्षेत्रफल</b></p>
+.innerHTML = `
+
+<h3>📊 क्षेत्रफल रिपोर्ट</h3>
+
+<hr>
 
 <p>
-Square Meter :
-${sqm.toFixed(2)}
+📏 Square Meter :
+<b>${sqm.toFixed(2)}</b>
 </p>
 
 <p>
-Acre :
-${acre.toFixed(4)}
+📐 Square Feet :
+<b>${sqft.toFixed(2)}</b>
 </p>
 
 <p>
-बीघा :
-${bigha.toFixed(4)}
+🌾 Acre :
+<b>${acre.toFixed(4)}</b>
 </p>
+
+<p>
+🏞 Hectare :
+<b>${hectare.toFixed(4)}</b>
+</p>
+
+<p>
+🌿 Rajasthan Bigha :
+<b>${bigha.toFixed(4)}</b>
+</p>
+
+<p>
+📍 Boundary Points :
+<b>${points.length}</b>
+</p>
+
 `;
 
 }
 
+/* ---------------- UNDO ---------------- */
+
+function undoPoint(){
+
+if(points.length===0)
+return;
+
+points.pop();
+
+const marker =
+markers.pop();
+
+map.removeLayer(marker);
+
+drawPolygon();
+
+}
+
+/* ---------------- RESET ---------------- */
+
 function resetMap(){
 
-markers.forEach(
-m=>map.removeLayer(m)
-);
+markers.forEach(m=>{
+
+map.removeLayer(m);
+
+});
 
 markers=[];
 
 points=[];
 
 if(polygon){
+
 map.removeLayer(polygon);
+
 polygon=null;
+
 }
 
 document.getElementById("result")
 .innerHTML=
 `
 <p class="pointCount">
-कुल पॉइंट: 0
+कुल पॉइंट : 0
 </p>
+
 <p>
 मैप पर टैप करके खेत की सीमा चुनें।
 </p>
@@ -320,11 +365,21 @@ document.getElementById("result")
 
 }
 
+/* ---------------- GPS ---------------- */
+
 function getLocation(){
+
+if(!navigator.geolocation){
+
+alert("Geolocation Supported नहीं है");
+
+return;
+
+}
 
 navigator.geolocation.getCurrentPosition(
 
-(position)=>{
+function(position){
 
 const lat =
 position.coords.latitude;
@@ -334,18 +389,24 @@ position.coords.longitude;
 
 map.setView(
 [lat,lng],
-18
+19
 );
 
 L.marker([lat,lng])
 .addTo(map)
-.bindPopup("आप यहाँ हैं")
+.bindPopup("📍 आपकी वर्तमान लोकेशन")
 .openPopup();
 
 },
 
-()=>{
+function(){
+
 alert("लोकेशन प्राप्त नहीं हुई");
+
+},
+
+{
+enableHighAccuracy:true
 }
 
 );
@@ -355,4 +416,4 @@ alert("लोकेशन प्राप्त नहीं हुई");
 </script>
 
 </body>
-</html>
+ </html>
