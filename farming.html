@@ -1,0 +1,241 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Land Area Calculator</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+padding:20px;
+background:#f5f5f5;
+}
+
+canvas{
+border:2px solid #333;
+background:white;
+cursor:crosshair;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+background:#2196f3;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+#result{
+font-size:22px;
+font-weight:bold;
+margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h2>जमीन क्षेत्रफल कैलकुलेटर</h2>
+
+<canvas id="canvas" width="800" height="500"></canvas>
+
+<br>
+
+<button onclick="calculateAcre()">
+Area in Acre
+</button>
+
+<button onclick="calculateBigha()">
+Area in Bigha
+</button>
+
+<button onclick="resetCanvas()">
+Reset
+</button>
+
+<div id="result"></div>
+
+<script>
+
+const canvas =
+document.getElementById("canvas");
+
+const ctx =
+canvas.getContext("2d");
+
+let points=[];
+
+canvas.addEventListener("click",(e)=>{
+
+const rect=
+canvas.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+const y=e.clientY-rect.top;
+
+points.push({x,y});
+
+drawPolygon();
+
+});
+
+function drawPolygon(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+ctx.beginPath();
+
+points.forEach((p,index)=>{
+
+if(index===0){
+ctx.moveTo(p.x,p.y);
+}else{
+ctx.lineTo(p.x,p.y);
+}
+
+ctx.fillStyle="red";
+ctx.beginPath();
+ctx.arc(p.x,p.y,4,0,Math.PI*2);
+ctx.fill();
+
+});
+
+if(points.length>2){
+
+ctx.beginPath();
+
+ctx.moveTo(
+points[0].x,
+points[0].y
+);
+
+for(let i=1;i<points.length;i++){
+
+ctx.lineTo(
+points[i].x,
+points[i].y
+);
+
+}
+
+ctx.closePath();
+
+ctx.strokeStyle="blue";
+ctx.lineWidth=2;
+ctx.stroke();
+
+}
+
+}
+
+function polygonArea(){
+
+let area=0;
+
+for(
+let i=0;
+i<points.length;
+i++
+){
+
+let j=
+(i+1)%points.length;
+
+area+=
+points[i].x*points[j].y;
+
+area-=
+points[j].x*points[i].y;
+
+}
+
+return Math.abs(area/2);
+
+}
+
+function calculateAcre(){
+
+if(points.length<3){
+alert("कम से कम 3 पॉइंट चुनें");
+return;
+}
+
+let sqMeter=
+polygonArea();
+
+/*
+यहाँ मान लिया गया है कि
+1 Pixel = 1 Meter
+*/
+
+let acre=
+sqMeter/4046.856;
+
+document.getElementById(
+"result"
+).innerHTML=
+"क्षेत्रफल: "
++acre.toFixed(4)+
+" Acre";
+
+}
+
+function calculateBigha(){
+
+if(points.length<3){
+alert("कम से कम 3 पॉइंट चुनें");
+return;
+}
+
+let sqMeter=
+polygonArea();
+
+let acre=
+sqMeter/4046.856;
+
+/*
+राजस्थान में लगभग
+1 बीघा = 0.625 Acre
+*/
+
+let bigha=
+acre/0.625;
+
+document.getElementById(
+"result"
+).innerHTML=
+"क्षेत्रफल: "
++bigha.toFixed(4)+
+" बीघा";
+
+}
+
+function resetCanvas(){
+
+points=[];
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+document.getElementById(
+"result"
+).innerHTML="";
+
+}
+
+</script>
+
+</body>
+</html>
