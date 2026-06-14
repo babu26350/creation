@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>वास्तविक ग्रह स्थिति कैलकुलेटर</title>
+
+<script src="astronomy.browser.min.js"></script>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    padding:20px;
+    background:#111827;
+    color:white;
+}
+input,button{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+}
+.result{
+    margin-top:20px;
+}
+.card{
+    background:#1f2937;
+    padding:10px;
+    margin:5px 0;
+    border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<h2>ग्रह स्थिति कैलकुलेटर</h2>
+
+<input type="date" id="dob">
+<input type="time" id="tob">
+
+<button onclick="getPlanets()">
+ग्रह स्थिति निकालें
+</button>
+
+<div id="result" class="result"></div>
+
+<script>
+
+const signs=[
+"मेष","वृषभ","मिथुन","कर्क",
+"सिंह","कन्या","तुला","वृश्चिक",
+"धनु","मकर","कुंभ","मीन"
+];
+
+function zodiac(longitude){
+    return signs[Math.floor(longitude/30)];
+}
+
+async function getPlanets(){
+
+const dob=document.getElementById("dob").value;
+const tob=document.getElementById("tob").value;
+
+if(!dob || !tob){
+    alert("तिथि और समय भरें");
+    return;
+}
+
+const date=new Date(`${dob}T${tob}`);
+
+const time=new Astronomy.AstroTime(date);
+
+const planets=[
+"Astronomy.Body.Sun",
+"Astronomy.Body.Moon",
+"Astronomy.Body.Mars",
+"Astronomy.Body.Mercury",
+"Astronomy.Body.Jupiter",
+"Astronomy.Body.Venus",
+"Astronomy.Body.Saturn"
+];
+
+let html="";
+
+for(let p of planets){
+
+const body=eval(p);
+
+const ecl=
+Astronomy.EclipticGeoVector(
+body,
+time,
+true
+);
+
+let lon=ecl.elon;
+
+html+=`
+<div class="card">
+<b>${body}</b><br>
+राशि : ${zodiac(lon)}<br>
+अंश : ${lon.toFixed(2)}°
+</div>
+`;
+
+}
+
+document.getElementById("result").innerHTML=html;
+
+}
+
+</script>
+
+</body>
+</html>
