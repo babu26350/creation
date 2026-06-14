@@ -50,15 +50,16 @@
 
 <div id="map"></div>
 <div class="filter-buttons">
+  <div id="mapTypeControl">
+  <button onclick="changeMap('osm')">Street</button>
+  <button onclick="changeMap('esri')">Satellite</button>
+  <button onclick="changeMap('google')">Google</button>
+  </div>
   <button class="sale" onclick="toggleFilter('sale')">SALE</button>
   <button class="sold" onclick="toggleFilter('sold')">SOLD</button>
   <button class="new" onclick="toggleFilter('new')">NEW</button>
 </div>
-<div id="mapTypeControl">
-  <button onclick="changeMap('osm')">Street</button>
-  <button onclick="changeMap('esri')">Satellite</button>
-  <button onclick="changeMap('google')">Google</button>
-</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   const map = L.map('map').setView([51.0158, -113.8615], 17);
