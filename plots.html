@@ -1,0 +1,183 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Farm Layout</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+html,body{
+margin:0;
+padding:0;
+height:100%;
+}
+
+#map{
+width:100%;
+height:100vh;
+}
+
+.mapBtns{
+position:absolute;
+top:10px;
+right:10px;
+z-index:9999;
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.mapBtns button{
+padding:10px;
+border:none;
+border-radius:8px;
+background:white;
+font-weight:bold;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="mapBtns">
+<button onclick="changeMap('google')">
+Google
+</button>
+
+<button onclick="changeMap('esri')">
+Esri
+</button>
+
+<button onclick="changeMap('osm')">
+Street
+</button>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+/* ==========================
+MAP LAYERS
+========================== */
+
+const osm=L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{maxZoom:22}
+);
+
+const esri=L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+{maxZoom:22}
+);
+
+const google=L.tileLayer(
+'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+{maxZoom:22}
+);
+
+/* ==========================
+MAP
+========================== */
+
+const map=L.map('map',{
+center:[51.0158,-113.8615],
+zoom:18,
+maxZoom:22,
+layers:[google]
+});
+
+/* ==========================
+CHANGE MAP
+========================== */
+
+function changeMap(type){
+
+map.removeLayer(osm);
+map.removeLayer(esri);
+map.removeLayer(google);
+
+if(type==='osm') osm.addTo(map);
+if(type==='esri') esri.addTo(map);
+if(type==='google') google.addTo(map);
+
+}
+
+/* ==========================
+COLORS
+========================== */
+
+const colorMap={
+sale:'rgba(0,128,0,0.5)',
+sold:'rgba(255,0,0,0.5)',
+new:'rgba(0,0,255,0.5)'
+};
+
+/* ==========================
+PASTE YOUR POLYGONS HERE
+========================== */
+
+const farmPolygons={
+
+};
+
+/* ==========================
+DRAW POLYGONS
+========================== */
+
+Object.entries(farmPolygons).forEach(
+([id,farm])=>{
+
+const polygon=L.polygon(
+farm.coordinates,
+{
+color:'#000',
+weight:1,
+fillColor:
+colorMap[farm.status]
+||'gray',
+fillOpacity:0.8
+}
+).addTo(map);
+
+polygon.bindPopup(`
+<b>${id}</b><br>
+Status : ${farm.status}<br>
+Area : ${farm.area}
+`);
+
+});
+
+/* ==========================
+AUTO FIT
+========================== */
+
+const allCoords=[];
+
+Object.values(farmPolygons)
+.forEach(farm=>{
+
+farm.coordinates.forEach(coord=>{
+allCoords.push(coord);
+});
+
+});
+
+if(allCoords.length){
+
+map.fitBounds(allCoords);
+
+}
+
+</script>
+
+</body>
+</html>
