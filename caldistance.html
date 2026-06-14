@@ -1,0 +1,384 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nova Tour & Travels Route Calculator</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fa;
+}
+
+.header{
+background:linear-gradient(135deg,#0066ff,#00b894);
+color:#fff;
+padding:18px;
+text-align:center;
+}
+
+.header h1{
+font-size:28px;
+}
+
+.header p{
+margin-top:5px;
+font-size:14px;
+}
+
+.search-box{
+background:#fff;
+padding:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.input-group{
+margin-bottom:10px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#0066ff;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+opacity:.9;
+}
+
+#map{
+height:450px;
+width:100%;
+}
+
+.info{
+padding:15px;
+background:#fff;
+}
+
+.card{
+background:#f9f9f9;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.card h3{
+margin-bottom:10px;
+color:#0066ff;
+}
+
+.value{
+font-size:22px;
+font-weight:bold;
+color:#00a651;
+}
+
+.action-buttons{
+padding:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+.gps{
+background:#ff9800;
+}
+
+.footer{
+text-align:center;
+padding:20px;
+font-size:14px;
+color:#666;
+}
+
+@media(max-width:768px){
+
+#map{
+height:400px;
+}
+
+.action-buttons{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>🚖 Nova Tour & Travels</h1>
+<p>Route Distance • Fare Calculator • Booking</p>
+</div>
+
+<div class="search-box">
+
+<div class="input-group">
+<input type="text" id="pickup" placeholder="Pickup Location">
+</div>
+
+<div class="input-group">
+<input type="text" id="destination" placeholder="Destination">
+</div>
+
+<button onclick="calculateRoute()">
+Calculate Route
+</button>
+
+</div>
+
+<div id="map"></div>
+
+<div class="info">
+
+<div class="card">
+<h3>📏 Distance</h3>
+<div class="value" id="distance">0 KM</div>
+</div>
+
+<div class="card">
+<h3>⏱ Travel Time</h3>
+<div class="value" id="time">0 Hr</div>
+</div>
+
+<div class="card">
+<h3>💰 Estimated Fare (₹14/KM)</h3>
+<div class="value" id="fare">₹0</div>
+</div>
+
+</div>
+
+<div class="action-buttons">
+
+<button class="gps" onclick="getLocation()">
+📍 Current Location
+</button>
+
+<button class="whatsapp" onclick="sendWhatsApp()">
+💬 Book on WhatsApp
+</button>
+
+</div>
+
+<div class="footer">
+© 2026 Nova Tour & Travels
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+<script>
+
+let map = L.map('map').setView([28.135,75.399],8);
+
+let osm = L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+maxZoom:19
+}
+).addTo(map);
+
+let satellite = L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+{
+maxZoom:20
+}
+);
+
+L.control.layers(
+{
+"Street":osm,
+"Satellite":satellite
+}
+).addTo(map);
+
+let routingControl;
+let bookingText="";
+
+async function geocode(place){
+
+let url =
+`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place)}`;
+
+let res = await fetch(url);
+
+let data = await res.json();
+
+if(!data.length)
+throw new Error("Location Not Found");
+
+return [
+parseFloat(data[0].lat),
+parseFloat(data[0].lon)
+];
+
+}
+
+async function calculateRoute(){
+
+let pickup =
+document.getElementById("pickup").value;
+
+let destination =
+document.getElementById("destination").value;
+
+if(!pickup || !destination){
+alert("Enter both locations");
+return;
+}
+
+try{
+
+let start =
+await geocode(pickup);
+
+let end =
+await geocode(destination);
+
+if(routingControl){
+map.removeControl(routingControl);
+}
+
+routingControl =
+L.Routing.control({
+waypoints:[
+L.latLng(start[0],start[1]),
+L.latLng(end[0],end[1])
+],
+routeWhileDragging:false,
+show:false,
+addWaypoints:false,
+createMarker:function(){
+return null;
+}
+}).addTo(map);
+
+routingControl.on(
+'routesfound',
+function(e){
+
+let route =
+e.routes[0];
+
+let distance =
+(route.summary.totalDistance/1000)
+.toFixed(1);
+
+let time =
+(route.summary.totalTime/3600)
+.toFixed(1);
+
+let fare =
+Math.round(distance*14);
+
+document.getElementById("distance")
+.innerHTML =
+distance+" KM";
+
+document.getElementById("time")
+.innerHTML =
+time+" Hr";
+
+document.getElementById("fare")
+.innerHTML =
+"₹"+fare;
+
+bookingText =
+`Nova Tour Booking%0A%0APickup: ${pickup}%0ADestination: ${destination}%0ADistance: ${distance} KM%0AFare: ₹${fare}`;
+
+}
+);
+
+}catch(err){
+
+alert("Location not found");
+
+}
+
+}
+
+function sendWhatsApp(){
+
+window.open(
+`https://wa.me/916378918503?text=${bookingText}`,
+'_blank'
+);
+
+}
+
+function getLocation(){
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(
+
+function(pos){
+
+let lat =
+pos.coords.latitude;
+
+let lng =
+pos.coords.longitude;
+
+map.setView([lat,lng],15);
+
+L.marker([lat,lng])
+.addTo(map)
+.bindPopup("Current Location")
+.openPopup();
+
+},
+
+function(){
+
+alert("GPS Permission Denied");
+
+}
+
+);
+
+}else{
+
+alert("GPS Not Supported");
+
+}
+
+}
+
+</script>
+
+</body>
+  </html>
