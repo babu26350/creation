@@ -63,10 +63,7 @@
 <script>
   const map = L.map('map').setView([51.0158, -113.8615], 17);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 22,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
+
 // OpenStreetMap
 const osm = L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
