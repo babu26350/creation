@@ -48,6 +48,7 @@ box-shadow:0 0 10px rgba(0,0,0,.2);
 <div id="map"></div>
 
 <div class="mapBtns">
+
 <button onclick="changeMap('google')">
 Google
 </button>
@@ -59,6 +60,19 @@ Esri
 <button onclick="changeMap('osm')">
 Street
 </button>
+
+<button onclick="toggleFilter('sale')">
+On Sale
+</button>
+
+<button onclick="toggleFilter('sold')">
+Sold
+</button>
+
+<button onclick="toggleFilter('new')">
+New
+</button>
+
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -125,7 +139,13 @@ new:'rgba(0,0,255,0.5)'
 PASTE YOUR POLYGONS HERE
 ========================== */
 
+ const filters = {
+  sale: true,
+  sold: true,
+  new: true
+};
 
+const polygonLayers = {};
   const farmPolygons = {
    farm1: {
       coordinates: [[51.015642, -113.862299], [51.015643, -113.861855], [51.015661, -113.861869], [51.015676, -113.861880], [51.015689, -113.861882], [51.015708, -113.861882], [51.015726, -113.861878], [51.015743, -113.861872], [51.015757, -113.861862], [51.015869, -113.862293]],
@@ -333,28 +353,54 @@ farm21: {
 DRAW POLYGONS
 ========================== */
 
-Object.entries(farmPolygons).forEach(
-([id,farm])=>{
+function renderPolygons(){
 
-const polygon=L.polygon(
-farm.coordinates,
-{
-color:'#000',
-weight:1,
-fillColor:
-colorMap[farm.status]
-||'gray',
-fillOpacity:0.8
+  Object.entries(farmPolygons).forEach(
+  ([id,farm])=>{
+
+    if(polygonLayers[id]){
+      map.removeLayer(
+      polygonLayers[id]
+      );
+    }
+
+    polygonLayers[id] =
+    L.polygon(
+      farm.coordinates,
+      {
+        color:"#000",
+        weight:1,
+        fillColor:
+        filters[farm.status]
+        ? colorMap[farm.status]
+        : "transparent",
+
+        fillOpacity:
+        filters[farm.status]
+        ? 0.8
+        : 0
+      }
+    ).addTo(map);
+
+    polygonLayers[id]
+    .bindPopup(`
+      <b>${id}</b><br>
+      Status: ${farm.status}<br>
+      Area: ${farm.area}
+    `);
+
+  });
+
+ }
+
+ function toggleFilter(status){
+
+  filters[status] =
+  !filters[status];
+
+  renderPolygons();
+
 }
-).addTo(map);
-
-polygon.bindPopup(`
-<b>${id}</b><br>
-Status : ${farm.status}<br>
-Area : ${farm.area}
-`);
-
-});
 
 /* ==========================
 AUTO FIT
@@ -376,7 +422,7 @@ if(allCoords.length){
 map.fitBounds(allCoords);
 
 }
-
+renderPolygons()
 </script>
 
 </body>
