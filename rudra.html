@@ -1,0 +1,298 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rudra Real Estate</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fa;
+}
+
+/* Header */
+
+header{
+background:#0f172a;
+color:white;
+padding:15px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#facc15;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:25px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-size:16px;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#facc15;
+}
+
+.menu-btn{
+display:none;
+font-size:25px;
+cursor:pointer;
+}
+
+/* Hero */
+
+.hero{
+height:350px;
+background:
+linear-gradient(rgba(0,0,0,.6),
+rgba(0,0,0,.6)),
+url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+/* Property Section */
+
+.property-section{
+padding:40px 5%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:25px;
+font-size:30px;
+color:#0f172a;
+}
+
+.map-container{
+width:100%;
+height:85vh;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.map-container iframe{
+width:100%;
+height:90%;
+border:none;
+}
+
+/* Features */
+
+.features{
+padding:50px 5%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.feature-box{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.feature-box i{
+font-size:40px;
+color:#f59e0b;
+margin-bottom:15px;
+}
+
+/* Contact */
+
+.contact{
+background:#0f172a;
+color:white;
+padding:50px 5%;
+text-align:center;
+}
+
+.contact h2{
+margin-bottom:15px;
+}
+
+.contact p{
+margin:8px 0;
+}
+
+/* Footer */
+
+footer{
+background:#020617;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+@media(max-width:768px){
+
+nav{
+display:none;
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:#0f172a;
+}
+
+nav.active{
+display:block;
+}
+
+nav ul{
+flex-direction:column;
+padding:20px;
+}
+
+.menu-btn{
+display:block;
+}
+
+.hero h1{
+font-size:30px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+Rudra Real Estate
+</div>
+
+<div class="menu-btn"
+onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<nav id="nav">
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#plots">Plots</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+<h1>Find Your Dream Plot</h1>
+<p>Premium Residential & Commercial Properties</p>
+</div>
+
+</section>
+
+<section class="property-section" id="plots">
+
+<h2 class="section-title">
+Available Plots
+</h2>
+
+<div class="map-container">
+
+<iframe
+src="https://creation-kohl.vercel.app/plots.html">
+</iframe>
+
+</div>
+
+</section>
+
+<section class="features" id="services">
+
+<div class="feature-box">
+<i class="fas fa-map-marked-alt"></i>
+<h3>Verified Plots</h3>
+<p>100% verified properties.</p>
+</div>
+
+<div class="feature-box">
+<i class="fas fa-file-contract"></i>
+<h3>Legal Support</h3>
+<p>Complete documentation support.</p>
+</div>
+
+<div class="feature-box">
+<i class="fas fa-home"></i>
+<h3>Best Investment</h3>
+<p>Residential and commercial plots.</p>
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h2>Contact Us</h2>
+
+<p>📞 +91 6378918503</p>
+<p> info@rudrarealestate.com</p>
+<p> Rajasthan, India</p>
+
+</section>
+
+<footer>
+© 2026 Rudra Real Estate. All Rights Reserved.
+</footer>
+
+<script>
+
+function toggleMenu(){
+document
+.getElementById("nav")
+.classList.toggle("active");
+}
+
+</script>
+
+</body>
+</html>
