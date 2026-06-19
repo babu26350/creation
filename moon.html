@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moon Rashi Calculator</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f4f4;padding:20px}
+.card{max-width:700px;margin:auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+input,button{padding:10px;margin:5px;width:100%}
+button{cursor:pointer}
+.result{margin-top:15px;padding:12px;background:#eef}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>चन्द्र राशि / नक्षत्र कैलकुलेटर</h2>
+<p>यह ऑफलाइन डेमो संस्करण है।</p>
+
+<input type="date" id="date">
+<input type="time" id="time" value="12:00">
+<button onclick="calc()">गणना करें</button>
+
+<div class="result" id="out"></div>
+</div>
+
+<script>
+function julianDay(d){
+    return d.getTime()/86400000 + 2440587.5;
+}
+
+function calc(){
+    const dt=document.getElementById("date").value;
+    const tm=document.getElementById("time").value;
+
+    if(!dt){ alert("तिथि चुनें"); return; }
+
+    const d=new Date(dt+"T"+tm+":00");
+
+    const jd=julianDay(d);
+    const days=jd-2451545.0;
+
+    // सरलीकृत चन्द्रमा मॉडल (डेमो)
+    let lon=(218.316 + 13.176396*days)%360;
+    if(lon<0) lon+=360;
+
+    const ayan=24.2;
+    let nir=(lon-ayan+360)%360;
+
+    const rashiNames=["मेष","वृषभ","मिथुन","कर्क","सिंह","कन्या","तुला","वृश्चिक","धनु","मकर","कुम्भ","मीन"];
+    const nakNames=[
+    "अश्विनी","भरणी","कृत्तिका","रोहिणी","मृगशिरा","आर्द्रा","पुनर्वसु",
+    "पुष्य","आश्लेषा","मघा","पूर्वाफाल्गुनी","उत्तराफाल्गुनी","हस्त",
+    "चित्रा","स्वाती","विशाखा","अनुराधा","ज्येष्ठा","मूल","पूर्वाषाढ़ा",
+    "उत्तराषाढ़ा","श्रवण","धनिष्ठा","शतभिषा","पूर्वाभाद्रपद",
+    "उत्तराभाद्रपद","रेवती"
+    ];
+
+    let rashi=Math.floor(nir/30);
+    let deg=(nir%30).toFixed(2);
+
+    let nak=Math.floor(nir/(360/27));
+    let pada=Math.floor((nir%(360/27))/((360/27)/4))+1;
+
+    document.getElementById("out").innerHTML=`
+    <b>चन्द्र देशांतर:</b> ${nir.toFixed(2)}°<br>
+    <b>राशि:</b> ${rashiNames[rashi]}<br>
+    <b>राशि में डिग्री:</b> ${deg}°<br>
+    <b>नक्षत्र:</b> ${nakNames[nak]}<br>
+    <b>पाद:</b> ${pada}
+    `;
+}
+</script>
+</body>
+</html>
