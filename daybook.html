@@ -1,0 +1,172 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day Book</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+}
+
+th{
+background:#1565c0;
+color:white;
+}
+
+button{
+padding:5px 10px;
+border:none;
+background:red;
+color:white;
+cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="voucher.html">Vouchers</a>
+<a href="daybook.html">Day Book</a>
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Day Book Register</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Debit Ledger</th>
+<th>Credit Ledger</th>
+<th>Amount</th>
+<th>Narration</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="dayBookTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let vouchers =
+JSON.parse(
+localStorage.getItem("vouchers")
+) || [];
+
+function renderDayBook(){
+
+vouchers.sort((a,b)=>
+new Date(a.date)-new Date(b.date)
+);
+
+let html='';
+
+vouchers.forEach((v,index)=>{
+
+html += `
+<tr>
+
+<td>${v.date}</td>
+
+<td>${v.type}</td>
+
+<td>${v.debitLedger}</td>
+
+<td>${v.creditLedger}</td>
+
+<td>${v.amount}</td>
+
+<td>${v.narration || ''}</td>
+
+<td>
+<button onclick="deleteVoucher(${index})">
+Delete
+</button>
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById(
+"dayBookTable"
+).innerHTML = html;
+
+}
+
+function deleteVoucher(index){
+
+if(!confirm("Delete Voucher ?"))
+return;
+
+vouchers.splice(index,1);
+
+localStorage.setItem(
+"vouchers",
+JSON.stringify(vouchers)
+);
+
+renderDayBook();
+
+}
+
+renderDayBook();
+
+</script>
+
+</body>
+</html>
