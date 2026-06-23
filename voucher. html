@@ -72,10 +72,9 @@ color:white;
 <body>
 
 <nav>
-<a href="groups.html">Groups</a>
+
 <a href="ledger.html">Ledgers</a>
-<a href="voucher.html">Vouchers</a>
-<a href="inventory.html">Inventory</a>
+
 </nav>
 
 <div class="container">
