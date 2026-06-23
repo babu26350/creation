@@ -1,0 +1,249 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledger Report</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+select{
+width:100%;
+padding:10px;
+margin-bottom:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+}
+
+th{
+background:#1565c0;
+color:white;
+}
+
+.summary{
+font-size:18px;
+font-weight:bold;
+margin-top:15px;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="voucher.html">Vouchers</a>
+<a href="daybook.html">Day Book</a>
+<a href="ledger-report.html">Ledger Report</a>
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Ledger Report</h2>
+
+<select id="ledgerSelect" onchange="loadLedgerReport()">
+</select>
+
+</div>
+
+<div class="card">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Particulars</th>
+<th>Dr</th>
+<th>Cr</th>
+<th>Balance</th>
+</tr>
+</thead>
+
+<tbody id="reportTable">
+</tbody>
+
+</table>
+
+<div
+id="closingBalance"
+class="summary">
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let ledgers =
+JSON.parse(
+localStorage.getItem("ledgers")
+) || [];
+
+let vouchers =
+JSON.parse(
+localStorage.getItem("vouchers")
+) || [];
+
+function loadLedgerDropdown(){
+
+let html='';
+
+ledgers.forEach(l=>{
+
+html += `
+<option value="${l.name}">
+${l.name}
+</option>
+`;
+
+});
+
+document.getElementById(
+"ledgerSelect"
+).innerHTML = html;
+
+}
+
+function loadLedgerReport(){
+
+let ledgerName =
+document.getElementById(
+"ledgerSelect"
+).value;
+
+let ledger =
+ledgers.find(
+l => l.name === ledgerName
+);
+
+if(!ledger) return;
+
+let runningBalance =
+ledger.type === "Dr"
+?
+ledger.opening
+:
+-ledger.opening;
+
+let html='';
+
+html += `
+<tr>
+<td>-</td>
+<td>Opening Balance</td>
+<td>${ledger.type==="Dr" ? ledger.opening : ''}</td>
+<td>${ledger.type==="Cr" ? ledger.opening : ''}</td>
+<td>${Math.abs(runningBalance)}</td>
+</tr>
+`;
+
+vouchers.forEach(v=>{
+
+if(v.debitLedger === ledgerName){
+
+runningBalance += v.amount;
+
+html += `
+<tr>
+<td>${v.date}</td>
+<td>${v.creditLedger}</td>
+<td>${v.amount}</td>
+<td></td>
+<td>${runningBalance}</td>
+</tr>
+`;
+}
+
+if(v.creditLedger === ledgerName){
+
+runningBalance -= v.amount;
+
+html += `
+<tr>
+<td>${v.date}</td>
+<td>${v.debitLedger}</td>
+<td></td>
+<td>${v.amount}</td>
+<td>${runningBalance}</td>
+</tr>
+`;
+}
+
+});
+
+document.getElementById(
+"reportTable"
+).innerHTML = html;
+
+let balanceType =
+runningBalance >= 0
+?
+"Dr"
+:
+"Cr";
+
+document.getElementById(
+"closingBalance"
+).innerHTML =
+
+"Closing Balance : " +
+
+Math.abs(runningBalance)
+
++ " " +
+
+balanceType;
+
+}
+
+loadLedgerDropdown();
+
+loadLedgerReport();
+
+</script>
+
+</body>
+</html>
