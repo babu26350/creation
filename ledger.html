@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
@@ -6,59 +6,108 @@
 <title>Ledger Master</title>
 
 <style>
+
 body{
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
-    padding:20px;
+font-family:Arial,sans-serif;
+margin:0;
+background:#f4f4f4;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
 }
 
 .card{
-    background:#fff;
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:20px;
-    box-shadow:0 0 10px rgba(0,0,0,.1);
+background:white;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+h2{
+margin-top:0;
 }
 
 input,select{
-    width:100%;
-    padding:10px;
-    margin:6px 0;
-    box-sizing:border-box;
+width:100%;
+padding:10px;
+margin:6px 0;
+box-sizing:border-box;
 }
 
 button{
-    padding:10px 15px;
-    background:#1565c0;
-    color:#fff;
-    border:none;
-    cursor:pointer;
+padding:8px 14px;
+border:none;
+cursor:pointer;
+border-radius:4px;
+margin-right:5px;
+}
+
+.saveBtn{
+background:#1565c0;
+color:white;
+}
+
+.editBtn{
+background:orange;
+color:white;
+}
+
+.deleteBtn{
+background:red;
+color:white;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
+width:100%;
+border-collapse:collapse;
 }
 
 th,td{
-    border:1px solid #ddd;
-    padding:8px;
-    text-align:left;
+border:1px solid #ddd;
+padding:8px;
+text-align:left;
 }
 
 th{
-    background:#1565c0;
-    color:white;
+background:#1565c0;
+color:white;
 }
+
 </style>
 </head>
 <body>
 
+<nav>
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="voucher.html">Vouchers</a>
+<a href="daybook.html">Day Book</a>
+<a href="ledger-report.html">Ledger Report</a>
+<a href="trial-balance.html">Trial Balance</a>
+</nav>
+
+<div class="container">
+
 <div class="card">
 
-<h2>Create Ledger</h2>
+<h2>Create / Edit Ledger</h2>
 
 <input
+type="text"
 id="ledgerName"
 placeholder="Ledger Name">
 
@@ -75,7 +124,9 @@ placeholder="Opening Balance">
 <option value="Cr">Cr</option>
 </select>
 
-<button onclick="saveLedger()">
+<button
+class="saveBtn"
+onclick="saveLedger()">
 Save Ledger
 </button>
 
@@ -88,18 +139,23 @@ Save Ledger
 <table>
 
 <thead>
+
 <tr>
 <th>Name</th>
 <th>Group</th>
 <th>Opening</th>
 <th>Type</th>
+<th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="ledgerTable">
 </tbody>
 
 </table>
+
+</div>
 
 </div>
 
@@ -114,6 +170,49 @@ let ledgers =
 JSON.parse(
 localStorage.getItem("ledgers")
 ) || [];
+
+let editId = null;
+
+/* Predefined Ledgers */
+
+if(ledgers.length===0){
+
+ledgers = [
+
+{
+id:Date.now()+1,
+name:"Cash",
+group:"Cash-in-Hand",
+opening:0,
+type:"Dr"
+},
+
+{
+id:Date.now()+2,
+name:"Purchase",
+group:"Purchase Accounts",
+opening:0,
+type:"Dr"
+},
+
+{
+id:Date.now()+3,
+name:"Sales",
+group:"Sales Accounts",
+opening:0,
+type:"Cr"
+}
+
+];
+
+localStorage.setItem(
+"ledgers",
+JSON.stringify(ledgers)
+);
+
+}
+
+/* Load Groups */
 
 function loadGroups(){
 
@@ -134,6 +233,8 @@ document.getElementById(
 ).innerHTML = html;
 
 }
+
+/* Save */
 
 function saveLedger(){
 
@@ -161,11 +262,32 @@ document.getElementById(
 
 if(!ledgerName){
 
-alert("Enter Ledger Name");
+alert("Ledger Name Required");
 
 return;
 
 }
+
+if(editId){
+
+let index =
+ledgers.findIndex(
+l => l.id === editId
+);
+
+ledgers[index] = {
+
+id:editId,
+name:ledgerName,
+group:groupName,
+opening:openingBalance,
+type:balanceType
+
+};
+
+editId = null;
+
+}else{
 
 let exists =
 ledgers.find(
@@ -183,7 +305,7 @@ return;
 
 }
 
-let ledger = {
+ledgers.push({
 
 id:Date.now(),
 
@@ -195,28 +317,117 @@ opening:openingBalance,
 
 type:balanceType
 
-};
+});
 
-ledgers.push(ledger);
+}
 
 localStorage.setItem(
 "ledgers",
 JSON.stringify(ledgers)
 );
 
-document.getElementById(
-"ledgerName"
-).value='';
-
-document.getElementById(
-"openingBalance"
-).value='';
+clearForm();
 
 renderLedgers();
 
-alert("Ledger Saved");
+}
+
+/* Edit */
+
+function editLedger(id){
+
+let ledger =
+ledgers.find(
+l => l.id === id
+);
+
+if(!ledger) return;
+
+editId = id;
+
+document.getElementById(
+"ledgerName"
+).value =
+ledger.name;
+
+document.getElementById(
+"groupSelect"
+).value =
+ledger.group;
+
+document.getElementById(
+"openingBalance"
+).value =
+ledger.opening;
+
+document.getElementById(
+"balanceType"
+).value =
+ledger.type;
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
+
+/* Delete */
+
+function deleteLedger(id){
+
+let ledger =
+ledgers.find(
+l => l.id === id
+);
+
+if(!ledger) return;
+
+let vouchers =
+JSON.parse(
+localStorage.getItem("vouchers")
+) || [];
+
+let used =
+vouchers.some(v =>
+
+v.debitLedger === ledger.name ||
+
+v.creditLedger === ledger.name
+
+);
+
+if(used){
+
+alert(
+"Ledger is used in voucher entries."
+);
+
+return;
+
+}
+
+if(
+!confirm(
+"Delete Ledger ?"
+)
+) return;
+
+ledgers =
+ledgers.filter(
+l => l.id !== id
+);
+
+localStorage.setItem(
+"ledgers",
+JSON.stringify(ledgers)
+);
+
+renderLedgers();
+
+}
+
+/* Table */
 
 function renderLedgers(){
 
@@ -225,12 +436,35 @@ let html='';
 ledgers.forEach(l=>{
 
 html += `
+
 <tr>
+
 <td>${l.name}</td>
+
 <td>${l.group}</td>
+
 <td>${l.opening}</td>
+
 <td>${l.type}</td>
+
+<td>
+
+<button
+class="editBtn"
+onclick="editLedger(${l.id})">
+Edit
+</button>
+
+<button
+class="deleteBtn"
+onclick="deleteLedger(${l.id})">
+Delete
+</button>
+
+</td>
+
 </tr>
+
 `;
 
 });
@@ -241,10 +475,30 @@ document.getElementById(
 
 }
 
+/* Clear */
+
+function clearForm(){
+
+document.getElementById(
+"ledgerName"
+).value='';
+
+document.getElementById(
+"openingBalance"
+).value='';
+
+document.getElementById(
+"balanceType"
+).value='Dr';
+
+}
+
+/* Start */
+
 loadGroups();
 renderLedgers();
 
 </script>
 
 </body>
-</html>
+ </html>
