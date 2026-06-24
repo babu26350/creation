@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
@@ -32,12 +32,18 @@ padding:20px;
 .card{
 background:white;
 padding:20px;
-border-radius:8px;
 margin-bottom:20px;
+border-radius:8px;
 box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 
-input,select,textarea{
+h2{
+margin-top:0;
+}
+
+input,
+select,
+textarea{
 width:100%;
 padding:10px;
 margin:8px 0;
@@ -50,6 +56,7 @@ color:white;
 border:none;
 padding:10px 15px;
 cursor:pointer;
+border-radius:4px;
 }
 
 table{
@@ -60,6 +67,7 @@ border-collapse:collapse;
 th,td{
 border:1px solid #ddd;
 padding:8px;
+text-align:left;
 }
 
 th{
@@ -73,9 +81,11 @@ color:white;
 
 <nav>
 
+<a href="groups.html">Groups</a>
 <a href="ledger.html">Ledgers</a>
 <a href="stock-items.html">Stock Items</a>
 <a href="purchase-voucher.html">Purchase</a>
+<a href="voucher.html">Voucher</a>
 
 </nav>
 
@@ -94,11 +104,14 @@ color:white;
 <label>Supplier Ledger</label>
 <select id="partyLedger"></select>
 
-<label>Item</label>
+<label>Purchase Ledger</label>
+<select id="purchaseLedger"></select>
+
+<label>Stock Item</label>
 <select id="itemName"></select>
 
-<label>Qty</label>
-<input type="number" id="qty">
+<label>Quantity</label>
+<input type="number" id="qty" value="1">
 
 <label>Rate</label>
 <input type="number" id="rate">
@@ -109,7 +122,7 @@ color:white;
 <label>Narration</label>
 <textarea id="narration"></textarea>
 
-<button onclick="saveVoucher()">
+<button onclick="savePurchase()">
 Save Purchase
 </button>
 
@@ -135,7 +148,7 @@ Save Purchase
 
 </thead>
 
-<tbody id="voucherTable">
+<tbody id="purchaseTable">
 </tbody>
 
 </table>
@@ -145,6 +158,9 @@ Save Purchase
 </div>
 
 <script>
+
+document.getElementById("voucherDate").value =
+new Date().toISOString().split('T')[0];
 
 let ledgers =
 JSON.parse(
@@ -161,31 +177,30 @@ JSON.parse(
 localStorage.getItem("purchaseVouchers")
 ) || [];
 
-function loadLedgers(){
+function generateVoucherNo(){
 
-let supplierGroups=[
+document.getElementById(
+"voucherNo"
+).value =
+"PUR-" + (purchaseVouchers.length + 1);
 
-"Sundry Creditors",
-"Current Liabilities"
+}
 
-];
+function loadSupplierLedgers(){
 
 let html='';
 
 ledgers.forEach(l=>{
 
 if(
-supplierGroups.includes(
-l.group
-)
+l.group==="Sundry Creditors" ||
+l.group==="Current Liabilities"
 ){
 
-html+=`
-
+html += `
 <option value="${l.name}">
 ${l.name}
 </option>
-
 `;
 
 }
@@ -194,7 +209,33 @@ ${l.name}
 
 document.getElementById(
 "partyLedger"
-).innerHTML=html;
+).innerHTML = html;
+
+}
+
+function loadPurchaseLedgers(){
+
+let html='';
+
+ledgers.forEach(l=>{
+
+if(
+l.group==="Purchase Accounts"
+){
+
+html += `
+<option value="${l.name}">
+${l.name}
+</option>
+`;
+
+}
+
+});
+
+document.getElementById(
+"purchaseLedger"
+).innerHTML = html;
 
 }
 
@@ -204,29 +245,17 @@ let html='';
 
 stockItems.forEach(i=>{
 
-html+=`
-
+html += `
 <option value="${i.name}">
 ${i.name}
 </option>
-
 `;
 
 });
 
 document.getElementById(
 "itemName"
-).innerHTML=html;
-
-}
-
-function nextVoucherNo(){
-
-document.getElementById(
-"voucherNo"
-).value =
-"PUR-" +
-(purchaseVouchers.length+1);
+).innerHTML = html;
 
 }
 
@@ -267,9 +296,11 @@ document
 calculateAmount
 );
 
-function saveVoucher(){
+function savePurchase(){
 
 let voucher={
+
+id:Date.now(),
 
 voucherNo:
 document.getElementById(
@@ -284,6 +315,11 @@ document.getElementById(
 party:
 document.getElementById(
 "partyLedger"
+).value,
+
+purchaseLedger:
+document.getElementById(
+"purchaseLedger"
 ).value,
 
 item:
@@ -316,6 +352,16 @@ document.getElementById(
 
 };
 
+if(voucher.amount<=0){
+
+alert("Enter Valid Amount");
+
+return;
+
+}
+
+/* Purchase Voucher Save */
+
 purchaseVouchers.push(
 voucher
 );
@@ -338,6 +384,8 @@ localStorage.getItem(
 
 stockTransactions.push({
 
+id:Date.now(),
+
 date:voucher.date,
 
 item:voucher.item,
@@ -357,21 +405,61 @@ stockTransactions
 
 );
 
+/* Accounting Voucher */
+
+let vouchers =
+JSON.parse(
+localStorage.getItem(
+"vouchers"
+)
+) || [];
+
+vouchers.push({
+
+id:Date.now(),
+
+date:voucher.date,
+
+type:"Purchase",
+
+debitLedger:
+voucher.purchaseLedger,
+
+creditLedger:
+voucher.party,
+
+amount:
+voucher.amount,
+
+narration:
+voucher.narration
+
+});
+
+localStorage.setItem(
+"vouchers",
+
+JSON.stringify(
+vouchers
+)
+
+);
+
 alert(
-"Purchase Saved"
+"Purchase Voucher Saved"
 );
 
 location.reload();
 
 }
 
-function renderTable(){
+function renderPurchases(){
 
 let html='';
 
 purchaseVouchers.forEach(v=>{
 
-html+=`
+html += `
 
 <tr>
 
@@ -396,20 +484,16 @@ html+=`
 });
 
 document.getElementById(
-"voucherTable"
-).innerHTML=html;
+"purchaseTable"
+).innerHTML = html;
 
 }
 
-document.getElementById(
-"voucherDate"
-).valueAsDate =
-new Date();
-
-loadLedgers();
+generateVoucherNo();
+loadSupplierLedgers();
+loadPurchaseLedgers();
 loadItems();
-nextVoucherNo();
-renderTable();
+renderPurchases();
 
 </script>
 
