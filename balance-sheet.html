@@ -1,0 +1,428 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Balance Sheet</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+vertical-align:top;
+}
+
+th{
+background:#1565c0;
+color:white;
+}
+
+.sideTitle{
+font-size:20px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.line{
+padding:5px 0;
+border-bottom:1px dashed #ccc;
+}
+
+.amount{
+float:right;
+font-weight:bold;
+}
+
+.total{
+margin-top:15px;
+font-size:18px;
+font-weight:bold;
+background:#e3f2fd;
+padding:10px;
+}
+
+.match{
+margin-top:20px;
+padding:12px;
+text-align:center;
+font-size:18px;
+font-weight:bold;
+border-radius:5px;
+}
+
+.ok{
+background:#c8e6c9;
+color:green;
+}
+
+.notok{
+background:#ffcdd2;
+color:red;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="voucher.html">Vouchers</a>
+<a href="daybook.html">Day Book</a>
+<a href="ledger-report.html">Ledger Report</a>
+<a href="trial-balance.html">Trial Balance</a>
+<a href="profit-loss.html">Profit & Loss</a>
+<a href="balance-sheet.html">Balance Sheet</a>
+
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Balance Sheet</h2>
+
+<table>
+
+<tr>
+
+<th width="50%">
+Liabilities
+</th>
+
+<th width="50%">
+Assets
+</th>
+
+</tr>
+
+<tr>
+
+<td id="liabilitiesSide"></td>
+
+<td id="assetsSide"></td>
+
+</tr>
+
+</table>
+
+<div id="balanceStatus"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let ledgers =
+JSON.parse(
+localStorage.getItem("ledgers")
+) || [];
+
+let vouchers =
+JSON.parse(
+localStorage.getItem("vouchers")
+) || [];
+
+function getClosingBalance(ledger){
+
+let balance =
+ledger.type==="Dr"
+?
+ledger.opening
+:
+-ledger.opening;
+
+vouchers.forEach(v=>{
+
+if(v.debitLedger===ledger.name)
+balance += v.amount;
+
+if(v.creditLedger===ledger.name)
+balance -= v.amount;
+
+});
+
+return balance;
+
+}
+
+const assetGroups=[
+
+"Fixed Assets",
+"Current Assets",
+"Bank Accounts",
+"Cash-in-Hand",
+"Investments",
+"Sundry Debtors",
+"Loans & Advances (Assets)",
+"Deposits (Assets)",
+"Stock-in-Hand"
+
+];
+
+const liabilityGroups=[
+
+"Capital Account",
+"Current Liabilities",
+"Sundry Creditors",
+"Secured Loans",
+"Unsecured Loans",
+"Duties & Taxes",
+"Provisions"
+
+];
+
+const incomeGroups=[
+
+"Sales Accounts",
+"Direct Income",
+"Indirect Income"
+
+];
+
+const expenseGroups=[
+
+"Purchase Accounts",
+"Direct Expenses",
+"Indirect Expenses"
+
+];
+
+function getNetProfit(){
+
+let income=0;
+let expense=0;
+
+ledgers.forEach(l=>{
+
+let bal=Math.abs(
+getClosingBalance(l)
+);
+
+if(
+incomeGroups.includes(l.group)
+)
+income += bal;
+
+if(
+expenseGroups.includes(l.group)
+)
+expense += bal;
+
+});
+
+return income-expense;
+
+}
+
+function generateBalanceSheet(){
+
+let assetsHtml =
+'<div class="sideTitle">Assets</div>';
+
+let liabilitiesHtml =
+'<div class="sideTitle">Liabilities</div>';
+
+let totalAssets=0;
+let totalLiabilities=0;
+
+ledgers.forEach(l=>{
+
+let bal =
+Math.abs(
+getClosingBalance(l)
+);
+
+if(bal===0) return;
+
+if(
+assetGroups.includes(l.group)
+){
+
+totalAssets += bal;
+
+assetsHtml +=
+
+`<div class="line">
+
+${l.name}
+
+<span class="amount">
+
+${bal.toFixed(2)}
+
+</span>
+
+</div>`;
+
+}
+
+if(
+liabilityGroups.includes(l.group)
+){
+
+totalLiabilities += bal;
+
+liabilitiesHtml +=
+
+`<div class="line">
+
+${l.name}
+
+<span class="amount">
+
+${bal.toFixed(2)}
+
+</span>
+
+</div>`;
+
+}
+
+});
+
+let netProfit =
+getNetProfit();
+
+if(netProfit>0){
+
+totalLiabilities += netProfit;
+
+liabilitiesHtml +=
+
+`<div class="line">
+
+Net Profit
+
+<span class="amount">
+
+${netProfit.toFixed(2)}
+
+</span>
+
+</div>`;
+
+}
+
+if(netProfit<0){
+
+totalAssets +=
+Math.abs(netProfit);
+
+assetsHtml +=
+
+`<div class="line">
+
+Net Loss
+
+<span class="amount">
+
+${Math.abs(netProfit).toFixed(2)}
+
+</span>
+
+</div>`;
+
+}
+
+assetsHtml +=
+
+`<div class="total">
+
+Total Assets :
+
+${totalAssets.toFixed(2)}
+
+</div>`;
+
+liabilitiesHtml +=
+
+`<div class="total">
+
+Total Liabilities :
+
+${totalLiabilities.toFixed(2)}
+
+</div>`;
+
+document.getElementById(
+"assetsSide"
+).innerHTML = assetsHtml;
+
+document.getElementById(
+"liabilitiesSide"
+).innerHTML = liabilitiesHtml;
+
+let diff =
+Math.abs(
+totalAssets-totalLiabilities
+);
+
+document.getElementById(
+"balanceStatus"
+).innerHTML =
+
+diff<0.01
+
+?
+
+`<div class="match ok">
+
+✓ Balance Sheet Matched
+
+</div>`
+
+:
+
+`<div class="match notok">
+
+Difference :
+${diff.toFixed(2)}
+
+</div>`;
+
+}
+
+generateBalanceSheet();
+
+</script>
+
+</body>
+</html>
