@@ -1,0 +1,251 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Groups Master</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+    padding:20px;
+}
+
+.card{
+    background:#fff;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    box-sizing:border-box;
+}
+
+button{
+    padding:10px 15px;
+    background:#1565c0;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:8px;
+}
+
+th{
+    background:#1565c0;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h2>Create Group</h2>
+
+<input
+id="groupName"
+placeholder="Group Name">
+
+<select id="parentGroup"></select>
+
+<button onclick="saveGroup()">
+Save Group
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Groups List</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Group Name</th>
+<th>Parent Group</th>
+</tr>
+</thead>
+
+<tbody id="groupTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+const primaryGroups = [
+
+"Capital Account",
+"Reserves & Surplus",
+"Secured Loans",
+"Unsecured Loans",
+"Bank OD Accounts",
+"Current Liabilities",
+"Duties & Taxes",
+"Provisions",
+"Sundry Creditors",
+
+"Fixed Assets",
+"Investments",
+"Current Assets",
+"Bank Accounts",
+"Cash-in-Hand",
+"Deposits (Assets)",
+"Loans & Advances (Assets)",
+"Stock-in-Hand",
+"Sundry Debtors",
+
+"Branch / Divisions",
+"Misc Expenses (Asset)",
+"Sales Accounts",
+"Purchase Accounts",
+
+"Direct Income",
+"Indirect Income",
+
+"Direct Expenses",
+"Indirect Expenses",
+
+"Suspense Account",
+"Profit & Loss Account"
+
+];
+
+if(!localStorage.getItem("groups")){
+
+let groups = primaryGroups.map(g=>({
+    name:g,
+    parent:"Primary"
+}));
+
+localStorage.setItem(
+"groups",
+JSON.stringify(groups)
+);
+
+}
+
+let groups =
+JSON.parse(
+localStorage.getItem("groups")
+) || [];
+
+function loadParents(){
+
+let html = '';
+
+groups.forEach(g=>{
+
+html += `
+<option value="${g.name}">
+${g.name}
+</option>
+`;
+
+});
+
+document.getElementById(
+"parentGroup"
+).innerHTML = html;
+
+}
+
+function saveGroup(){
+
+let name =
+document.getElementById(
+"groupName"
+).value.trim();
+
+let parent =
+document.getElementById(
+"parentGroup"
+).value;
+
+if(!name){
+
+alert("Enter Group Name");
+
+return;
+
+}
+
+let exists = groups.find(
+g => g.name.toLowerCase() === name.toLowerCase()
+);
+
+if(exists){
+
+alert("Group Already Exists");
+
+return;
+
+}
+
+groups.push({
+
+name:name,
+parent:parent
+
+});
+
+localStorage.setItem(
+"groups",
+JSON.stringify(groups)
+);
+
+document.getElementById(
+"groupName"
+).value='';
+
+loadParents();
+
+renderGroups();
+
+}
+
+function renderGroups(){
+
+let html='';
+
+groups.forEach(g=>{
+
+html += `
+<tr>
+<td>${g.name}</td>
+<td>${g.parent}</td>
+</tr>
+`;
+
+});
+
+document.getElementById(
+"groupTable"
+).innerHTML = html;
+
+}
+
+loadParents();
+renderGroups();
+
+</script>
+
+</body>
+</html>
