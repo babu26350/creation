@@ -1,0 +1,354 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unit Master</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+margin:0;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+box-sizing:border-box;
+}
+
+button{
+padding:10px 15px;
+border:none;
+cursor:pointer;
+margin-right:5px;
+border-radius:4px;
+}
+
+.saveBtn{
+background:#1565c0;
+color:white;
+}
+
+.editBtn{
+background:orange;
+color:white;
+}
+
+.deleteBtn{
+background:red;
+color:white;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+}
+
+th{
+background:#1565c0;
+color:white;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="units.html">Units</a>
+<a href="voucher.html">Vouchers</a>
+<a href="inventory.html">Inventory</a>
+
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Unit Master</h2>
+
+<input
+type="text"
+id="unitName"
+placeholder="Unit Name (Nos, Kg, Ltr etc.)">
+
+<button
+class="saveBtn"
+onclick="saveUnit()">
+Save Unit
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Unit List</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Unit Name</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="unitTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let units =
+JSON.parse(
+localStorage.getItem("units")
+) || [];
+
+let editId = null;
+
+/* Default Units */
+
+if(units.length===0){
+
+units = [
+
+{id:1,name:"Nos"},
+{id:2,name:"Kg"},
+{id:3,name:"Gram"},
+{id:4,name:"Ltr"},
+{id:5,name:"ML"},
+{id:6,name:"Meter"},
+{id:7,name:"Feet"},
+{id:8,name:"Box"},
+{id:9,name:"Packet"}
+
+];
+
+localStorage.setItem(
+"units",
+JSON.stringify(units)
+);
+
+}
+
+function saveUnit(){
+
+let name =
+document.getElementById(
+"unitName"
+).value.trim();
+
+if(!name){
+
+alert("Enter Unit Name");
+
+return;
+
+}
+
+if(editId){
+
+let index =
+units.findIndex(
+u=>u.id===editId
+);
+
+units[index].name = name;
+
+editId = null;
+
+}else{
+
+let exists =
+units.find(
+u=>
+u.name.toLowerCase()
+===
+name.toLowerCase()
+);
+
+if(exists){
+
+alert("Unit Already Exists");
+
+return;
+
+}
+
+units.push({
+
+id:Date.now(),
+
+name:name
+
+});
+
+}
+
+localStorage.setItem(
+"units",
+JSON.stringify(units)
+);
+
+document.getElementById(
+"unitName"
+).value='';
+
+renderUnits();
+
+}
+
+function editUnit(id){
+
+let unit =
+units.find(
+u=>u.id===id
+);
+
+if(!unit) return;
+
+editId=id;
+
+document.getElementById(
+"unitName"
+).value =
+unit.name;
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+function deleteUnit(id){
+
+let stockItems =
+JSON.parse(
+localStorage.getItem("stockItems")
+) || [];
+
+let used =
+stockItems.some(
+s=>s.unitId===id
+);
+
+if(used){
+
+alert(
+"Unit used in Stock Item."
+);
+
+return;
+
+}
+
+if(!confirm(
+"Delete Unit ?"
+))
+return;
+
+units =
+units.filter(
+u=>u.id!==id
+);
+
+localStorage.setItem(
+"units",
+JSON.stringify(units)
+);
+
+renderUnits();
+
+}
+
+function renderUnits(){
+
+let html='';
+
+units.forEach(u=>{
+
+html += `
+
+<tr>
+
+<td>${u.name}</td>
+
+<td>
+
+<button
+class="editBtn"
+onclick="editUnit(${u.id})">
+Edit
+</button>
+
+<button
+class="deleteBtn"
+onclick="deleteUnit(${u.id})">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById(
+"unitTable"
+).innerHTML = html;
+
+}
+
+renderUnits();
+
+</script>
+
+</body>
+</html>
