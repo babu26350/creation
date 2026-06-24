@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock Items</title>
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4}
+nav{background:#1565c0;padding:12px}
+nav a{color:#fff;text-decoration:none;margin-right:15px;font-weight:bold}
+.container{padding:20px}
+.card{background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;box-shadow:0 0 10px rgba(0,0,0,.1)}
+input,select{width:100%;padding:10px;margin:6px 0;box-sizing:border-box}
+button{padding:8px 12px;border:none;border-radius:4px;cursor:pointer}
+.saveBtn{background:#1565c0;color:#fff}
+.editBtn{background:orange;color:#fff}
+.deleteBtn{background:red;color:#fff}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #ddd;padding:8px}
+th{background:#1565c0;color:#fff}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="units.html">Units</a>
+<a href="stock-groups.html">Stock Groups</a>
+<a href="stock-items.html">Stock Items</a>
+</nav>
+
+<div class="container">
+
+<div class="card">
+<h2>Stock Item Master</h2>
+
+<input type="text" id="itemName" placeholder="Item Name">
+
+<select id="stockGroup"></select>
+
+<label>Base Unit</label>
+<select id="baseUnit"></select>
+
+<label>Alternate Unit</label>
+<select id="altUnit"></select>
+
+<input type="number" id="conversion" placeholder="1 Alternate Unit = ? Base Units">
+
+<input type="number" id="openingQty" placeholder="Opening Quantity">
+
+<input type="number" id="purchaseRate" placeholder="Purchase Rate">
+
+<input type="number" id="saleRate" placeholder="Sale Rate">
+
+<button class="saveBtn" onclick="saveItem()">Save Item</button>
+</div>
+
+<div class="card">
+<h2>Stock Item List</h2>
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Group</th>
+<th>Base</th>
+<th>Alt</th>
+<th>Conv.</th>
+<th>Qty</th>
+<th>P.Rate</th>
+<th>S.Rate</th>
+<th>Value</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="itemTable"></tbody>
+</table>
+</div>
+
+</div>
+
+<script>
+let stockGroups=JSON.parse(localStorage.getItem("stockGroups"))||[];
+let units=JSON.parse(localStorage.getItem("units"))||[];
+let stockItems=JSON.parse(localStorage.getItem("stockItems"))||[];
+
+let editId=null;
+
+function loadGroups(){
+let html='';
+stockGroups.forEach(g=>{
+html+=`<option value="${g.name}">${g.name}</option>`;
+});
+document.getElementById("stockGroup").innerHTML=html;
+}
+
+function loadUnits(){
+let html='';
+units.forEach(u=>{
+html+=`<option value="${u.name}">${u.name}</option>`;
+});
+document.getElementById("baseUnit").innerHTML=html;
+document.getElementById("altUnit").innerHTML=html;
+}
+
+function saveItem(){
+
+let item={
+id:editId||Date.now(),
+name:document.getElementById("itemName").value.trim(),
+stockGroup:document.getElementById("stockGroup").value,
+baseUnit:document.getElementById("baseUnit").value,
+altUnit:document.getElementById("altUnit").value,
+conversion:Number(document.getElementById("conversion").value||1),
+openingQty:Number(document.getElementById("openingQty").value||0),
+purchaseRate:Number(document.getElementById("purchaseRate").value||0),
+saleRate:Number(document.getElementById("saleRate").value||0)
+};
+
+if(!item.name){
+alert("Enter Item Name");
+return;
+}
+
+if(editId){
+let i=stockItems.findIndex(x=>x.id===editId);
+stockItems[i]=item;
+editId=null;
+}else{
+stockItems.push(item);
+}
+
+localStorage.setItem("stockItems",JSON.stringify(stockItems));
+
+clearForm();
+renderItems();
+}
+
+function editItem(id){
+let i=stockItems.find(x=>x.id===id);
+if(!i) return;
+
+editId=id;
+
+itemName.value=i.name;
+stockGroup.value=i.stockGroup;
+baseUnit.value=i.baseUnit;
+altUnit.value=i.altUnit;
+conversion.value=i.conversion;
+openingQty.value=i.openingQty;
+purchaseRate.value=i.purchaseRate;
+saleRate.value=i.saleRate;
+}
+
+function deleteItem(id){
+if(!confirm("Delete Item?")) return;
+
+stockItems=stockItems.filter(x=>x.id!==id);
+localStorage.setItem("stockItems",JSON.stringify(stockItems));
+renderItems();
+}
+
+function renderItems(){
+let html='';
+
+stockItems.forEach(i=>{
+
+let value=i.openingQty*i.purchaseRate;
+
+html+=`
+<tr>
+<td>${i.name}</td>
+<td>${i.stockGroup}</td>
+<td>${i.baseUnit}</td>
+<td>${i.altUnit}</td>
+<td>${i.conversion}</td>
+<td>${i.openingQty}</td>
+<td>${i.purchaseRate}</td>
+<td>${i.saleRate}</td>
+<td>${value}</td>
+<td>
+<button class="editBtn" onclick="editItem(${i.id})">Edit</button>
+<button class="deleteBtn" onclick="deleteItem(${i.id})">Delete</button>
+</td>
+</tr>`;
+
+});
+
+document.getElementById("itemTable").innerHTML=html;
+}
+
+function clearForm(){
+document.getElementById("itemName").value='';
+document.getElementById("conversion").value='';
+document.getElementById("openingQty").value='';
+document.getElementById("purchaseRate").value='';
+document.getElementById("saleRate").value='';
+}
+
+loadGroups();
+loadUnits();
+renderItems();
+</script>
+
+</body>
+</html>
