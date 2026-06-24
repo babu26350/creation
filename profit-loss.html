@@ -1,0 +1,265 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profit & Loss</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+}
+
+th{
+background:#1565c0;
+color:white;
+}
+
+.total{
+font-weight:bold;
+background:#e3f2fd;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="voucher.html">Vouchers</a>
+<a href="daybook.html">Day Book</a>
+<a href="trial-balance.html">Trial Balance</a>
+<a href="profit-loss.html">Profit & Loss</a>
+<a href="balance-sheet.html">Balance Sheet</a>
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Profit & Loss Account</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Expenses</th>
+<th>Income</th>
+</tr>
+</thead>
+
+<tbody id="plBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let ledgers =
+JSON.parse(localStorage.getItem("ledgers")) || [];
+
+let vouchers =
+JSON.parse(localStorage.getItem("vouchers")) || [];
+
+function getClosingBalance(ledger){
+
+let balance =
+ledger.type==="Dr"
+? ledger.opening
+: -ledger.opening;
+
+vouchers.forEach(v=>{
+
+if(v.debitLedger===ledger.name)
+balance += v.amount;
+
+if(v.creditLedger===ledger.name)
+balance -= v.amount;
+
+});
+
+return Math.abs(balance);
+
+}
+
+const incomeGroups=[
+
+"Sales Accounts",
+"Direct Income",
+"Indirect Income"
+
+];
+
+const expenseGroups=[
+
+"Purchase Accounts",
+"Direct Expenses",
+"Indirect Expenses"
+
+];
+
+function generatePL(){
+
+let incomeHtml='';
+let expenseHtml='';
+
+let totalIncome=0;
+let totalExpense=0;
+
+ledgers.forEach(l=>{
+
+let bal=getClosingBalance(l);
+
+if(incomeGroups.includes(l.group)){
+
+totalIncome += bal;
+
+incomeHtml += `
+<div>
+${l.name}
+<span style="float:right">
+${bal.toFixed(2)}
+</span>
+</div>
+`;
+
+}
+
+if(expenseGroups.includes(l.group)){
+
+totalExpense += bal;
+
+expenseHtml += `
+<div>
+${l.name}
+<span style="float:right">
+${bal.toFixed(2)}
+</span>
+</div>
+`;
+
+}
+
+});
+
+let netProfit =
+totalIncome-totalExpense;
+
+document.getElementById(
+"plBody"
+).innerHTML =
+
+`
+<tr>
+
+<td>
+
+${expenseHtml}
+
+<hr>
+
+<b>
+Total Expenses :
+${totalExpense.toFixed(2)}
+</b>
+
+</td>
+
+<td>
+
+${incomeHtml}
+
+<hr>
+
+<b>
+Total Income :
+${totalIncome.toFixed(2)}
+</b>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="2">
+
+<center>
+
+<h3>
+
+${netProfit>=0
+
+?
+
+'Net Profit : '+netProfit.toFixed(2)
+
+:
+
+'Net Loss : '+Math.abs(netProfit).toFixed(2)
+
+}
+
+</h3>
+
+</center>
+
+</td>
+
+</tr>
+
+`;
+
+localStorage.setItem(
+"netProfit",
+netProfit
+);
+
+}
+
+generatePL();
+
+</script>
+
+</body>
+</html>
