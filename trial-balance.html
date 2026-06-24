@@ -1,0 +1,193 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trial Balance</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+}
+
+th{
+background:#1565c0;
+color:white;
+}
+
+.total{
+font-size:20px;
+font-weight:bold;
+margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="voucher.html">Vouchers</a>
+<a href="daybook.html">Day Book</a>
+<a href="ledger-report.html">Ledger Report</a>
+<a href="trial-balance.html">Trial Balance</a>
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Trial Balance</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Ledger</th>
+<th>Group</th>
+<th>Debit</th>
+<th>Credit</th>
+</tr>
+</thead>
+
+<tbody id="tbBody"></tbody>
+
+<tfoot>
+<tr>
+<th colspan="2">Total</th>
+<th id="drTotal">0</th>
+<th id="crTotal">0</th>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let ledgers =
+JSON.parse(localStorage.getItem("ledgers")) || [];
+
+let vouchers =
+JSON.parse(localStorage.getItem("vouchers")) || [];
+
+function getClosingBalance(ledger){
+
+let balance =
+ledger.type === "Dr"
+? ledger.opening
+: -ledger.opening;
+
+vouchers.forEach(v=>{
+
+if(v.debitLedger === ledger.name){
+balance += v.amount;
+}
+
+if(v.creditLedger === ledger.name){
+balance -= v.amount;
+}
+
+});
+
+return balance;
+
+}
+
+function generateTB(){
+
+let html='';
+
+let totalDr=0;
+let totalCr=0;
+
+ledgers.forEach(l=>{
+
+let bal = getClosingBalance(l);
+
+let dr='';
+let cr='';
+
+if(bal>=0){
+
+dr=Math.abs(bal);
+
+totalDr += Math.abs(bal);
+
+}else{
+
+cr=Math.abs(bal);
+
+totalCr += Math.abs(bal);
+
+}
+
+html += `
+<tr>
+<td>${l.name}</td>
+<td>${l.group}</td>
+<td>${dr}</td>
+<td>${cr}</td>
+</tr>
+`;
+
+});
+
+document.getElementById(
+"tbBody"
+).innerHTML = html;
+
+document.getElementById(
+"drTotal"
+).innerHTML = totalDr.toFixed(2);
+
+document.getElementById(
+"crTotal"
+).innerHTML = totalCr.toFixed(2);
+
+}
+
+generateTB();
+
+</script>
+
+</body>
+</html>
