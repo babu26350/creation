@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stock Items</title>
+<title>Purchase Voucher</title>
 
 <style>
 
@@ -37,7 +37,13 @@ border-radius:8px;
 box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 
-input,select{
+h2{
+margin-top:0;
+}
+
+input,
+select,
+textarea{
 width:100%;
 padding:10px;
 margin:8px 0;
@@ -45,26 +51,12 @@ box-sizing:border-box;
 }
 
 button{
-padding:10px 15px;
-border:none;
-cursor:pointer;
-border-radius:4px;
-margin-right:5px;
-}
-
-.saveBtn{
 background:#1565c0;
 color:white;
-}
-
-.editBtn{
-background:orange;
-color:white;
-}
-
-.deleteBtn{
-background:red;
-color:white;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+border-radius:4px;
 }
 
 table{
@@ -75,6 +67,7 @@ border-collapse:collapse;
 th,td{
 border:1px solid #ddd;
 padding:8px;
+text-align:left;
 }
 
 th{
@@ -90,9 +83,9 @@ color:white;
 
 <a href="groups.html">Groups</a>
 <a href="ledger.html">Ledgers</a>
-<a href="units.html">Units</a>
-<a href="stock-groups.html">Stock Groups</a>
 <a href="stock-items.html">Stock Items</a>
+<a href="purchase-voucher.html">Purchase</a>
+<a href="voucher.html">Voucher</a>
 
 </nav>
 
@@ -100,60 +93,62 @@ color:white;
 
 <div class="card">
 
-<h2>Stock Item Master</h2>
+<h2>Purchase Voucher</h2>
 
-<input
-type="text"
-id="itemName"
-placeholder="Item Name">
+<label>Voucher No</label>
+<input type="text" id="voucherNo" readonly>
 
-<select id="stockGroup">
-</select>
+<label>Date</label>
+<input type="date" id="voucherDate">
 
-<select id="unit">
-</select>
+<label>Supplier Ledger</label>
+<select id="partyLedger"></select>
 
-<input
-type="number"
-id="openingQty"
-placeholder="Opening Quantity">
+<label>Purchase Ledger</label>
+<select id="purchaseLedger"></select>
 
-<input
-type="number"
-id="openingRate"
-placeholder="Opening Rate">
+<label>Stock Item</label>
+<select id="itemName"></select>
 
-<button
-class="saveBtn"
-onclick="saveItem()">
-Save Item
+<label>Quantity</label>
+<input type="number" id="qty" value="1">
+
+<label>Rate</label>
+<input type="number" id="rate">
+
+<label>Amount</label>
+<input type="number" id="amount" readonly>
+
+<label>Narration</label>
+<textarea id="narration"></textarea>
+
+<button onclick="savePurchase()">
+Save Purchase
 </button>
 
 </div>
 
 <div class="card">
 
-<h2>Stock Item List</h2>
+<h2>Purchase Voucher List</h2>
 
 <table>
 
 <thead>
 
 <tr>
-
+<th>V.No</th>
+<th>Date</th>
+<th>Party</th>
 <th>Item</th>
-<th>Group</th>
-<th>Unit</th>
 <th>Qty</th>
 <th>Rate</th>
-<th>Value</th>
-<th>Action</th>
-
+<th>Amount</th>
 </tr>
 
 </thead>
 
-<tbody id="itemTable">
+<tbody id="purchaseTable">
 </tbody>
 
 </table>
@@ -164,14 +159,12 @@ Save Item
 
 <script>
 
-let stockGroups =
-JSON.parse(
-localStorage.getItem("stockGroups")
-) || [];
+document.getElementById("voucherDate").value =
+new Date().toISOString().split('T')[0];
 
-let units =
+let ledgers =
 JSON.parse(
-localStorage.getItem("units")
+localStorage.getItem("ledgers")
 ) || [];
 
 let stockItems =
@@ -179,290 +172,310 @@ JSON.parse(
 localStorage.getItem("stockItems")
 ) || [];
 
-let editId = null;
+let purchaseVouchers =
+JSON.parse(
+localStorage.getItem("purchaseVouchers")
+) || [];
 
-/* Demo Groups */
+function generateVoucherNo(){
 
-if(stockGroups.length===0){
-
-stockGroups=[
-
-{id:1,name:"Mobile"},
-{id:2,name:"Laptop"},
-{id:3,name:"Furniture"},
-{id:4,name:"Electrical"}
-
-];
-
-localStorage.setItem(
-"stockGroups",
-JSON.stringify(stockGroups)
-);
+document.getElementById(
+"voucherNo"
+).value =
+"PUR-" + (purchaseVouchers.length + 1);
 
 }
 
-/* Load Groups */
-
-function loadStockGroups(){
+function loadSupplierLedgers(){
 
 let html='';
 
-stockGroups.forEach(g=>{
+ledgers.forEach(l=>{
+
+if(
+l.group==="Sundry Creditors" ||
+l.group==="Current Liabilities"
+){
 
 html += `
-<option value="${g.name}">
-${g.name}
+<option value="${l.name}">
+${l.name}
+</option>
+`;
+
+}
+
+});
+
+document.getElementById(
+"partyLedger"
+).innerHTML = html;
+
+}
+
+function loadPurchaseLedgers(){
+
+let html='';
+
+ledgers.forEach(l=>{
+
+if(
+l.group==="Purchase Accounts"
+){
+
+html += `
+<option value="${l.name}">
+${l.name}
+</option>
+`;
+
+}
+
+});
+
+document.getElementById(
+"purchaseLedger"
+).innerHTML = html;
+
+}
+
+function loadItems(){
+
+let html='';
+
+stockItems.forEach(i=>{
+
+html += `
+<option value="${i.name}">
+${i.name}
 </option>
 `;
 
 });
 
-document.getElementById(
-"stockGroup"
-).innerHTML = html;
-
-}
-
-/* Load Units */
-
-function loadUnits(){
-
-let html='';
-
-units.forEach(u=>{
-
-html += `
-<option value="${u.name}">
-${u.name}
-</option>
-`;
-
-});
-
-document.getElementById(
-"unit"
-).innerHTML = html;
-
-}
-
-/* Save */
-
-function saveItem(){
-
-let itemName =
 document.getElementById(
 "itemName"
-).value.trim();
+).innerHTML = html;
 
-let group =
-document.getElementById(
-"stockGroup"
-).value;
+}
 
-let unit =
-document.getElementById(
-"unit"
-).value;
+function calculateAmount(){
 
 let qty =
 Number(
 document.getElementById(
-"openingQty"
+"qty"
 ).value
 );
 
 let rate =
 Number(
 document.getElementById(
-"openingRate"
+"rate"
 ).value
 );
 
-if(!itemName){
-
-alert("Enter Item Name");
-
-return;
-
-}
-
-if(editId){
-
-let index =
-stockItems.findIndex(
-i=>i.id===editId
-);
-
-stockItems[index]={
-
-id:editId,
-
-name:itemName,
-
-group,
-
-unit,
-
-qty,
-
-rate
-
-};
-
-editId=null;
-
-}else{
-
-let exists =
-stockItems.find(
-i=>
-i.name.toLowerCase()
-===
-itemName.toLowerCase()
-);
-
-if(exists){
-
-alert("Item Already Exists");
-
-return;
+document.getElementById(
+"amount"
+).value =
+qty * rate;
 
 }
 
-stockItems.push({
+document
+.getElementById("qty")
+.addEventListener(
+"input",
+calculateAmount
+);
+
+document
+.getElementById("rate")
+.addEventListener(
+"input",
+calculateAmount
+);
+
+function savePurchase(){
+
+let voucher={
 
 id:Date.now(),
 
-name:itemName,
+voucherNo:
+document.getElementById(
+"voucherNo"
+).value,
 
-group,
+date:
+document.getElementById(
+"voucherDate"
+).value,
 
-unit,
+party:
+document.getElementById(
+"partyLedger"
+).value,
 
-qty,
+purchaseLedger:
+document.getElementById(
+"purchaseLedger"
+).value,
 
-rate
+item:
+document.getElementById(
+"itemName"
+).value,
+
+qty:Number(
+document.getElementById(
+"qty"
+).value
+),
+
+rate:Number(
+document.getElementById(
+"rate"
+).value
+),
+
+amount:Number(
+document.getElementById(
+"amount"
+).value
+),
+
+narration:
+document.getElementById(
+"narration"
+).value
+
+};
+
+if(voucher.amount<=0){
+
+alert("Enter Valid Amount");
+
+return;
+
+}
+
+/* Purchase Voucher Save */
+
+purchaseVouchers.push(
+voucher
+);
+
+localStorage.setItem(
+"purchaseVouchers",
+JSON.stringify(
+purchaseVouchers
+)
+);
+
+/* Stock Transaction */
+
+let stockTransactions =
+JSON.parse(
+localStorage.getItem(
+"stockTransactions"
+)
+) || [];
+
+stockTransactions.push({
+
+id:Date.now(),
+
+date:voucher.date,
+
+item:voucher.item,
+
+qty:voucher.qty,
+
+type:"Purchase"
 
 });
 
-}
+localStorage.setItem(
+"stockTransactions",
+
+JSON.stringify(
+stockTransactions
+)
+
+);
+
+/* Accounting Voucher */
+
+let vouchers =
+JSON.parse(
+localStorage.getItem(
+"vouchers"
+)
+) || [];
+
+vouchers.push({
+
+id:Date.now(),
+
+date:voucher.date,
+
+type:"Purchase",
+
+debitLedger:
+voucher.purchaseLedger,
+
+creditLedger:
+voucher.party,
+
+amount:
+voucher.amount,
+
+narration:
+voucher.narration
+
+});
 
 localStorage.setItem(
-"stockItems",
-JSON.stringify(stockItems)
+"vouchers",
+
+JSON.stringify(
+vouchers
+)
+
 );
 
-clearForm();
+alert(
+"Purchase Voucher Saved"
+);
 
-renderItems();
+location.reload();
 
 }
 
-/* Edit */
-
-function editItem(id){
-
-let item =
-stockItems.find(
-i=>i.id===id
-);
-
-if(!item) return;
-
-editId=id;
-
-document.getElementById(
-"itemName"
-).value =
-item.name;
-
-document.getElementById(
-"stockGroup"
-).value =
-item.group;
-
-document.getElementById(
-"unit"
-).value =
-item.unit;
-
-document.getElementById(
-"openingQty"
-).value =
-item.qty;
-
-document.getElementById(
-"openingRate"
-).value =
-item.rate;
-
-}
-
-/* Delete */
-
-function deleteItem(id){
-
-if(!confirm(
-"Delete Item ?"
-))
-return;
-
-stockItems =
-stockItems.filter(
-i=>i.id!==id
-);
-
-localStorage.setItem(
-"stockItems",
-JSON.stringify(stockItems)
-);
-
-renderItems();
-
-}
-
-/* Table */
-
-function renderItems(){
+function renderPurchases(){
 
 let html='';
 
-stockItems.forEach(i=>{
-
-let value =
-i.qty * i.rate;
+purchaseVouchers.forEach(v=>{
 
 html += `
 
 <tr>
 
-<td>${i.name}</td>
+<td>${v.voucherNo}</td>
 
-<td>${i.group}</td>
+<td>${v.date}</td>
 
-<td>${i.unit}</td>
+<td>${v.party}</td>
 
-<td>${i.qty}</td>
+<td>${v.item}</td>
 
-<td>${i.rate}</td>
+<td>${v.qty}</td>
 
-<td>${value}</td>
+<td>${v.rate}</td>
 
-<td>
-
-<button
-class="editBtn"
-onclick="editItem(${i.id})">
-Edit
-</button>
-
-<button
-class="deleteBtn"
-onclick="deleteItem(${i.id})">
-Delete
-</button>
-
-</td>
+<td>${v.amount}</td>
 
 </tr>
 
@@ -471,34 +484,16 @@ Delete
 });
 
 document.getElementById(
-"itemTable"
+"purchaseTable"
 ).innerHTML = html;
 
 }
 
-/* Clear */
-
-function clearForm(){
-
-document.getElementById(
-"itemName"
-).value='';
-
-document.getElementById(
-"openingQty"
-).value='';
-
-document.getElementById(
-"openingRate"
-).value='';
-
-}
-
-/* Start */
-
-loadStockGroups();
-loadUnits();
-renderItems();
+generateVoucherNo();
+loadSupplierLedgers();
+loadPurchaseLedgers();
+loadItems();
+renderPurchases();
 
 </script>
 
