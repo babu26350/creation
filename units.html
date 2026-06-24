@@ -1,16 +1,16 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Unit Master</title>
+<title>Units Master</title>
 
 <style>
 
 body{
 font-family:Arial,sans-serif;
-background:#f4f4f4;
 margin:0;
+background:#f4f4f4;
 }
 
 nav{
@@ -33,8 +33,8 @@ padding:20px;
 background:white;
 padding:20px;
 border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,.1);
 margin-bottom:20px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 
 input{
@@ -48,8 +48,8 @@ button{
 padding:10px 15px;
 border:none;
 cursor:pointer;
-margin-right:5px;
 border-radius:4px;
+margin-right:5px;
 }
 
 .saveBtn{
@@ -84,6 +84,7 @@ color:white;
 }
 
 </style>
+
 </head>
 <body>
 
@@ -92,8 +93,8 @@ color:white;
 <a href="groups.html">Groups</a>
 <a href="ledger.html">Ledgers</a>
 <a href="units.html">Units</a>
-<a href="voucher.html">Vouchers</a>
-<a href="inventory.html">Inventory</a>
+<a href="stock-groups.html">Stock Groups</a>
+<a href="stock-items.html">Stock Items</a>
 
 </nav>
 
@@ -101,12 +102,12 @@ color:white;
 
 <div class="card">
 
-<h2>Unit Master</h2>
+<h2>Units Master</h2>
 
 <input
 type="text"
 id="unitName"
-placeholder="Unit Name (Nos, Kg, Ltr etc.)">
+placeholder="Unit Name">
 
 <button
 class="saveBtn"
@@ -118,21 +119,18 @@ Save Unit
 
 <div class="card">
 
-<h2>Unit List</h2>
+<h2>Units List</h2>
 
 <table>
 
 <thead>
-
 <tr>
 <th>Unit Name</th>
 <th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="unitTable">
-
 </tbody>
 
 </table>
@@ -148,23 +146,30 @@ JSON.parse(
 localStorage.getItem("units")
 ) || [];
 
-let editId = null;
-
-/* Default Units */
-
 if(units.length===0){
 
-units = [
+units=[
 
 {id:1,name:"Nos"},
-{id:2,name:"Kg"},
-{id:3,name:"Gram"},
-{id:4,name:"Ltr"},
-{id:5,name:"ML"},
-{id:6,name:"Meter"},
-{id:7,name:"Feet"},
-{id:8,name:"Box"},
-{id:9,name:"Packet"}
+{id:2,name:"Box"},
+{id:3,name:"Kg"},
+{id:4,name:"Gram"},
+{id:5,name:"Ltr"},
+{id:6,name:"ML"},
+{id:7,name:"Meter"},
+{id:8,name:"Feet"},
+{id:9,name:"Inch"},
+{id:10,name:"Piece"},
+{id:11,name:"Packet"},
+{id:12,name:"Dozen"},
+{id:13,name:"Bag"},
+{id:14,name:"Bottle"},
+{id:15,name:"Bundle"},
+{id:16,name:"Carton"},
+{id:17,name:"Pair"},
+{id:18,name:"Set"},
+{id:19,name:"Roll"},
+{id:20,name:"Ton"}
 
 ];
 
@@ -175,9 +180,11 @@ JSON.stringify(units)
 
 }
 
+let editId=null;
+
 function saveUnit(){
 
-let name =
+let name=
 document.getElementById(
 "unitName"
 ).value.trim();
@@ -185,39 +192,38 @@ document.getElementById(
 if(!name){
 
 alert("Enter Unit Name");
+return;
 
+}
+
+let duplicate=
+units.find(
+u=>
+u.name.toLowerCase()===
+name.toLowerCase()
+&&
+u.id!==editId
+);
+
+if(duplicate){
+
+alert("Unit Already Exists");
 return;
 
 }
 
 if(editId){
 
-let index =
+let index=
 units.findIndex(
 u=>u.id===editId
 );
 
-units[index].name = name;
+units[index].name=name;
 
-editId = null;
+editId=null;
 
 }else{
-
-let exists =
-units.find(
-u=>
-u.name.toLowerCase()
-===
-name.toLowerCase()
-);
-
-if(exists){
-
-alert("Unit Already Exists");
-
-return;
-
-}
 
 units.push({
 
@@ -244,7 +250,7 @@ renderUnits();
 
 function editUnit(id){
 
-let unit =
+let unit=
 units.find(
 u=>u.id===id
 );
@@ -255,7 +261,7 @@ editId=id;
 
 document.getElementById(
 "unitName"
-).value =
+).value=
 unit.name;
 
 window.scrollTo({
@@ -267,32 +273,12 @@ behavior:"smooth"
 
 function deleteUnit(id){
 
-let stockItems =
-JSON.parse(
-localStorage.getItem("stockItems")
-) || [];
-
-let used =
-stockItems.some(
-s=>s.unitId===id
-);
-
-if(used){
-
-alert(
-"Unit used in Stock Item."
-);
-
-return;
-
-}
-
 if(!confirm(
 "Delete Unit ?"
 ))
 return;
 
-units =
+units=
 units.filter(
 u=>u.id!==id
 );
@@ -312,7 +298,7 @@ let html='';
 
 units.forEach(u=>{
 
-html += `
+html+=`
 
 <tr>
 
@@ -342,7 +328,7 @@ Delete
 
 document.getElementById(
 "unitTable"
-).innerHTML = html;
+).innerHTML=html;
 
 }
 
