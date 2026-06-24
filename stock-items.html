@@ -1,0 +1,506 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock Items</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f4f4;
+}
+
+nav{
+background:#1565c0;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+box-sizing:border-box;
+}
+
+button{
+padding:10px 15px;
+border:none;
+cursor:pointer;
+border-radius:4px;
+margin-right:5px;
+}
+
+.saveBtn{
+background:#1565c0;
+color:white;
+}
+
+.editBtn{
+background:orange;
+color:white;
+}
+
+.deleteBtn{
+background:red;
+color:white;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+}
+
+th{
+background:#1565c0;
+color:white;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+
+<a href="groups.html">Groups</a>
+<a href="ledger.html">Ledgers</a>
+<a href="units.html">Units</a>
+<a href="stock-groups.html">Stock Groups</a>
+<a href="stock-items.html">Stock Items</a>
+
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Stock Item Master</h2>
+
+<input
+type="text"
+id="itemName"
+placeholder="Item Name">
+
+<select id="stockGroup">
+</select>
+
+<select id="unit">
+</select>
+
+<input
+type="number"
+id="openingQty"
+placeholder="Opening Quantity">
+
+<input
+type="number"
+id="openingRate"
+placeholder="Opening Rate">
+
+<button
+class="saveBtn"
+onclick="saveItem()">
+Save Item
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Stock Item List</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Item</th>
+<th>Group</th>
+<th>Unit</th>
+<th>Qty</th>
+<th>Rate</th>
+<th>Value</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="itemTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let stockGroups =
+JSON.parse(
+localStorage.getItem("stockGroups")
+) || [];
+
+let units =
+JSON.parse(
+localStorage.getItem("units")
+) || [];
+
+let stockItems =
+JSON.parse(
+localStorage.getItem("stockItems")
+) || [];
+
+let editId = null;
+
+/* Demo Groups */
+
+if(stockGroups.length===0){
+
+stockGroups=[
+
+{id:1,name:"Mobile"},
+{id:2,name:"Laptop"},
+{id:3,name:"Furniture"},
+{id:4,name:"Electrical"}
+
+];
+
+localStorage.setItem(
+"stockGroups",
+JSON.stringify(stockGroups)
+);
+
+}
+
+/* Load Groups */
+
+function loadStockGroups(){
+
+let html='';
+
+stockGroups.forEach(g=>{
+
+html += `
+<option value="${g.name}">
+${g.name}
+</option>
+`;
+
+});
+
+document.getElementById(
+"stockGroup"
+).innerHTML = html;
+
+}
+
+/* Load Units */
+
+function loadUnits(){
+
+let html='';
+
+units.forEach(u=>{
+
+html += `
+<option value="${u.name}">
+${u.name}
+</option>
+`;
+
+});
+
+document.getElementById(
+"unit"
+).innerHTML = html;
+
+}
+
+/* Save */
+
+function saveItem(){
+
+let itemName =
+document.getElementById(
+"itemName"
+).value.trim();
+
+let group =
+document.getElementById(
+"stockGroup"
+).value;
+
+let unit =
+document.getElementById(
+"unit"
+).value;
+
+let qty =
+Number(
+document.getElementById(
+"openingQty"
+).value
+);
+
+let rate =
+Number(
+document.getElementById(
+"openingRate"
+).value
+);
+
+if(!itemName){
+
+alert("Enter Item Name");
+
+return;
+
+}
+
+if(editId){
+
+let index =
+stockItems.findIndex(
+i=>i.id===editId
+);
+
+stockItems[index]={
+
+id:editId,
+
+name:itemName,
+
+group,
+
+unit,
+
+qty,
+
+rate
+
+};
+
+editId=null;
+
+}else{
+
+let exists =
+stockItems.find(
+i=>
+i.name.toLowerCase()
+===
+itemName.toLowerCase()
+);
+
+if(exists){
+
+alert("Item Already Exists");
+
+return;
+
+}
+
+stockItems.push({
+
+id:Date.now(),
+
+name:itemName,
+
+group,
+
+unit,
+
+qty,
+
+rate
+
+});
+
+}
+
+localStorage.setItem(
+"stockItems",
+JSON.stringify(stockItems)
+);
+
+clearForm();
+
+renderItems();
+
+}
+
+/* Edit */
+
+function editItem(id){
+
+let item =
+stockItems.find(
+i=>i.id===id
+);
+
+if(!item) return;
+
+editId=id;
+
+document.getElementById(
+"itemName"
+).value =
+item.name;
+
+document.getElementById(
+"stockGroup"
+).value =
+item.group;
+
+document.getElementById(
+"unit"
+).value =
+item.unit;
+
+document.getElementById(
+"openingQty"
+).value =
+item.qty;
+
+document.getElementById(
+"openingRate"
+).value =
+item.rate;
+
+}
+
+/* Delete */
+
+function deleteItem(id){
+
+if(!confirm(
+"Delete Item ?"
+))
+return;
+
+stockItems =
+stockItems.filter(
+i=>i.id!==id
+);
+
+localStorage.setItem(
+"stockItems",
+JSON.stringify(stockItems)
+);
+
+renderItems();
+
+}
+
+/* Table */
+
+function renderItems(){
+
+let html='';
+
+stockItems.forEach(i=>{
+
+let value =
+i.qty * i.rate;
+
+html += `
+
+<tr>
+
+<td>${i.name}</td>
+
+<td>${i.group}</td>
+
+<td>${i.unit}</td>
+
+<td>${i.qty}</td>
+
+<td>${i.rate}</td>
+
+<td>${value}</td>
+
+<td>
+
+<button
+class="editBtn"
+onclick="editItem(${i.id})">
+Edit
+</button>
+
+<button
+class="deleteBtn"
+onclick="deleteItem(${i.id})">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById(
+"itemTable"
+).innerHTML = html;
+
+}
+
+/* Clear */
+
+function clearForm(){
+
+document.getElementById(
+"itemName"
+).value='';
+
+document.getElementById(
+"openingQty"
+).value='';
+
+document.getElementById(
+"openingRate"
+).value='';
+
+}
+
+/* Start */
+
+loadStockGroups();
+loadUnits();
+renderItems();
+
+</script>
+
+</body>
+</html>
