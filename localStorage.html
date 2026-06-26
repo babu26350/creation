@@ -1,0 +1,181 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tally Project - Local Storage Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 20px;
+            color: #333;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .stats {
+            background-color: #e8f4fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .storage-item {
+            background: #fff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .key-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            word-break: break-all;
+        }
+        .value-box {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .btn-copy {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        .btn-copy:hover {
+            background-color: #0056b3;
+        }
+        .no-data {
+            text-align: center;
+            color: #777;
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+        #copy-all-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        #copy-all-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Tally प्रोजेक्ट लोकल स्टोरेज व्यूअर (Local Storage Viewer)</h2>
+    
+    <div class="stats" id="storage-stats">कुल फाइल्स/कीज़: 0</div>
+    
+    <button id="copy-all-btn" onclick="copyAllStorage()">पूरा लोकल स्टोरेज एक साथ कॉपी करें (JSON Format)</button>
+
+    <div id="storage-container">
+        </div>
+
+    <script>
+        function loadLocalStorage() {
+            const container = document.getElementById('storage-container');
+            const stats = document.getElementById('storage-stats');
+            container.innerHTML = '';
+            
+            const totalItems = localStorage.length;
+            stats.innerText = `कुल फाइल्स/कीज़ (Total Keys): ${totalItems}`;
+
+            if (totalItems === 0) {
+                container.innerHTML = '<div class="no-data">इस ब्राउज़र के लोकल स्टोरेज में कोई डेटा नहीं मिला।</div>';
+                document.getElementById('copy-all-btn').style.display = 'none';
+                return;
+            }
+
+            for (let i = 0; i < totalItems; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+
+                // प्रत्येक आइटम के लिए HTML ब्लॉक बनाना
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'storage-item';
+
+                itemDiv.innerHTML = `
+                    <div class="key-name">फाइल/की (Key): ${key}</div>
+                    <div class="value-box" id="value-${i}">${escapeHTML(value)}</div>
+                    <button class="btn-copy" onclick="copyToClipboard('value-${i}', this)">इस फाइल को कॉपी करें</button>
+                `;
+
+                container.appendChild(itemDiv);
+            }
+        }
+
+        // HTML कैरेक्टर को सुरक्षित रूप से दिखाने के लिए helper फ़ंक्शन
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        // सिंगल फाइल/की कॉपी करने का फंक्शन
+        function copyToClipboard(elementId, btn) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "कॉपी हो गया! ✓";
+                btn.style.backgroundColor = "#28a745";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "#007bff";
+                }, 1500);
+            }).catch(err => {
+                alert("कॉपी करने में समस्या आई: " + err);
+            });
+        }
+
+        // पूरा लोकल स्टोरेज एक साथ JSON के रूप में कॉपी करने का फंक्शन
+        function copyAllStorage() {
+            let allData = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                allData[key] = localStorage.getItem(key);
+            }
+            
+            const jsonString = JSON.stringify(allData, null, 4);
+            
+            navigator.clipboard.writeText(jsonString).then(() => {
+                const mainBtn = document.getElementById('copy-all-btn');
+                mainBtn.innerText = "पूरा स्टोरेज बैकअप कॉपी हो गया! ✓";
+                mainBtn.style.backgroundColor = "#1e7e34";
+                setTimeout(() => {
+                    mainBtn.innerText = "पूरा लोकल स्टोरेज एक साथ कॉपी करें (JSON Format)";
+                    mainBtn.style.backgroundColor = "#28a745";
+                }, 2000);
+            }).catch(err => {
+                alert("बैकअप कॉपी करने में समस्या आई: " + err);
+            });
+        }
+
+        // पेज लोड होने पर डेटा लोड करें
+        window.onload = loadLocalStorage;
+    </script>
+</body>
+</html>
