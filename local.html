@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tally Data Explorer</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f4f4;
+}
+
+header{
+background:#1565c0;
+color:white;
+padding:15px;
+font-size:22px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+margin-bottom:20px;
+padding:15px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+h3{
+margin-top:0;
+}
+
+pre{
+background:#222;
+color:#00ff00;
+padding:10px;
+overflow:auto;
+border-radius:5px;
+max-height:400px;
+}
+
+button{
+padding:8px 12px;
+margin:5px;
+border:none;
+cursor:pointer;
+border-radius:4px;
+}
+
+.copy{
+background:#1565c0;
+color:white;
+}
+
+.delete{
+background:red;
+color:white;
+}
+
+.download{
+background:green;
+color:white;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+Tally Clone Data Explorer
+</header>
+
+<div class="container">
+
+<div style="margin-bottom:20px;">
+
+<button
+class="download"
+onclick="downloadAll()">
+Download Full Backup
+</button>
+
+<button
+class="delete"
+onclick="clearAllData()">
+Delete All Data
+</button>
+
+</div>
+
+<div id="dataContainer"></div>
+
+</div>
+
+<script>
+
+function loadData(){
+
+let container =
+document.getElementById(
+"dataContainer"
+);
+
+container.innerHTML='';
+
+if(localStorage.length===0){
+
+container.innerHTML=
+"<h3>No Data Found</h3>";
+
+return;
+
+}
+
+for(let i=0;i<localStorage.length;i++){
+
+let key =
+localStorage.key(i);
+
+let value =
+localStorage.getItem(key);
+
+let card =
+document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+
+<h3>${key}</h3>
+
+<button
+class="copy"
+onclick="copyData('${key}')">
+Copy JSON
+</button>
+
+<button
+class="delete"
+onclick="deleteData('${key}')">
+Delete
+</button>
+
+<pre id="pre-${key}">
+${JSON.stringify(
+JSON.parse(value),
+null,
+2
+)}
+</pre>
+
+`;
+
+container.appendChild(card);
+
+}
+
+}
+
+function copyData(key){
+
+navigator.clipboard.writeText(
+
+localStorage.getItem(key)
+
+);
+
+alert(
+key + " Copied"
+);
+
+}
+
+function deleteData(key){
+
+if(
+!confirm(
+"Delete "+key+" ?"
+)
+)
+return;
+
+localStorage.removeItem(key);
+
+loadData();
+
+}
+
+function clearAllData(){
+
+if(
+!confirm(
+"Delete ALL LocalStorage Data?"
+)
+)
+return;
+
+localStorage.clear();
+
+loadData();
+
+}
+
+function downloadAll(){
+
+let backup={};
+
+for(let i=0;i<localStorage.length;i++){
+
+let key=
+localStorage.key(i);
+
+backup[key]=
+JSON.parse(
+localStorage.getItem(key)
+);
+
+}
+
+let blob=
+new Blob(
+
+[
+JSON.stringify(
+backup,
+null,
+2
+)
+],
+
+{
+type:"application/json"
+}
+
+);
+
+let a=
+document.createElement("a");
+
+a.href=
+URL.createObjectURL(blob);
+
+a.download=
+"tally-backup.json";
+
+a.click();
+
+}
+
+loadData();
+
+</script>
+
+</body>
+</html>
