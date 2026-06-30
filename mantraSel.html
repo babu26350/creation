@@ -1,0 +1,291 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>वैदिक मंत्र शोधन एवं राशि मिलान चक्र</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #d35400;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 10px;
+            font-size: 22px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            background-color: #d35400;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #e67e22;
+        }
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .shubh {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .sadhya-box {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        .ashubh {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .details-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #bbb;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+        .details-section ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>शास्त्र सम्मत पूर्ण मंत्र शोधन एवं राशि चक्र</h2>
+    
+    <div class="form-group">
+        <label for="userName">साधक का नाम (हिंदी में):</label>
+        <input type="text" id="userName" placeholder="उदाहरण: बाबूलाल" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="mantraName">मंत्र या मंत्र का पहला शब्द (हिंदी में):</label>
+        <input type="text" id="mantraName" placeholder="उदाहरण: राम" required>
+    </div>
+    
+    <button onclick="calculateMantra()">पूर्ण अनुकूलता जांचें</button>
+    
+    <div id="result" class="result-box"></div>
+</div>
+
+<script>
+// अ-क-च-ट-त-प-य-श वर्ग मैपिंग
+const vargaMap = {
+    'अ':1,'आ':1,'इ':1,'ई':1,'उ':1,'ऊ':1,'ऋ':1,'ए':1,'ऐ':1,'ओ':1,'औ':1,'अं':1,'अः':1,
+    'क':2,'ख':2,'ग':2,'घ':2,'ङ':2,
+    'च':3,'छ':3,'ज':3,'झ':3,'ञ':3,
+    'ट':4,'ठ':4,'ड':4,'ढ':4,'ण':4,
+    'त':5,'थ':5,'द':5,'ध':5,'न':5,
+    'प':6,'फ':6,'ब':6,'भ':6,'म':6,
+    'य':7,'र':7,'ल':7,'व':7,
+    'श':8,'ष':8,'स':8,'ह':8,'क्ष':8
+};
+
+// नाम के अक्षर से राशि और स्वामी निकालने की मैपिंग (मेष से मीन)
+const rashiMatrix = [
+    { name: "मेष", lord: "मंगल", chars: ['च','चे','चो','ला','ली','लू','ले','लो','अ','आ'] },
+    { name: "वृषभ", lord: "शुक्र", chars: ['इ','ई','उ','ऊ','ए','ओ','वा','वी','वू','वे','वो'] },
+    { name: "मिथुन", lord: "बुध", chars: ['का','की','कू','घ','ङ','छ','के','को','हा'] },
+    { name: "कर्क", lord: "चंद्रमा", chars: ['ही','हू','हे','हो','डा','डी','डू','डे','डो'] },
+    { name: "सिंह", lord: "सूर्य", chars: ['मा','मी','मू','मे','मो','टा','टी','टू','टे'] },
+    { name: "कन्या", lord: "बुध", chars: ['टो','पा','पी','पू','ष','ण','ठ','पे','पो'] },
+    { name: "तुला", lord: "शुक्र", chars: ['रा','री','रू','रे','रो','ता','ती','तू','ते'] },
+    { name: "वृश्चिक", lord: "मंगल", chars: ['तो','ना','नी','नू','ने','नो','या','यी','यू','न','बा','बी','बू'] }, // व्यावहारिक रूप से 'ब' वृश्चिक/वृष में ध्वनि भेद से आता है
+    { name: "धनु", lord: "बृहस्पति", chars: ['ये','यो','भा','भी','भू','ध','फा','ढा','भे'] },
+    { name: "मकर", lord: "शनि", chars: ['भो','जा','जी','खी','खू','खे','खो','गा','गी','ज'] },
+    { name: "कुंभ", lord: "शनि", chars: ['श','गू','गे','गो','सा','सी','सू','से','सो','दा'] },
+    { name: "मीन", lord: "बृहस्पति", chars: ['दी','दू','थ','झ','ञ','दे','दो','चा','ची'] }
+];
+
+// नैसर्गिक ग्रह मैत्री संबंध
+const friendshipMap = {
+    "सूर्य": { "मित्र": ["चंद्रमा", "मंगल", "बृहस्पति"], "शत्रु": ["शुक्र", "शनि"] },
+    "चंद्रमा": { "मित्र": ["सूर्य", "बुध"], "शत्रु": [] },
+    "मंगल": { "मित्र": ["सूर्य", "चंद्रमा", "बृहस्पति"], "शत्रु": ["बुध"] },
+    "बुध": { "मित्र": ["सूर्य", "शुक्र"], "शत्रु": ["चंद्रमा"] },
+    "बृहस्पति": { "मित्र": ["सूर्य", "चंद्रमा", "मंगल"], "शत्रु": ["बुध", "शुक्र"] },
+    "शुक्र": { "मित्र": ["बुध", "शनि"], "शत्रु": ["सूर्य", "चंद्रमा"] },
+    "शनि": { "मित्र": ["बुध", "शुक्र"], "शत्रु": ["सूर्य", "चंद्रमा", "मंगल"] }
+};
+
+function getCleanFirstChar(str) {
+    if(!str) return '';
+    str = str.trim();
+    if(str.startsWith('ॐ')) {
+        if(str.length > 1) str = str.substring(1).trim();
+        else return 'अ';
+    }
+    return str.charAt(0);
+}
+
+function getRashiDetails(char) {
+    for (let rashi of rashiMatrix) {
+        if (rashi.chars.includes(char)) {
+            return rashi;
+        }
+    }
+    // यदि सीधा मैच न हो तो एक सामान्य डिफ़ॉल्ट (प्रथम अक्षर के आधार पर खोजने का प्रयास)
+    for (let rashi of rashiMatrix) {
+        for(let c of rashi.chars) {
+            if(c.startsWith(char) || char.startsWith(c)) return rashi;
+        }
+    }
+    return { name: "अज्ञात", lord: "अकथह" };
+}
+
+function checkPlanetaryRelation(lord1, lord2) {
+    if (lord1 === lord2) return "परम मित्र (स्वराशि/समस्वामी)";
+    if (friendshipMap[lord1] && friendshipMap[lord1].mix && friendshipMap[lord1].मित्र.includes(lord2)) return "मित्र राशि";
+    if (friendshipMap[lord1] && friendshipMap[lord1].शत्रु.includes(lord2)) return "शत्रु राशि (सतर्क रहें)";
+    return "सम राशि (Neutral)";
+}
+
+function countHindiLetters(str) {
+    let cleanStr = str.replace(/[ािीुूेैोौंः्]/g, '');
+    return cleanStr.trim().length;
+}
+
+function calculateMantra() {
+    let userName = document.getElementById('userName').value.trim();
+    let mantraName = document.getElementById('mantraName').value.trim();
+    let resultDiv = document.getElementById('result');
+    
+    if(!userName || !mantraName) {
+        alert("कृपया साधक का नाम और मंत्र दोनों दर्ज करें।");
+        return;
+    }
+    
+    let uChar = getCleanFirstChar(userName);
+    let mChar = getCleanFirstChar(mantraName);
+    
+    let uVarga = vargaMap[uChar] || 1;
+    let mVarga = vargaMap[mChar] || 1;
+    
+    // 1. शुद्ध सर्कुलर लूप गणना (सिद्ध-साध्य-अरि)
+    let dist = ((mVarga - uVarga + 8) % 8) + 1;
+    if(dist === 0) dist = 8; 
+    
+    let cakraResult = "";
+    let cakraStatus = ""; 
+    if ([1, 5].includes(dist)) { cakraResult = "सिद्ध (Siddha) - अनुकूल"; cakraStatus = "shubh"; }
+    else if ([2, 6].includes(dist)) { cakraResult = "साध्य (Sadhya) - मध्यम"; cakraStatus = "sadhya"; }
+    else if ([3, 7].includes(dist)) { cakraResult = "सुसिद्ध (Susiddha) - अति उत्तम"; cakraStatus = "shubh"; }
+    else if ([4, 8].includes(dist)) { cakraResult = "अरि / शत्रु (Ari) - वर्जित"; cakraStatus = "ashubh"; }
+
+    // 2. ऋण-धन चक्र दोनों प्रकार
+    let rinDhanType1 = [1, 4, 7].includes(dist) ? "धनी (पोषक)" : ([2, 5, 8].includes(dist) ? "ऋणी (हानिकारक)" : "उदासीन");
+    
+    let uCount = countHindiLetters(userName);
+    let mCount = countHindiLetters(mantraName);
+    let remainder = ((uCount * 2) + mCount) % 8;
+    if(remainder === 0) remainder = 8;
+    let rinDhanType2 = [1, 3, 5, 7].includes(remainder) ? "धनी (शुभ)" : "ऋणी (अशुभ)";
+
+    // 3. राशि चक्र मिलान (Zodiac Matching)
+    let userRashi = getRashiDetails(uChar);
+    let mantraRashi = getRashiDetails(mChar);
+    let rashiRelation = checkPlanetaryRelation(userRashi.lord, mantraRashi.lord);
+
+    // राम नाम अपवाद नियम
+    let isRamMantra = mantraName.includes("राम") || mantraName.startsWith("राम");
+
+    resultDiv.style.display = "block";
+    
+    if(isRamMantra) {
+        resultDiv.className = "result-box shubh";
+        resultDiv.innerHTML = `<strong>परिणाम: स्वतः सिद्ध / परम कल्याणकारी (100% शुभ)</strong><br><br>
+        <strong>शास्त्रीय निर्णय:</strong> 'राम' नाम तारक मंत्र होने के कारण राशि शत्रुता या ऋण-दोषों से सर्वथा मुक्त है।
+        <div class="details-section">
+            <strong>वास्तविक तकनीकी एवं राशि गणना विवरण:</strong>
+            <ul>
+                <li><strong>साधक राशि:</strong> ${userRashi.name} (${userRashi.lord})</li>
+                <li><strong>मंत्र राशि:</strong> ${mantraRashi.name} (${mantraRashi.lord})</li>
+                <li><strong>राशि मैत्री संबंध:</strong> ${rashiRelation}</li>
+                <li><strong>सिद्ध-साध्य स्थिति (दूरी ${dist}):</strong> ${cakraResult}</li>
+                <li><strong>ऋण-धन (प्रकार 1 - वर्ग):</strong> ${rinDhanType1}</li>
+                <li><strong>ऋण-धन (प्रकार 2 - संख्या):</strong> ${rinDhanType2}</li>
+            </ul>
+        </div>`;
+    }
+    else {
+        // सामान्य डिस्प्ले लॉजिक राशि संबंध के आधार पर रंग बदलना
+        if(cakraStatus === "ashubh" || rashiRelation.includes("शत्रु")) {
+            resultDiv.className = "result-box ashubh";
+            resultDiv.innerHTML = `<strong>परिणाम: वर्जित / अरि या राशि शत्रु मंत्र</strong><br><br>
+            <strong>चेतावनी:</strong> यह मंत्र या तो आपके चक्र में 'अरि' स्थान पर है या इसकी राशि आपके नाम की राशि से <strong>शत्रुता</strong> रखती है। शास्त्रों के अनुसार इसका जाप करने से बचें।`;
+        } else if(cakraStatus === "sadhya") {
+            resultDiv.className = "result-box sadhya-box";
+            resultDiv.innerHTML = `<strong>परिणाम: मध्यम / साध्य मंत्र</strong><br><br>
+            मंत्र राशि अनुकूल या सम है, परंतु वर्ण चक्र अनुसार यह साध्य श्रेणी में है। फल प्राप्ति के लिए अधिक प्रयास की आवश्यकता होगी।`;
+        } else {
+            resultDiv.className = "result-box shubh";
+            resultDiv.innerHTML = `<strong>परिणाम: अत्यंत शुभ एवं पूर्ण अनुकूल</strong><br><br>
+            यह मंत्र वर्ण वर्ग और राशि मैत्री दोनों पैमानों पर आपके सर्वथा अनुकूल है।`;
+        }
+
+        // विवरण जोड़ना
+        resultDiv.innerHTML += `<div class="details-section">
+            <strong>वास्तविक तकनीकी एवं राशि गणना विवरण:</strong>
+            <ul>
+                <li><strong>साधक राशि:</strong> ${userRashi.name} (${userRashi.lord})</li>
+                <li><strong>मंत्र राशि:</strong> ${mantraRashi.name} (${mantraRashi.lord})</li>
+                <li><strong>राशि मैत्री संबंध:</strong> ${rashiRelation}</li>
+                <li><strong>सिद्ध-साध्य स्थिति (सटीक दूरी ${dist}):</strong> ${cakraResult}</li>
+                <li><strong>ऋण-धन (प्रकार 1 - वर्ग दूरी):</strong> ${rinDhanType1}</li>
+                <li><strong>ऋण-धन (प्रकार 2 - अक्षर संख्या):</strong> ${rinDhanType2}</li>
+            </ul>
+        </div>`;
+    }
+}
+</script>
+
+</body>
+</html>
