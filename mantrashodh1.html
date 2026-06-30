@@ -1,0 +1,400 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>वैदिक मंत्र शोधन - शुद्ध मंत्र धनी-ऋणी तालिका</title>
+    <style>
+        :root {
+            --primary: #d35400;
+            --primary-hover: #e67e22;
+            --dark-blue: #2c3e50;
+            --bg-body: #f4f6f9;
+            --bg-card: #fff;
+            --shubh-green: #27ae60;
+            --shubh-bg: #d4edda;
+            --shubh-text: #155724;
+            --sadhya-yellow: #f39c12;
+            --sadhya-bg: #fff3cd;
+            --sadhya-text: #856404;
+            --ashubh-red: #c0392b;
+            --ashubh-bg: #f8d7da;
+            --ashubh-text: #721c24;
+            --purple-bg: #e8daef;
+            --purple-text: #6c3483;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: #333;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 1300px;
+            width: 100%;
+            margin: 10px auto;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-hover);
+            padding-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--dark-blue);
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 350px;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .info-box {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-left: 5px solid #2980b9;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .table-container {
+            margin-top: 25px;
+            overflow-x: auto;
+            display: none;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 1000px;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--dark-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .badge-shubh {
+            background-color: var(--shubh-bg);
+            color: var(--shubh-text);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .badge-sadhya {
+            background-color: var(--sadhya-bg);
+            color: var(--sadhya-text);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .badge-tyajya {
+            background-color: var(--ashubh-bg);
+            color: var(--ashubh-text);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .badge-purple {
+            background-color: var(--purple-bg);
+            color: var(--purple-text);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .badge-upay {
+            background-color: #e2f0d9;
+            color: #385723;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        @media (min-width: 600px) {
+            .form-group {
+                flex-direction: row;
+                justify-content: center;
+            }
+            h2 { font-size: 24px; }
+            table { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>शुद्ध शास्त्र सम्मत मंत्र शोधन तालिका (मंत्र प्रथम वर्ण आधारित)</h2>
+    
+    <div class="form-group">
+        <label for="userName">साधक का नाम:</label>
+        <input type="text" id="userName" placeholder="नाम हिंदी में लिखें..." required>
+        <button onclick="generateCompleteMatrix()">शुद्ध सारणी जनरेट करें</button>
+    </div>
+    
+    <div id="infoBox" class="info-box"></div>
+    
+    <div id="tableContainer" class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>मंत्र का प्रथम वर्ण</th>
+                    <th>मंत्र राशि (स्वामी)</th>
+                    <th>राशि मैत्री</th>
+                    <th>सिद्ध-साध्य (कूलाकुल)</th>
+                    <th>ऋण-धन स्थिति</th>
+                    <th>शास्त्रीय फल</th>
+                    <th>दोष निवारण (आगे-पीछे क्या लगाएं)</th>
+                    <th>अंतिम निर्णय</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- डेटा यहाँ भरा जाएगा -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+// अकचटतपयश वर्ग विभाजन (अकथह चक्र आधार)
+const vargaMap = {
+    'अ':1,'आ':1,'इ':1,'ई':1,'उ':1,'ऊ':1,'ऋ':1,'ए':1,'ऐ':1,'ओ':1,'औ':1,'अं':1,'अः':1,
+    'क':2,'ख':2,'ग':2,'घ':2,'ङ':2,
+    'च':3,'छ':3,'ज':3,'झ':3,'ञ':3,
+    'ट':4,'ठ':4,'ड':4,'ढ':4,'ण':4,
+    'त':5,'थ':5,'द':5,'ध':5,'न':5,
+    'प':6,'फ':6,'ब':6,'भ':6,'म':6,
+    'य':7,'र':7,'ल':7,'व':7,
+    'श':8,'ष':8,'स':8,'ह':8,'क्ष':8,'त्र':8,'ज्ञ':8
+};
+
+const allHindiAlphabets = [
+    'अ', 'आ', 'इ', 'ई', 'उ', 'ऊ', 'ए', 'ऐ', 'ओ', 'औ',
+    'क', 'ख', 'ग', 'घ', 'च', 'छ', 'ज', 'झ', 'ट', 'ठ', 
+    'ड', 'ढ', 'त', 'थ', 'द', 'ध', 'न', 'प', 'फ', 'ब', 
+    'भ', 'म', 'य', 'र', 'ल', 'व', 'श', 'ष', 'स', 'ह', 'क्ष'
+];
+
+// ज्योतिष शास्त्र अनुसार शुद्ध नक्षत्र चरण वर्ण व्यवस्था
+const rashiMatrix = [
+    { name: "मेष", lord: "मंगल", chars: ['च','चे','चो','ला','ली','लू','ले','लो','अ','आ'] },
+    { name: "वृषभ", lord: "शुक्र", chars: ['इ','ई','उ','ऊ','ए','ओ','वा','वी','वू','वे','वो','ब','बा','बी','बू'] },
+    { name: "मिथुन", lord: "बुध", chars: ['का','की','कू','घ','ङ','छ','के','को','हा','क','ख','ग','ह'] },
+    { name: "कर्क", lord: "चंद्रमा", chars: ['ही','हू','हे','हो','डा','डी','डू','डे','डो'] },
+    { name: "सिंह", lord: "सूर्य", chars: ['मा','मी','मू','मे','मो','टा','टी','टू','टे','म'] },
+    { name: "कन्या", lord: "बुध", chars: ['टो','पा','पी','पू','ष','ण','ठ','पे','पो','प'] },
+    { name: "तुला", lord: "शुक्र", chars: ['रा','री','रू','रे','रो','ता','ती','तू','ते','र','त'] },
+    { name: "वृश्चिक", lord: "मंगल", chars: ['तो','ना','नी','नू','ने','नो','या','यी','यू','न'] },
+    { name: "धनु", lord: "बृहस्पति", chars: ['ये','यो','भा','भी','भू','ध','फा','ढा','भे','फ'] },
+    { name: "मकर", lord: "शनि", chars: ['भो','जा','जी','खी','खू','खे','खो','गा','गी','ज','ख'] },
+    { name: "कुंभ", lord: "शनि", chars: ['गू','गे','गो','सा','सी','सू','से','सो','दा','स','द'] },
+    { name: "मीन", lord: "बृहस्पति", chars: ['दी','दू','थ','झ','ञ','दे','दो','चा','ची'] }
+];
+
+const friendshipMap = {
+    "सूर्य": { "मित्र": ["चंद्रमा", "मंगल", "बृहस्पति"], "शत्रु": ["शुक्र", "शनि"] },
+    "चंद्रमा": { "मित्र": ["सूर्य", "बुध"], "शत्रु": [] },
+    "मंगल": { "मित्र": ["सूर्य", "चंद्रमा", "बृहस्पति"], "शत्रु": ["बुध"] },
+    "बुध": { "मित्र": ["सूर्य", "शुक्र"], "शत्रु": ["चंद्रमा"] },
+    "बृहस्पति": { "मित्र": ["सूर्य", "चंद्रमा", "मंगल"], "शत्रु": ["बुध", "शुक्र"] },
+    "शुक्र": { "मित्र": ["बुध", "शनि"], "शत्रु": ["सूर्य", "चंद्रमा"] },
+    "शनि": { "मित्र": ["बुध", "शुक्र"], "शत्रु": ["सूर्य", "चंद्रमा", "मंगल"] }
+};
+
+function getCleanFirstChar(str) {
+    if(!str) return '';
+    return str.trim().charAt(0);
+}
+
+function getRashiDetails(char) {
+    for (let rashi of rashiMatrix) {
+        if (rashi.chars.includes(char)) return rashi;
+    }
+    for (let rashi of rashiMatrix) {
+        for(let c of rashi.chars) {
+            if(c.startsWith(char) || char.startsWith(c)) return rashi;
+        }
+    }
+    return { name: "सामान्य", lord: "सूर्य" };
+}
+
+function checkPlanetaryRelation(lord1, lord2) {
+    if (lord1 === lord2) return "परम मित्र";
+    if (friendshipMap[lord1] && friendshipMap[lord1].मित्र.includes(lord2)) return "मित्र राशि";
+    if (friendshipMap[lord1] && friendshipMap[lord1].शत्रु.includes(lord2)) return "शत्रु राशि";
+    return "सम राशि";
+}
+
+function countHindiLetters(str) {
+    // आधे अक्षरों (्) को छोड़कर केवल पूर्ण अक्षरों की शुद्ध गणना
+    let cleanStr = str.replace(/[^अ-हक्षत्रज्ञ]/g, '');
+    return cleanStr.trim().length || 1;
+}
+
+function generateCompleteMatrix() {
+    let userName = document.getElementById('userName').value.trim();
+    let tableBody = document.getElementById('tableBody');
+    let tableContainer = document.getElementById('tableContainer');
+    let infoBox = document.getElementById('infoBox');
+    
+    if(!userName) {
+        alert("कृपया साधक का नाम दर्ज करें।");
+        return;
+    }
+    
+    let uChar = getCleanFirstChar(userName);
+    let uVarga = vargaMap[uChar] || 1;
+    let userRashi = getRashiDetails(uChar);
+    let uCount = countHindiLetters(userName);
+    
+    infoBox.style.display = "block";
+    infoBox.innerHTML = `साधक: <b>${userName}</b> | प्रथम वर्ण: <b>${uChar}</b> | राशि: <b>${userRashi.name} (${userRashi.lord})</b>`;
+    
+    tableBody.innerHTML = "";
+    
+    allHindiAlphabets.forEach(charItem => {
+        let mVarga = vargaMap[charItem] || 1;
+        
+        // 1. सिद्ध-साध्य-अरि दूरी (कूलाकुल चक्र)
+        let dist = ((mVarga - uVarga + 8) % 8) + 1;
+        
+        let cakraResult = "";
+        if ([1, 5].includes(dist)) { cakraResult = "<span class='badge-shubh'>सिद्ध</span>"; }
+        else if ([2, 6].includes(dist)) { cakraResult = "<span class='badge-sadhya'>साध्य</span>"; }
+        else if ([3, 7].includes(dist)) { cakraResult = "<span class='badge-shubh'>सुसिद्ध</span>"; }
+        else if ([4, 8].includes(dist)) { cakraResult = "<span class='badge-tyajya'>अरि (शत्रु)</span>"; }
+        
+        // 2. शुद्ध शास्त्र सम्मत ऋण-धन नियम
+        let totalPoints = (uCount * 2) + mVarga;
+        let remainder = totalPoints % 8;
+        if(remainder === 0) remainder = 8;
+        
+        let rinDhanStatus = "";
+        let shastriyaPhal = "";
+        let upayText = "—";
+        
+        // शास्त्रानुसार: मंत्र ऋणी = साधक धनी (शुभ), मंत्र धनी = साधक ऋणी (कठिन/अशुभ)
+        if ([2, 4, 6, 8].includes(remainder)) {
+            rinDhanStatus = "<span class='badge-purple'>मंत्र ऋणी</span>";
+            shastriyaPhal = "<span class='badge-purple'>मंत्र दास बनकर सिद्ध होगा (शुभ)</span>";
+            upayText = "आवश्यकता नहीं";
+        } else {
+            rinDhanStatus = "<span class='badge-tyajya'>मंत्र धनी</span>";
+            shastriyaPhal = "<span class='badge-tyajya'>साधक ऋणी (धन हानि/कष्टकारक)</span>";
+            upayText = "<span class='badge-upay'>आगे 'ॐ' तथा पीछे 'नमः' (1-1 संपुट) लगाएं या आगे-पीछे 'ह्रीं' लगाएं</span>";
+        }
+        
+        // 3. राशि मैत्री
+        let mantraRashi = getRashiDetails(charItem);
+        let rashiRelation = checkPlanetaryRelation(userRashi.lord, mantraRashi.lord);
+        
+        let rashiBadge = "<span>" + rashiRelation + "</span>";
+        if(rashiRelation === "शत्रु राशि") rashiBadge = "<span class='badge-tyajya'>शत्रु राशि</span>";
+        if(rashiRelation.includes("मित्र")) rashiBadge = "<span class='badge-shubh'>" + rashiRelation + "</span>";
+
+        // 4. अंतिम निर्णय
+        let finalDecision = "";
+        if (dist === 4 || dist === 8 || rashiRelation === "शत्रु राशि") {
+            finalDecision = "<span class='badge-tyajya'>सर्वथा त्याज्य</span>";
+            if(upayText === "आवश्यकता नहीं") {
+                upayText = "<span class='badge-upay'>अरि दोष हेतु गुरु दीक्षा अनिवार्य</span>";
+            }
+        } else {
+            if (rinDhanStatus.includes("मंत्र ऋणी")) {
+                finalDecision = "<span class='badge-shubh'>उत्तम (शीघ्र फलदायी)</span>";
+            } else {
+                finalDecision = "<span class='badge-sadhya'>मध्यम (संपुट से ग्राह्य)</span>";
+            }
+        }
+        
+        let row = `<tr>
+            <td><b>'${charItem}'</b></td>
+            <td>${mantraRashi.name} (${mantraRashi.lord})</td>
+            <td>${rashiBadge}</td>
+            <td>${cakraResult} (वर्ग दूरी: ${dist})</td>
+            <td>${rinDhanStatus}</td>
+            <td>${shastriyaPhal}</td>
+            <td style="text-align:left; font-size:12px;">${upayText}</td>
+            <td>${finalDecision}</td>
+        </tr>`;
+        
+        tableBody.innerHTML += row;
+    });
+    
+    tableContainer.style.display = "block";
+}
+</script>
+
+</body>
+</html>
