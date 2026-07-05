@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
         .section-box { background: #fff; padding: 20px; border-radius: 6px; border: 1px solid #e0e0e0; margin-bottom: 25px; }
         .form-row { display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end; }
         .input-group { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 160px; }
-        label { font-weight: bold; color: #555; font-size: 14px; }
+        label { font-weight: bold; color: #555; font-size: 9px; }
         input, select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; }
         button.btn-submit { background-color: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; padding: 11px 20px; border-radius: 4px; }
         
@@ -23,16 +23,22 @@
         .date-accordion-item { border: 1px solid #ddd; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
         .date-header { background-color: #f8f9fa; padding: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: bold; color: #333; user-select: none; }
         .date-header:hover { background-color: #e9ecef; }
-        .date-header .total-badge { background: #28a745; color: white; padding: 3px 10px; border-radius: 20px; font-size: 14px; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .total-badge { background: #28a745; color: white; padding: 4px 12px; border-radius: 20px; font-size: 9px; }
         
-        /* --- TABLE SCROLL (लेफ्ट-राइट स्क्रॉल के लिए सीएसएस) --- */
+        /* Receipt Print Button */
+        .btn-print { background-color: #17a2b8; color: white; border: none; padding: 4px 12px; border-radius: 20px; font-size: 5px; cursor: pointer; font-weight: bold; }
+        .btn-print:hover { background-color: #138496; }
+        
+        /* Table Scroll */
         .table-content { display: none; padding: 15px; background: #fff; border-top: 1px solid #ddd; }
         .table-content.open { display: block; }
         .responsive-table { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         
-        table { width: 100%; border-collapse: collapse; background: #fff; min-width: 600px; /* कम से कम 600px चौड़ाई रखेगा ताकि मोबाइल पर स्क्रॉल बने */ }
+        table { width: 100%; border-collapse: collapse; background: #fff; min-width: 600px; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background-color: #f1f3f5; }
+        .total-row { background-color: #e2f0d9; font-weight: bold; }
         
         /* Action Buttons */
         .btn-edit { background-color: #ffc107; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: bold; margin-right: 5px; }
@@ -40,14 +46,33 @@
         
         /* Grand Total Box */
         .grand-total-box { background: #d1ecf1; border: 2px dashed #0c5460; padding: 15px; border-radius: 6px; text-align: right; font-size: 18px; font-weight: bold; color: #0c5460; margin-top: 20px; }
-    </style>
+
+        /* --- PRINT STYLES (यह हिस्सा प्रिंट करते समय स्क्रीन की बाकी चीजें छुपा देगा) --- */
+        @media print {
+            body { background: white; color: black; padding: 0; margin: 0; }
+            .container, .section-box, header, #entryForm, .grand-total-box, .btn-edit, .btn-delete, th:last-child, td:last-child {
+                display: none !important; /* स्क्रीन की चीजें गायब */
+            }
+            #printArea {
+                display: block !important; /* सिर्फ रसीद एरिया दिखेगा */
+            }
+            table { width: 100%; border: 1px solid black; border-collapse: collapse; }
+            th, td { border: 1px solid black; padding: 8px; text-align: left; }
+            th { background-color: #eee !important; -webkit-print-color-adjust: exact; }
+            .total-row { background-color: #ddd !important; -webkit-print-color-adjust: exact; }
+        }
+        #printArea { display: none; } /* सामान्य तौर पर स्क्रीन पर छुपा रहेगा */
+    .font{font-size:5px;}
+</style>
 </head>
 <body>
+
+<div id="printArea"></div>
 
 <div class="container">
     <header>
         <h2>🛒 Page 2: सामान खरीद एंट्री & रिकॉर्ड</h2>
-        <a href="retailpro.html" class="nav-btn">⬅️ Page 1: उत्पाद जोड़ें</a>
+        <a href="index.html" class="nav-btn">⬅️ Page 1: उत्पाद जोड़ें</a>
     </header>
 
     <div class="section-box">
@@ -73,7 +98,7 @@
 
     <div class="section-box">
         <h3 style="margin-top:0; color: #17a2b8;">📅 तारीख वार रिकॉर्ड सूची (Part 2)</h3>
-        <p style="color: #777; font-size: 13px;">तारीख पर क्लिक करके उसके अंदर का सामान सूची देखें (मोबाईल पर टेबल को बाएं-दाएं सरका सकते हैं):</p>
+        <p style="color: #777; font-size: 13px;">तारीख पर क्लिक करके सूची देखें, या सीधा रसीद प्रिंट करने के लिए "🖨️ रसीद" दबाएं:</p>
         
         <div id="accordionContainer"></div>
 
@@ -93,6 +118,7 @@
     const entryDateInput = document.getElementById('entryDate');
     const accordionContainer = document.getElementById('accordionContainer');
     const grandTotalContainer = document.getElementById('grandTotalContainer');
+    const printArea = document.getElementById('printArea');
 
     let products = JSON.parse(localStorage.getItem(PRODUCTS_KEY)) || [];
     let entries = JSON.parse(localStorage.getItem(ENTRIES_KEY)) || [];
@@ -126,14 +152,11 @@
         }
     });
 
-    // --- सुधार किया गया कैलकुलेशन लॉजिक ---
     function calculateTotalPrice(prod, qtyStr) {
         let multiplier = 1;
         if (qtyStr.includes('g') && !qtyStr.includes('kg')) {
-            // उदाहरण: "500g" -> 500 / 1000 = 0.5
             multiplier = parseInt(qtyStr) / 1000;
         } else {
-            // उदाहरण: "2 kg", "1.5 kg", "3 pkt" -> इसमें से केवल संख्या (2 या 1.5) अलग करेगा
             multiplier = parseFloat(qtyStr);
         }
         return Math.round((prod.price * multiplier) * 100) / 100;
@@ -202,6 +225,57 @@
         }
     };
 
+    // --- नया फीचर: रसीद प्रिंट करने का फंक्शन ---
+    window.printReceipt = function(dateStr, e) {
+        // बटन क्लिक करने पर अकॉर्डियन को खुलने/बंद होने से रोकने के लिए stopPropagation
+        e.stopPropagation();
+
+        const dayEntries = entries.filter(item => item.date === dateStr);
+        const dayTotal = dayEntries.reduce((sum, item) => sum + item.totalPrice, 0);
+
+        // प्रिंट आउट के लिए साफ़ सुथरा कैश मेमो स्ट्रक्चर
+        let receiptHTML = `
+            <div style="padding: 20px; max-width: 400px; margin: 0 auto; text-align: center;">
+                <h2 style="margin-bottom: 5px;">🏪 किराना स्टोर रसीद</h2>
+                <p style="margin: 0; font-size: 14px;"><strong>दिनांक:</strong> ${dateStr}</p>
+                <hr style="border-top: 1px dashed black; margin: 15px 0;">
+                <table style="width: 100%; font-size: 14px;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid black;">
+                            <th style="text-align: left;">सामान</th>
+                            <th style="text-align: left;">मात्रा</th>
+                            <th style="text-align: right;">दर</th>
+                            <th style="text-align: right;">कुल</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        dayEntries.forEach(item => {
+            receiptHTML += `
+                <tr>
+                    <td>${item.productName}</td>
+                    <td>${item.quantity}</td>
+                    <td style="text-align: right;">₹${item.rate.toFixed(2)}</td>
+                    <td style="text-align: right;">₹${item.totalPrice.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+
+        receiptHTML += `
+                    </tbody>
+                </table>
+                <hr style="border-top: 1px dashed black; margin: 15px 0;">
+                <h3 style="text-align: right; margin: 0;">कुल योग: ₹${dayTotal.toFixed(2)}</h3>
+                <p style="margin-top: 25px; font-size: 12px; font-style: italic;">आने के लिए धन्यवाद! फिर पधारें।</p>
+            </div>
+        `;
+
+        // प्रिंट एरिया में डालें और ब्राउज़र का प्रिंट डायलॉग खोलें
+        printArea.innerHTML = receiptHTML;
+        window.print();
+    };
+
     function renderAccordionStructure() {
         accordionContainer.innerHTML = '';
         const uniqueDates = [...new Set(entries.map(item => item.date))];
@@ -223,12 +297,19 @@
 
             const headerDiv = document.createElement('div');
             headerDiv.className = 'date-header';
-            headerDiv.innerHTML = `<span>📅 दिनांक: ${date}</span> <span class="total-badge">योग: ₹${dayTotal.toFixed(2)}</span>`;
+            
+            // यहाँ "🖨️ रसीद" का बटन जोड़ा गया है
+            headerDiv.innerHTML = `
+                <span class="font">📅 दिनांक: ${date}</span> 
+                <div class="header-actions">
+                    <span class="total-badge">योग: ₹${dayTotal.toFixed(2)}</span>
+                    <button class="btn-print" onclick="printReceipt('${date}', event)">🖨️ रसीद</button>
+                </div>
+            `;
 
             const contentDiv = document.createElement('div');
             contentDiv.className = `table-content ${openDates[date] ? 'open' : ''}`;
 
-            // .responsive-table div को टेबल के बाहर जोड़ा गया है ताकि स्क्रॉल काम करे
             let tableHTML = `<div class="responsive-table">
                 <table>
                 <thead>
