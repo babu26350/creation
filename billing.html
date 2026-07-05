@@ -1,0 +1,365 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2: Billing & Advanced Records</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        h2 { margin: 0; color: #2c3e50; }
+        .nav-btn { background-color: #6c757d; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; }
+        .nav-btn:hover { background-color: #5a6268; }
+        .section-box { background: #fff; padding: 20px; border-radius: 6px; border: 1px solid #e0e0e0; margin-bottom: 25px; }
+        .form-row { display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end; }
+        .input-group { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 160px; }
+        label { font-weight: bold; color: #555; font-size: 14px; }
+        input, select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; }
+        button.btn-submit { background-color: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; padding: 11px 20px; border-radius: 4px; }
+        
+        /* Accordion Style Records */
+        .date-accordion-item { border: 1px solid #ddd; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
+        .date-header { background-color: #f8f9fa; padding: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: bold; color: #333; user-select: none; }
+        .date-header:hover { background-color: #e9ecef; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .total-badge { background: #28a745; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px; }
+        
+        /* Receipt Print Button */
+        .btn-print { background-color: #17a2b8; color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 14px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 4px; }
+        .btn-print:hover { background-color: #138496; }
+        
+        /* Table Scroll */
+        .table-content { display: none; padding: 15px; background: #fff; border-top: 1px solid #ddd; }
+        .table-content.open { display: block; }
+        .responsive-table { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        
+        table { width: 100%; border-collapse: collapse; background: #fff; min-width: 600px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f1f3f5; }
+        .total-row { background-color: #e2f0d9; font-weight: bold; }
+        
+        /* Action Buttons */
+        .btn-edit { background-color: #ffc107; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: bold; margin-right: 5px; }
+        .btn-delete { background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: bold; }
+        
+        /* Grand Total Box */
+        .grand-total-box { background: #d1ecf1; border: 2px dashed #0c5460; padding: 15px; border-radius: 6px; text-align: right; font-size: 18px; font-weight: bold; color: #0c5460; margin-top: 20px; }
+
+        /* --- PRINT/PDF STYLES --- */
+        @media print {
+            body { background: white; color: black; padding: 0; margin: 0; }
+            .container, .section-box, header, #entryForm, .grand-total-box, .btn-edit, .btn-delete, th:last-child, td:last-child {
+                display: none !important; 
+            }
+            #printArea {
+                display: block !important; 
+            }
+            table { width: 100%; border: 1px solid black; border-collapse: collapse; }
+            th, td { border: 1px solid black; padding: 8px; text-align: left; }
+            th { background-color: #eee !important; -webkit-print-color-adjust: exact; }
+        }
+        #printArea { display: none; }
+    </style>
+</head>
+<body>
+
+<div id="printArea"></div>
+
+<div class="container">
+    <header>
+        <h2>🛒 Page 2: सामान खरीद एंट्री & रिकॉर्ड</h2>
+        <a href="index.html" class="nav-btn">⬅️ Page 1: उत्पाद जोड़ें</a>
+    </header>
+
+    <div class="section-box">
+        <h3 style="margin-top:0; color: #007bff;">📝 सामान खरीद एंट्री (Part 1)</h3>
+        <form id="entryForm" class="form-row">
+            <div class="input-group">
+                <label for="entryDate">तारीख चुनें:</label>
+                <input type="date" id="entryDate" required>
+            </div>
+            <div class="input-group">
+                <label for="selectProduct">उत्पाद चुनें:</label>
+                <select id="selectProduct" required>
+                    <option value="">--उत्पाद चुनें--</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="selectQuantity">मात्रा (Quantity):</label>
+                <select id="selectQuantity" required></select>
+            </div>
+            <button type="submit" class="btn-submit">एंट्री दर्ज करें</button>
+        </form>
+    </div>
+
+    <div class="section-box">
+        <h3 style="margin-top:0; color: #17a2b8;">📅 तारीख वार रिकॉर्ड सूची (Part 2)</h3>
+        <p style="color: #777; font-size: 13px;">तारीख पर क्लिक करके सूची देखें, या सीधा PDF डाउनलोड करने के लिए "📥 PDF रसीद" दबाएं:</p>
+        
+        <div id="accordionContainer"></div>
+
+        <div id="grandTotalContainer" class="grand-total-box">
+            सभी तारीखों का कुल महायोग (Grand Total): ₹0.00
+        </div>
+    </div>
+</div>
+
+<script>
+    const PRODUCTS_KEY = 'shop_products';
+    const ENTRIES_KEY = 'shop_entries';
+
+    const selectProduct = document.getElementById('selectProduct');
+    const selectQuantity = document.getElementById('selectQuantity');
+    const entryForm = document.getElementById('entryForm');
+    const entryDateInput = document.getElementById('entryDate');
+    const accordionContainer = document.getElementById('accordionContainer');
+    const grandTotalContainer = document.getElementById('grandTotalContainer');
+    const printArea = document.getElementById('printArea');
+
+    let products = JSON.parse(localStorage.getItem(PRODUCTS_KEY)) || [];
+    let entries = JSON.parse(localStorage.getItem(ENTRIES_KEY)) || [];
+    let openDates = {}; 
+
+    entryDateInput.value = new Date().toISOString().split('T')[0];
+
+    function initProductDropdown() {
+        selectProduct.innerHTML = '<option value="">--उत्पाद चुनें--</option>';
+        products.forEach(p => {
+            let opt = new Option(`${p.name} (₹${p.price}/${p.unit})`, p.id);
+            selectProduct.add(opt);
+        });
+    }
+
+    selectProduct.addEventListener('change', function() {
+        const prodId = this.value;
+        selectQuantity.innerHTML = '';
+        if(!prodId) return;
+
+        const selectedProd = products.find(p => p.id === prodId);
+        if (selectedProd.unit === 'kg') {
+            ['100g', '200g', '300g', '400g', '500g', '600g', '700g', '800g', '900g', '1 kg', '1.5 kg', '2 kg', '3 kg', '4 kg', '5 kg'].forEach(g => {
+                selectQuantity.add(new Option(g, g));
+            });
+        } else {
+            for(let i=1; i<=10; i++) {
+                let val = `${i} ${selectedProd.unit}`;
+                selectQuantity.add(new Option(val, val));
+            }
+        }
+    });
+
+    function calculateTotalPrice(prod, qtyStr) {
+        let multiplier = 1;
+        if (qtyStr.includes('g') && !qtyStr.includes('kg')) {
+            multiplier = parseInt(qtyStr) / 1000;
+        } else {
+            multiplier = parseFloat(qtyStr);
+        }
+        return Math.round((prod.price * multiplier) * 100) / 100;
+    }
+
+    function formatDateToDisplay(dateString) {
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+    }
+
+    entryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const rawDate = entryDateInput.value;
+        const prodId = selectProduct.value;
+        const qtyStr = selectQuantity.value;
+
+        if(!rawDate || !prodId || !qtyStr) return;
+
+        const prod = products.find(p => p.id === prodId);
+        const finalPrice = calculateTotalPrice(prod, qtyStr);
+        const displayDate = formatDateToDisplay(rawDate);
+        const timeStr = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
+        const newEntry = {
+            id: 'entry_' + Date.now(),
+            date: displayDate,
+            time: timeStr,
+            productId: prod.id,
+            productName: prod.name,
+            quantity: qtyStr,
+            rate: prod.price,
+            totalPrice: finalPrice
+        };
+
+        entries.unshift(newEntry);
+        localStorage.setItem(ENTRIES_KEY, JSON.stringify(entries));
+        
+        openDates[displayDate] = true; 
+        entryForm.reset();
+        entryDateInput.value = rawDate; 
+        selectQuantity.innerHTML = '';
+        renderAccordionStructure();
+    });
+
+    window.deleteEntry = function(id, dateStr) {
+        if(confirm("क्या आप इस एंट्री को डिलीट करना चाहते हैं?")) {
+            entries = entries.filter(item => item.id !== id);
+            localStorage.setItem(ENTRIES_KEY, JSON.stringify(entries));
+            renderAccordionStructure();
+        }
+    };
+
+    window.editEntry = function(id, dateStr) {
+        const item = entries.find(e => e.id === id);
+        const prod = products.find(p => p.id === item.productId);
+        if(!item || !prod) return;
+
+        let promptMsg = `नया मात्रा दर्ज करें:\n(जैसे: 500g, 2 kg, 1.5 kg, 3 pkt)`;
+        const newQty = prompt(promptMsg, item.quantity);
+        
+        if (newQty !== null && newQty.trim() !== "") {
+            item.quantity = newQty.trim();
+            item.totalPrice = calculateTotalPrice(prod, newQty.trim());
+            localStorage.setItem(ENTRIES_KEY, JSON.stringify(entries));
+            renderAccordionStructure();
+        }
+    };
+
+    // --- स्मार्ट पीडीएफ जनरेशन फंक्शन ---
+    window.printReceipt = function(dateStr, e) {
+        e.stopPropagation(); // अकॉर्डियन बंद होने से रोके
+
+        const dayEntries = entries.filter(item => item.date === dateStr);
+        const dayTotal = dayEntries.reduce((sum, item) => sum + item.totalPrice, 0);
+
+        // मूल तारीख का फाइल नेम के लिए फॉर्मेट बनाना (जैसे 05/07/2026 -> Rasid_05_07_2026)
+        const safeDateName = dateStr.replace(/\//g, '_');
+        const originalTitle = document.title;
+        
+        // ब्राउज़र का पीडीएफ नाम बदलने की ट्रिक
+        document.title = `Rasid_${safeDateName}`;
+
+        let receiptHTML = `
+            <div style="padding: 20px; max-width: 400px; margin: 0 auto; text-align: center;">
+                <h2 style="margin-bottom: 5px;">🏪 किराना स्टोर रसीद</h2>
+                <p style="margin: 0; font-size: 14px;"><strong>दिनांक:</strong> ${dateStr}</p>
+                <hr style="border-top: 1px dashed black; margin: 15px 0;">
+                <table style="width: 100%; font-size: 14px;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid black;">
+                            <th style="text-align: left;">सामान</th>
+                            <th style="text-align: left;">मात्रा</th>
+                            <th style="text-align: right;">दर</th>
+                            <th style="text-align: right;">कुल</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        dayEntries.forEach(item => {
+            receiptHTML += `
+                <tr>
+                    <td>${item.productName}</td>
+                    <td>${item.quantity}</td>
+                    <td style="text-align: right;">₹${item.rate.toFixed(2)}</td>
+                    <td style="text-align: right;">₹${item.totalPrice.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+
+        receiptHTML += `
+                    </tbody>
+                </table>
+                <hr style="border-top: 1px dashed black; margin: 15px 0;">
+                <h3 style="text-align: right; margin: 0;">कुल योग: ₹${dayTotal.toFixed(2)}</h3>
+                <p style="margin-top: 25px; font-size: 12px; font-style: italic;">आने के लिए धन्यवाद! फिर पधारें।</p>
+            </div>
+        `;
+
+        printArea.innerHTML = receiptHTML;
+        
+        // प्रिंट/पीडीएफ डायलॉग खोलें
+        window.print();
+
+        // प्रिंट होने के बाद टाइटल वापस पुराना कर दें
+        document.title = originalTitle;
+    };
+
+    function renderAccordionStructure() {
+        accordionContainer.innerHTML = '';
+        const uniqueDates = [...new Set(entries.map(item => item.date))];
+        let runningGrandTotal = 0;
+
+        if(uniqueDates.length === 0) {
+            accordionContainer.innerHTML = '<p style="color:#999; text-align:center;">कोई खरीद रिकॉर्ड दर्ज नहीं है।</p>';
+            grandTotalContainer.innerHTML = `सभी तारीखों का कुल महायोग (Grand Total): ₹0.00`;
+            return;
+        }
+
+        uniqueDates.forEach(date => {
+            const dayEntries = entries.filter(item => item.date === date);
+            const dayTotal = dayEntries.reduce((sum, item) => sum + item.totalPrice, 0);
+            runningGrandTotal += dayTotal;
+
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'date-accordion-item';
+
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'date-header';
+            
+            headerDiv.innerHTML = `
+                <span>📅 दिनांक: ${date}</span> 
+                <div class="header-actions">
+                    <span class="total-badge">योग: ₹${dayTotal.toFixed(2)}</span>
+                    <button class="btn-print" onclick="printReceipt('${date}', event)">📥 PDF रसीद</button>
+                </div>
+            `;
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = `table-content ${openDates[date] ? 'open' : ''}`;
+
+            let tableHTML = `<div class="responsive-table">
+                <table>
+                <thead>
+                    <tr>
+                        <th>समय</th><th>सामान नाम</th><th>मात्रा</th><th>दर (Rate)</th><th>कुल</th><th>एक्शन</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            dayEntries.forEach(item => {
+                tableHTML += `<tr>
+                    <td>${item.time}</td>
+                    <td><strong>${item.productName}</strong></td>
+                    <td>${item.quantity}</td>
+                    <td>₹${item.rate.toFixed(2)}</td>
+                    <td>₹${item.totalPrice.toFixed(2)}</td>
+                    <td>
+                        <button class="btn-edit" onclick="editEntry('${item.id}', '${date}')">✏️</button>
+                        <button class="btn-delete" onclick="deleteEntry('${item.id}', '${date}')">🗑️</button>
+                    </td>
+                </tr>`;
+            });
+
+            tableHTML += `</tbody></table></div>`;
+            contentDiv.innerHTML = tableHTML;
+
+            headerDiv.addEventListener('click', () => {
+                const isOpen = contentDiv.classList.toggle('open');
+                openDates[date] = isOpen; 
+            });
+
+            itemDiv.appendChild(headerDiv);
+            itemDiv.appendChild(contentDiv);
+            accordionContainer.appendChild(itemDiv);
+        });
+
+        grandTotalContainer.innerHTML = `सभी तारीखों का कुल महायोग (Grand Total): <span style="font-size:22px; color:#28a745;">₹${runningGrandTotal.toFixed(2)}</span>`;
+    }
+
+    if(products.length === 0) {
+        alert("कृपया पहले Page 1 पर जाकर कुछ उत्पाद (Products) जोड़ें!");
+    }
+    initProductDropdown();
+    renderAccordionStructure();
+</script>
+</body>
+</html>
