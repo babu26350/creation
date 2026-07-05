@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <style>
         * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: #f4f7f6; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+        .container { max-width: 850px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
         h2 { margin: 0; color: #2c3e50; }
         .nav-btn { background-color: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; }
@@ -16,10 +16,17 @@
         input, select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; flex: 1; min-width: 150px; }
         button.btn-add { background-color: #28a745; color: white; border: none; cursor: pointer; font-weight: bold; padding: 10px 20px; border-radius: 4px; }
         button.btn-add:hover { background-color: #218838; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        
+        /* Table responsive styling */
+        .table-responsive { width: 100%; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; min-width: 500px; }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background-color: #f2f2f2; color: #333; }
         tr:nth-child(even) { background-color: #fdfdfd; }
+        
+        /* Action Buttons */
+        .btn-edit { background-color: #ffc107; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-weight: bold; margin-right: 5px; }
+        .btn-delete { background-color: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -27,11 +34,11 @@
 <div class="container">
     <header>
         <h2>📦 Page 1: उत्पाद मास्टर एंट्री</h2>
-        <a href="saman.html" class="nav-btn">Page 2: बिलिंग पर जाएं ➡️</a>
+        <a href="billing.html" class="nav-btn">Page 2: बिलिंग पर जाएं ➡️</a>
     </header>
 
     <form id="productForm" class="form-inline">
-        <input type="text" id="pName" placeholder="उत्पाद का नाम (e.g., Chini)" required>
+        <input type="text" id="pName" placeholder="उत्पाद नाम हिंदी/English (e.g., चीनी / Rice)" required>
         <select id="pUnit">
             <option value="kg">किलो (kg)</option>
             <option value="pkt">पैकेट (pkt)</option>
@@ -41,17 +48,21 @@
         <button type="submit" class="btn-add">जोड़ें</button>
     </form>
 
-    <h3>वर्तमान उपलब्ध प्रोडक्ट्स</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>उत्पाद का नाम</th>
-                <th>यूनिट टाइप</th>
-                <th>भाव प्रति यूनिट</th>
-            </tr>
-        </thead>
-        <tbody id="productTableBody"></tbody>
-    </table>
+    <h3>वर्तमान उपलब्ध प्रोडक्ट्स (A-Z / क-ज्ञ क्रम में)</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>उत्पाद का नाम</th>
+                    <th>यूनิต टाइप</th>
+                    <th>भाव प्रति यूनिट</th>
+                    <th>एक्शन (Action)</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
@@ -59,17 +70,40 @@
     const productTableBody = document.getElementById('productTableBody');
     let products = JSON.parse(localStorage.getItem('shop_products')) || [];
 
-    function displayProducts() {
-        productTableBody.innerHTML = '';
-        if (products.length === 0) {
-            productTableBody.innerHTML = `<tr><td colSpan="3" style="text-align:center; color: #777;">कोई उत्पाद नहीं है। कृपया ऊपर फॉर्म से जोड़ें।</td></tr>`;
-            return;
-        }
-        products.forEach(p => {
-            productTableBody.innerHTML += `<tr><td><strong>${p.name}</strong></td><td>${p.unit}</td><td>₹${p.price.toFixed(2)}</td></tr>`;
+    // --- फंक्शन: प्रोडक्ट्स को वर्णमाला क्रम (Alphabetic Order) में सेट करना ---
+    function sortProductsAlphabetically(prodList) {
+        return prodList.sort((a, b) => {
+            // localeCompare हिंदी और अंग्रेजी दोनों को सही वर्णमाला क्रम में सॉर्ट करता है
+            return a.name.localeCompare(b.name, 'hi', { sensitivity: 'base' });
         });
     }
 
+    // --- फंक्शन: टेबल में लिस्ट दिखाना ---
+    function displayProducts() {
+        productTableBody.innerHTML = '';
+        
+        // लिस्ट को दिखाने से पहले सॉर्ट करें
+        const sortedProducts = sortProductsAlphabetically(products);
+
+        if (sortedProducts.length === 0) {
+            productTableBody.innerHTML = `<tr><td colSpan="4" style="text-align:center; color: #777;">कोई उत्पाद नहीं है। कृपया ऊपर फॉर्म से जोड़ें।</td></tr>`;
+            return;
+        }
+
+        sortedProducts.forEach(p => {
+            productTableBody.innerHTML += `<tr>
+                <td><strong>${p.name}</strong></td>
+                <td><span class="badge">${p.unit}</span></td>
+                <td>₹${p.price.toFixed(2)}</td>
+                <td>
+                    <button class="btn-edit" onclick="editProductBhav('${p.id}')" title="भाव बदलें">✏️ भाव</button>
+                    <button class="btn-delete" onclick="deleteProduct('${p.id}')" title="उत्पाद हटाएं">🗑️ हटाएं</button>
+                </td>
+            </tr>`;
+        });
+    }
+
+    // --- फॉर्म सबमिट हैंडलर ---
     productForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('pName').value.trim();
@@ -77,12 +111,47 @@
         const price = parseFloat(document.getElementById('pPrice').value);
         if(!name || isNaN(price)) return;
 
-        products.push({ id: 'prod_' + Date.now(), name: name, unit: unit, price: price });
+        products.push({ 
+            id: 'prod_' + Date.now(), 
+            name: name, 
+            unit: unit, 
+            price: price 
+        });
+        
         localStorage.setItem('shop_products', JSON.stringify(products));
         productForm.reset();
         displayProducts();
     });
 
+    // --- फंक्शन: रिटेल भाव बदलना (Editable Bhav) ---
+    window.editProductBhav = function(id) {
+        const prod = products.find(p => p.id === id);
+        if(!prod) return;
+
+        const newBhav = prompt(`"${prod.name}" का नया रिटेल भाव दर्ज करें (वर्तमान भाव: ₹${prod.price}):`, prod.price);
+        
+        if (newBhav !== null && !isNaN(parseFloat(newBhav)) && parseFloat(newBhav) >= 0) {
+            prod.price = parseFloat(newBhav);
+            localStorage.setItem('shop_products', JSON.stringify(products));
+            displayProducts();
+        } else if (newBhav !== null) {
+            alert("कृपया सही संख्या दर्ज करें!");
+        }
+    };
+
+    // --- फंक्शन: उत्पाद हटाना (Deletable) ---
+    window.deleteProduct = function(id) {
+        const prod = products.find(p => p.id === id);
+        if(!prod) return;
+
+        if(confirm(`क्या आप उत्पाद "${prod.name}" को मास्टर लिस्ट से हटाना चाहते हैं?\n(नोट: इससे पुरानी बिलिंग एंट्रीज पर कोई असर नहीं पड़ेगा)`)) {
+            products = products.filter(p => p.id !== id);
+            localStorage.setItem('shop_products', JSON.stringify(products));
+            displayProducts();
+        }
+    };
+
+    // पहली बार लोड होने पर
     displayProducts();
 </script>
 </body>
