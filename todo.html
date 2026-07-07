@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Task Manager</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* Category Table/Buttons Section */
+        .category-filter-section {
+            margin-bottom: 20px;
+        }
+
+        .cat-btn {
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 20px;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        .cat-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Task Table Style */
+        .table-container {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #2c3e50;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+            background-color: #f9f9f9;
+        }
+
+        .btn-action {
+            padding: 5px 10px;
+            margin: 2px;
+            border-radius: 4px;
+            font-size: 12px;
+            width: auto;
+            display: inline-block;
+        }
+
+        .btn-edit { background-color: #f39c12; }
+        .btn-delete { background-color: var(--danger-color); }
+
+        .urgent {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Advanced Task Manager (Local Storage)</h1>
+    
+    <div class="row">
+        <div class="card">
+            <h2>1. कैटगरी बनाएं (Create Category)</h2>
+            <div class="form-group">
+                <label for="newCategory">कैटगरी का नाम:</label>
+                <input type="text" id="newCategory" placeholder="उदा. Study, Lab, Personal">
+            </div>
+            <button onclick="addCategory()">Category जोड़ें</button>
+        </div>
+
+        <div class="card">
+            <h2>2. नया टास्क जोड़ें (Create Task)</h2>
+            <input type="hidden" id="editTaskId"> <div class="form-group">
+                <label for="taskName">टास्क का नाम:</label>
+                <input type="text" id="taskName" placeholder="क्या काम करना है?">
+            </div>
+            
+            <div class="form-group">
+                <label for="taskCategory">कैटगरी चुनें:</label>
+                <select id="taskCategory">
+                    </select>
+            </div>
+
+            <div class="form-group">
+                <label for="targetDate">Targeted Date & Time:</label>
+                <input type="datetime-local" id="targetDate">
+            </div>
+            
+            <button id="saveTaskBtn" onclick="saveTask()">Task सुरक्षित करें</button>
+        </div>
+    </div>
+
+    <div class="card category-filter-section">
+        <h2>3. कैटगरी के आधार पर देखें (Filter by Category)</h2>
+        <div id="categoryFilters">
+            </div>
+    </div>
+
+    <div class="table-container">
+        <h2>सारे टास्क की सूची (All Tasks)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Task (Category)</th>
+                    <th>Created Date & Time</th>
+                    <th>Targeted Date & Time</th>
+                    <th>Remaining Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="taskTableBody">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Local Storage से डेटा निकालना या खाली Array सेट करना
+    let categories = JSON.parse(localStorage.getItem('categories')) || ['General', 'Study'];
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    let currentFilter = 'All';
+
+    // ऐप शुरू होते ही सब कुछ लोड करें
+    window.onload = function() {
+        renderCategories();
+        renderTasks();
+        // Remaining time को हर सेकंड अपडेट करने के लिए
+        setInterval(renderTasks, 1000); 
+    };
+
+    // --- CATEGORY FUNCTIONS ---
+    function renderCategories() {
+        const selectDropdown = document.getElementById('taskCategory');
+        const filterDiv = document.getElementById('categoryFilters');
+        
+        // Dropdown अपडेट करें
+        selectDropdown.innerHTML = '';
+        categories.forEach(cat => {
+            selectDropdown.innerHTML += `<option value="${cat}">${cat}</option>`;
+        });
+
+        // Clickable Category buttons/table अपडेट करें
+        filterDiv.innerHTML = `<span class="cat-btn ${currentFilter === 'All' ? 'active' : ''}" onclick="filterTasks('All')">All</span>`;
+        categories.forEach(cat => {
+            filterDiv.innerHTML += `<span class="cat-btn ${currentFilter === cat ? 'active' : ''}" onclick="filterTasks('${cat}')">${cat}</span>`;
+        });
+    }
+
+    function addCategory() {
+        const catInput = document.getElementById('newCategory');
+        const catValue = catInput.value.trim();
+        
+        if(catValue === '') {
+            alert('कृपया कैटगरी का नाम लिखें!');
+            return;
+        }
+        if(categories.includes(catValue)) {
+            alert('यह कैटगरी पहले से मौजूद है!');
+            return;
+        }
+
+        categories.push(catValue);
+        localStorage.setItem('categories', JSON.stringify(categories));
+        catInput.value = '';
+        renderCategories();
+    }
+
+    function filterTasks(category) {
+        currentFilter = category;
+        renderCategories();
+        renderTasks();
+    }
+
+    // --- TASK FUNCTIONS ---
+    function saveTask() {
+        const taskName = document.getElementById('taskName').value.trim();
+        const taskCategory = document.getElementById('taskCategory').value;
+        const targetDate = document.getElementById('targetDate').value;
+        const editTaskId = document.getElementById('editTaskId').value;
+
+        if(taskName === '' || targetDate === '') {
+            alert('कृपया टास्क का नाम और टारगेट समय दोनों भरें!');
+            return;
+        }
+
+        if(editTaskId) {
+            // Edit Mode: पुराने टास्क को अपडेट करें
+            const taskIndex = tasks.findIndex(t => t.id == editTaskId);
+            if(taskIndex !== -1) {
+                tasks[taskIndex].name = taskName;
+                tasks[taskIndex].category = taskCategory;
+                tasks[taskIndex].target = targetDate;
+            }
+            document.getElementById('editTaskId').value = '';
+            document.getElementById('saveTaskBtn').innerText = 'Task सुरक्षित करें';
+        } else {
+            // New Mode: नया टास्क बनाएं
+            const newTask = {
+                id: Date.now(),
+                name: taskName,
+                category: taskCategory,
+                created: new Date().toLocaleString('en-IN'),
+                target: targetDate,
+                completed: false
+            };
+            tasks.push(newTask);
+        }
+
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        
+        // Form Clear करें
+        document.getElementById('taskName').value = '';
+        document.getElementById('targetDate').value = '';
+        
+        renderTasks();
+    }
+
+    function renderTasks() {
+        const tbody = document.getElementById('taskTableBody');
+        tbody.innerHTML = '';
+
+        // Filter Logic
+        let filteredTasks = tasks;
+        if(currentFilter !== 'All') {
+            filteredTasks = tasks.filter(t => t.category === currentFilter);
+        }
+
+        if(filteredTasks.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">कोई टास्क नहीं मिला।</td></tr>`;
+            return;
+        }
+
+        filteredTasks.forEach((task, index) => {
+            const tr = document.createElement('tr');
+            if(task.completed) tr.classList.add('completed');
+
+            // Remaining Time Calculation
+            let remainingText = "समय समाप्त!";
+            let isUrgent = false;
+            
+            if(!task.completed) {
+                const now = new Date().getTime();
+                const target = new Date(task.target).getTime();
+                const diff = target - now;
+
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                    remainingText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                    if(days === 0 && hours < 2) isUrgent = true; // अगर 2 घंटे से कम बचे हैं तो रेड अलर्ट
+                }
+            } else {
+                remainingText = "पूरा हुआ";
+            }
+
+            // Formatting Target Date for display
+            const formattedTarget = new Date(task.target).toLocaleString('en-IN');
+
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td><strong>${task.name}</strong> <br><small style="color:#7f8c8d;">[${task.category}]</small></td>
+                <td>${task.created}</td>
+                <td>${formattedTarget}</td>
+                <td class="${isUrgent ? 'urgent' : ''}">${remainingText}</td>
+                <td>
+                    <input type="checkbox" ${task.completed ? 'checked' : ''} onclick="toggleStatus(${task.id})">
+                </td>
+                <td>
+                    <button class="btn-action btn-edit" onclick="editTask(${task.id})">Edit</button>
+                    <button class="btn-action btn-delete" onclick="deleteTask(${task.id})">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function toggleStatus(id) {
+        const task = tasks.find(t => t.id === id);
+        if(task) {
+            task.completed = !task.completed;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks();
+        }
+    }
+
+    function deleteTask(id) {
+        if(confirm('क्या आप इस टास्क को डिलीट करना चाहते हैं?')) {
+            tasks = tasks.filter(t => t.id !== id);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks();
+        }
+    }
+
+    function editTask(id) {
+        const task = tasks.find(t => t.id === id);
+        if(task) {
+            document.getElementById('taskName').value = task.name;
+            document.getElementById('taskCategory').value = task.category;
+            document.getElementById('targetDate').value = task.target;
+            document.getElementById('editTaskId').value = task.id;
+            document.getElementById('saveTaskBtn').innerText = 'Update Task';
+        }
+    }
+</script>
+
+</body>
+</html>
