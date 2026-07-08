@@ -1,0 +1,8 @@
+ {
+  "name": "घरेलू अलार्म ऐप",
+  "short_name": "AlarmApp",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2c3e50"
+}
