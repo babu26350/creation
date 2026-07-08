@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>घरेलू अलार्म PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #fdfbf7; }
+        .container { max-width: 400px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input, button { padding: 10px; margin: 10px; width: 80%; }
+        button { background-color: #2c3e50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>अलार्म सेट करें</h2>
+        <input type="time" id="alarmTime">
+        <button onclick="setAlarm()">अलार्म लगाएं</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        async function setAlarm() {
+            const time = document.getElementById('alarmTime').value;
+            if (!time) return alert("कृपया समय चुनें");
+            
+            const permission = await Notification.requestPermission();
+            if (permission !== 'granted') return alert("नोटिफिकेशन की अनुमति दें");
+
+            const [hours, minutes] = time.split(':');
+            const now = new Date();
+            const alarmDate = new Date();
+            alarmDate.setHours(hours, minutes, 0, 0);
+
+            let diff = alarmDate - now;
+            if (diff < 0) diff += 24 * 60 * 60 * 1000;
+
+            document.getElementById('status').innerText = "अलार्म सेट हो गया है!";
+            
+            setTimeout(() => {
+                new Notification("अलार्म", { body: "समय हो गया है!" });
+                alert("समय हो गया है!");
+            }, diff);
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(() => console.log("SW Registered"));
+        }
+    </script>
+</body>
+</html>
