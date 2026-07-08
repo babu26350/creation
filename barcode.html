@@ -1,0 +1,62 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बारकोड और QR स्कैनर</title>
+    <!-- Html5-qrcode लाइब्रेरी को लोड करना -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #reader {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            border: 2px solid #333;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>बारकोड स्कैनर</h1>
+    <p>कृपया अपना कैमरा ऑन करें और बारकोड को स्कैन करें।</p>
+
+    <!-- यहाँ कैमरा फीड दिखाई देगा -->
+    <div id="reader"></div>
+
+    <!-- स्कैन परिणाम दिखाने के लिए -->
+    <div id="result">अभी कोई डेटा स्कैन नहीं हुआ है।</div>
+
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // जब स्कैन सफल हो जाए
+            document.getElementById('result').innerHTML = "स्कैन किया गया डेटा: " + decodedText;
+            console.log(`Code matched = ${decodedText}`, decodedResult);
+        }
+
+        function onScanFailure(error) {
+            // स्कैनिंग के दौरान आने वाली गलतियों को यहाँ हैंडल करें
+            console.warn(`Code scan error = ${error}`);
+        }
+
+        // स्कैनर को शुरू करना
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", 
+            { fps: 10, qrbox: {width: 250, height: 250} },
+            /* verbose= */ false);
+        
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
+
+</body>
+</html>
