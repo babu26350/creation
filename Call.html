@@ -1,0 +1,187 @@
+here<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>डेटा मैनेजर और कॉल बुक</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        a.call-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.call-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>संपर्क डेटा मैनेजर (Local Storage)</h2>
+    
+    <label for="dataInput"><strong>यहाँ अपना डेटा पेस्ट करें:</strong></label>
+    <textarea id="dataInput" placeholder="Tab-separated डेटा यहाँ पेस्ट करें..."></textarea>
+    
+    <div>
+        <button onclick="saveData()">डेटा सेव करें</button>
+        <button class="clear-btn" onclick="clearData()">सब डिलीट करें</button>
+    </div>
+
+    <h3>सेव किया गया डेटा:</h3>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>गाड़ी/आईडी</th>
+                <th>प्रकार</th>
+                <th>कंपनी/नाम</th>
+                <th>स्थान</th>
+                <th>मोबाइल नंबर</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- डेटा यहाँ डायनेमिक रूप से लोड होगा -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // पेज लोड होने पर Local Storage से डेटा दिखाना
+    window.onload = function() {
+        loadTableData();
+    };
+
+    function saveData() {
+        const inputtext = document.getElementById('dataInput').value.trim();
+        if (!inputtext) {
+            alert('कृपया पहले डेटा पेस्ट करें!');
+            return;
+        }
+
+        const lines = inputtext.split('\n');
+        let existingData = JSON.parse(localStorage.getItem('savedContacts')) || [];
+
+        lines.forEach(line => {
+            const parts = line.split('\t'); // Tab ke adhar par alag karein
+            if (parts.length >= 5) {
+                existingData.push({
+                    id: parts[0].trim(),
+                    type: parts[1].trim(),
+                    company: parts[2].trim(),
+                    location: parts[3].trim(),
+                    phone: parts[4].trim()
+                });
+            }
+        });
+
+        // Local Storage में सेव करना
+        localStorage.setItem('savedContacts', JSON.stringify(existingData));
+        document.getElementById('dataInput').value = '';
+        loadTableData();
+        alert('डेटा सफलतापूर्वक सेव हो गया है!');
+    }
+
+    function loadTableData() {
+        const tableBody = document.querySelector('#dataTable tbody');
+        tableBody.innerHTML = '';
+
+        let savedData = JSON.parse(localStorage.getItem('savedContacts')) || [];
+
+        if (savedData.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">कोई डेटा उपलब्ध नहीं है</td></tr>';
+            return;
+        }
+
+        savedData.forEach(item => {
+            let row = document.createElement('tr');
+            
+            // मोबाइल नंबर के लिए कॉल लिंक बनाना (tel: protocol)
+            let phoneCellHTML = item.phone;
+            if (item.phone !== 'NA' && item.phone !== '') {
+                phoneCellHTML = `<a href="tel:${item.phone}" class="call-link">📞 ${item.phone}</a>`;
+            }
+
+            row.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.type}</td>
+                <td>${item.company}</td>
+                <td>${item.location}</td>
+                <td>${phoneCellHTML}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function clearData() {
+        if (confirm('क्या आप वाकई सारा डेटा डिलीट करना चाहते हैं?')) {
+            localStorage.removeItem('savedContacts');
+            loadTableData();
+        }
+    }
+</script>
+
+</body>
+</html>
