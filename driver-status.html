@@ -480,7 +480,9 @@ text += `${row.truck}\n`;
 text += `${row.destination}\n`;
 text += `${row.contact}\n`;
 text += `${row.issue}`;
-        window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`, '_blank');
+       whatsappUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(text)}`;
+
+window.location.href = whatsappUrl;
     }
 
     function generatePDF() {
