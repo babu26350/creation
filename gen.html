@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML फॉर्म से Excel फ़ाइल बनाएँ</title>
+    <!-- SheetJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>डेटा एंट्री फॉर्म</h2>
+    <div class="form-group">
+        <label for="name">नाम (Name):</label>
+        <input type="text" id="name" placeholder="अपना नाम दर्ज करें">
+    </div>
+    <div class="form-group">
+        <label for="age">उम्र (Age):</label>
+        <input type="number" id="age" placeholder="अपनी उम्र दर्ज करें">
+    </div>
+    <div class="form-group">
+        <label for="city">शहर (City):</label>
+        <input type="text" id="city" placeholder="अपने शहर का नाम दर्ज करें">
+    </div>
+    <button onclick="exportToExcel()">Excel फ़ाइल डाउनलोड करें</button>
+</div>
+
+<script>
+    function exportToExcel() {
+        // फॉर्म से वैल्यू लेना
+        const name = document.getElementById('name').value.trim();
+        const age = document.getElementById('age').value.trim();
+        const city = document.getElementById('city').value.trim();
+
+        // जांच करना कि क्या सभी फील्ड भरे गए हैं
+        if (!name || !age || !city) {
+            alert('कृपया सभी फील्ड भरें!');
+            return;
+        }
+
+        // डेटा को ऑब्जेक्ट एरे (Array of Objects) के रूप में तैयार करना
+        const excelData = [
+            { "Field": "नाम (Name)", "Value": name },
+            { "Field": "उम्र (Age)", "Value": age },
+            { "Field": "शहर (City)", "Value": city }
+        ];
+
+        // SheetJS का उपयोग करके वर्कबुक और वर्कशीट बनाना
+        const worksheet = XLSX.utils.json_to_sheet(excelData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "DataEntry");
+
+        // Excel फ़ाइल डाउनलोड कराना
+        XLSX.writeFile(workbook, "Data_Entry.xlsx");
+    }
+</script>
+
+</body>
+</html>
