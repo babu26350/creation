@@ -423,10 +423,10 @@
         let cleanDriverPhone = driverPhone.replace(/[^0-9]/g, '');
         if (cleanDriverPhone.length === 10) cleanDriverPhone = '91' + cleanDriverPhone;
 
-        let message = `🚚 *Party Contact Details*\n\n`;
-        message += `📍 *Party Name:* ${row.party || ''}\n`;
-        message += `🏙️ *Destination:* ${row.destination || ''}\n`;
-        message += `📞 *Party Phone No:* ${pContact}\n`;
+        let message = ` Party Contact Details\n\n`;
+        message += ` Party Name:* ${row.party || ''}\n`;
+        message += `Destination:* ${row.destination || ''}\n`;
+        message += `📞 Party Phone No:* ${pContact}\n`;
 
         window.open(`https://api.whatsapp.com/send?phone=${cleanDriverPhone}&text=${encodeURIComponent(message)}`, '_blank');
     }
@@ -631,7 +631,7 @@
             return alert("इस गाड़ी की कोई लोकेशन हिस्ट्री मौजूद नहीं है!");
         }
 
-        let msg = `🚛 गाड़ी नंबर: ${row.truck || ''}\n📍 लोकेशन हिस्ट्री (Location History):\n------------------------------------\n`;
+        let msg = `🚛 गाड़ी नंबर: ${row.truck || ''}\n लोकेशन हिस्ट्री (Location History):\n------------------------------------\n`;
         row.locationHistory.forEach((item, idx) => {
             msg += `${idx + 1}. [${item.time}] -> ${item.loc}\n`;
         });
