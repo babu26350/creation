@@ -48,7 +48,8 @@
         th { background-color: #1e3c72; color: white; position: sticky; top: 0; white-space: nowrap; }
         tr:nth-child(even) { background-color: #f8f9fa; }
         tr:hover { background-color: #e2e6ea; }
-
+.btn-call { background-color: #28a745; color: white; border: none; padding: 3px 7px; border-radius: 3px; font-size: 11px; font-weight: bold; cursor: pointer; margin-right: 2px; }
+.btn-call:hover { background-color: #218838; }
         select, input[type="text"] { width: 100%; padding: 4px; border: 1px solid #ccc; border-radius: 3px; font-size: 12px; }
         
         .check-btn { font-size: 16px; cursor: pointer; user-select: none; text-align: center; width: 26px; height: 26px; line-height: 24px; border-radius: 50%; border: 1px solid #ccc; display: inline-block; background: #fff; }
@@ -725,6 +726,7 @@
                     <button class="wa-btn btn-custom-wa" onclick="sendWhatsApp(${item.id}, 'custom', ${index})">Custom No</button>
                 </td>
                 <td>
+                <button class="btn-call" onclick="callDriver('${item.contact}')">📞 Call</button>
                     <button class="btn-chat" onclick="openDriverChat('${item.contact}')">💬 चैट खोलें</button>
                     <button class="btn-party-send" onclick="sendPartyNoToDriver(${item.id})">📲 Driver (Party No)</button>
                     <button class="btn-danger" style="padding: 2px 6px; font-size: 11px;" onclick="deleteRow(${item.id})">Delete</button>
@@ -790,7 +792,12 @@
             applyFilters();
         }
     }
-
+function callDriver(contactStr) {
+    if (!contactStr) return alert("इस रो (Row) में ड्राइवर का नंबर उपलब्ध नहीं है!");
+    let cleanPhone = contactStr.replace(/[^0-9+]/g, '');
+    if (!cleanPhone) return alert("वैध फोन नंबर नहीं मिला!");
+    window.location.href = `tel:${cleanPhone}`;
+}
     function clearAllData() {
         if (confirm("⚠️ क्या आप पूरा डेटा हटाना चाहते हैं? यह प्रक्रिया वापस नहीं होगी!")) {
             rawData = [];
