@@ -951,8 +951,11 @@ function openDriverChat(contactStr) {
         if (cleanPhone.length === 10) {
             cleanPhone = '91' + cleanPhone;
         }
+const whatsappURL =
+    `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
 
-        window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(text)}`, '_blank');
+window.location.href = whatsappURL;
+        // window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(text)}`, '_blank');
     }
 
     function generatePDF() {
