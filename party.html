@@ -845,15 +845,38 @@
         renderTable(getFilteredData());
     }
 
-    function openDriverChat(contactStr) {
-        if (!contactStr) return alert("इस रो (Row) में ड्राइवर का नंबर उपलब्ध नहीं है!");
-        let cleanPhone = contactStr.replace(/[^0-9]/g, '');
-        if (cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
-        if (!cleanPhone) return alert("वैध फोन नंबर नहीं मिला!");
+    // function openDriverChat(contactStr) {
+    //     if (!contactStr) return alert("इस रो (Row) में ड्राइवर का नंबर उपलब्ध नहीं है!");
+    //     let cleanPhone = contactStr.replace(/[^0-9]/g, '');
+    //     if (cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
+    //     if (!cleanPhone) return alert("वैध फोन नंबर नहीं मिला!");
         
-        window.open(`https://wa.me/${cleanPhone}`, '_blank');
+    //     window.open(`https://wa.me/${cleanPhone}`, '_blank');
+    // }
+function openDriverChat(contactStr) {
+    if (!contactStr) {
+        alert("इस Row में ड्राइवर का नंबर उपलब्ध नहीं है!");
+        return;
     }
 
+    let cleanPhone = String(contactStr).replace(/\D/g, '');
+
+    // 10 digit Indian number
+    if (cleanPhone.length === 10) {
+        cleanPhone = "91" + cleanPhone;
+    }
+
+    console.log("WhatsApp Number:", cleanPhone);
+
+    if (!/^91[6-9]\d{9}$/.test(cleanPhone)) {
+        alert("गलत मोबाइल नंबर: " + cleanPhone);
+        return;
+    }
+
+    const url = "https://wa.me/" + cleanPhone;
+
+    window.location.href = url;
+}
     function constructMessage(row, index) {
         const template = document.getElementById('customMsgTemplate').value;
         const includeKeys = document.getElementById('includeKeysToggle').checked;
