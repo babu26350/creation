@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Data Management System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+        h2 { text-align: center; color: #1e3c72; margin-bottom: 20px; }
+        
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; resize: vertical; }
+        
+        button { background-color: #007bff; color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        button:hover { background-color: #0056b3; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #bd2130; }
+        .btn-pdf { background-color: #17a2b8; }
+        .btn-pdf:hover { background-color: #138496; }
+        .btn-chat { background-color: #25D366; color: white; border: none; padding: 3px 7px; border-radius: 3px; font-size: 11px; font-weight: bold; cursor: pointer; }
+        .btn-chat:hover { background-color: #1EBE5D; }
+        .btn-secondary { background-color: #6c757d; color: white; padding: 4px 8px; font-size: 11px; margin-left: 5px; }
+        .btn-secondary:hover { background-color: #5a6268; }
+
+        .filters, .phone-settings, .col-selector, .msg-settings { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; background: #e9ecef; padding: 12px; border-radius: 6px; }
+        .filter-group { display: flex; flex-direction: column; flex: 1; min-width: 130px; }
+        .filter-group label { font-size: 12px; font-weight: bold; margin-bottom: 4px; color: #495057; }
+        .filter-group input, .filter-group select { padding: 7px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; }
+
+        .col-item { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; color: #333; background: #fff; padding: 5px 10px; border-radius: 4px; border: 1px solid #ced4da; cursor: pointer; }
+        .col-item input { cursor: pointer; }
+
+        .summary-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .summary-card { background: #ffffff; border: 1px solid #dce1e7; padding: 10px 15px; border-radius: 6px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .summary-card .title { font-size: 13px; font-weight: 600; color: #495057; }
+        .summary-card .badge { background: #1e3c72; color: white; padding: 3px 8px; border-radius: 12px; font-weight: bold; font-size: 13px; }
+
+        .action-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
+
+        .table-container { overflow-x: auto; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; min-width: 1450px; }
+        th, td { border: 1px solid #dee2e6; text-align: left; font-size: 12px; padding: 6px; }
+        th { background-color: #1e3c72; color: white; position: sticky; top: 0; white-space: nowrap; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e2e6ea; }
+
+        select, input[type="text"] { width: 100%; padding: 4px; border: 1px solid #ccc; border-radius: 3px; font-size: 12px; }
+        #tableBody {
+    display: block;
+    height: 500px;
+    overflow-y: auto;
+  }
+  
+  /* हैडिंग और रो को टेबल लेआउट में बनाए रखने के लिए */
+  table thead, table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* कॉलम की चौड़ाई को बराबर रखने के लिए */
+  }
+        .small-input { font-size: 10px !important; padding: 2px 4px !important; height: 22px !important; }
+
+        .check-btn { font-size: 16px; cursor: pointer; user-select: none; text-align: center; width: 26px; height: 26px; line-height: 24px; border-radius: 50%; border: 1px solid #ccc; display: inline-block; background: #fff; }
+        .check-btn.active { background-color: #28a745; color: white; border-color: #28a745; }
+        
+        .wa-btn { background-color: gray; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 11px; margin: 1px; font-weight: bold; }
+        .wa-btn:hover { background-color: #128C7E; }
+        .btn-custom-wa { background-color: #e67e22; }
+        .btn-custom-wa:hover { background-color: #d35400; }
+
+        .phone-input-group { display: flex; gap: 6px; align-items: center; background: #fff; padding: 6px; border-radius: 4px; border: 1px solid #ccc; }
+        .phone-input-group input { width: 110px; }
+        
+        .map-link { color: #007bff; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 2px; font-size: 11px; }
+        .map-link:hover { text-decoration: underline; color: #0056b3; }
+
+        .toggle-box { display: flex; align-items: center; gap: 8px; background: #fff; padding: 8px; border-radius: 4px; border: 1px solid #ccc; font-size: 13px; font-weight: bold; }
+        .btn-hist { background-color: #6f42c1; color: white; border: none; padding: 2px 5px; border-radius: 3px; font-size: 10px; cursor: pointer; margin-top: 3px; }
+        .btn-hist:hover { background-color: #593196; }
+
+        .btn-github { background-color: #24292f; color: white; }
+        .btn-github:hover { background-color: #000; }
+        .sync-info { margin-top: 8px; font-size: 12px; color: #495057; }
+        .sync-url { width: 100%; padding: 7px; border: 1px solid #ced4da; border-radius: 4px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Transport Data Management System</h2>
+
+<div class="card">
+    <label><b>Excel से डेटा पेस्ट करें:</b></label>
+    <textarea id="pasteArea" style="height: 90px;" placeholder="Excel की पंक्तियाँ यहाँ पेस्ट करें..."></textarea>
+    <button onclick="processPastedData()">डेटा सेव करें (Save to LocalStorage)</button>
+</div>
+
+<div class="card">
+    <b>☁️ GitHub `truck.json` से डेटा Sync करें:</b>
+    <div class="sync-info">
+        GitHub JSON से केवल वे Truck Records LocalStorage में जोड़े जाएंगे जो पहले से
+        <b>transportData</b> में मौजूद नहीं हैं। मौजूदा LocalStorage रिकॉर्ड सुरक्षित रहेंगे।
+    </div>
+
+    <div style="margin-top:10px;">
+        <input
+            type="text"
+            id="githubTruckJsonUrl"
+            class="sync-url"
+            placeholder="https://raw.githubusercontent.com/USERNAME/REPO/main/truck.json"
+        >
+    </div>
+
+    <div style="margin-top:8px;">
+        <button class="btn-github" onclick="syncGitHubTruckData()">
+            ☁️ GitHub से Sync / New Trucks जोड़ें
+        </button>
+        <button class="btn-secondary" onclick="saveGitHubUrl()">
+            💾 URL Save
+        </button>
+    </div>
+
+    <div id="githubSyncStatus" class="sync-info"></div>
+</div>
+
+<div class="card">
+    <b>WhatsApp संदेश और फ़ील्ड सेटिंग्स (Custom Message Settings):</b>
+    <div class="msg-settings">
+        <div style="width: 100%;">
+            <label style="font-size: 12px; font-weight: bold;">कस्टम मैसेज टेम्पलेट (Custom Template - Multi-line Support):</label>
+            <textarea id="customMsgTemplate" style="height: 110px; font-family: monospace; margin-top: 4px;" placeholder="यहाँ ऊपर-नीचे पेस्ट या टाइप करें:&#10;{date}&#10;{truck}&#10;{party}&#10;{destination}&#10;{contact}&#10;tracking- {statusLocation}" onchange="saveMsgSettings()"></textarea>
+            <small style="color: #666;">उपलब्ध Placeholders: <code>{date}, {bill}, {wght}, {truck}, {farm}, {party}, {destination}, {statusLocation}, {contact}, {status}, {issue}</code></small>
+        </div>
+        <div class="toggle-box">
+            <input type="checkbox" id="includeKeysToggle" onchange="saveMsgSettings()" checked>
+            <label for="includeKeysToggle">मैसेज में Field Name (Key) शामिल करें (e.g. "Truck No: RJ10..." vs "RJ10...")</label>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <b>WhatsApp नंबर व नाम सेटिंग्स:</b>
+    <div class="phone-settings">
+        <div class="phone-input-group">
+            <label>1:</label>
+            <input type="text" id="name1" value="Admin" placeholder="नाम" onchange="savePhones()">
+            <input type="text" id="phone1" value="919928547583" placeholder="नंबर" onchange="savePhones()">
+        </div>
+        <div class="phone-input-group">
+            <label>2:</label>
+            <input type="text" id="name2" value="Manager" placeholder="नाम" onchange="savePhones()">
+            <input type="text" id="phone2" value="918952969052" placeholder="नंबर" onchange="savePhones()">
+        </div>
+        <div class="phone-input-group">
+            <label>3:</label>
+            <input type="text" id="name3" value="Staff" placeholder="नाम" onchange="savePhones()">
+            <input type="text" id="phone3" value="" placeholder="नंबर" onchange="savePhones()">
+        </div>
+        <div class="phone-input-group">
+            <label>किसी भी नंबर पर भेजें:</label>
+            <input type="text" id="customPhone" value="" placeholder="91XXXXXXXXXX">
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <b>WhatsApp/PDF/Print के लिए Columns चुनें (Column Selector):</b> 
+    <button class="btn-secondary" onclick="toggleAllColumns(true)">Select All</button>
+    <button class="btn-secondary" onclick="toggleAllColumns(false)">Clear All</button>
+    <div class="col-selector" id="columnSelector">
+        <label class="col-item"><input type="checkbox" class="col-check" value="sno" checked> S.No</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="date" checked> Date</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="bill" checked> Bill</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="wght" checked> Weight</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="truck" checked> Truck No</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="farm" checked> Farm</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="party" checked> Party Name</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="destination" checked> Destination</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="statusLocation" checked> Status Location</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="contact" checked> Contact</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="status" checked> Status</label>
+        <label class="col-item"><input type="checkbox" class="col-check" value="issue" checked> Issue</label>
+    </div>
+</div>
+
+<div class="card">
+    <b>फ़िल्टर और खोज (Filter & Search):</b>
+    <div class="filters">
+        <div class="filter-group">
+            <label>Search Date</label>
+            <input type="text" id="searchDate" onkeyup="applyFilters()" placeholder="Date...">
+        </div>
+        <div class="filter-group">
+            <label>From Date</label>
+            <input type="text" id="fromDate" onkeyup="applyFilters()" placeholder="From Date (e.g. 01)">
+        </div>
+        <div class="filter-group">
+            <label>To Date</label>
+            <input type="text" id="toDate" onkeyup="applyFilters()" placeholder="To Date (e.g. 15)">
+        </div>
+        <div class="filter-group">
+            <label>History Date Filter</label>
+            <select id="filterHistoryDate" onchange="applyFilters()"></select>
+        </div>
+        <div class="filter-group">
+            <label>Truck No</label>
+            <input type="text" id="searchTruck" onkeyup="applyFilters()" placeholder="Truck No...">
+        </div>
+        <div class="filter-group">
+            <label>Party/Farm Name</label>
+            <input type="text" id="searchParty" onkeyup="applyFilters()" placeholder="Party Name...">
+        </div>
+        <div class="filter-group">
+            <label>Destination</label>
+            <input type="text" id="searchDestination" onkeyup="applyFilters()" placeholder="Destination...">
+        </div>
+        <div class="filter-group">
+            <label>Status</label>
+            <select id="filterStatus" onchange="applyFilters()"></select>
+        </div>
+        <div class="filter-group">
+            <label>Issue</label>
+            <select id="filterIssue" onchange="applyFilters()"></select>
+        </div>
+        <div class="filter-group">
+            <label>Date Only Sort</label>
+            <select id="sortDate" onchange="applyFilters()">
+                <option value="desc">बड़ी तारीख पहले (31 से 1)</option>
+                <option value="asc">छोटी तारीख पहले (1 से 31)</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="summary-container" id="summaryContainer"></div>
+
+<div class="action-bar">
+    <div>
+        <button class="btn-pdf" onclick="generatePDF()">📄 चुने गए Columns की PDF डाउनलोड करें</button>
+        <button class="btn-pdf" onclick="printSlip()">🖨️ चुने गए Columns की स्लिप प्रिंट करें</button>
+    </div>
+    <button class="btn-danger" onclick="clearAllData()">🗑️ सारा डेटा हटाएँ (Clear LocalStorage)</button>
+</div>
+
+<div class="table-container">
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>S.NO</th>
+                <th>DATE</th>
+                <th>BILL</th>
+                <th>WGHT</th>
+                <th>TRUCK</th>
+                <th>FARM</th>
+                <th>PARTY NAME</th>
+                <th>DESTINATION</th>
+                <th>STATUS LOCATION</th>
+                <th>CONTACT</th>
+                <th>STATUS</th>
+                <th>ISSUE</th>
+                <th style="text-align: center;">REACHED</th>
+                <th style="text-align: center;">PAHUNCH</th>
+                <th>WHATSAPP SEND</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+    <b>📋 सभी मैसेजेस एक साथ (Bulk Messages Copy):</b>
+    <div style="margin-top: 8px;">
+        <button onclick="generateAllMessages()" style="background-color: #28a745;">📋 सभी मैसेजेस तैयार करें और कॉपी करें</button>
+        <textarea id="allMessagesBox" style="height: 150px; margin-top: 8px;" placeholder="फ़िल्टर किए गए सभी गाड़ियों के मैसेज एक साथ देखने और कॉपी करने के लिए ऊपर दिए गए बटन पर क्लिक करें..."></textarea>
+    </div>
+</div>
+
+<script>
+    let rawData = [];
+    let customIssues = ["GADI UNLOAD ISSUE"];
+    let customStatuses = ["REACHED", "PAYMENT CALL", "PAHUNCH SENT"];
+
+    const columnConfig = {
+        sno: "S.No",
+        date: "Date",
+        bill: "Bill",
+        wght: "Weight",
+        truck: "Truck No",
+        farm: "Farm",
+        party: "Party Name",
+        destination: "Destination",
+        statusLocation: "Status Location",
+        contact: "Contact",
+        status: "Status",
+        issue: "Issue"
+    };
+
+    window.onload = function() {
+        loadPhones();
+        loadMsgSettings();
+        loadGitHubUrl();
+        loadFromLocalStorage();
+    };
+
+
+    /*
+     * ============================================================
+     * GITHUB TRUCK.JSON SYNC
+     * ============================================================
+     *
+     * IMPORTANT:
+     * यहाँ अपना वास्तविक RAW GitHub truck.json URL डालें।
+     *
+     * Example:
+     * https://raw.githubusercontent.com/USERNAME/REPOSITORY/main/truck.json
+     *
+     * अगर नीचे URL दिया है तो page खुलते ही वही default URL दिखेगा।
+     */
+    const GITHUB_TRUCK_JSON_URL =
+        'truck.json';
+
+
+    function loadGitHubUrl() {
+        const savedUrl = localStorage.getItem('githubTruckJsonUrl');
+
+        const input = document.getElementById('githubTruckJsonUrl');
+
+        if (!input) return;
+
+        if (savedUrl) {
+            input.value = savedUrl;
+        } else {
+            input.value = GITHUB_TRUCK_JSON_URL;
+        }
+    }
+
+
+    function saveGitHubUrl() {
+        const input = document.getElementById('githubTruckJsonUrl');
+
+        if (!input) return;
+
+        const url = input.value.trim();
+
+        if (!url) {
+            alert('कृपया GitHub truck.json का URL डालें!');
+            return;
+        }
+
+        localStorage.setItem('githubTruckJsonUrl', url);
+
+        document.getElementById('githubSyncStatus').innerText =
+            '✅ GitHub URL LocalStorage में Save हो गया।';
+
+        alert('GitHub URL Save हो गया।');
+    }
+
+
+    // Truck number को comparison के लिए एक जैसा बनाता है।
+    function normalizeTruckNumber(value) {
+        return String(value ?? '')
+            .trim()
+            .toUpperCase()
+            .replace(/[\\s\\-\\.\\/]/g, '');
+    }
+
+
+    // GitHub record में truck number अलग-अलग नामों से हो सकता है।
+    function getTruckNumberFromGitHubRecord(record) {
+
+        if (!record || typeof record !== 'object') return '';
+
+        const possibleKeys = [
+            'truck',
+            'truckNo',
+            'truckNumber',
+            'vehicleNo',
+            'vehicleNumber',
+            'registration',
+            'registrationNo',
+            'registrationNumber',
+            'regNo',
+            'regNumber',
+            'vehicle'
+        ];
+
+        for (const key of possibleKeys) {
+            if (
+                Object.prototype.hasOwnProperty.call(record, key) &&
+                record[key] !== null &&
+                record[key] !== undefined &&
+                String(record[key]).trim() !== ''
+            ) {
+                return String(record[key]).trim();
+            }
+        }
+
+        // कुछ JSON में keys lowercase/uppercase हो सकती हैं।
+        const keys = Object.keys(record);
+
+        for (const actualKey of keys) {
+            const k = actualKey.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            if (
+                [
+                    'truck',
+                    'truckno',
+                    'trucknumber',
+                    'vehicleno',
+                    'vehiclenumber',
+                    'registration',
+                    'registrationno',
+                    'registrationnumber',
+                    'regno',
+                    'regnumber',
+                    'vehicle'
+                ].includes(k)
+            ) {
+                if (record[actualKey] !== null && record[actualKey] !== undefined) {
+                    return String(record[actualKey]).trim();
+                }
+            }
+        }
+
+        return '';
+    }
+
+
+    // GitHub record को आपके transportData के format में बदलता है।
+    function convertGitHubRecordToTransportRow(record) {
+
+        if (!record || typeof record !== 'object') return null;
+
+        const truckNo = getTruckNumberFromGitHubRecord(record);
+
+        if (!truckNo) return null;
+
+        // अलग-अलग संभावित GitHub field names पढ़ें।
+        const getField = (keys) => {
+
+            for (const key of keys) {
+                if (
+                    Object.prototype.hasOwnProperty.call(record, key) &&
+                    record[key] !== null &&
+                    record[key] !== undefined
+                ) {
+                    return String(record[key]);
+                }
+            }
+
+            const normalizedRecordKeys = Object.keys(record);
+
+            for (const key of normalizedRecordKeys) {
+
+                const normalizedKey =
+                    key.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+                for (const wanted of keys) {
+
+                    const normalizedWanted =
+                        wanted.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+                    if (normalizedKey === normalizedWanted) {
+                        return String(record[key] ?? '');
+                    }
+                }
+            }
+
+            return '';
+        };
+
+
+        const date = getField(['date']);
+        const bill = getField(['bill', 'billNo', 'billNumber']);
+        const wght = getField(['wght', 'weight', 'wt']);
+        const farm = getField(['farm', 'farmName']);
+        const party = getField(['party', 'partyName']);
+        const destination = getField([
+            'destination',
+            'dest',
+            'location',
+            'destinationName'
+        ]);
+        const statusLocation = getField([
+            'statusLocation',
+            'currentLocation',
+            'tracking',
+            'trackingLocation'
+        ]);
+        const contact = getField([
+            'contact',
+            'phone',
+            'mobile',
+            'driverContact',
+            'driverPhone'
+        ]);
+        const status = getField(['status']);
+        const issue = getField(['issue']);
+
+        const initialHistory =
+            statusLocation
+                ? [{
+                    loc: statusLocation,
+                    time: new Date().toLocaleString('hi-IN')
+                }]
+                : [];
+
+        return {
+            id: Date.now() + Math.random(),
+
+            date: date,
+            bill: bill,
+            wght: wght,
+            truck: truckNo,
+            farm: farm,
+            party: party,
+            destination: destination,
+            statusLocation: statusLocation,
+
+            locationHistory: initialHistory,
+
+            contact: contact,
+            status: status,
+            issue: issue,
+
+            reachedChecked: false,
+            pahunchChecked: false,
+
+            // पूरा original GitHub record भी सुरक्षित रहेगा।
+            githubTruckData: record
+        };
+    }
+
+
+    function extractGitHubTruckArray(jsonData) {
+
+        // सीधे array हो:
+        if (Array.isArray(jsonData)) {
+            return jsonData;
+        }
+
+        // सामान्य wrapper keys:
+        if (jsonData && typeof jsonData === 'object') {
+
+            const possibleArrayKeys = [
+                'trucks',
+                'truck',
+                'data',
+                'records',
+                'vehicles',
+                'items'
+            ];
+
+            for (const key of possibleArrayKeys) {
+
+                if (Array.isArray(jsonData[key])) {
+                    return jsonData[key];
+                }
+            }
+
+            // यदि object में हर property एक truck record है।
+            const values = Object.values(jsonData);
+
+            if (
+                values.length > 0 &&
+                values.every(v => v && typeof v === 'object' && !Array.isArray(v))
+            ) {
+                return values;
+            }
+        }
+
+        return [];
+    }
+
+
+    async function syncGitHubTruckData() {
+
+        const statusBox = document.getElementById('githubSyncStatus');
+
+        const input = document.getElementById('githubTruckJsonUrl');
+
+        let url = input ? input.value.trim() : '';
+
+        if (!url) {
+            url = localStorage.getItem('githubTruckJsonUrl') || GITHUB_TRUCK_JSON_URL;
+        }
+
+        if (
+            !url ||
+            url.includes('YOUR-USERNAME') ||
+            url.includes('YOUR-REPOSITORY')
+        ) {
+            statusBox.innerHTML =
+                '❌ पहले अपना वास्तविक GitHub Raw truck.json URL डालें।';
+
+            alert(
+                'GitHub truck.json का वास्तविक Raw URL डालें।\\n\\n' +
+                'उदाहरण:\\n' +
+                'https://raw.githubusercontent.com/USERNAME/REPO/main/truck.json'
+            );
+
+            return;
+        }
+
+        statusBox.innerText = '⏳ GitHub truck.json से डेटा लिया जा रहा है...';
+
+        try {
+
+            const response = await fetch(
+                url + (url.includes('?') ? '&' : '?') + '_=' + Date.now(),
+                {
+                    method: 'GET',
+                    cache: 'no-store'
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(
+                    'GitHub HTTP Error: ' + response.status
+                );
+            }
+
+            const jsonData = await response.json();
+
+            const githubRecords =
+                extractGitHubTruckArray(jsonData);
+
+            if (!githubRecords.length) {
+                throw new Error(
+                    'truck.json में कोई Truck Array/Record नहीं मिला।'
+                );
+            }
+
+
+            // ---------------------------------------------
+            // पहले LocalStorage का मौजूदा data लें
+            // ---------------------------------------------
+            const existingRaw = localStorage.getItem('transportData');
+
+            let existingData = [];
+
+            if (existingRaw) {
+
+                try {
+                    existingData = JSON.parse(existingRaw);
+
+                    if (!Array.isArray(existingData)) {
+                        existingData = [];
+                    }
+
+                } catch (e) {
+                    existingData = [];
+                }
+            }
+
+
+            // LocalStorage में मौजूद Truck Numbers की Set
+            const existingTruckSet = new Set();
+
+            existingData.forEach(row => {
+
+                const truck = normalizeTruckNumber(
+                    row.truck ||
+                    row.truckNo ||
+                    row.truckNumber ||
+                    row.vehicleNo ||
+                    row.vehicleNumber ||
+                    ''
+                );
+
+                if (truck) {
+                    existingTruckSet.add(truck);
+                }
+            });
+
+
+            let addedCount = 0;
+            let existingCount = 0;
+            let skippedCount = 0;
+
+
+            // ---------------------------------------------
+            // GitHub records को एक-एक करके compare करें
+            // ---------------------------------------------
+            githubRecords.forEach(record => {
+
+                const truckNo =
+                    getTruckNumberFromGitHubRecord(record);
+
+                const normalizedTruck =
+                    normalizeTruckNumber(truckNo);
+
+                if (!normalizedTruck) {
+                    skippedCount++;
+                    return;
+                }
+
+
+                // यदि truck पहले से LocalStorage में है
+                if (existingTruckSet.has(normalizedTruck)) {
+
+                    existingCount++;
+                    return;
+                }
+
+
+                // नया Truck
+                const newRow =
+                    convertGitHubRecordToTransportRow(record);
+
+                if (!newRow) {
+                    skippedCount++;
+                    return;
+                }
+
+
+                existingData.push(newRow);
+
+                existingTruckSet.add(normalizedTruck);
+
+                addedCount++;
+            });
+
+
+            // ---------------------------------------------
+            // LocalStorage में updated data save करें
+            // ---------------------------------------------
+            rawData = existingData;
+
+            localStorage.setItem(
+                'transportData',
+                JSON.stringify(rawData)
+            );
+
+
+            // Integrated backup भी रखें।
+            localStorage.setItem(
+                'transportData_integrated',
+                JSON.stringify(rawData)
+            );
+
+
+            // URL भी Save करें
+            localStorage.setItem(
+                'githubTruckJsonUrl',
+                url
+            );
+
+
+            // UI refresh
+            updateIssueFilterDropdown();
+            updateStatusFilterDropdown();
+            updateHistoryDateFilterDropdown();
+            applyFilters();
+
+
+            statusBox.innerHTML =
+                '✅ Sync पूरा हुआ — ' +
+                'नए: <b>' + addedCount + '</b> | ' +
+                'पहले से मौजूद: <b>' + existingCount + '</b> | ' +
+                'Skip: <b>' + skippedCount + '</b> | ' +
+                'GitHub Total: <b>' + githubRecords.length + '</b>';
+
+
+            alert(
+                'GitHub Sync पूरा हुआ!\\n\\n' +
+                'नए Truck जोड़े गए: ' + addedCount + '\\n' +
+                'पहले से मौजूद: ' + existingCount + '\\n' +
+                'Skip: ' + skippedCount + '\\n' +
+                'GitHub Total: ' + githubRecords.length
+            );
+
+
+        } catch (error) {
+
+            console.error('GitHub Sync Error:', error);
+
+            statusBox.innerHTML =
+                '❌ Sync Error: ' + error.message;
+
+            alert(
+                'GitHub truck.json पढ़ने में समस्या हुई।\\n\\n' +
+                error.message +
+                '\\n\\nध्यान दें: GitHub Raw URL सही होना चाहिए और JSON public/readable होना चाहिए।'
+            );
+        }
+    }
+
+
+    function saveDataToStorage() {
+        localStorage.setItem('transportData', JSON.stringify(rawData));
+        localStorage.setItem('customIssues', JSON.stringify(customIssues));
+        localStorage.setItem('customStatuses', JSON.stringify(customStatuses));
+    }
+
+    function loadFromLocalStorage() {
+        const storedData = localStorage.getItem('transportData');
+        const storedIssues = localStorage.getItem('customIssues');
+        const storedStatuses = localStorage.getItem('customStatuses');
+
+        if (storedIssues) customIssues = JSON.parse(storedIssues);
+        if (storedStatuses) customStatuses = JSON.parse(storedStatuses);
+        if (storedData) rawData = JSON.parse(storedData);
+
+        updateIssueFilterDropdown();
+        updateStatusFilterDropdown();
+        updateHistoryDateFilterDropdown();
+        applyFilters();
+    }
+
+    function savePhones() {
+        localStorage.setItem('n1', document.getElementById('name1').value);
+        localStorage.setItem('p1', document.getElementById('phone1').value);
+        localStorage.setItem('n2', document.getElementById('name2').value);
+        localStorage.setItem('p2', document.getElementById('phone2').value);
+        localStorage.setItem('n3', document.getElementById('name3').value);
+        localStorage.setItem('p3', document.getElementById('phone3').value);
+        applyFilters();
+    }
+
+    function loadPhones() {
+        if(localStorage.getItem('n1')) document.getElementById('name1').value = localStorage.getItem('n1');
+        if(localStorage.getItem('p1')) document.getElementById('phone1').value = localStorage.getItem('p1');
+        if(localStorage.getItem('n2')) document.getElementById('name2').value = localStorage.getItem('n2');
+        if(localStorage.getItem('p2')) document.getElementById('phone2').value = localStorage.getItem('p2');
+        if(localStorage.getItem('n3')) document.getElementById('name3').value = localStorage.getItem('n3');
+        if(localStorage.getItem('p3')) document.getElementById('phone3').value = localStorage.getItem('p3');
+    }
+
+    function saveMsgSettings() {
+        localStorage.setItem('customMsgTemplate', document.getElementById('customMsgTemplate').value);
+        localStorage.setItem('includeKeysToggle', document.getElementById('includeKeysToggle').checked);
+    }
+
+    function loadMsgSettings() {
+        if(localStorage.getItem('customMsgTemplate') !== null) {
+            document.getElementById('customMsgTemplate').value = localStorage.getItem('customMsgTemplate');
+        }
+        if(localStorage.getItem('includeKeysToggle') !== null) {
+            document.getElementById('includeKeysToggle').checked = (localStorage.getItem('includeKeysToggle') === 'true');
+        }
+    }
+
+    function toggleAllColumns(selectState) {
+        const checkboxes = document.querySelectorAll('.col-check');
+        checkboxes.forEach(cb => cb.checked = selectState);
+    }
+
+    function getSelectedColumns() {
+        const selected = [];
+        const checkboxes = document.querySelectorAll('.col-check:checked');
+        checkboxes.forEach(cb => {
+            selected.push(cb.value);
+        });
+        return selected;
+    }
+
+    function processPastedData() {
+        const pasteText = document.getElementById('pasteArea').value.trim();
+        if (!pasteText) return alert("कृपया डेटा पेस्ट करें!");
+
+        const lines = pasteText.split('\n');
+
+        lines.forEach((line) => {
+            const cols = line.split('\t').map(c => c.trim());
+            
+            if (cols[0].toUpperCase() === 'DATE' || cols[1]?.toUpperCase() === 'BILL') return;
+            if (cols.length < 2) return;
+
+            let parsedIssue = cols[10] || cols[9] || '';
+            if (parsedIssue && !customIssues.includes(parsedIssue) && !customStatuses.includes(parsedIssue.toUpperCase())) {
+                customIssues.push(parsedIssue);
+            }
+
+            let initialLoc = cols[8] || '';
+            let nowTime = new Date().toLocaleString('hi-IN');
+            let initialHistory = initialLoc ? [{ loc: initialLoc, time: nowTime }] : [];
+
+            let rowObj = {
+                id: Date.now() + Math.random(),
+                date: cols[0] || '',
+                bill: cols[1] || '',
+                wght: cols[2] || '',
+                truck: cols[3] || '',
+                farm: cols[4] || '',
+                party: cols[5] || '',
+                destination: cols[6] || '',
+                statusLocation: initialLoc,
+                locationHistory: initialHistory,
+                contact: cols[7] || '',
+                status: cols[9] || '',
+                issue: cols[10] || '',
+                reachedChecked: false,
+                pahunchChecked: false
+            };
+
+            rawData.push(rowObj);
+        });
+
+        document.getElementById('pasteArea').value = '';
+        saveDataToStorage();
+        updateIssueFilterDropdown();
+        updateStatusFilterDropdown();
+        updateHistoryDateFilterDropdown();
+        applyFilters();
+    }
+
+    function updateIssueFilterDropdown() {
+        const select = document.getElementById('filterIssue');
+        const currentVal = select.value;
+        select.innerHTML = '<option value="">सभी (All)</option>';
+        customIssues.forEach(issue => {
+            const opt = document.createElement('option');
+            opt.value = issue;
+            opt.innerText = issue;
+            select.appendChild(opt);
+        });
+        select.value = currentVal;
+    }
+
+    function updateStatusFilterDropdown() {
+        const select = document.getElementById('filterStatus');
+        const currentVal = select.value;
+        select.innerHTML = '<option value="">सभी (All)</option>';
+        customStatuses.forEach(st => {
+            const opt = document.createElement('option');
+            opt.value = st;
+            opt.innerText = st;
+            select.appendChild(opt);
+        });
+        select.value = currentVal;
+    }
+
+    function updateHistoryDateFilterDropdown() {
+        const select = document.getElementById('filterHistoryDate');
+        const currentVal = select.value;
+        select.innerHTML = '<option value="">सभी History Dates</option>';
+        
+        let dateSet = new Set();
+        rawData.forEach(item => {
+            if (item.locationHistory && Array.isArray(item.locationHistory)) {
+                item.locationHistory.forEach(h => {
+                    if (h.time) {
+                        let dtOnly = h.time.split(',')[0].trim();
+                        dateSet.add(dtOnly);
+                    }
+                });
+            }
+        });
+
+        dateSet.forEach(d => {
+            const opt = document.createElement('option');
+            opt.value = d;
+            opt.innerText = d;
+            select.appendChild(opt);
+        });
+        select.value = currentVal;
+    }
+
+    function updateSummaryCounters(currentData) {
+        const container = document.getElementById('summaryContainer');
+        container.innerHTML = '';
+
+        let statusCounts = {};
+        customStatuses.forEach(st => statusCounts[st] = 0);
+
+        let issueCounts = {};
+        customIssues.forEach(iss => issueCounts[iss] = 0);
+
+        currentData.forEach(item => {
+            let st = (item.status || '').toUpperCase();
+            if (statusCounts.hasOwnProperty(st)) {
+                statusCounts[st]++;
+            }
+
+            if (item.issue && item.issue.trim() !== '') {
+                issueCounts[item.issue] = (issueCounts[item.issue] || 0) + 1;
+            }
+        });
+
+        let totalCard = document.createElement('div');
+        totalCard.className = 'summary-card';
+        totalCard.innerHTML = `<span class="title">कुल गाड़ियाँ (Total)</span><span class="badge" style="background:#007bff;">${currentData.length}</span>`;
+        container.appendChild(totalCard);
+
+        Object.keys(statusCounts).forEach(stKey => {
+            let card = document.createElement('div');
+            card.className = 'summary-card';
+            card.innerHTML = `<span class="title">${stKey}</span><span class="badge">${statusCounts[stKey]}</span>`;
+            container.appendChild(card);
+        });
+
+        Object.keys(issueCounts).forEach(issKey => {
+            if (issueCounts[issKey] > 0) {
+                let card = document.createElement('div');
+                card.className = 'summary-card';
+                card.innerHTML = `<span class="title">${issKey}</span><span class="badge" style="background:#dc3545;">${issueCounts[issKey]}</span>`;
+                container.appendChild(card);
+            }
+        });
+    }
+
+    function updateRowDate(id, val) {
+        let row = rawData.find(r => r.id === id);
+        if (row) {
+            row.date = val;
+            saveDataToStorage();
+        }
+    }
+
+    function updateStatusLocation(id, val) {
+        let row = rawData.find(r => r.id === id);
+        if (row) {
+            let trimVal = val.trim();
+            if (row.statusLocation !== trimVal) {
+                row.statusLocation = trimVal;
+                if (!row.locationHistory) row.locationHistory = [];
+                if (trimVal !== "") {
+                    let timestamp = new Date().toLocaleString('hi-IN');
+                    row.locationHistory.push({ loc: trimVal, time: timestamp });
+                }
+                saveDataToStorage();
+                updateHistoryDateFilterDropdown();
+                applyFilters();
+            }
+        }
+    }
+
+    function showLocationHistory(id) {
+        let row = rawData.find(r => r.id === id);
+        if (!row || !row.locationHistory || row.locationHistory.length === 0) {
+            return alert("इस गाड़ी की कोई लोकेशन हिस्ट्री मौजूद नहीं है!");
+        }
+
+        let msg = `🚛 गाड़ी नंबर: ${row.truck || ''}\n📍 लोकेशन हिस्ट्री (Location History):\n------------------------------------\n`;
+        row.locationHistory.forEach((item, idx) => {
+            msg += `${idx + 1}. [${item.time}] -> ${item.loc}\n`;
+        });
+
+        alert(msg);
+    }
+
+    function renderTable(data) {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+
+        updateSummaryCounters(data);
+
+        if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="16" style="text-align:center;">कोई डेटा उपलब्ध नहीं है।</td></tr>';
+            return;
+        }
+
+        const name1 = document.getElementById('name1').value.trim() || "WA 1";
+        const name2 = document.getElementById('name2').value.trim() || "WA 2";
+        const name3 = document.getElementById('name3').value.trim() || "WA 3";
+
+        data.forEach((item, index) => {
+            const tr = document.createElement('tr');
+
+            let statusOptionsHTML = `<option value="">--चुनें--</option>`;
+            customStatuses.forEach(st => {
+                const selected = item.status.toUpperCase() === st.toUpperCase() ? 'selected' : '';
+                statusOptionsHTML += `<option value="${st}" ${selected}>${st}</option>`;
+            });
+            statusOptionsHTML += `<option value="__ADD_NEW_STATUS__">+ New Status जोड़ें...</option>`;
+            statusOptionsHTML += `<option value="__DELETE_STATUS__">- Status डिलीट करें...</option>`;
+
+            let issueOptionsHTML = `<option value="">--कोई नहीं--</option>`;
+            customIssues.forEach(iss => {
+                const selected = item.issue === iss ? 'selected' : '';
+                issueOptionsHTML += `<option value="${iss}" ${selected}>${iss}</option>`;
+            });
+            issueOptionsHTML += `<option value="__ADD_NEW__">+ New Issue जोड़ें...</option>`;
+            issueOptionsHTML += `<option value="__DELETE_ISSUE__">- Issue डिलीट करें...</option>`;
+
+            let destLink = "#";
+            if (item.destination && item.destination.trim() !== "") {
+                const origin = encodeURIComponent("Manakpur,rajasthan");
+                const dest = encodeURIComponent(item.destination.trim());
+                destLink = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}`;
+            }
+
+            let statusLocLink = "#";
+            if (item.statusLocation && item.statusLocation.trim() !== "" && item.destination && item.destination.trim() !== "") {
+                const currentLoc = encodeURIComponent(item.statusLocation.trim());
+                const destLoc = encodeURIComponent(item.destination.trim());
+                statusLocLink = `https://www.google.com/maps/dir/?api=1&origin=${currentLoc}&destination=${destLoc}`;
+            }
+
+            tr.innerHTML = `
+                <td><b>${index + 1}</b></td>
+                <td>
+                    <input type="text" class="small-input" value="${item.date || ''}" placeholder="Date..." onchange="updateRowDate(${item.id}, this.value)">
+                </td>
+                <td>${item.bill}</td>
+                <td>${item.wght}</td>
+                <td>${item.truck}</td>
+                <td>${item.farm}</td>
+                <td>${item.party}</td>
+                <td>
+                    ${item.destination ? `<a href="${destLink}" target="_blank" class="map-link" title="Click to view route from Manakpur">${item.destination} 🔗</a>` : ''}
+                </td>
+                <td>
+                    <input type="text" class="small-input" value="${item.statusLocation || ''}" placeholder="Distance/Loc..." onchange="updateStatusLocation(${item.id}, this.value)">
+                    ${item.statusLocation ? `<a href="${statusLocLink}" target="_blank" class="map-link" title="Click to view route from Status Location to Destination">📍 Map Route</a>` : ''}
+                    <button class="btn-hist" onclick="showLocationHistory(${item.id})">📜 History</button>
+                </td>
+                <td>${item.contact}</td>
+                <td>
+                    <select onchange="handleStatusChange(${item.id}, this)">
+                        ${statusOptionsHTML}
+                    </select>
+                </td>
+                <td>
+                    <select onchange="handleIssueChange(${item.id}, this)">
+                        ${issueOptionsHTML}
+                    </select>
+                </td>
+                <td style="text-align: center;">
+                    <span class="check-btn ${item.reachedChecked ? 'active' : ''}" onclick="toggleCheck(${item.id}, 'reachedChecked')">✓</span>
+                </td>
+                <td style="text-align: center;">
+                    <span class="check-btn ${item.pahunchChecked ? 'active' : ''}" onclick="togglePahunch(${item.id})">✓</span>
+                </td>
+                <td>
+                    <button class="wa-btn" onclick="sendWhatsApp(${item.id}, 'phone1', ${index})">${name1}</button>
+                    <button class="wa-btn" onclick="sendWhatsApp(${item.id}, 'phone2', ${index})">${name2}</button>
+                    <button class="wa-btn" onclick="sendWhatsApp(${item.id}, 'staff', ${index})">${name3}</button>
+                    <button class="wa-btn btn-custom-wa" onclick="sendWhatsApp(${item.id}, 'custom', ${index})">Custom No</button>
+                </td>
+                <td>
+                    <button class="btn-chat" onclick="openDriverChat('${item.contact}')">💬 चैट खोलें</button>
+                    <button class="btn-danger" style="padding: 2px 6px; font-size: 11px;" onclick="deleteRow(${item.id})">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function handleStatusChange(id, selectElem) {
+        let val = selectElem.value;
+        if (val === "__ADD_NEW_STATUS__") {
+            let newStatus = prompt("नया Status लिखें:");
+            if (newStatus && newStatus.trim() !== "") {
+                newStatus = newStatus.trim().toUpperCase();
+                if (!customStatuses.includes(newStatus)) {
+                    customStatuses.push(newStatus);
+                    updateStatusFilterDropdown();
+                }
+                val = newStatus;
+            } else { val = ""; }
+        } else if (val === "__DELETE_STATUS__") {
+            let delStatus = prompt("हटाने वाले Status का नाम लिखें:\n" + customStatuses.join(", "));
+            if (delStatus && delStatus.trim() !== "") {
+                delStatus = delStatus.trim().toUpperCase();
+                customStatuses = customStatuses.filter(s => s.toUpperCase() !== delStatus);
+                updateStatusFilterDropdown();
+            }
+            val = "";
+        }
+
+        let row = rawData.find(r => r.id === id);
+        if (row) { 
+            row.status = val; 
+            saveDataToStorage(); 
+        }
+        applyFilters();
+    }
+
+    function handleIssueChange(id, selectElem) {
+        let val = selectElem.value;
+        if (val === "__ADD_NEW__") {
+            let newIssue = prompt("नया Issue लिखें:");
+            if (newIssue && newIssue.trim() !== "") {
+                newIssue = newIssue.trim().toUpperCase();
+                if (!customIssues.includes(newIssue)) {
+                    customIssues.push(newIssue);
+                    updateIssueFilterDropdown();
+                }
+                val = newIssue;
+            } else { val = ""; }
+        } else if (val === "__DELETE_ISSUE__") {
+            let delIssue = prompt("हटाने वाले Issue का नाम लिखें:\n" + customIssues.join(", "));
+            if (delIssue && delIssue.trim() !== "") {
+                delIssue = delIssue.trim().toUpperCase();
+                customIssues = customIssues.filter(i => i.toUpperCase() !== delIssue);
+                updateIssueFilterDropdown();
+            }
+            val = "";
+        }
+
+        let row = rawData.find(r => r.id === id);
+        if (row) { row.issue = val; saveDataToStorage(); }
+        applyFilters();
+    }
+
+    function toggleCheck(id, key) {
+        let row = rawData.find(r => r.id === id);
+        if (row) {
+            row[key] = !row[key];
+            saveDataToStorage();
+            applyFilters();
+        }
+    }
+
+    function togglePahunch(id) {
+        let row = rawData.find(r => r.id === id);
+        if (row) {
+            row.pahunchChecked = !row.pahunchChecked;
+            if (row.pahunchChecked) {
+                row.reachedChecked = true;
+            }
+            saveDataToStorage();
+            applyFilters();
+        }
+    }
+
+    function deleteRow(id) {
+        if (confirm("क्या आप इस रिकॉर्ड को हटाना चाहते हैं?")) {
+            rawData = rawData.filter(r => r.id !== id);
+            saveDataToStorage();
+            updateHistoryDateFilterDropdown();
+            applyFilters();
+        }
+    }
+
+    function clearAllData() {
+        if (confirm("⚠️ क्या आप पूरा डेटा हटाना चाहते हैं? यह प्रक्रिया वापस नहीं होगी!")) {
+            rawData = [];
+            localStorage.removeItem('transportData');
+            updateHistoryDateFilterDropdown();
+            applyFilters();
+        }
+    }
+
+    function getOnlyDayNumber(dateStr) {
+        if (!dateStr) return 0;
+        let parts = dateStr.split(/[-/.]/);
+        if (parts.length > 0) {
+            let day = parseInt(parts[0], 10);
+            return isNaN(day) ? 0 : day;
+        }
+        return 0;
+    }
+
+    function getFilteredData() {
+        const dateVal = document.getElementById('searchDate').value.toLowerCase();
+        const fromDateVal = document.getElementById('fromDate').value.trim();
+        const toDateVal = document.getElementById('toDate').value.trim();
+        const historyDateVal = document.getElementById('filterHistoryDate').value;
+        const truckVal = document.getElementById('searchTruck').value.toLowerCase();
+        const partyVal = document.getElementById('searchParty').value.toLowerCase();
+        const destVal = document.getElementById('searchDestination').value.toLowerCase();
+        const statusVal = document.getElementById('filterStatus').value.toLowerCase();
+        const issueVal = document.getElementById('filterIssue').value.toLowerCase();
+        const sortOrder = document.getElementById('sortDate').value;
+
+        let filtered = rawData.filter(item => {
+            let matchHistoryDate = true;
+            if (historyDateVal !== "") {
+                matchHistoryDate = item.locationHistory && item.locationHistory.some(h => h.time && h.time.startsWith(historyDateVal));
+            }
+
+            // Date Duration Filter (From Date to To Date)
+            let matchDateDuration = true;
+            let itemDay = getOnlyDayNumber(item.date);
+            
+            if (fromDateVal !== "") {
+                let fromDay = parseInt(fromDateVal, 10);
+                if (!isNaN(fromDay)) {
+                    matchDateDuration = matchDateDuration && (itemDay >= fromDay);
+                }
+            }
+            
+            if (toDateVal !== "") {
+                let toDay = parseInt(toDateVal, 10);
+                if (!isNaN(toDay)) {
+                    matchDateDuration = matchDateDuration && (itemDay <= toDay);
+                }
+            }
+
+            return item.date.toLowerCase().includes(dateVal) &&
+                   matchDateDuration &&
+                   matchHistoryDate &&
+                   item.truck.toLowerCase().includes(truckVal) &&
+                   (item.party.toLowerCase().includes(partyVal) || item.farm.toLowerCase().includes(partyVal)) &&
+                   item.destination.toLowerCase().includes(destVal) &&
+                   (statusVal === "" || item.status.toLowerCase() === statusVal) &&
+                   (issueVal === "" || item.issue.toLowerCase() === issueVal);
+        });
+
+        filtered.sort((a, b) => {
+            let dayA = getOnlyDayNumber(a.date);
+            let dayB = getOnlyDayNumber(b.date);
+            return sortOrder === 'asc' ? dayA - dayB : dayB - dayA;
+        });
+
+        return filtered;
+    }
+
+    function applyFilters() {
+        renderTable(getFilteredData());
+    }
+
+    function openDriverChat(contactStr) {
+        if (!contactStr) return alert("इस रो (Row) में ड्राइवर का नंबर उपलब्ध नहीं है!");
+        let cleanPhone = contactStr.replace(/[^0-9]/g, '');
+        if (cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
+        if (!cleanPhone) return alert("वैध फोन नंबर नहीं मिला!");
+        
+        window.open(`https://wa.me/${cleanPhone}`, '_blank');
+    }
+
+    function constructMessage(row, index) {
+        const template = document.getElementById('customMsgTemplate').value;
+        const includeKeys = document.getElementById('includeKeysToggle').checked;
+
+        if (template.trim() !== "") {
+            let msg = template;
+            const fields = ['date', 'bill', 'wght', 'truck', 'farm', 'party', 'destination', 'statusLocation', 'contact', 'status', 'issue'];
+            fields.forEach(field => {
+                let value = row[field] || '';
+                msg = msg.replace(new RegExp(`\\{${field}\\}`, 'gi'), value);
+            });
+            return msg;
+        }
+
+        const selectedCols = getSelectedColumns();
+        let messageLines = [];
+
+        selectedCols.forEach((col) => {
+            if (col === 'sno') {
+                let val = (index + 1).toString();
+                messageLines.push(includeKeys ? `${columnConfig[col]}: ${val}` : val);
+            } else {
+                let val = row[col] || '';
+                if (val !== '') {
+                    messageLines.push(includeKeys ? `${columnConfig[col]}: ${val}` : val);
+                }
+            }
+        });
+
+        return messageLines.join('\n');
+    }
+
+    function generateAllMessages() {
+        const filtered = getFilteredData();
+        if (filtered.length === 0) return alert("कोई डेटा उपलब्ध नहीं है!");
+
+        let allTextArray = [];
+        filtered.forEach((row, index) => {
+            let singleMsg = constructMessage(row, index);
+            allTextArray.push(`\n` + singleMsg);
+        });
+
+        let fullText = allTextArray.join('\n\n------------------------------\n\n');
+        const box = document.getElementById('allMessagesBox');
+        box.value = fullText;
+
+        box.select();
+        document.execCommand('copy');
+        alert("सभी मैसेजेस नीचे वाले बॉक्स में लोड कर दिए गए हैं और क्लिपबोर्ड (Clipboard) पर कॉपी हो गए हैं!");
+    }
+
+    function sendWhatsApp(id, type, index) {
+        const row = rawData.find(r => r.id === id);
+        if (!row) return;
+
+        let phone = "";
+
+        if (type === 'staff') {
+            phone = row.contact ? row.contact.trim() : document.getElementById('phone3').value.trim();
+            if (!phone) return alert("इस रो (Row) में ड्राइवर का कांटेक्ट नंबर उपलब्ध नहीं है!");
+        } else if (type === 'custom') {
+            phone = document.getElementById('customPhone').value.trim();
+            if (!phone) return alert("कृपया 'किसी भी नंबर पर भेजें' इनपुट बॉक्स में नंबर दर्ज करें!");
+        } else {
+            phone = document.getElementById(type).value.trim();
+            if (!phone) return alert("कृपया इस बटन के लिए WhatsApp नंबर दर्ज करें!");
+        }
+
+        let text = constructMessage(row, index);
+
+        let cleanPhone = phone.replace(/[^0-9]/g, '');
+        if (cleanPhone.length === 10) {
+            cleanPhone = '91' + cleanPhone;
+        }
+
+        window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function generatePDF() {
+        const filtered = getFilteredData();
+        if (filtered.length === 0) return alert("PDF बनाने के लिए कोई डेटा नहीं है!");
+
+        const selectedCols = getSelectedColumns();
+        if (selectedCols.length === 0) return alert("कृपया PDF में शामिल करने के लिए कम से कम एक Column सेलेक्ट करें!");
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('landscape');
+
+        doc.setFontSize(16);
+        doc.text("Transport Dispatch Report", 14, 15);
+        doc.setFontSize(10);
+        doc.text(`Generated Date: ${new Date().toLocaleDateString()}`, 14, 22);
+
+        const tableColumnHeader = selectedCols.map(col => columnConfig[col]);
+        const tableRows = [];
+
+        filtered.forEach((item, index) => {
+            const rowData = selectedCols.map(col => {
+                if (col === 'sno') return (index + 1).toString();
+                return item[col] || '';
+            });
+            tableRows.push(rowData);
+        });
+
+        doc.autoTable({
+            head: [tableColumnHeader],
+            body: tableRows,
+            startY: 28,
+            theme: 'grid',
+            headStyles: { fillColor: [30, 60, 114] }
+        });
+
+        doc.save(`Dispatch_Report_${Date.now()}.pdf`);
+    }
+
+    function printSlip() {
+        const filtered = getFilteredData();
+        if (filtered.length === 0) return alert("प्रिंट करने के लिए कोई डेटा उपलब्ध नहीं है!");
+
+        const selectedCols = getSelectedColumns();
+        if (selectedCols.length === 0) return alert("कृपया प्रिंट के लिए कम से कम एक Column सेलेक्ट करें!");
+
+        let printWindow = window.open('', '', 'height=600,width=800');
+        printWindow.document.write('<html><head><title>Print Slip</title>');
+        printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #000; padding: 6px; text-align: left; font-size: 12px; } th { background-color: #f2f2f2; }</style>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write('<h2>Transport Dispatch Slip</h2>');
+        printWindow.document.write('<table><thead><tr>');
+
+        selectedCols.forEach(col => {
+            printWindow.document.write(`<th>${columnConfig[col]}</th>`);
+        });
+
+        printWindow.document.write('</tr></thead><tbody>');
+
+        filtered.forEach((item, index) => {
+            printWindow.document.write('<tr>');
+            selectedCols.forEach(col => {
+                let val = (col === 'sno') ? (index + 1) : (item[col] || '');
+                printWindow.document.write(`<td>${val}</td>`);
+            });
+            printWindow.document.write('</tr>');
+        });
+
+        printWindow.document.write('</tbody></table></body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+</script>
+
+</body> 
+</html>
