@@ -1,0 +1,6925 @@
+[
+  {
+    "id": 1788492589653.5154,
+    "date": "01-Sep-26",
+    "bill": "GI/2026-27/02276",
+    "wght": "",
+    "truck": "RJ52GA9542",
+    "farm": "",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "destination": "CUTTACK",
+    "statusLocation": "",
+    "locationHistory": [
+      {
+        "loc": "HAJARIBAG",
+        "time": "5/9/2026, 8:58:55 am"
+      },
+      {
+        "loc": "JAMSHEDPUR",
+        "time": "6/9/2026, 9:13:46 am"
+      }
+    ],
+    "contact": "8233727504",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.0613,
+    "date": "01-Sep-26",
+    "bill": "GI/2026-27/02279",
+    "wght": "",
+    "truck": "RJ07GD6084",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "JEDCHARALA",
+    "statusLocation": "REACHED TODAY",
+    "locationHistory": [
+      {
+        "loc": "REACHED TODAY",
+        "time": "4/9/2026, 9:32:25 am"
+      }
+    ],
+    "contact": "9950057808",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "45877878888888252"
+  },
+  {
+    "id": 1788492589653.482,
+    "date": "01-Sep-26",
+    "bill": "GI/2026-27/02280",
+    "wght": "",
+    "truck": "RJ50GC3637",
+    "farm": "",
+    "party": "CPF (INDIA) PRIVATE LIMITED (MH)",
+    "destination": "NEWASA",
+    "statusLocation": "REACHED ,UNLOADING",
+    "locationHistory": [
+      {
+        "loc": "REACHED ,UNLOADING",
+        "time": "4/9/2026, 9:33:51 am"
+      }
+    ],
+    "contact": "7014669668",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.067,
+    "date": "01-Sep-26",
+    "bill": "GI/2026-27/02281",
+    "wght": "",
+    "truck": "RJ07GF9491",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "JEDCHARALA",
+    "statusLocation": "UNLOADED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "BALAPUR MH",
+        "time": "4/9/2026, 9:35:51 am"
+      },
+      {
+        "loc": "UNLOADED IN NIGHT",
+        "time": "6/9/2026, 9:31:52 am"
+      }
+    ],
+    "contact": "9352272179",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "45877878888888252"
+  },
+  {
+    "id": 1788492589653.7065,
+    "date": "01-Sep-26",
+    "bill": "GI/2026-27/02283",
+    "wght": "",
+    "truck": "RJ07GG7591",
+    "farm": "",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "BHONGIR",
+    "statusLocation": "PATUR MH",
+    "locationHistory": [
+      {
+        "loc": "PATUR MH",
+        "time": "4/9/2026, 9:09:01 am"
+      }
+    ],
+    "contact": "9166523815",
+    "status": "",
+    "issue": "''",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.1475,
+    "date": "01-Sep-26",
+    "bill": "GI/2026-27/02285",
+    "wght": "",
+    "truck": "RJ07GC6620",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "JEDCHARALA",
+    "statusLocation": "NANDED MH",
+    "locationHistory": [
+      {
+        "loc": "MALKAPUR MH",
+        "time": "4/9/2026, 9:38:20 am"
+      },
+      {
+        "loc": "NANDED BORDER CROSED",
+        "time": "5/9/2026, 9:04:42 am"
+      },
+      {
+        "loc": "NANDED",
+        "time": "5/9/2026, 9:04:57 am"
+      },
+      {
+        "loc": "NANDED MH",
+        "time": "5/9/2026, 9:05:26 am"
+      }
+    ],
+    "contact": "7073971852",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "45877878888888252"
+  },
+  {
+    "id": 1788492589653.2205,
+    "date": "01-Sep-26",
+    "bill": "GI/2026-27/02286",
+    "wght": "",
+    "truck": "RJ19GK7632",
+    "farm": "",
+    "party": "RAJLAXMI TRADING COMPANY",
+    "destination": "WAVI",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "4/9/2026, 9:40:30 am"
+      }
+    ],
+    "contact": "9166293075",
+    "status": "",
+    "issue": "''",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.7607,
+    "date": "02-Sep-26",
+    "bill": "GI/2026-27/02292",
+    "wght": "",
+    "truck": "RJ21GB8133",
+    "farm": "",
+    "party": "JAYANTHI FARMS AND FEEDS",
+    "destination": "RAMAYANPET",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "REA",
+        "time": "4/9/2026, 9:03:56 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "4/9/2026, 9:42:00 am"
+      }
+    ],
+    "contact": "6280430367",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.815,
+    "date": "02-Sep-26",
+    "bill": "GI/2026-27/02293",
+    "wght": "",
+    "truck": "RJ01GC1167",
+    "farm": "",
+    "party": "SUR FEED CENTRE PRIVATE LIMITED (WB)",
+    "destination": "BARDHAMAN",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "91166915428",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.4993,
+    "date": "02-Sep-26",
+    "bill": "GI/2026-27/02295",
+    "wght": "",
+    "truck": "RJ01GD5951",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "BISHNUPUR",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "AGRA",
+        "time": "4/9/2026, 9:05:33 am"
+      },
+      {
+        "loc": "JHARKHAND",
+        "time": "6/9/2026, 8:59:14 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "7/9/2026, 11:16:03 am"
+      }
+    ],
+    "contact": "8087426948",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.0432,
+    "date": "02-Sep-26",
+    "bill": "GI/2026-27/02297",
+    "wght": "",
+    "truck": "JH02BT0739",
+    "farm": "",
+    "party": "PARI AGRO",
+    "destination": "GOPALGANJ",
+    "statusLocation": "STOPED IN LUCKNOW, START 2PM",
+    "locationHistory": [
+      {
+        "loc": "BHARATPUR",
+        "time": "4/9/2026, 9:19:11 am"
+      },
+      {
+        "loc": "BWFORE LUCKNOW",
+        "time": "5/9/2026, 8:30:21 am"
+      },
+      {
+        "loc": "STOPED IN LUCKNOW, START 2PM",
+        "time": "6/9/2026, 9:02:16 am"
+      }
+    ],
+    "contact": "7970528561",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "34345"
+  },
+  {
+    "id": 1788492589653.8184,
+    "date": "02-Sep-26",
+    "bill": "GI/2026-27/02299",
+    "wght": "",
+    "truck": "HR73C6131",
+    "farm": "",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "destination": "CUTTACK",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9664135119",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.7817,
+    "date": "02-Sep-26",
+    "bill": "GI/2026-27/02302",
+    "wght": "",
+    "truck": "RJ48GA3111",
+    "farm": "",
+    "party": "ABIS FOODS AND PROTEINS PRIVATE LIMITED (CG)",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "BHOPAL",
+    "locationHistory": [
+      {
+        "loc": "KEKADI",
+        "time": "4/9/2026, 9:11:54 am"
+      },
+      {
+        "loc": "JHALAWAD STOPED IN KEKADI",
+        "time": "6/9/2026, 9:05:37 am"
+      },
+      {
+        "loc": "BHOPAL",
+        "time": "7/9/2026, 10:58:51 am"
+      }
+    ],
+    "contact": "6376639764",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.8774,
+    "date": "02-Sep-26",
+    "bill": "GI/2026-27/02304",
+    "wght": "",
+    "truck": "RJ48GB7716",
+    "farm": "",
+    "party": "DROOLS PET FOOD PRIVATE LIMITED",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "",
+    "locationHistory": [
+      {
+        "loc": "KEKADI",
+        "time": "4/9/2026, 9:14:08 am"
+      }
+    ],
+    "contact": "9660315307",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492589653.1082,
+    "date": "03-Sep-26",
+    "bill": "GI/2026-27/02308",
+    "wght": "",
+    "truck": "RJ48GA1149",
+    "farm": "",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (CG)",
+    "destination": "DHAMTARI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6376860584",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.7544,
+    "date": "02-Sep-26",
+    "bill": "GM/2026-27/01534",
+    "wght": "",
+    "truck": "RJ32GE1664",
+    "farm": "",
+    "party": "UTTARA FOODS AND FEEDS PVT LTD (UP)",
+    "destination": "VARANASI",
+    "statusLocation": "KANPUR",
+    "locationHistory": [
+      {
+        "loc": "AGRA",
+        "time": "4/9/2026, 9:26:17 am"
+      },
+      {
+        "loc": "KANPUR",
+        "time": "5/9/2026, 8:41:24 am"
+      }
+    ],
+    "contact": "8009692541",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.1113,
+    "date": "02-Sep-26",
+    "bill": "GM/2026-27/01535",
+    "wght": "",
+    "truck": "RJ01GD9135",
+    "farm": "",
+    "party": "SUR FEED CENTRE PRIVATE LIMITED (WB)",
+    "destination": "BARDHAMAN",
+    "statusLocation": "CHAUPARAN",
+    "locationHistory": [
+      {
+        "loc": "ITAWA",
+        "time": "5/9/2026, 8:47:07 am"
+      },
+      {
+        "loc": "CHAUPARAN",
+        "time": "6/9/2026, 9:28:55 am"
+      }
+    ],
+    "contact": "9001678639",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.269,
+    "date": "02-Sep-26",
+    "bill": "GM/2026-27/01539",
+    "wght": "",
+    "truck": "RJ21GE2527",
+    "farm": "",
+    "party": "SRKR & SKR POULTRIES",
+    "destination": "TANKU",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "KHARGON MP",
+        "time": "4/9/2026, 9:30:16 am"
+      },
+      {
+        "loc": "KARIM NAGAR",
+        "time": "5/9/2026, 11:49:32 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "6/9/2026, 9:08:49 am"
+      },
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "6/9/2026, 9:10:08 am"
+      }
+    ],
+    "contact": "6377513424",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.7395,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01540",
+    "wght": "",
+    "truck": "RJ50GB2944",
+    "farm": "",
+    "party": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "destination": "KANAGALA",
+    "statusLocation": "MH",
+    "locationHistory": [
+      {
+        "loc": "INDORE MP",
+        "time": "6/9/2026, 8:42:01 am"
+      },
+      {
+        "loc": "MH",
+        "time": "8/9/2026, 11:11:45 am"
+      }
+    ],
+    "contact": "9157341132",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.0684,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01542",
+    "wght": "",
+    "truck": "RJ10GC2529",
+    "farm": "",
+    "party": "SL FARMS PVT. LTD.",
+    "destination": "GAGELHARI",
+    "statusLocation": "REACHED AT 5 AM MORNING",
+    "locationHistory": [
+      {
+        "loc": "REACHED AT 5 AM MORNING",
+        "time": "5/9/2026, 7:59:24 am"
+      }
+    ],
+    "contact": "9001503025",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.9324,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01543",
+    "wght": "",
+    "truck": "RJ32GE1666",
+    "farm": "",
+    "party": "M/S SINGH BROTHERS ENTERPRISES",
+    "destination": "KUSHINAGAR",
+    "statusLocation": "REACHED IN THIS MORNING",
+    "locationHistory": [
+      {
+        "loc": "SHAHAPURA HOME, WILL START TODAY,",
+        "time": "5/9/2026, 8:02:33 am"
+      },
+      {
+        "loc": "UP BORDER",
+        "time": "6/9/2026, 8:43:46 am"
+      },
+      {
+        "loc": "REACHED IN THIS MORNING",
+        "time": "8/9/2026, 11:13:28 am"
+      }
+    ],
+    "contact": "9414171877",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.0193,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01545",
+    "wght": "",
+    "truck": "RJ21GD2357",
+    "farm": "",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "BHONGIR",
+    "statusLocation": "REACHED IN THIS MORNING",
+    "locationHistory": [
+      {
+        "loc": "MALAKAPUR MH",
+        "time": "5/9/2026, 8:06:19 am"
+      },
+      {
+        "loc": "REACHED IN THIS MORNING",
+        "time": "6/9/2026, 8:47:28 am"
+      }
+    ],
+    "contact": "9351036893",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.5962,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01546",
+    "wght": "",
+    "truck": "JH12P8991",
+    "farm": "",
+    "party": "HITECH NUTRISOL PRIVATE LIMITED (BR)",
+    "destination": "HAJIPUR",
+    "statusLocation": "UNLOADED",
+    "locationHistory": [
+      {
+        "loc": "VARANASI CROSSING",
+        "time": "6/9/2026, 9:11:45 am"
+      },
+      {
+        "loc": "UNLOADED",
+        "time": "8/9/2026, 11:15:46 am"
+      }
+    ],
+    "contact": "7033904510",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.244,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01549",
+    "wght": "",
+    "truck": "RJ19GH3896",
+    "farm": "",
+    "party": "GIRIRAJ LIMES",
+    "destination": "NASHIK",
+    "statusLocation": "NASIK",
+    "locationHistory": [
+      {
+        "loc": "PENDING",
+        "time": "5/9/2026, 8:08:11 am"
+      },
+      {
+        "loc": "NASIK",
+        "time": "5/9/2026, 8:42:53 am"
+      }
+    ],
+    "contact": "8107040322",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.1887,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01550",
+    "wght": "",
+    "truck": "RJ14GE6579",
+    "farm": "",
+    "party": "SILVERFIN AGROVET PRIVATE LIMITED",
+    "destination": "SIDDHARTHNAGAR",
+    "statusLocation": "REACHED TODAY IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "JAIPUR ,WILL START TODAY",
+        "time": "5/9/2026, 8:13:25 am"
+      },
+      {
+        "loc": "AGRA",
+        "time": "6/9/2026, 8:51:26 am"
+      },
+      {
+        "loc": "REACHED TODAY IN MORNING",
+        "time": "7/9/2026, 10:45:11 am"
+      }
+    ],
+    "contact": "9414624678",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788492603741.6833,
+    "date": "03-Sep-26",
+    "bill": "GM/2026-27/01551",
+    "wght": "",
+    "truck": "RJ48GA3606",
+    "farm": "",
+    "party": "SAURI AGRO",
+    "destination": "VIJAYNAGRAM",
+    "statusLocation": "JABALPUR",
+    "locationHistory": [
+      {
+        "loc": "KOTA",
+        "time": "5/9/2026, 8:15:25 am"
+      },
+      {
+        "loc": "KHILAJIPUR MP",
+        "time": "6/9/2026, 8:52:46 am"
+      },
+      {
+        "loc": "JABALPUR",
+        "time": "7/9/2026, 10:46:08 am"
+      }
+    ],
+    "contact": "8824681085",
+    "status": "",
+    "issue": "RECIEVE",
+    "reachedChecked": true,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788575006334.868,
+    "date": "03-Sep-26",
+    "bill": "GI/2026-27/02311",
+    "wght": "",
+    "truck": "RJ19GK1432",
+    "farm": "",
+    "party": "RAJLAXMI TRADING COMPANY",
+    "destination": "WAVI",
+    "statusLocation": "UNLOADED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "AHAMDABAD",
+        "time": "5/9/2026, 8:20:16 am"
+      },
+      {
+        "loc": "SINNER ,WILL REACH IN TWO HOUR",
+        "time": "6/9/2026, 8:53:43 am"
+      },
+      {
+        "loc": "UNLOADED YESTERDAY",
+        "time": "7/9/2026, 10:47:36 am"
+      }
+    ],
+    "contact": "8003628708",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": true,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788575006334.3018,
+    "date": "03-Sep-26",
+    "bill": "GI/2026-27/02312",
+    "wght": "",
+    "truck": "HR61F0974",
+    "farm": "",
+    "party": "DBS AGRO FOODS",
+    "destination": "BAREILLY",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9761452289",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788575006334.6145,
+    "date": "03-Sep-26",
+    "bill": "GI/2026-27/02314",
+    "wght": "",
+    "truck": "RJ21GC6467",
+    "farm": "",
+    "party": "ROHINI MINERALS PVT LTD",
+    "destination": "MANGALPALLY",
+    "statusLocation": "BAREILLY,WILL REACH IN 1 HOUR",
+    "locationHistory": [
+      {
+        "loc": "WILL REACH IN 1 HOUR",
+        "time": "5/9/2026, 8:21:55 am"
+      },
+      {
+        "loc": "BAREILLY,WILL REACH IN 1 HOUR",
+        "time": "5/9/2026, 8:22:15 am"
+      }
+    ],
+    "contact": "9414556911",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788575006334.822,
+    "date": "03-Sep-26",
+    "bill": "GI/2026-27/02315",
+    "wght": "",
+    "truck": "RJ21GG2677",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "JEDCHARALA",
+    "statusLocation": "50KM BEFORE HAIDRABAD",
+    "locationHistory": [
+      {
+        "loc": "NEEMACH",
+        "time": "5/9/2026, 8:24:07 am"
+      },
+      {
+        "loc": "ICHHAPUR",
+        "time": "6/9/2026, 9:36:44 am"
+      },
+      {
+        "loc": "50KM BEFORE HAIDRABAD",
+        "time": "7/9/2026, 10:54:35 am"
+      }
+    ],
+    "contact": "8905935141",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "45877878888888252"
+  },
+  {
+    "id": 1788663066784.3694,
+    "date": "04-Sep-26",
+    "bill": "GM/2026-27/01561",
+    "wght": "",
+    "truck": "RJ21GE9468",
+    "farm": "GM",
+    "party": "DURGESH ENTERPRISE",
+    "destination": "AHMEDABAD",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9024515929",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788663206789.8936,
+    "date": "04-Sep-26",
+    "bill": "GI/2026-27/02319",
+    "wght": "",
+    "truck": "RJ21GE4551",
+    "farm": "",
+    "party": "CPF (INDIA) PRIVATE LIMITED (MH)",
+    "destination": "NEWASA",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "MH",
+        "time": "7/9/2026, 9:39:26 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "8/9/2026, 11:00:22 am"
+      }
+    ],
+    "contact": "6350086504",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788663206789.9036,
+    "date": "04-Sep-26",
+    "bill": "GI/2026-27/02320",
+    "wght": "",
+    "truck": "RJ01GD9097",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "SALBONI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9118401521",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788663206789.8455,
+    "date": "04-Sep-26",
+    "bill": "GI/2026-27/02322",
+    "wght": "",
+    "truck": "RJ01GD5215",
+    "farm": "",
+    "party": "R.G. POULTRY FARM",
+    "destination": "BHAISMUNDI",
+    "statusLocation": "WILL START FROM NASIRABAAD ,TRUCK ISSUE",
+    "locationHistory": [
+      {
+        "loc": "WILL START FROM NASIRABAAD ,TRUCK ISSUE",
+        "time": "6/9/2026, 8:34:05 am"
+      }
+    ],
+    "contact": "9521221109",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788663206789.639,
+    "date": "04-Sep-26",
+    "bill": "GI/2026-27/02324",
+    "wght": "",
+    "truck": "RJ21GE4257",
+    "farm": "",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "BHONGIR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8955077809",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788663206789.558,
+    "date": "04-Sep-26",
+    "bill": "GI/2026-27/02326",
+    "wght": "",
+    "truck": "RJ50GA9062",
+    "farm": "",
+    "party": "SHALIMAR PELLET FEEDS LTD. (KA)",
+    "destination": "KOLAR",
+    "statusLocation": "BHIWADI",
+    "locationHistory": [
+      {
+        "loc": "LADUNUN,TRUCK ISSUE",
+        "time": "6/9/2026, 8:37:30 am"
+      },
+      {
+        "loc": "NANDAN",
+        "time": "7/9/2026, 9:51:47 am"
+      },
+      {
+        "loc": "BHIWADI",
+        "time": "8/9/2026, 11:04:28 am"
+      }
+    ],
+    "contact": "9145879287",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "WWW.VERCEL.COM"
+  },
+  {
+    "id": 1788663206789.0122,
+    "date": "04-Sep-26",
+    "bill": "GI/2026-27/02328",
+    "wght": "",
+    "truck": "HR61D9219",
+    "farm": "",
+    "party": "INFINITY FEEDS PRIVATE LIMITED",
+    "destination": "PATVI",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "7/9/2026, 9:54:04 am"
+      }
+    ],
+    "contact": "8307526051",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788663206789.4329,
+    "date": "04-Sep-26",
+    "bill": "GI/2026-27/02329",
+    "wght": "",
+    "truck": "RJ50GB2430",
+    "farm": "",
+    "party": "ROHINI MINERALS PVT LTD",
+    "destination": "MANGALPALLY",
+    "statusLocation": "HAIDRABAD",
+    "locationHistory": [
+      {
+        "loc": "MP INTERED",
+        "time": "6/9/2026, 8:39:39 am"
+      },
+      {
+        "loc": "BUHARANPUR",
+        "time": "7/9/2026, 9:55:43 am"
+      },
+      {
+        "loc": "BHARANPUR",
+        "time": "7/9/2026, 9:56:04 am"
+      },
+      {
+        "loc": "HAIDRABAD",
+        "time": "8/9/2026, 11:07:41 am"
+      }
+    ],
+    "contact": "9024604078",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788750407283.119,
+    "date": "05-Sep-26",
+    "bill": "1564",
+    "wght": "",
+    "truck": "NL01AJ7686",
+    "farm": "GM",
+    "party": "BIHAR POULTRY PRODUCTS",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "LUCKNOW",
+    "locationHistory": [
+      {
+        "loc": "BHARATPUR",
+        "time": "7/9/2026, 8:43:39 am"
+      },
+      {
+        "loc": "LUCKNOW",
+        "time": "8/9/2026, 10:32:43 am"
+      }
+    ],
+    "contact": "6376189107",
+    "status": "",
+    "issue": "DRIVER CHANGED",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "585855"
+  },
+  {
+    "id": 1788750407283.1685,
+    "date": "05-Sep-26",
+    "bill": "1565",
+    "wght": "",
+    "truck": "NL01AF5945",
+    "farm": "GM",
+    "party": "M/S D K LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "LUCKNOW",
+    "locationHistory": [
+      {
+        "loc": "DAUSA",
+        "time": "7/9/2026, 8:45:09 am"
+      },
+      {
+        "loc": "LUCKNOW",
+        "time": "8/9/2026, 10:33:40 am"
+      }
+    ],
+    "contact": "",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "7666785557565"
+  },
+  {
+    "id": 1788750407283.6846,
+    "date": "05-Sep-26",
+    "bill": "1571",
+    "wght": "",
+    "truck": "RJ08GA9101",
+    "farm": "GM",
+    "party": "M/S D K LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "LUCKNOW",
+    "locationHistory": [
+      {
+        "loc": "DAUSA",
+        "time": "7/9/2026, 8:50:26 am"
+      },
+      {
+        "loc": "LUCKNOW",
+        "time": "8/9/2026, 10:33:30 am"
+      }
+    ],
+    "contact": "9588980974",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "7666785557565"
+  },
+  {
+    "id": 1788750407283.04,
+    "date": "05-Sep-26",
+    "bill": "1572",
+    "wght": "",
+    "truck": "NL01AF5944",
+    "farm": "GM",
+    "party": "HITECH NUTRISOL PRIVATE LIMITED (BR)",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "DAUSA",
+    "locationHistory": [
+      {
+        "loc": "KANPUR",
+        "time": "7/9/2026, 8:52:08 am"
+      },
+      {
+        "loc": "DAUSA",
+        "time": "7/9/2026, 8:53:44 am"
+      }
+    ],
+    "contact": "9694504448",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788750407283.3757,
+    "date": "05-Sep-26",
+    "bill": "2332",
+    "wght": "",
+    "truck": "RJ08GA9133",
+    "farm": "GM",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "destination": "CUTTACK",
+    "statusLocation": "KANPUR",
+    "locationHistory": [
+      {
+        "loc": "KANPUR",
+        "time": "7/9/2026, 8:52:49 am"
+      }
+    ],
+    "contact": "9352914182",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788750407283.7942,
+    "date": "05-Sep-26",
+    "bill": "2337",
+    "wght": "",
+    "truck": "RJ47GA0984",
+    "farm": "GM",
+    "party": "DROOLS PET FOOD PRIVATE LIMITED",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9828495566",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788750407283.205,
+    "date": "05-Sep-26",
+    "bill": "2338",
+    "wght": "",
+    "truck": "RJ21GD2677",
+    "farm": "GM",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "JEDCHARALA",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "MALLAKAPUR",
+        "time": "7/9/2026, 8:58:16 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "8/9/2026, 10:52:33 am"
+      }
+    ],
+    "contact": "6377552518",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "45877878888888252"
+  },
+  {
+    "id": 1788750407283.1196,
+    "date": "05-Sep-26",
+    "bill": "2341",
+    "wght": "",
+    "truck": "RJ11GC3575",
+    "farm": "GM",
+    "party": "ABIS FOODS AND PROTEINS PRIVATE LIMITED (CG)",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "JABALPUR",
+    "locationHistory": [
+      {
+        "loc": "JABALPUR",
+        "time": "8/9/2026, 10:56:36 am"
+      }
+    ],
+    "contact": "9785591540",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788750407283.6538,
+    "date": "05-Sep-26",
+    "bill": "2345",
+    "wght": "",
+    "truck": "RJ07GE5592",
+    "farm": "GM",
+    "party": "SHALIMAR PELLET FEEDS LTD. (KA)",
+    "destination": "KOLAR - KGF",
+    "statusLocation": "INTERED MH",
+    "locationHistory": [
+      {
+        "loc": "MP",
+        "time": "7/9/2026, 9:37:24 am"
+      },
+      {
+        "loc": "INTERED MH",
+        "time": "8/9/2026, 10:57:38 am"
+      }
+    ],
+    "contact": "7728965592",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "partyContact": "4552"
+  },
+  {
+    "id": 1788840538977.4026,
+    "date": "06-Sep-26",
+    "bill": "2353",
+    "wght": "",
+    "truck": "RJ01GD8399",
+    "farm": "GI",
+    "party": "AG MINERALS",
+    "destination": "BISHNUPUR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9680167370",
+    "status": "",
+    "issue": "''",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538977.4128,
+    "date": "06-Sep-26",
+    "bill": "2355",
+    "wght": "",
+    "truck": "RJ50GA8087",
+    "farm": "GI",
+    "party": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "destination": "KANAGALA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6376166674",
+    "status": "",
+    "issue": "12N",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538977.9219,
+    "date": "06-Sep-26",
+    "bill": "2356",
+    "wght": "",
+    "truck": "RJ21GF5673",
+    "farm": "GI",
+    "party": "M/S K J L POULTRIES PRIVATE LIMITED",
+    "destination": "RAMAYANPET",
+    "statusLocation": "INDORE",
+    "locationHistory": [
+      {
+        "loc": "INDORE",
+        "time": "8/9/2026, 9:49:08 am"
+      }
+    ],
+    "contact": "9119351623",
+    "status": "",
+    "issue": "12N",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538977.3467,
+    "date": "06-Sep-26",
+    "bill": "2357",
+    "wght": "",
+    "truck": "RJ19GE5799",
+    "farm": "GI",
+    "party": "PGP GLASS LIMITED",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9829954276",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538977.7458,
+    "date": "06-Sep-26",
+    "bill": "2358",
+    "wght": "",
+    "truck": "JH02BR4876",
+    "farm": "GI",
+    "party": "SAMPOORNA FEEDS PRIVATE LIMITED (BR)",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "KANPUR",
+    "locationHistory": [
+      {
+        "loc": "KANPUR",
+        "time": "8/9/2026, 9:54:16 am"
+      }
+    ],
+    "contact": "8252612059",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538978.933,
+    "date": "06-Sep-26",
+    "bill": "2360",
+    "wght": "",
+    "truck": "RJ01GE1187",
+    "farm": "GI",
+    "party": "TRIBENI LAYERS AND BREEDERS PRIVATE LIMITED",
+    "destination": "SURI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9571483677",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538978.1414,
+    "date": "06-Sep-26",
+    "bill": "2362",
+    "wght": "",
+    "truck": "RJ50GB2322",
+    "farm": "GI",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "BHONGIR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9468937525",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538978.744,
+    "date": "06-Sep-26",
+    "bill": "2363",
+    "wght": "",
+    "truck": "RJ50GA1046",
+    "farm": "GI",
+    "party": "LAXMI NARSIMHA BREEDING FARM",
+    "destination": "BHONGIR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9079047462",
+    "status": "",
+    "issue": "12N",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538978.4275,
+    "date": "06-Sep-26",
+    "bill": "1573",
+    "wght": "",
+    "truck": "NL01AH8294",
+    "farm": "GM",
+    "party": "SHIV SHAKTI HATCHERIES (CLOSE)",
+    "destination": "JEHANABAD",
+    "statusLocation": "UNLOADED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "AGRA CROSSED",
+        "time": "8/9/2026, 10:30:14 am"
+      },
+      {
+        "loc": "UNLOADED YESTERDAY",
+        "time": "12/9/2026, 9:47:09 am"
+      }
+    ],
+    "contact": "6377439557",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538978.0852,
+    "date": "06-Sep-26",
+    "bill": "1577",
+    "wght": "",
+    "truck": "NL01AC0614",
+    "farm": "GM",
+    "party": "RITU MEDICAL AND POULTRY FEED",
+    "destination": "SARNATH",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9110972681",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538978.0815,
+    "date": "06-Sep-26",
+    "bill": "1578",
+    "wght": "",
+    "truck": "JH02BX3880",
+    "farm": "GM",
+    "party": "M/S KABEER FEEDS",
+    "destination": "AZAMGARH",
+    "statusLocation": "AGRA",
+    "locationHistory": [
+      {
+        "loc": "AGRA",
+        "time": "8/9/2026, 10:31:12 am"
+      }
+    ],
+    "contact": "8779191013",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1788840538978.6035,
+    "date": "06-Sep-26",
+    "bill": "1580",
+    "wght": "",
+    "truck": "RJ19GF1495",
+    "farm": "GM",
+    "party": "BHOOMI LIME CORPORATION",
+    "destination": "BHAVNAGAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7357366079",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.7368,
+    "date": "02-Aug",
+    "bill": "GI/2026-27/01945",
+    "wght": "14.53",
+    "truck": "RJ01GD2326",
+    "farm": "GI",
+    "party": "LEMONTECH AGRO PRODUCTS PRIVATE LIMITED (WB)",
+    "destination": "KHARAGPUR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6354141293",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.9246,
+    "date": "02-Aug",
+    "bill": "GI/2026-27/01946",
+    "wght": "32.69",
+    "truck": "RJ01GC6853",
+    "farm": "GI",
+    "party": "PGP GLASS LIMITED",
+    "destination": "JAMBUSAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7340512481",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.5054,
+    "date": "02-Aug",
+    "bill": "GI/2026-27/01947",
+    "wght": "41.1",
+    "truck": "RJ36GA7711",
+    "farm": "GI",
+    "party": "SHWETA AGRO FARMS PRIVATE LIMITED",
+    "destination": "RAIPUR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9511516571",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.7979,
+    "date": "02-Aug",
+    "bill": "GI/2026-27/01948",
+    "wght": "40.86",
+    "truck": "RJ32GE0941",
+    "farm": "GI",
+    "party": "SAINT GOBAIN INDIA PVT. LTD",
+    "destination": "BHIWADI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9772657383",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.874,
+    "date": "02-Aug",
+    "bill": "GI/2026-27/01949",
+    "wght": "41.48",
+    "truck": "RJ21GD4195",
+    "farm": "GI",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "BHONGIR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8005940433",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.554,
+    "date": "02-Aug",
+    "bill": "GI/2026-27/01950",
+    "wght": "42.27",
+    "truck": "RJ01GD8557",
+    "farm": "GI",
+    "party": "PGP GLASS LIMITED",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7727907941",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.2393,
+    "date": "02-Aug",
+    "bill": "GI/2026-27/01951",
+    "wght": "43.02",
+    "truck": "BR02GE1033",
+    "farm": "GI",
+    "party": "BHANDARI FEEDS PRIVATE LIMITED (JH)",
+    "destination": "HAZARIBAG",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8340250351",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.842,
+    "date": "03-Aug",
+    "bill": "GI/2026-27/01952",
+    "wght": "41.21",
+    "truck": "RJ50GA7594",
+    "farm": "GI",
+    "party": "RAMNATH BREEDING FARM",
+    "destination": "YAMUNAPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9694494303",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.7666,
+    "date": "03-Aug",
+    "bill": "GI/2026-27/01953",
+    "wght": "40.75",
+    "truck": "RJ32GE1037",
+    "farm": "GI",
+    "party": "SAINT GOBAIN INDIA PVT. LTD",
+    "destination": "BHIWADI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6375735920",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.9644,
+    "date": "03-Aug",
+    "bill": "GI/2026-27/01954",
+    "wght": "41.29",
+    "truck": "RJ32GE0940",
+    "farm": "GI",
+    "party": "SAINT GOBAIN INDIA PVT. LTD",
+    "destination": "BHIWADI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9636789086",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.7976,
+    "date": "03-Aug",
+    "bill": "GI/2026-27/01955",
+    "wght": "79.57",
+    "truck": "RJ50GA8971",
+    "farm": "GI",
+    "party": "SAMPOORNA FEEDS PRIVATE LIMITED (PB)",
+    "destination": "RAJPURA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9664350062",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789036362272.1392,
+    "date": "03-Aug",
+    "bill": "GI/2026-27/01956",
+    "wght": "30.25",
+    "truck": "RJ21GE5974",
+    "farm": "GI",
+    "party": "4444445777771+D70:H93",
+    "destination": "CHHOTUPPAL",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8114494960",
+    "partyContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.982,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ48GA3108",
+    "farm": "GI",
+    "party": "DROOLS PET FOOD PRIVATE LIMITED",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "TRACKING-JABALPUR",
+    "locationHistory": [
+      {
+        "loc": "TRACKING-JABALPUR",
+        "time": "11/9/2026, 5:21:24 pm"
+      }
+    ],
+    "contact": "9610084611",
+    "status": "",
+    "issue": "12N",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.2744,
+    "date": "09-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ41GA7660",
+    "farm": "GI",
+    "party": "M/S D K LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "BIHAR BORDER",
+    "locationHistory": [
+      {
+        "loc": "AGRA",
+        "time": "11/9/2026, 5:22:56 pm"
+      },
+      {
+        "loc": "CROSSED LUCKNOW",
+        "time": "12/9/2026, 8:43:57 am"
+      },
+      {
+        "loc": "BIHAR BORDER",
+        "time": "13/9/2026, 9:09:51 am"
+      }
+    ],
+    "contact": "8690501378",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.5483,
+    "date": "09-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ50GB2344",
+    "farm": "GI",
+    "party": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "destination": "KANAGALA",
+    "statusLocation": "TIMORNI",
+    "locationHistory": [
+      {
+        "loc": "NAGAUR",
+        "time": "11/9/2026, 5:23:19 pm"
+      },
+      {
+        "loc": "NIMUCH",
+        "time": "12/9/2026, 11:25:00 am"
+      },
+      {
+        "loc": "ENTERING MH",
+        "time": "13/9/2026, 9:14:33 am"
+      },
+      {
+        "loc": "TIMORNI",
+        "time": "14/9/2026, 9:43:22 am"
+      }
+    ],
+    "contact": "7877958656",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.682,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ07GC3070",
+    "farm": "GI",
+    "party": "M/S D K LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "UNLOADED",
+    "locationHistory": [
+      {
+        "loc": "3KM NEAR TAJPUR",
+        "time": "12/9/2026, 8:56:35 am"
+      },
+      {
+        "loc": "UNLOADED",
+        "time": "13/9/2026, 9:26:44 am"
+      }
+    ],
+    "contact": "9914982897",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.6123,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "PB19M3581",
+    "farm": "GI",
+    "party": "K K DYES & CHEMICALS",
+    "destination": "KALYANI",
+    "statusLocation": "20KM BEFORE BANGAL BORDER",
+    "locationHistory": [
+      {
+        "loc": "BHARATPUR",
+        "time": "11/9/2026, 5:21:53 pm"
+      },
+      {
+        "loc": "BIHAR ENTERING",
+        "time": "12/9/2026, 9:15:25 am"
+      },
+      {
+        "loc": "BIHAR",
+        "time": "13/9/2026, 9:33:51 am"
+      },
+      {
+        "loc": "20KM BEFORE BANGAL BORDER",
+        "time": "13/9/2026, 9:36:22 am"
+      }
+    ],
+    "contact": "9815769763",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.1968,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "PB10HP5265",
+    "farm": "GI",
+    "party": "M/S D K LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "REACHED 10 PM IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "GOPALGANJ",
+        "time": "12/9/2026, 9:16:59 am"
+      },
+      {
+        "loc": "REACHED 10 PM IN NIGHT",
+        "time": "13/9/2026, 9:37:47 am"
+      }
+    ],
+    "contact": "7903434287",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.369,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ52GB1444",
+    "farm": "GI",
+    "party": "UTTARA FOODS AND FEEDS PVT LTD (BIHAR)",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "12/9/2026, 9:48:10 am"
+      }
+    ],
+    "contact": "9166000390",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.826,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ01GC8266",
+    "farm": "GI",
+    "party": "BHANDARI AGROFEEDS PRIVATE LIMITED (WB)",
+    "destination": "TULSIBERIA",
+    "statusLocation": "REACHED IBN MORNING",
+    "locationHistory": [
+      {
+        "loc": "REACHED IBN MORNING",
+        "time": "12/9/2026, 9:20:01 am"
+      }
+    ],
+    "contact": "9784451621",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.8933,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ48GB0128",
+    "farm": "GI",
+    "party": "BHAVYASRI FARMS PVT LTD",
+    "destination": "BARGARH",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8432060304",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.0708,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "NL01AH8294",
+    "farm": "GI",
+    "party": "SHIV SHAKTI ENTERPRISES",
+    "destination": "JEHANABAD",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6377439557",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.5088,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ50GA4444",
+    "farm": "GI",
+    "party": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "destination": "KANAGALA",
+    "statusLocation": "WILL REACH IN EVENING",
+    "locationHistory": [
+      {
+        "loc": "WILL REACH TOMORROW MORNING",
+        "time": "12/9/2026, 9:23:19 am"
+      },
+      {
+        "loc": "TIMORNI",
+        "time": "12/9/2026, 9:23:51 am"
+      },
+      {
+        "loc": "WILL REACH IN EVENING",
+        "time": "13/9/2026, 9:42:38 am"
+      }
+    ],
+    "contact": "8905016329",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.3538,
+    "date": "09-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ01GE8266",
+    "farm": "GM",
+    "party": "KARAN POULTRY FARM",
+    "destination": "BISHNUPUR",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "AURANGABAD",
+        "time": "12/9/2026, 8:46:15 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "14/9/2026, 9:44:32 am"
+      }
+    ],
+    "contact": "7065530962",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.4182,
+    "date": "09-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "PB04V7680",
+    "farm": "GM",
+    "party": "SONA VETS PVT LTD (WB)",
+    "destination": "ISLAMPUR",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "MH",
+        "time": "13/9/2026, 9:17:01 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "13/9/2026, 9:17:21 am"
+      },
+      {
+        "loc": "BIHAR ENTERED",
+        "time": "13/9/2026, 9:18:40 am"
+      },
+      {
+        "loc": "SUSPENCE",
+        "time": "13/9/2026, 9:23:47 am"
+      },
+      {
+        "loc": "THAKURGANJ",
+        "time": "14/9/2026, 9:48:56 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "15/9/2026, 10:41:17 am"
+      }
+    ],
+    "contact": "6239361781",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.5054,
+    "date": "09-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ01GD2078",
+    "farm": "GM",
+    "party": "HITECH HATCH FRESH PVT. LTD. (WB)",
+    "destination": "DANKUNI",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "CHAUPARAN",
+        "time": "12/9/2026, 8:50:53 am"
+      },
+      {
+        "loc": "DHOBI",
+        "time": "12/9/2026, 8:51:35 am"
+      },
+      {
+        "loc": "DOBI",
+        "time": "12/9/2026, 8:51:57 am"
+      },
+      {
+        "loc": "BIHAR INTERD",
+        "time": "12/9/2026, 8:53:45 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "13/9/2026, 9:18:28 am"
+      }
+    ],
+    "contact": "8306694401",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.1077,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "PB10HH9265",
+    "farm": "GM",
+    "party": "UGRAYA FOODS & FEEDS PVT. LTD. (BR)",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "GOPALGANJ",
+        "time": "12/9/2026, 8:58:44 am"
+      },
+      {
+        "loc": "RE",
+        "time": "13/9/2026, 9:27:51 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "13/9/2026, 9:32:30 am"
+      }
+    ],
+    "contact": "9835748458",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.1877,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ50GA5657",
+    "farm": "GM",
+    "party": "SHRI RAGHURAM AGRO FARMS PVT. LTD",
+    "destination": "RAMAYANPET",
+    "statusLocation": "UNLOADING",
+    "locationHistory": [
+      {
+        "loc": "UNLOADING",
+        "time": "12/9/2026, 9:00:51 am"
+      }
+    ],
+    "contact": "9784706717",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.5378,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "JH02BT0739",
+    "farm": "GM",
+    "party": "HARI OM FEEDS PVT. LTD.",
+    "destination": "GOPALGANJ",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7970528561",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.0496,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ50GA8215",
+    "farm": "GM",
+    "party": "SANDHYA POULTRY FARM",
+    "destination": "SIDDIPET",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "12/9/2026, 11:31:33 am"
+      }
+    ],
+    "contact": "7073070648",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.277,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ21GF9921",
+    "farm": "GM",
+    "party": "SHRI VATSHA POULTRY PVT LTD",
+    "destination": "SIDDIPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9772390804",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.5828,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ21GF2929",
+    "farm": "GM",
+    "party": "SAINATH CATTLE AND POULTRY FEEDS",
+    "destination": "SIDDIPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7850864757",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.1284,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ21GE6631",
+    "farm": "GM",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "BALANAGAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8000595033",
+    "status": "",
+    "issue": "12N",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.5735,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ21GE4227",
+    "farm": "GM",
+    "party": "SHALIMAR HATCHERIES LIMITED (TS)",
+    "destination": "MASAIPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8769255716",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789127337949.4575,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ01GD9100",
+    "farm": "GM",
+    "party": "HITECH HATCH FRESH PVT. LTD. (WB)",
+    "destination": "DANKUNI",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "12/9/2026, 9:32:33 am"
+      }
+    ],
+    "contact": "7071386835",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789136322748.1377,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ01GD8398",
+    "farm": "GM",
+    "party": "AG MINERALS",
+    "destination": "BANKURA",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "AURANGABAAD",
+        "time": "12/9/2026, 9:37:04 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "13/9/2026, 9:44:54 am"
+      }
+    ],
+    "contact": "9166985234",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789136322748.801,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ01GD6302",
+    "farm": "GM",
+    "party": "AG MINERALS",
+    "destination": "SALBONI",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "12/9/2026, 9:29:15 am"
+      }
+    ],
+    "contact": "9118491521",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789136322748.299,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ07GE1635",
+    "farm": "GM",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "destination": "CUTTACK",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9586291576",
+    "status": "",
+    "issue": "12N",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789136322748.7861,
+    "date": "09-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "RJ19GF0027",
+    "farm": "GM",
+    "party": "JM POULTRY PRIVATE LIMITED",
+    "destination": "JEDCHERLA",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "NAGADA MP",
+        "time": "12/9/2026, 9:02:47 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "17/9/2026, 9:00:09 pm"
+      }
+    ],
+    "contact": "9257436947",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789136322748.7017,
+    "date": "07-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "NL01AH8294",
+    "farm": "GM",
+    "party": "SHIV SHAKTI ENTERPRISES",
+    "destination": "JEHANABAD",
+    "statusLocation": "UNLOADED",
+    "locationHistory": [
+      {
+        "loc": "UNLOADED",
+        "time": "12/9/2026, 9:30:39 am"
+      }
+    ],
+    "contact": "6377439557",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789136322748.7512,
+    "date": "08-Sep-26",
+    "bill": "4560",
+    "wght": "",
+    "truck": "PB29X0320",
+    "farm": "GM",
+    "party": "JAPFA COMFEED INDIA PRIVATE LIMITED (BR)",
+    "destination": "TAJPUR",
+    "statusLocation": "REACHED TODAY IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "REACHED TODAY IN MO",
+        "time": "12/9/2026, 9:07:57 am"
+      },
+      {
+        "loc": "REACHED TODAY IN MORNING",
+        "time": "12/9/2026, 9:59:51 am"
+      }
+    ],
+    "contact": "7266906313",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789179595276.7908,
+    "date": "10-Sep-26",
+    "bill": "GI/2026-27/02414",
+    "wght": "",
+    "truck": "RJ01GD5906",
+    "farm": "GI",
+    "party": "SARITA HATCHERIES PRIVATE LIMITED",
+    "destination": "BOKARO",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7339849437",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789179595276.8367,
+    "date": "10-Sep-26",
+    "bill": "GI/2026-27/02417",
+    "wght": "",
+    "truck": "PB10HL9239",
+    "farm": "GI",
+    "party": "SARITA HATCHERIES PRIVATE LIMITED",
+    "destination": "BOKARO",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7707869416",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789179595276.985,
+    "date": "10-Sep-26",
+    "bill": "GI/2026-27/02419",
+    "wght": "",
+    "truck": "RJ01GD9098",
+    "farm": "GI",
+    "party": "MA DURGA DEVCON PRIVATE LIMITED",
+    "destination": "BANKURA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9784706336",
+    "status": "",
+    "issue": "12N",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789179595276.8162,
+    "date": "10-Sep-26",
+    "bill": "GI/2026-27/02420",
+    "wght": "",
+    "truck": "RJ50GB6874",
+    "farm": "GI",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "BHONGIR",
+    "statusLocation": "YESTERDAY REACHED",
+    "locationHistory": [
+      {
+        "loc": "BAHRANPUR",
+        "time": "12/9/2026, 8:34:36 am"
+      },
+      {
+        "loc": "BURHANPUR",
+        "time": "12/9/2026, 8:35:07 am"
+      },
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "13/9/2026, 9:00:34 am"
+      },
+      {
+        "loc": "YESTERDAY REACHED",
+        "time": "14/9/2026, 10:19:53 am"
+      }
+    ],
+    "contact": "6375989311",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789179595276.4272,
+    "date": "10-Sep-26",
+    "bill": "GI/2026-27/02421",
+    "wght": "",
+    "truck": "RJ01GD3988",
+    "farm": "GI",
+    "party": "DROOLS PET FOOD PRIVATE LIMITED",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "JABALPUR",
+    "locationHistory": [
+      {
+        "loc": "HYDRABAD",
+        "time": "12/9/2026, 8:37:57 am"
+      },
+      {
+        "loc": "BHOPAL",
+        "time": "14/9/2026, 8:56:11 am"
+      },
+      {
+        "loc": "JABALPUR",
+        "time": "15/9/2026, 9:56:27 am"
+      }
+    ],
+    "contact": "7340188753",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789179595276.934,
+    "date": "10-Sep-26",
+    "bill": "GI/2026-27/02424",
+    "wght": "",
+    "truck": "RJ19GL1432",
+    "farm": "GI",
+    "party": "RAJLAXMI TRADING COMPANY",
+    "destination": "WAVI",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "AHEMDABAD",
+        "time": "12/9/2026, 8:39:34 am"
+      },
+      {
+        "loc": "Ahmedabad, Gujarat",
+        "time": "12/9/2026, 8:40:26 am"
+      },
+      {
+        "loc": "AHEMEDABAD,GJ",
+        "time": "12/9/2026, 8:41:17 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "14/9/2026, 8:57:02 am"
+      }
+    ],
+    "contact": "9313638834",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789181756891.6401,
+    "date": "10-Sep-26",
+    "bill": "GM/2026-27/01631",
+    "wght": "",
+    "truck": "RJ50GA8693",
+    "farm": "GM",
+    "party": "ROHINI MINERALS PVT LTD",
+    "destination": "MANGALPALLY",
+    "statusLocation": "NAGAUR",
+    "locationHistory": [
+      {
+        "loc": "NAGAUR",
+        "time": "12/9/2026, 8:42:19 am"
+      }
+    ],
+    "contact": "9636798557",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.316,
+    "date": "11-Sep-26",
+    "bill": "GM/2026-27/01636",
+    "wght": "",
+    "truck": "RJ21GC8580",
+    "farm": "GM",
+    "party": "MAHALAKSHMI POULTRY FARM",
+    "destination": "CHANDUR BAZAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6377578070",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.4924,
+    "date": "11-Sep-26",
+    "bill": "GM/2026-27/01638",
+    "wght": "",
+    "truck": "RJ50GA4613",
+    "farm": "GM",
+    "party": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "destination": "KANAGALA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8114496370",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.1511,
+    "date": "11-Sep-26",
+    "bill": "GM/2026-27/01639",
+    "wght": "",
+    "truck": "RJ19GK1053",
+    "farm": "GM",
+    "party": "AKANKSHA POULTRY FEED AND PREMIX",
+    "destination": "SINNER",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9799267046",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.9084,
+    "date": "11-Sep-26",
+    "bill": "GM/2026-27/01640",
+    "wght": "",
+    "truck": "RJ14GP9276",
+    "farm": "GM",
+    "party": "PRIME AVIAN FEED INDIA PVT LTD (UP)",
+    "destination": "KHALILABAD",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "LUCKNOW",
+        "time": "13/9/2026, 9:51:04 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "14/9/2026, 7:50:27 am"
+      }
+    ],
+    "contact": "9793580227",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.8733,
+    "date": "11-Sep-26",
+    "bill": "GM/2026-27/01642",
+    "wght": "",
+    "truck": "RJ05GB1540",
+    "farm": "GM",
+    "party": "MLA INDUSTRIES PVT LTD",
+    "destination": "KANPUR",
+    "statusLocation": "AGRA",
+    "locationHistory": [
+      {
+        "loc": "BHARATPUR",
+        "time": "13/9/2026, 9:52:14 am"
+      },
+      {
+        "loc": "AGRA",
+        "time": "14/9/2026, 8:18:23 am"
+      }
+    ],
+    "contact": "6395500337",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.0125,
+    "date": "11-Sep-26",
+    "bill": "GM/2026-27/01644",
+    "wght": "",
+    "truck": "NL01AC5424",
+    "farm": "GM",
+    "party": "SHALIMAR PELLET FEEDS LTD",
+    "destination": "JAGDISHPUR",
+    "statusLocation": "SULTANPUR",
+    "locationHistory": [
+      {
+        "loc": "AAGRA CROSSED",
+        "time": "13/9/2026, 9:54:36 am"
+      },
+      {
+        "loc": "SULTANPUR ROAD",
+        "time": "14/9/2026, 8:32:02 am"
+      },
+      {
+        "loc": "SULTANPUR",
+        "time": "15/9/2026, 9:33:27 am"
+      }
+    ],
+    "contact": "6202375456",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.0466,
+    "date": "11-Sep-26",
+    "bill": "GM/2026-27/01645",
+    "wght": "",
+    "truck": "RJ19GH4441",
+    "farm": "GM",
+    "party": "SUPERIOR LIME INDUSTRIES PVT LTD",
+    "destination": "BHOPALGARH",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "JODHPUR",
+        "time": "13/9/2026, 9:55:53 am"
+      },
+      {
+        "loc": "BADODA GJ",
+        "time": "14/9/2026, 8:34:21 am"
+      },
+      {
+        "loc": "BARODA GJ",
+        "time": "14/9/2026, 8:52:24 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "15/9/2026, 9:37:09 am"
+      }
+    ],
+    "contact": "8302557023",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.805,
+    "date": "11-Sep-26",
+    "bill": "GI/2026-27/02425",
+    "wght": "",
+    "truck": "RJ50GB0465",
+    "farm": "GI",
+    "party": "ROHINI MINERALS PVT LTD",
+    "destination": "MANGALPALLY",
+    "statusLocation": "REACHED YESTERDAY NOT UNLOADED",
+    "locationHistory": [
+      {
+        "loc": "KHAMGAVN",
+        "time": "13/9/2026, 9:57:06 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "14/9/2026, 9:30:15 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY NOT UNLOADED",
+        "time": "15/9/2026, 9:40:57 am"
+      }
+    ],
+    "contact": "8000787970",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.232,
+    "date": "11-Sep-26",
+    "bill": "GI/2026-27/02427",
+    "wght": "",
+    "truck": "RJ01GD9301",
+    "farm": "GI",
+    "party": "SHALIMAR HATCHERIES LIMITED (WB)",
+    "destination": "BANKURA",
+    "statusLocation": "BIHAR BOARDER INTERANCE",
+    "locationHistory": [
+      {
+        "loc": "BIHAR BOARDER  EXIT",
+        "time": "15/9/2026, 9:42:14 am"
+      },
+      {
+        "loc": "BIHAR BOARDER",
+        "time": "15/9/2026, 9:42:36 am"
+      },
+      {
+        "loc": "BIHAR BOARDER INTERANCE",
+        "time": "15/9/2026, 9:43:06 am"
+      }
+    ],
+    "contact": "8890767830",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.6997,
+    "date": "11-Sep-26",
+    "bill": "GI/2026-27/02429",
+    "wght": "",
+    "truck": "NL01AE0322",
+    "farm": "GI",
+    "party": "DHANVANTRI MEDICO",
+    "destination": "PATNA",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "BANARAS",
+        "time": "13/9/2026, 9:58:51 am"
+      },
+      {
+        "loc": "UNLOADED",
+        "time": "15/9/2026, 9:45:49 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "15/9/2026, 9:46:23 am"
+      }
+    ],
+    "contact": "9102266806",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.1536,
+    "date": "11-Sep-26",
+    "bill": "GI/2026-27/02432",
+    "wght": "",
+    "truck": "RJ07GD3693",
+    "farm": "GI",
+    "party": "SHALIMAR HATCHERIES LIMITED (TS)",
+    "destination": "MASAIPET",
+    "statusLocation": "BURHANPUR",
+    "locationHistory": [
+      {
+        "loc": "RJ-MP BORDER",
+        "time": "13/9/2026, 10:00:32 am"
+      },
+      {
+        "loc": "BUHARANPUR",
+        "time": "15/9/2026, 9:48:02 am"
+      },
+      {
+        "loc": "BURHANPUR",
+        "time": "15/9/2026, 9:53:29 am"
+      }
+    ],
+    "contact": "8385008829",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266423706.6426,
+    "date": "11-Sep-26",
+    "bill": "GI/2026-27/02434",
+    "wght": "",
+    "truck": "RJ50GA5729",
+    "farm": "GI",
+    "party": "AJOONI BIOTECH LIMITED",
+    "destination": "KHANNA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9588081399",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.5156,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1001",
+    "wght": "",
+    "truck": "RJ32GB6133",
+    "farm": "GI GM",
+    "party": "JAPFA COMFEED INDIA PRIVATE LIMITED (BR)",
+    "destination": "TAJPUR",
+    "statusLocation": "NEAR TAJPUR",
+    "locationHistory": [
+      {
+        "loc": "9829637167",
+        "time": "13/9/2026, 8:01:37 am"
+      },
+      {
+        "loc": "GAURAKHPUR",
+        "time": "13/9/2026, 8:46:38 am"
+      },
+      {
+        "loc": "NEAR TAJPUR",
+        "time": "14/9/2026, 8:58:48 am"
+      }
+    ],
+    "contact": "9829637167",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.0627,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1002",
+    "wght": "",
+    "truck": "RJ07GC3703",
+    "farm": "GI GM",
+    "party": "SIMRAN AGRITECH PVT LTD",
+    "destination": "PITHAMPUR",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "7568405765",
+        "time": "13/9/2026, 8:01:37 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "13/9/2026, 8:47:44 am"
+      }
+    ],
+    "contact": "7568405765",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.7708,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1003",
+    "wght": "",
+    "truck": "RJ20GD5024",
+    "farm": "GI GM",
+    "party": "SAURI AGRO",
+    "destination": "VIJAYNAGRAM",
+    "statusLocation": "CHILAPIGATH CG",
+    "locationHistory": [
+      {
+        "loc": "7737266041",
+        "time": "13/9/2026, 8:01:37 am"
+      },
+      {
+        "loc": "JHALAWAD",
+        "time": "13/9/2026, 8:58:35 am"
+      },
+      {
+        "loc": "CHILAPIGATH C",
+        "time": "15/9/2026, 10:11:42 am"
+      },
+      {
+        "loc": "CHILAPIGATH CG",
+        "time": "15/9/2026, 10:11:49 am"
+      }
+    ],
+    "contact": "7737266041",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.5764,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1004",
+    "wght": "",
+    "truck": "RJ50GA8629",
+    "farm": "GI GM",
+    "party": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "destination": "KANAGALA",
+    "statusLocation": "9116452201",
+    "locationHistory": [
+      {
+        "loc": "9116452201",
+        "time": "13/9/2026, 8:01:37 am"
+      }
+    ],
+    "contact": "9116452201",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.1038,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1005",
+    "wght": "",
+    "truck": "RJ01GD3516",
+    "farm": "GI GM",
+    "party": "SUR FEED CENTRE PRIVATE LIMITED (WB)",
+    "destination": "BARDHAMAN",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "9167060439",
+        "time": "13/9/2026, 8:01:37 am"
+      },
+      {
+        "loc": "DHANBAAD",
+        "time": "14/9/2026, 11:24:03 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "15/9/2026, 10:22:15 am"
+      }
+    ],
+    "contact": "9167060439",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.5222,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1006",
+    "wght": "",
+    "truck": "RJ18GC8445",
+    "farm": "GI GM",
+    "party": "DEEPIKA MINERALS & CHEMICALS",
+    "destination": "DELHI",
+    "statusLocation": "7838789845",
+    "locationHistory": [
+      {
+        "loc": "7838789845",
+        "time": "13/9/2026, 8:01:37 am"
+      }
+    ],
+    "contact": "7838789845",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.182,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1007",
+    "wght": "",
+    "truck": "JH02BP6928",
+    "farm": "GI GM",
+    "party": "PURVANCHAL AGRO FARMING",
+    "destination": "AZAMGARH",
+    "statusLocation": "UNLOADED",
+    "locationHistory": [
+      {
+        "loc": "8210638494",
+        "time": "13/9/2026, 8:01:37 am"
+      },
+      {
+        "loc": "UNLOADED",
+        "time": "13/9/2026, 8:54:19 am"
+      }
+    ],
+    "contact": "8210638494",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789266697832.5884,
+    "date": "10-Sep-26",
+    "bill": "BILL-2026-1008",
+    "wght": "",
+    "truck": "RJ21GC8580",
+    "farm": "GI GM",
+    "party": "MAHALAKSHMI POULTRY FARM",
+    "destination": "CHANDUR BAZAR",
+    "statusLocation": "6377578070",
+    "locationHistory": [
+      {
+        "loc": "6377578070",
+        "time": "13/9/2026, 8:01:37 am"
+      }
+    ],
+    "contact": "6377578070",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789364480276.0242,
+    "date": "12-Sep-26",
+    "bill": "GI/2026-27/02437",
+    "wght": "",
+    "truck": "RJ01GC7736",
+    "farm": "",
+    "party": "NEUTRAL GLASS & ALLIED INDUSTRIES PRIVATE LIMITED",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9571682144",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789364480276.299,
+    "date": "12-Sep-26",
+    "bill": "GI/2026-27/02438",
+    "wght": "",
+    "truck": "RJ50GA2467",
+    "farm": "",
+    "party": "UGRAYA FOODS & FEEDS PVT. LTD. (BR)",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8619874325",
+    "status": "pahunch sent",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789364480277.289,
+    "date": "12-Sep-26",
+    "bill": "GI/2026-27/02439",
+    "wght": "",
+    "truck": "RJ21GD9619",
+    "farm": "",
+    "party": "CPF (INDIA) PRIVATE LIMITED (MH)",
+    "destination": "NEWASA",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "REACHED",
+        "time": "15/9/2026, 9:17:07 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "15/9/2026, 9:18:20 am"
+      }
+    ],
+    "contact": "9928713249",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789364480277.5725,
+    "date": "12-Sep-26",
+    "bill": "GI/2026-27/02441",
+    "wght": "",
+    "truck": "RJ21GD5129",
+    "farm": "",
+    "party": "SANDHYA POULTRY FARM",
+    "destination": "SIDDIPET",
+    "statusLocation": "REACHE 1 HOUR BEFORE",
+    "locationHistory": [
+      {
+        "loc": "NANDED",
+        "time": "15/9/2026, 9:18:30 am"
+      },
+      {
+        "loc": "REACHE 1 HOUR BEFORE",
+        "time": "16/9/2026, 10:24:41 am"
+      }
+    ],
+    "contact": "6376930176",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789364480277.6777,
+    "date": "12-Sep-26",
+    "bill": "GI/2026-27/02443",
+    "wght": "",
+    "truck": "RJ01GD3363",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "SALBONI",
+    "statusLocation": "REACHED NIGHT",
+    "locationHistory": [
+      {
+        "loc": "AJMER",
+        "time": "14/9/2026, 11:17:42 am"
+      },
+      {
+        "loc": "KANPUR",
+        "time": "15/9/2026, 9:19:48 am"
+      },
+      {
+        "loc": "JH BORDER",
+        "time": "16/9/2026, 10:28:13 am"
+      },
+      {
+        "loc": "JHARKHAND BORDER",
+        "time": "16/9/2026, 10:28:31 am"
+      },
+      {
+        "loc": "REACHED NIGHT",
+        "time": "17/9/2026, 11:41:52 am"
+      }
+    ],
+    "contact": "9983052409",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789365377940.075,
+    "date": "12-Sep-26",
+    "bill": "GM/2026-27/01648",
+    "wght": "",
+    "truck": "RJ50GC0957",
+    "farm": "",
+    "party": "ROHINI MINERALS PRIVATE LIMITED (AP)",
+    "destination": "HANUMAN JUNCTION",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "15/9/2026, 9:21:43 am"
+      }
+    ],
+    "contact": "9351065337",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789365377940.1855,
+    "date": "12-Sep-26",
+    "bill": "GM/2026-27/01649",
+    "wght": "",
+    "truck": "RJ50GB3589",
+    "farm": "",
+    "party": "SUPER TSPAN PRIVATE LIMITED",
+    "destination": "LUCKNOW",
+    "statusLocation": "AGRA CROSSED",
+    "locationHistory": [
+      {
+        "loc": "AGRA CROSSED",
+        "time": "14/9/2026, 11:29:03 am"
+      }
+    ],
+    "contact": "7990094491",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789365377940.1582,
+    "date": "12-Sep-26",
+    "bill": "GM/2026-27/01651",
+    "wght": "",
+    "truck": "JH02BT5326",
+    "farm": "",
+    "party": "PK LAYER POULTRY FARM (JH)",
+    "destination": "HAZARIBAG",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9304559409",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.0166,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02444",
+    "wght": "",
+    "truck": "RJ21GF4140",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "BALANAGAR",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "17/9/2026, 11:33:04 am"
+      }
+    ],
+    "contact": "7742748093",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.1584,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02445",
+    "wght": "",
+    "truck": "RJ21GC9327",
+    "farm": "",
+    "party": "LAXMI POULTRY FARM",
+    "destination": "KARIMNAGAR",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "BHOPAL",
+        "time": "15/9/2026, 8:43:54 am"
+      },
+      {
+        "loc": "ANDHRA BORDER",
+        "time": "17/9/2026, 12:22:09 pm"
+      },
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "18/9/2026, 11:34:01 am"
+      }
+    ],
+    "contact": "8290055391",
+    "status": "REACHED",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.7957,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02447",
+    "wght": "",
+    "truck": "RJ07GC7891",
+    "farm": "",
+    "party": "SIMRAN AGRITECH PRIVATE LIMITED (MP)",
+    "destination": "PITHAMPUR",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "REACHED",
+        "time": "15/9/2026, 8:55:45 am"
+      }
+    ],
+    "contact": "8003267437",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.3413,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02448",
+    "wght": "",
+    "truck": "HR45D7501",
+    "farm": "",
+    "party": "TIME RESERCH & BREEDING FARM",
+    "destination": "KARNAL",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9997323378",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.9194,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02450",
+    "wght": "",
+    "truck": "RJ07GD4575",
+    "farm": "",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "BHONGIR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9929788650",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.9973,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02453",
+    "wght": "",
+    "truck": "RJ21GF3783",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "BALANAGAR",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "MP",
+        "time": "15/9/2026, 8:58:48 am"
+      },
+      {
+        "loc": "DEVAS MP",
+        "time": "15/9/2026, 9:00:01 am"
+      },
+      {
+        "loc": "DEWAS MP",
+        "time": "15/9/2026, 9:00:12 am"
+      },
+      {
+        "loc": "PATUR MH",
+        "time": "16/9/2026, 11:48:03 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "18/9/2026, 11:35:43 am"
+      }
+    ],
+    "contact": "8003930955",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.4263,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02454",
+    "wght": "",
+    "truck": "RJ01GB6221",
+    "farm": "",
+    "party": "DROOLS PET FOOD PRIVATE LIMITED",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "REACHED",
+        "time": "17/9/2026, 12:14:48 pm"
+      }
+    ],
+    "contact": "8607366757",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.5344,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02456",
+    "wght": "",
+    "truck": "RJ01GD9095",
+    "farm": "",
+    "party": "OPENSKY IMPEX PRIVATE LIMITED (WB)",
+    "destination": "BANKURA",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "ITAWA",
+        "time": "15/9/2026, 9:03:38 am"
+      },
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "17/9/2026, 11:38:29 am"
+      }
+    ],
+    "contact": "8931016921",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.5576,
+    "date": "13-Sep-26",
+    "bill": "GI/2026-27/02458",
+    "wght": "",
+    "truck": "RJ07GC5583",
+    "farm": "",
+    "party": "CPF (INDIA) PRIVATE LIMITED (MH)",
+    "destination": "NEWASA",
+    "statusLocation": "PUSKAR",
+    "locationHistory": [
+      {
+        "loc": "PUSKAR",
+        "time": "15/9/2026, 9:07:17 am"
+      }
+    ],
+    "contact": "9799730761",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.897,
+    "date": "14-09-26",
+    "bill": "GI/2026-27/02459",
+    "wght": "",
+    "truck": "RJ01GD4740",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "SALBONI",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "KANPUR",
+        "time": "16/9/2026, 9:10:53 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "19/9/2026, 9:47:02 am"
+      }
+    ],
+    "contact": "9082724026",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.9634,
+    "date": "13-09-26",
+    "bill": "GM/2026-27/01657",
+    "wght": "",
+    "truck": "RJ19GJ3426",
+    "farm": "",
+    "party": "J P CHEMICALS AND PHARMA",
+    "destination": "VAPI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9672986643",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789441289794.9343,
+    "date": "13-09-26",
+    "bill": "GM/2026-27/01658",
+    "wght": "",
+    "truck": "RJ01GD8266",
+    "farm": "",
+    "party": "OPENSKY IMPEX PRIVATE LIMITED (WB)",
+    "destination": "BANKURA",
+    "statusLocation": "CAUPARAN",
+    "locationHistory": [
+      {
+        "loc": "ITAWA",
+        "time": "15/9/2026, 12:52:48 pm"
+      },
+      {
+        "loc": "CAUPARAN",
+        "time": "16/9/2026, 9:55:59 am"
+      }
+    ],
+    "contact": "7357553079",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.8237,
+    "date": "14-Sep-26",
+    "bill": "GI/2026-27/02462",
+    "wght": "",
+    "truck": "RJ50GA1921",
+    "farm": "",
+    "party": "DE HEUS ANIMAL NUTRITION INDIA PRIVATE LIMITED",
+    "destination": "RAJPURA",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "REACHED",
+        "time": "16/9/2026, 9:14:19 am"
+      }
+    ],
+    "contact": "8619303559",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.7302,
+    "date": "14-Sep-26",
+    "bill": "GI/2026-27/02463",
+    "wght": "",
+    "truck": "JH02BT8219",
+    "farm": "",
+    "party": "MAA AGRO",
+    "destination": "GOPALGANJ",
+    "statusLocation": "LUCKNOW 100KM BEFORE",
+    "locationHistory": [
+      {
+        "loc": "LUCKNOW",
+        "time": "16/9/2026, 9:16:08 am"
+      },
+      {
+        "loc": "LUCKNOW 100KM BEFORE",
+        "time": "16/9/2026, 9:16:19 am"
+      }
+    ],
+    "contact": "7762012126",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.9639,
+    "date": "14-Sep-26",
+    "bill": "GI/2026-27/02464",
+    "wght": "",
+    "truck": "RJ21GD8359",
+    "farm": "",
+    "party": "BHAGYANAGAR HATCHERIE P LTD",
+    "destination": "YAMUNAPET",
+    "statusLocation": "BURHANPUR",
+    "locationHistory": [
+      {
+        "loc": "BURHANPUR",
+        "time": "16/9/2026, 9:31:42 am"
+      }
+    ],
+    "contact": "8890916686",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.1846,
+    "date": "14-Sep-26",
+    "bill": "GI/2026-27/02465",
+    "wght": "",
+    "truck": "RJ01GD3433",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "BISHNUPUR",
+    "statusLocation": "REACHED IN MORNIG",
+    "locationHistory": [
+      {
+        "loc": "CROSSED AURANGABAAD",
+        "time": "17/9/2026, 6:15:00 pm"
+      },
+      {
+        "loc": "CHAUPARAN",
+        "time": "18/9/2026, 11:29:57 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "19/9/2026, 10:08:02 am"
+      },
+      {
+        "loc": "REACHED IN MORNIG",
+        "time": "19/9/2026, 10:08:14 am"
+      }
+    ],
+    "contact": "8302510877",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.2249,
+    "date": "14-Sep-26",
+    "bill": "GM/2026-27/01661",
+    "wght": "",
+    "truck": "RJ19GC5253",
+    "farm": "",
+    "party": "VARAHI PHARMA CHEM",
+    "destination": "ANKLESHWAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9079006749",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.7263,
+    "date": "14-Sep-26",
+    "bill": "GM/2026-27/01662",
+    "wght": "",
+    "truck": "RJ23GB5891",
+    "farm": "",
+    "party": "DAYAL VET FOODS PRIVATE LIMITED",
+    "destination": "BARABANKI",
+    "statusLocation": "LACKNOW",
+    "locationHistory": [
+      {
+        "loc": "DAUSA",
+        "time": "16/9/2026, 9:27:21 am"
+      },
+      {
+        "loc": "LACKNOW",
+        "time": "17/9/2026, 11:29:51 am"
+      }
+    ],
+    "contact": "9660299049",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.691,
+    "date": "14-Sep-26",
+    "bill": "GM/2026-27/01664",
+    "wght": "",
+    "truck": "RJ20GC5024",
+    "farm": "",
+    "party": "SRI VENKATESWAR POULTRY FARM (OD)",
+    "destination": "BARGARH",
+    "statusLocation": "HISSAR HR",
+    "locationHistory": [
+      {
+        "loc": "HISSAR HR",
+        "time": "16/9/2026, 9:45:45 am"
+      }
+    ],
+    "contact": "6377091626",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.1196,
+    "date": "14-Sep-26",
+    "bill": "GM/2026-27/01666",
+    "wght": "",
+    "truck": "RJ10GC0606",
+    "farm": "",
+    "party": "VENKYS (INDIA) LIMITED (UK)",
+    "destination": "DEHRADUN",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "HISSAR",
+        "time": "16/9/2026, 9:47:44 am"
+      },
+      {
+        "loc": "NEAR CHAUPARAN",
+        "time": "17/9/2026, 11:30:55 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "18/9/2026, 11:31:56 am"
+      }
+    ],
+    "contact": "7068955440",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789530198507.401,
+    "date": "14-Sep-26",
+    "bill": "GM/2026-27/01667",
+    "wght": "",
+    "truck": "RJ19GJ7632",
+    "farm": "",
+    "party": "RAJLAXMI TRADING COMPANY",
+    "destination": "WAVI",
+    "statusLocation": "NASIK",
+    "locationHistory": [
+      {
+        "loc": "AHEMDABAD",
+        "time": "16/9/2026, 9:49:50 am"
+      },
+      {
+        "loc": "NASIK",
+        "time": "17/9/2026, 11:31:55 am"
+      }
+    ],
+    "contact": "9929474262",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.8906,
+    "date": "15-Sep-26",
+    "bill": "GM/2026-27/01670",
+    "wght": "",
+    "truck": "RJ19GF4326",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "MAHUA",
+        "time": "17/9/2026, 8:37:25 am"
+      },
+      {
+        "loc": "LUCKNOW",
+        "time": "18/9/2026, 11:04:13 am"
+      },
+      {
+        "loc": "BEHAR INTERING",
+        "time": "19/9/2026, 9:24:17 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "20/9/2026, 9:42:43 am"
+      }
+    ],
+    "contact": "9079747901",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.1233,
+    "date": "15-Sep-26",
+    "bill": "GM/2026-27/01673",
+    "wght": "",
+    "truck": "RJ36GA7711",
+    "farm": "",
+    "party": "OVO FARM PRIVATE LIMITED (OD)",
+    "destination": "BALANGIR",
+    "statusLocation": "5 KM BEFORE",
+    "locationHistory": [
+      {
+        "loc": "KEKADI",
+        "time": "17/9/2026, 8:41:18 am"
+      },
+      {
+        "loc": "CHILAPI GHAT",
+        "time": "19/9/2026, 9:26:39 am"
+      },
+      {
+        "loc": "5 KM BEFORE",
+        "time": "20/9/2026, 9:43:58 am"
+      }
+    ],
+    "contact": "9511516571",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.265,
+    "date": "15-Sep-26",
+    "bill": "GM/2026-27/01679",
+    "wght": "",
+    "truck": "NL01AC0620",
+    "farm": "",
+    "party": "OM POULTRY PRODUCTS PRIVATE LIMITED",
+    "destination": "VARANASI",
+    "statusLocation": "NEAR LOCATION",
+    "locationHistory": [
+      {
+        "loc": "BREAK DOWN GADI , REPAIRING IN KHINWASA",
+        "time": "17/9/2026, 8:45:31 am"
+      },
+      {
+        "loc": "BEFORE DAUSA",
+        "time": "18/9/2026, 11:06:42 am"
+      },
+      {
+        "loc": "BEFORE KANPUR",
+        "time": "19/9/2026, 9:33:52 am"
+      },
+      {
+        "loc": "NEAR LOCATION",
+        "time": "20/9/2026, 9:46:16 am"
+      }
+    ],
+    "contact": "6203591110",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.5754,
+    "date": "15-Sep-26",
+    "bill": "GM/2026-27/01680",
+    "wght": "",
+    "truck": "RJ52GA4602",
+    "farm": "",
+    "party": "SCHOTT GLASS INDIA PVT LTD",
+    "destination": "JAMBUSAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9829241740",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.3584,
+    "date": "15-Sep-26",
+    "bill": "GM/2026-27/01681",
+    "wght": "",
+    "truck": "BR02GD6662",
+    "farm": "",
+    "party": "SHIV HATCHERY",
+    "destination": "JEHANABAD",
+    "statusLocation": "WILL REACH TOMORROW MORNING",
+    "locationHistory": [
+      {
+        "loc": "WILL REACH TOMORROW MORNING",
+        "time": "18/9/2026, 11:10:09 am"
+      }
+    ],
+    "contact": "6395098863",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.007,
+    "date": "15-Sep-26",
+    "bill": "GI/2026-27/02469",
+    "wght": "",
+    "truck": "JH02BK4925",
+    "farm": "",
+    "party": "HARIOM FEEDS PVT. LTD.",
+    "destination": "GOPALGANJ",
+    "statusLocation": "WAITING TO UNLOAD REACHED  21 SEP NIGHT",
+    "locationHistory": [
+      {
+        "loc": "BAGARU",
+        "time": "17/9/2026, 8:49:43 am"
+      },
+      {
+        "loc": "UP BORDER",
+        "time": "18/9/2026, 11:02:24 am"
+      },
+      {
+        "loc": "GAURAKHPUR",
+        "time": "19/9/2026, 9:36:14 am"
+      },
+      {
+        "loc": "STOPED BY RTO IN GAURAKHPUR",
+        "time": "20/9/2026, 9:48:25 am"
+      },
+      {
+        "loc": "STOPED BY RTO IN GAURAKHPUR IN NIGHTR",
+        "time": "20/9/2026, 9:48:37 am"
+      },
+      {
+        "loc": "WAITING TO UNLOAD REACHED  21 SEP NIGHT",
+        "time": "23/9/2026, 10:00:37 am"
+      }
+    ],
+    "contact": "9065621668",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.475,
+    "date": "15-Sep-26",
+    "bill": "GI/2026-27/02471",
+    "wght": "",
+    "truck": "RJ50GB2122",
+    "farm": "",
+    "party": "RAJA RAJESHWARA FARMS",
+    "destination": "KAMAREDDY",
+    "statusLocation": "NIZAMABAD",
+    "locationHistory": [
+      {
+        "loc": "MH BORDER INTERING",
+        "time": "19/9/2026, 10:03:28 am"
+      },
+      {
+        "loc": "NIJAMABAAD",
+        "time": "20/9/2026, 9:50:40 am"
+      },
+      {
+        "loc": "NIZAMABAD",
+        "time": "20/9/2026, 9:51:05 am"
+      }
+    ],
+    "contact": "6350019299",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.465,
+    "date": "15-Sep-26",
+    "bill": "GI/2026-27/02472",
+    "wght": "",
+    "truck": "RJ50GB1921",
+    "farm": "",
+    "party": "SAMPOORNA FEEDS PRIVATE LIMITED (PB)",
+    "destination": "PHAGWARA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9784453455",
+    "status": "pahunch sent",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.801,
+    "date": "15-Sep-26",
+    "bill": "GI/2026-27/02473",
+    "wght": "",
+    "truck": "RJ21GF4851",
+    "farm": "",
+    "party": "VENKATESHWARA BIOFEED PRIVATE LIMITED",
+    "destination": "UNNAO",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "KANPUR",
+        "time": "17/9/2026, 11:18:40 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "18/9/2026, 11:15:38 am"
+      }
+    ],
+    "contact": "9001786664",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.1553,
+    "date": "15-Sep-26",
+    "bill": "GI/2026-27/02476",
+    "wght": "",
+    "truck": "RJ21GF0911",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "BALANAGAR",
+    "statusLocation": "WILL REACH IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "BHILWADA",
+        "time": "17/9/2026, 11:21:56 am"
+      },
+      {
+        "loc": "JALGAON",
+        "time": "18/9/2026, 11:19:08 am"
+      },
+      {
+        "loc": "HINGOLI",
+        "time": "19/9/2026, 10:01:31 am"
+      },
+      {
+        "loc": "WILL REACH IN NIGHT",
+        "time": "20/9/2026, 11:57:44 am"
+      }
+    ],
+    "contact": "7728866121",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.1594,
+    "date": "15-Sep-26",
+    "bill": "GI/2026-27/02477",
+    "wght": "",
+    "truck": "RJ01GD5951",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "BISHNUPUR",
+    "statusLocation": "PRAYAGRAAJ",
+    "locationHistory": [
+      {
+        "loc": "PRAYAGRAAJ",
+        "time": "18/9/2026, 11:21:11 am"
+      }
+    ],
+    "contact": "8087426948",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789613775374.5347,
+    "date": "15-Sep-26",
+    "bill": "GI/2026-27/02478",
+    "wght": "",
+    "truck": "RJ21GB8052",
+    "farm": "",
+    "party": "CPF (INDIA) PRIVATE LIMITED (MH)",
+    "destination": "NEWASA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9511595615",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789652084825.6665,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02493",
+    "wght": "",
+    "truck": "RJ50GA8463",
+    "farm": "",
+    "party": "SNEHA FARMS PRIVATE LIMITED (AP)",
+    "destination": "HANUMAN JUNCTION",
+    "statusLocation": "ANDHRA,WILL REACH IN EVENING",
+    "locationHistory": [
+      {
+        "loc": "AJMER",
+        "time": "17/9/2026, 7:06:09 pm"
+      },
+      {
+        "loc": "ANDHRA",
+        "time": "21/9/2026, 10:14:05 am"
+      },
+      {
+        "loc": "ANDHRA,WILL REACH IN EVENING",
+        "time": "21/9/2026, 10:14:43 am"
+      }
+    ],
+    "contact": "7297829373",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294516.2917,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02482",
+    "wght": "",
+    "truck": "RJ50GA9707",
+    "farm": "",
+    "party": "SHALIMAR PELLET FEEDS LTD. (KA)",
+    "destination": "KOLAR",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "NAGAR MH",
+        "time": "19/9/2026, 8:56:10 am"
+      },
+      {
+        "loc": "HOSEPET",
+        "time": "20/9/2026, 9:12:59 am"
+      },
+      {
+        "loc": "HOSAPET",
+        "time": "20/9/2026, 9:13:40 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "21/9/2026, 9:10:52 am"
+      }
+    ],
+    "contact": "6375727733",
+    "status": "TASK",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294516.541,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02484",
+    "wght": "",
+    "truck": "RJ01GD7544",
+    "farm": "",
+    "party": "SHALIMAR PELLET FEEDS LTD (WB)",
+    "destination": "DUBRAJPUR",
+    "statusLocation": "10 KM BEFORE",
+    "locationHistory": [
+      {
+        "loc": "AGRA CROSSED",
+        "time": "19/9/2026, 8:57:28 am"
+      },
+      {
+        "loc": "CHAUNDOLI",
+        "time": "20/9/2026, 9:09:46 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "21/9/2026, 9:42:26 am"
+      },
+      {
+        "loc": "10 KM BEFORE",
+        "time": "21/9/2026, 9:42:46 am"
+      }
+    ],
+    "contact": "9024792981",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294516.4216,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02485",
+    "wght": "",
+    "truck": "RJ50GA8971",
+    "farm": "",
+    "party": "SAMPOORNA FEEDS PRIVATE LIMITED (PB)",
+    "destination": "PHAGWARA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9664350062",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294516.5996,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02486",
+    "wght": "",
+    "truck": "RJ01GD9094",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "SALBONI",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "SALBONI",
+        "time": "19/9/2026, 9:01:22 am"
+      },
+      {
+        "loc": "TRIKUNDA",
+        "time": "20/9/2026, 10:22:25 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "21/9/2026, 9:25:59 am"
+      }
+    ],
+    "contact": "8957722518",
+    "status": "NOT REACHED",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294516.219,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02488",
+    "wght": "",
+    "truck": "RJ07GC1806",
+    "farm": "",
+    "party": "ROHINI MINERALS PVT LTD",
+    "destination": "MANGALPALLY",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "TALODA",
+        "time": "19/9/2026, 9:00:30 am"
+      },
+      {
+        "loc": "INDORE",
+        "time": "19/9/2026, 9:03:57 am"
+      },
+      {
+        "loc": "INDORE",
+        "time": "19/9/2026, 9:50:28 am"
+      },
+      {
+        "loc": "NANDED",
+        "time": "22/9/2026, 12:51:50 pm"
+      },
+      {
+        "loc": "REACHED",
+        "time": "23/9/2026, 9:57:52 am"
+      }
+    ],
+    "contact": "9024083615",
+    "status": "SEND LOCATION",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.303,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02489",
+    "wght": "",
+    "truck": "RJ21GE4227",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "JEDCHERLA",
+    "statusLocation": "SANGAREDY",
+    "locationHistory": [
+      {
+        "loc": "SANGAREDY",
+        "time": "20/9/2026, 9:38:15 am"
+      }
+    ],
+    "contact": "7339873972",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.506,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02491",
+    "wght": "",
+    "truck": "RJ21GF1527",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "BALANAGAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9079182961",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.2131,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02493",
+    "wght": "",
+    "truck": "RJ50GA8463",
+    "farm": "",
+    "party": "SNEHA FARMS PRIVATE LIMITED (AP)",
+    "destination": "HANUMAN JUNCTION",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7297829373",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.6758,
+    "date": "16-Sep-26",
+    "bill": "GI/2026-27/02494",
+    "wght": "",
+    "truck": "RJ21GF5874",
+    "farm": "",
+    "party": "PALLE VIKAS HATCHERIES PVT LTD",
+    "destination": "YACHARAM",
+    "statusLocation": "UNLOADED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "40 KM BEFORE LOCATION",
+        "time": "19/9/2026, 9:19:37 am"
+      },
+      {
+        "loc": "UNLOADED YESTERDAY",
+        "time": "20/9/2026, 9:19:06 am"
+      }
+    ],
+    "contact": "7878168803",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.9187,
+    "date": "17-Sep-26",
+    "bill": "GI/2026-27/02497",
+    "wght": "",
+    "truck": "RJ36GB1547",
+    "farm": "",
+    "party": "NEUTRAL GLASS & ALLIED INDUSTRIES PRIVATE LIMITED",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8890830923",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.2727,
+    "date": "17-Sep-26",
+    "bill": "GI/2026-27/02498",
+    "wght": "",
+    "truck": "RJ14GG6178",
+    "farm": "",
+    "party": "HALDYN HEINZ FINE GLASS PVT LTD",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7340315337",
+    "status": "",
+    "issue": "9828495566",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.9133,
+    "date": "17-Sep-26",
+    "bill": "GI/2026-27/02499",
+    "wght": "",
+    "truck": "RJ50GA9774",
+    "farm": "",
+    "party": "LOTUS FARMS",
+    "destination": "MADAPPANAHALL",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "MP INTER",
+        "time": "19/9/2026, 8:29:15 am"
+      },
+      {
+        "loc": "MP INTERED",
+        "time": "19/9/2026, 8:29:23 am"
+      },
+      {
+        "loc": "HOSEPAT",
+        "time": "21/9/2026, 10:47:00 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "23/9/2026, 9:50:45 am"
+      }
+    ],
+    "contact": "7878535155",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.8733,
+    "date": "17-Sep-26",
+    "bill": "GI/2026-27/02502",
+    "wght": "",
+    "truck": "RJ01GD5316",
+    "farm": "",
+    "party": "MIDNAPORE HATCHERY PVT. LTD.",
+    "destination": "BISHNUPUR",
+    "statusLocation": "UNLOADED",
+    "locationHistory": [
+      {
+        "loc": "ITAWA",
+        "time": "19/9/2026, 8:30:35 am"
+      },
+      {
+        "loc": "BANARAS",
+        "time": "20/9/2026, 9:01:14 am"
+      },
+      {
+        "loc": "DURGAPUR",
+        "time": "21/9/2026, 9:05:20 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "22/9/2026, 9:41:17 am"
+      },
+      {
+        "loc": "UNLOADED",
+        "time": "23/9/2026, 9:52:36 am"
+      }
+    ],
+    "contact": "8952861786",
+    "status": "SEND LOCATION",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.0994,
+    "date": "17-Sep-26",
+    "bill": "GI/2026-27/02504",
+    "wght": "",
+    "truck": "RJ21GF9921",
+    "farm": "",
+    "party": "JAYANTHI FARMS AND FEEDS",
+    "destination": "RAMAYANPET",
+    "statusLocation": "NIZAMABAD",
+    "locationHistory": [
+      {
+        "loc": "9772390804",
+        "time": "20/9/2026, 6:32:53 pm"
+      },
+      {
+        "loc": "NIZAMABAD",
+        "time": "21/9/2026, 8:58:09 am"
+      }
+    ],
+    "contact": "9799688417",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.7327,
+    "date": "17-Sep-26",
+    "bill": "GI/2026-27/02505",
+    "wght": "",
+    "truck": "NL01AB7945",
+    "farm": "",
+    "party": "UTTARA FOODS AND FEEDS PVT LTD (BR)",
+    "destination": "MUZAFFARPUR",
+    "statusLocation": "GOPALGANJ",
+    "locationHistory": [
+      {
+        "loc": "MAHUA",
+        "time": "19/9/2026, 8:47:39 am"
+      },
+      {
+        "loc": "KANPUR",
+        "time": "20/9/2026, 9:02:43 am"
+      },
+      {
+        "loc": "GOPALGANJ",
+        "time": "21/9/2026, 3:58:51 pm"
+      }
+    ],
+    "contact": "9939663607",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.193,
+    "date": "16-Sep-26",
+    "bill": "GM/2026-27/01679",
+    "wght": "",
+    "truck": "NL01AC0620",
+    "farm": "",
+    "party": "OM POULTRY PRODUCTS PRIVATE LIMITED",
+    "destination": "VARANASI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6203591110",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.553,
+    "date": "16-Sep-26",
+    "bill": "GM/2026-27/01682",
+    "wght": "",
+    "truck": "BR02GD6662",
+    "farm": "",
+    "party": "SHIV HATCHERY",
+    "destination": "JEHANABAD",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6395098863",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.172,
+    "date": "16-Sep-26",
+    "bill": "GM/2026-27/01685",
+    "wght": "",
+    "truck": "RJ19GJ9732",
+    "farm": "",
+    "party": "M/S DJ MALPANI PRIVATE LIMITED",
+    "destination": "SANGAMNER",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "REACHED",
+        "time": "19/9/2026, 9:16:58 am"
+      },
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "19/9/2026, 9:17:08 am"
+      }
+    ],
+    "contact": "7852021603",
+    "status": "REACHED",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.4065,
+    "date": "16-Sep-26",
+    "bill": "GM/2026-27/01686",
+    "wght": "",
+    "truck": "RJ07GF9491",
+    "farm": "",
+    "party": "GREEN FARMING INNOVATIONS",
+    "destination": "WARANGAL",
+    "statusLocation": "BEFORE KARIMNAGAR",
+    "locationHistory": [
+      {
+        "loc": "BEFORE KAREEMNAGAR",
+        "time": "20/9/2026, 9:20:47 am"
+      },
+      {
+        "loc": "BEFORE KARIMNAGAR",
+        "time": "20/9/2026, 9:21:00 am"
+      }
+    ],
+    "contact": "9352272179",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.4717,
+    "date": "17-Sep-26",
+    "bill": "GM/2026-27/01691",
+    "wght": "",
+    "truck": "RJ07GD1946",
+    "farm": "",
+    "party": "ASHOKA CATTLE AND POULTRY FEEDS LIMITED (BR)",
+    "destination": "DARBHANGA",
+    "statusLocation": "LUCKNOW",
+    "locationHistory": [
+      {
+        "loc": "JAYAL",
+        "time": "19/9/2026, 8:49:56 am"
+      },
+      {
+        "loc": "LUCKNOW",
+        "time": "21/9/2026, 10:26:46 am"
+      }
+    ],
+    "contact": "9680600949",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789785294517.1147,
+    "date": "17-Sep-26",
+    "bill": "GM/2026-27/01694",
+    "wght": "",
+    "truck": "RJ52GB5473",
+    "farm": "",
+    "party": "SHUBHAM FOOD SERVICES",
+    "destination": "ROBERTSGANJ",
+    "statusLocation": "10 KM BEFORE LOCATION",
+    "locationHistory": [
+      {
+        "loc": "BEFORE KANPUR",
+        "time": "19/9/2026, 8:54:51 am"
+      },
+      {
+        "loc": "STARTING FROM KANPUR, STOPED 24 HOUR DUE TO HEALTH ISSUE",
+        "time": "20/9/2026, 9:08:06 am"
+      },
+      {
+        "loc": "10 KM BEFORE LOCATION",
+        "time": "21/9/2026, 9:06:12 am"
+      }
+    ],
+    "contact": "8000258723",
+    "status": "REACHED",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789872441289.9893,
+    "date": "18-Sep-26",
+    "bill": "GM/2026-27/01699",
+    "wght": "",
+    "truck": "RJ07GE5846",
+    "farm": "",
+    "party": "JANTA LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "",
+    "locationHistory": [
+      {
+        "loc": "BUSY",
+        "time": "21/9/2026, 8:38:46 am"
+      }
+    ],
+    "contact": "8290975491",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789872441289.4155,
+    "date": "18-Sep-26",
+    "bill": "GM/2026-27/01700",
+    "wght": "",
+    "truck": "RJ01GC1168",
+    "farm": "",
+    "party": "SUR FEED CENTRE PRIVATE LIMITED (WB)",
+    "destination": "BARDHAMAN",
+    "statusLocation": "AGRA CROSSED",
+    "locationHistory": [
+      {
+        "loc": "AGRA CROSSED",
+        "time": "22/9/2026, 9:28:23 am"
+      }
+    ],
+    "contact": "9521269671",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789872441289.4417,
+    "date": "19-Sep-26",
+    "bill": "GM/2026-27/01703",
+    "wght": "",
+    "truck": "RJ21GD3651",
+    "farm": "",
+    "party": "AGI GREENPAC LIMITED",
+    "destination": "SANATHNAGAR",
+    "statusLocation": "REACHED YESTERDAY IN DAYTIME",
+    "locationHistory": [
+      {
+        "loc": "JAIPUR",
+        "time": "20/9/2026, 11:16:11 am"
+      },
+      {
+        "loc": "HYDRABAD",
+        "time": "21/9/2026, 8:19:08 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY IN DAYTIME",
+        "time": "22/9/2026, 8:49:17 am"
+      }
+    ],
+    "contact": "8824627035",
+    "status": "PAYMENT CALL",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "task": "DDDDDDDDDDDDDDDDDDDDDDDD"
+  },
+  {
+    "id": 1789873505116.009,
+    "date": "18-Sep-26",
+    "bill": "GI/2026-27/02516",
+    "wght": "",
+    "truck": "RJ01GD9135",
+    "farm": "",
+    "party": "SHALIMAR HATCHERIES LIMITED (WB)",
+    "destination": "BANKURA",
+    "statusLocation": "REACHED IN MORNIG",
+    "locationHistory": [
+      {
+        "loc": "MOHABATPUR BORDER",
+        "time": "23/9/2026, 9:43:53 am"
+      },
+      {
+        "loc": "MOHABATPUR  BIHAR",
+        "time": "23/9/2026, 9:44:26 am"
+      },
+      {
+        "loc": "REACHED IN MORNIG",
+        "time": "25/9/2026, 9:14:03 am"
+      }
+    ],
+    "contact": "9001678639",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789874573429.3118,
+    "date": "19-Sep-26",
+    "bill": "GM/2026-27/01705",
+    "wght": "",
+    "truck": "RJ50GA9761",
+    "farm": "",
+    "party": "AYANNA FARMS",
+    "destination": "JALANDHAR",
+    "statusLocation": "",
+    "locationHistory": [
+      {
+        "loc": "NOKHA",
+        "time": "20/9/2026, 8:52:53 am"
+      }
+    ],
+    "contact": "9462986907",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "task": "FGGG"
+  },
+  {
+    "id": 1789874573429.2793,
+    "date": "18-Sep-26",
+    "bill": "GI/2026-27/02509",
+    "wght": "",
+    "truck": "RJ50GA5442",
+    "farm": "",
+    "party": "M/S SSA HATCHERIES PVT LTD",
+    "destination": "MEDAK",
+    "statusLocation": "KAMAREDY ,WILL REACH IN TWO HOUR",
+    "locationHistory": [
+      {
+        "loc": "N/A",
+        "time": "20/9/2026, 8:52:53 am"
+      },
+      {
+        "loc": "MEDAK",
+        "time": "20/9/2026, 9:05:17 am"
+      },
+      {
+        "loc": "NANDURA MH",
+        "time": "21/9/2026, 8:43:09 am"
+      },
+      {
+        "loc": "KAMAREDY ,WILL REACH IN TWO HOUR",
+        "time": "22/9/2026, 9:31:49 am"
+      }
+    ],
+    "contact": "6378444091",
+    "status": "SEND LOCATION",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789874573430.0776,
+    "date": "18-Sep-26",
+    "bill": "GI/2026-27/02511",
+    "wght": "",
+    "truck": "RJ01GD2077",
+    "farm": "",
+    "party": "APARNA BACHHAR",
+    "destination": "BASIRHAT",
+    "statusLocation": "UNLOADED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "BANARAS",
+        "time": "20/9/2026, 8:52:53 am"
+      },
+      {
+        "loc": "TOPCHACHI",
+        "time": "21/9/2026, 8:44:38 am"
+      },
+      {
+        "loc": "TOPCHANCHI",
+        "time": "21/9/2026, 8:45:24 am"
+      },
+      {
+        "loc": "TOPCHANCHI JH",
+        "time": "21/9/2026, 8:45:48 am"
+      },
+      {
+        "loc": "UNLOADED YESTERDAY",
+        "time": "23/9/2026, 9:45:59 am"
+      }
+    ],
+    "contact": "8527022418",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789874573430.4124,
+    "date": "18-Sep-26",
+    "bill": "GI/2026-27/02513",
+    "wght": "",
+    "truck": "RJ21GF5673",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "JEDCHERLA",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "BEFORE NANDED",
+        "time": "20/9/2026, 8:52:53 am"
+      },
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "21/9/2026, 8:48:34 am"
+      }
+    ],
+    "contact": "9119351623",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789874573430.0972,
+    "date": "18-Sep-26",
+    "bill": "GI/2026-27/02518",
+    "wght": "",
+    "truck": "RJ07GD8124",
+    "farm": "",
+    "party": "SRI RAJARAJESHWARI POULTRY FARM",
+    "destination": "SIDDIPET",
+    "statusLocation": "70KM BEFORE INDORE",
+    "locationHistory": [
+      {
+        "loc": "70KM BEFORE INDORE",
+        "time": "20/9/2026, 8:52:53 am"
+      }
+    ],
+    "contact": "8209429143",
+    "status": "REACHED",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789874724163.621,
+    "date": "18-Sep-26",
+    "bill": "GM/2026-27/01697",
+    "wght": "",
+    "truck": "RJ24GA3049",
+    "farm": "",
+    "party": "GANGOTRI INORGANICS PVT LTD.",
+    "destination": "TALOD",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9636920886",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789874724164.4934,
+    "date": "18-Sep-26",
+    "bill": "GM/2026-27/01699",
+    "wght": "",
+    "truck": "RJ07GE5846",
+    "farm": "",
+    "party": "JANTA LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "AGRA CROSSED",
+    "locationHistory": [
+      {
+        "loc": "AAGRA",
+        "time": "20/9/2026, 8:55:24 am"
+      },
+      {
+        "loc": "AGRA CROSSED",
+        "time": "20/9/2026, 5:40:28 pm"
+      }
+    ],
+    "contact": "8290975491",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.8486,
+    "date": "19-Sep-26",
+    "bill": "GM/2026-27/01708",
+    "wght": "",
+    "truck": "RJ23GC0091",
+    "farm": "",
+    "party": "M/S SALVA AGRO HATCHERIES PRIVATE LIMITED",
+    "destination": "JAGDISHPUR",
+    "statusLocation": "5 KM BEFORE JAGDISHPUR",
+    "locationHistory": [
+      {
+        "loc": "SIKAR",
+        "time": "21/9/2026, 9:41:09 am"
+      },
+      {
+        "loc": "5 KM BEFORE JAGDEESHPUR",
+        "time": "23/9/2026, 9:33:17 am"
+      },
+      {
+        "loc": "5 KM BEFORE JAGDISHPUR",
+        "time": "23/9/2026, 9:33:32 am"
+      }
+    ],
+    "contact": "9660299049",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.0354,
+    "date": "19-Sep-26",
+    "bill": "GM/2026-27/01712",
+    "wght": "",
+    "truck": "RJ52GB3044",
+    "farm": "",
+    "party": "ASHOKA CATTLE AND POULTRY FEEDS LIMITED (BR)",
+    "destination": "DARBHANGA",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "JAIPUR",
+        "time": "21/9/2026, 8:22:47 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "24/9/2026, 9:35:11 am"
+      }
+    ],
+    "contact": "9829911293",
+    "status": "WAITING ADVANCE",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.2307,
+    "date": "19-Sep-26",
+    "bill": "GI/2026-27/02522",
+    "wght": "",
+    "truck": "RJ50GB2317",
+    "farm": "",
+    "party": "SUDEEPTHI POULTRY FARM",
+    "destination": "NARMETTA",
+    "statusLocation": "REACHED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "NIZAMABAAD",
+        "time": "22/9/2026, 8:57:55 am"
+      },
+      {
+        "loc": "REACHED YESTERDAY",
+        "time": "23/9/2026, 9:34:24 am"
+      }
+    ],
+    "contact": "6377823868",
+    "status": "SEND LOCATION",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.2947,
+    "date": "19-Sep-26",
+    "bill": "GI/2026-27/02524",
+    "wght": "",
+    "truck": "RJ21GE2977",
+    "farm": "",
+    "party": "SANDHYA POULTRY FARM",
+    "destination": "SIDDIPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7597909234",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.5857,
+    "date": "19-Sep-26",
+    "bill": "GI/2026-27/02525",
+    "wght": "",
+    "truck": "RJ21GD1360",
+    "farm": "",
+    "party": "HALDYN HEINZ FINE GLASS PVT LTD",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9680215062",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.3894,
+    "date": "19-Sep-26",
+    "bill": "GI/2026-27/02526",
+    "wght": "",
+    "truck": "RJ21GE2395",
+    "farm": "",
+    "party": "SHALIMAR PELLET FEEDS LTD. (KA)",
+    "destination": "KOLAR - KGF",
+    "statusLocation": "BIJAPUR",
+    "locationHistory": [
+      {
+        "loc": "NAGAUR",
+        "time": "21/9/2026, 8:31:50 am"
+      },
+      {
+        "loc": "MP",
+        "time": "22/9/2026, 9:09:16 am"
+      },
+      {
+        "loc": "MP LAST BORDER",
+        "time": "22/9/2026, 9:12:48 am"
+      },
+      {
+        "loc": "SIRADI MH",
+        "time": "23/9/2026, 9:35:46 am"
+      },
+      {
+        "loc": "BIJAPUR",
+        "time": "24/9/2026, 12:43:54 pm"
+      }
+    ],
+    "contact": "6377644071",
+    "status": "",
+    "issue": "LOCATION",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.1301,
+    "date": "19-Sep-26",
+    "bill": "GI/2026-27/02530",
+    "wght": "",
+    "truck": "RJ50GA7729",
+    "farm": "",
+    "party": "SHALIMAR HATCHERIES LIMITED (TS)",
+    "destination": "MASAIPET",
+    "statusLocation": "20KM BEFORE LOCATION",
+    "locationHistory": [
+      {
+        "loc": "RATLAM",
+        "time": "21/9/2026, 9:34:05 am"
+      },
+      {
+        "loc": "KHARGAON CROSSED",
+        "time": "22/9/2026, 9:01:56 am"
+      },
+      {
+        "loc": "KHAMGAON MH",
+        "time": "23/9/2026, 9:36:48 am"
+      },
+      {
+        "loc": "20KM BEFORE LOCATION",
+        "time": "24/9/2026, 9:41:48 am"
+      }
+    ],
+    "contact": "8000276980",
+    "status": "WAITING ADVANCE",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.253,
+    "date": "19-Sep-26",
+    "bill": "GI/2026-27/02531",
+    "wght": "",
+    "truck": "RJ01GB7828",
+    "farm": "",
+    "party": "AG MINERALS",
+    "destination": "BANKURA",
+    "statusLocation": "DHANBAD",
+    "locationHistory": [
+      {
+        "loc": "NASIRABAAD",
+        "time": "21/9/2026, 8:34:28 am"
+      },
+      {
+        "loc": "KANPUR",
+        "time": "23/9/2026, 9:38:58 am"
+      },
+      {
+        "loc": "DHANBAD",
+        "time": "25/9/2026, 9:08:29 am"
+      }
+    ],
+    "contact": "9784209674",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1789957769240.36,
+    "date": "19-Sep-26",
+    "bill": "GI/2026-27/02532",
+    "wght": "",
+    "truck": "RJ07GD3183",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "BALANAGAR",
+    "statusLocation": "AJMER",
+    "locationHistory": [
+      {
+        "loc": "AJMER",
+        "time": "21/9/2026, 9:39:28 am"
+      }
+    ],
+    "contact": "9929263658",
+    "status": "WAITING ADVANCE",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764510.7336,
+    "date": "20-Sep-26",
+    "bill": "GI/2026-27/02535",
+    "wght": "",
+    "truck": "RJ48GA5001",
+    "farm": "",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (CG)",
+    "destination": "DHAMTARI",
+    "statusLocation": "MANDLA MP",
+    "locationHistory": [
+      {
+        "loc": "DEVALI",
+        "time": "22/9/2026, 8:33:39 am"
+      },
+      {
+        "loc": "DEVALI UDAIPUR",
+        "time": "22/9/2026, 8:35:36 am"
+      },
+      {
+        "loc": "DEVALI ,GADI KI SERVICE ISSUE",
+        "time": "23/9/2026, 9:21:39 am"
+      },
+      {
+        "loc": "BIAORA, MP",
+        "time": "24/9/2026, 9:27:10 am"
+      },
+      {
+        "loc": "JABALPUR",
+        "time": "25/9/2026, 8:59:47 am"
+      },
+      {
+        "loc": "MANDALA",
+        "time": "26/9/2026, 10:10:54 am"
+      },
+      {
+        "loc": "MANDLAA",
+        "time": "26/9/2026, 10:11:30 am"
+      },
+      {
+        "loc": "MAANDLAA",
+        "time": "26/9/2026, 10:12:03 am"
+      },
+      {
+        "loc": "MANDLA",
+        "time": "26/9/2026, 10:17:33 am"
+      },
+      {
+        "loc": "MANDLA MP",
+        "time": "26/9/2026, 10:17:48 am"
+      }
+    ],
+    "contact": "9680237376",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764510.026,
+    "date": "20-Sep-26",
+    "bill": "GI/2026-27/02538",
+    "wght": "",
+    "truck": "RJ48GA2462",
+    "farm": "",
+    "party": "ABIS FOODS AND PROTEINS PRIVATE LIMITED (CG)",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "BIYAWARA",
+    "locationHistory": [
+      {
+        "loc": "BIYAWARA",
+        "time": "24/9/2026, 9:26:11 am"
+      }
+    ],
+    "contact": "CHANGED",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "WRONG NO",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764510.9114,
+    "date": "20-Sep-26",
+    "bill": "GI/2026-27/02540",
+    "wght": "",
+    "truck": "RJ01GE1187",
+    "farm": "",
+    "party": "MIDNAPORE HATCHERY PVT. LTD.",
+    "destination": "BISHNUPUR",
+    "statusLocation": "CHAUPARAN",
+    "locationHistory": [
+      {
+        "loc": "CHAUPARAN",
+        "time": "24/9/2026, 10:09:06 am"
+      }
+    ],
+    "contact": "9571483677",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764510.4956,
+    "date": "20-Sep-26",
+    "bill": "GI/2026-27/02542",
+    "wght": "",
+    "truck": "RJ50GA9829",
+    "farm": "",
+    "party": "SANDHYA POULTRY FARM",
+    "destination": "SIDDIPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9509610873",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764510.58,
+    "date": "20-Sep-26",
+    "bill": "GI/2026-27/02544",
+    "wght": "",
+    "truck": "RJ50GA8877",
+    "farm": "",
+    "party": "CPF (INDIA) PRIVATE LIMITED (MH)",
+    "destination": "NEWASA",
+    "statusLocation": "REACHED UNLOADING",
+    "locationHistory": [
+      {
+        "loc": "DHULIA",
+        "time": "22/9/2026, 8:41:05 am"
+      },
+      {
+        "loc": "REACHED UNLOADING",
+        "time": "23/9/2026, 9:25:12 am"
+      }
+    ],
+    "contact": "8209290335",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "SEND LOCATION",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764510.5579,
+    "date": "20-Sep-26",
+    "bill": "GM/2026-27/01716",
+    "wght": "",
+    "truck": "RJ47GA0462",
+    "farm": "",
+    "party": "DAYAL VET FOODS PRIVATE LIMITED",
+    "destination": "BARABANKI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9694983449",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764511.9934,
+    "date": "20-Sep-26",
+    "bill": "GM/2026-27/01718",
+    "wght": "",
+    "truck": "RJ50GA1720",
+    "farm": "",
+    "party": "SHOLY POULTRY FARM",
+    "destination": "NAVAPUR",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "AHEMEDABAD ,WILL REACH IN MORNING",
+        "time": "22/9/2026, 8:45:21 am"
+      },
+      {
+        "loc": ",WILL REACH IN MORNING",
+        "time": "23/9/2026, 9:29:00 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "23/9/2026, 9:29:22 am"
+      }
+    ],
+    "contact": "9929706603",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "PAHUNCH SENT",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764511.348,
+    "date": "20-Sep-26",
+    "bill": "GM/2026-27/01720",
+    "wght": "",
+    "truck": "BR28GB9414",
+    "farm": "",
+    "party": "MUNTAHA POULTRY",
+    "destination": "LUCKNOW",
+    "statusLocation": "NASIRABAD",
+    "locationHistory": [
+      {
+        "loc": "NASIRABAD",
+        "time": "22/9/2026, 8:47:25 am"
+      }
+    ],
+    "contact": "9024866264",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false,
+    "secondContact": ""
+  },
+  {
+    "id": 1790044764511.768,
+    "date": "20-Sep-26",
+    "bill": "GM/2026-27/01722",
+    "wght": "",
+    "truck": "HR67F5620",
+    "farm": "",
+    "party": "JETHI AGRO FARM",
+    "destination": "KHOND",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7082394175",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790044764511.1287,
+    "date": "20-Sep-26",
+    "bill": "GM/2026-27/01724",
+    "wght": "",
+    "truck": "RJ09GC1867",
+    "farm": "",
+    "party": "SREE RAYALASEEMA HI STRENGTH HYPO LIMITED",
+    "destination": "KARNOOL",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8719984686",
+    "partyContact": "",
+    "transporterName": "",
+    "transporterContact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.3198,
+    "date": "GI/2026-27/02546",
+    "bill": "",
+    "wght": "RJ01GC1167",
+    "truck": "",
+    "farm": "HITECH HATCH FRESH PVT. LTD. (WB)",
+    "party": "DANKUNI",
+    "destination": "9116915428",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.1016,
+    "date": "GI/2026-27/02548",
+    "bill": "",
+    "wght": "RJ21GE4195",
+    "truck": "",
+    "farm": "DURGA POULTRY FRAM (TS)",
+    "party": "SIDDIPET",
+    "destination": "9784196731",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.7607,
+    "date": "GI/2026-27/02549",
+    "bill": "",
+    "wght": "RJ36GB0919",
+    "truck": "",
+    "farm": "NEUTRAL GLASS & ALLIED INDUSTRIES PRIVATE LIMITED",
+    "party": "KOSAMBA",
+    "destination": "8144756900",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.445,
+    "date": "GI/2026-27/02550",
+    "bill": "",
+    "wght": "RJ21GF9921",
+    "truck": "",
+    "farm": "SHRI RAGHURAM AGRO FARMS PVT. LTD",
+    "party": "RAMAYANPET",
+    "destination": "9799688417",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.0369,
+    "date": "GI/2026-27/02551",
+    "bill": "",
+    "wght": "RJ09GC0584",
+    "truck": "",
+    "farm": "HITECH HATCH FRESH PVT. LTD. (WB)",
+    "party": "DANKUNI",
+    "destination": "9660165246",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.7485,
+    "date": "GI/2026-27/02553",
+    "bill": "",
+    "wght": "RJ14GV7799",
+    "truck": "",
+    "farm": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "party": "CUTTACK",
+    "destination": "9511543077",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.654,
+    "date": "GI/2026-27/02554",
+    "bill": "",
+    "wght": "B11DC6765",
+    "truck": "",
+    "farm": "DE HEUS ANIMAL NUTRITION INDIA PRIVATE LIMITED",
+    "party": "RAJPURA",
+    "destination": "7740014955",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.6084,
+    "date": "GI/2026-27/02555",
+    "bill": "",
+    "wght": "RJ21GD1360",
+    "truck": "",
+    "farm": "HALDYN HEINZ FINE GLASS PVT LTD",
+    "party": "KOSAMBA",
+    "destination": "9680215062",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.825,
+    "date": "GI/2026-27/02556",
+    "bill": "",
+    "wght": "RJ01GD2851",
+    "truck": "",
+    "farm": "NEUTRAL GLASS & ALLIED INDUSTRIES PRIVATE LIMITED",
+    "party": "KOSAMBA",
+    "destination": "8302158176",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.0566,
+    "date": "GI/2026-27/02557",
+    "bill": "",
+    "wght": "JH02BR0278",
+    "truck": "",
+    "farm": "DHANVANTARI MEDICO",
+    "party": "PATNA",
+    "destination": "8235296745",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.8076,
+    "date": "GI/2026-27/02558",
+    "bill": "",
+    "wght": "RJ21GC1554",
+    "truck": "",
+    "farm": "SHALIMAR PELLET FEEDS LTD. (KA)",
+    "party": "KOLAR",
+    "destination": "9414780417",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.64,
+    "date": "GM/2026-27/01725",
+    "bill": "",
+    "wght": "RJ50GB2944",
+    "truck": "",
+    "farm": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "party": "KANAGALA",
+    "destination": "9157341132",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.011,
+    "date": "GM/2026-27/01727",
+    "bill": "",
+    "wght": "RJ32GE4457",
+    "truck": "",
+    "farm": "KHUSHBOO FEED MILLS PVT LTD",
+    "party": "BADSAHAPUR",
+    "destination": "8559908633",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.2551,
+    "date": "GM/2026-27/01729",
+    "bill": "",
+    "wght": "RJ19GH6432",
+    "truck": "",
+    "farm": "M/S DJ MALPANI PRIVATE LIMITED",
+    "party": "SANGAMNER",
+    "destination": "7665423051",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.0525,
+    "date": "GM/2026-27/01730",
+    "bill": "",
+    "wght": "RJ19GK4437",
+    "truck": "",
+    "farm": "DURGESH ENTERPRISE",
+    "party": "AHMEDABAD",
+    "destination": "9799175944",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.604,
+    "date": "GM/2026-27/01731",
+    "bill": "",
+    "wght": "RJ10GC0600",
+    "truck": "",
+    "farm": "VENKYS (INDIA) LIMITED (UK)",
+    "party": "DEHRADUN",
+    "destination": "7056148995",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133317210.6948,
+    "date": "GM/2026-27/01733",
+    "bill": "",
+    "wght": "RJ02GB7750",
+    "truck": "",
+    "farm": "M/s Nutri Source Farm",
+    "party": "MAYURBHANJ",
+    "destination": "9680543528",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401512.0825,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02546",
+    "wght": "",
+    "truck": "RJ01GC1167",
+    "farm": "",
+    "party": "HITECH HATCH FRESH PVT. LTD. (WB)",
+    "destination": "DANKUNI",
+    "statusLocation": "2 HOUR BEFOR DANKUNI",
+    "locationHistory": [
+      {
+        "loc": "AGRA",
+        "time": "23/9/2026, 8:52:55 am"
+      },
+      {
+        "loc": "DATARAM",
+        "time": "25/9/2026, 8:36:31 am"
+      },
+      {
+        "loc": "DATARAM BHIHAR",
+        "time": "25/9/2026, 8:36:53 am"
+      },
+      {
+        "loc": "BHIHAR",
+        "time": "25/9/2026, 8:38:58 am"
+      },
+      {
+        "loc": "BHIHAR ENTERED",
+        "time": "25/9/2026, 8:41:19 am"
+      },
+      {
+        "loc": "2 HOUR BEFOR DANKUNI",
+        "time": "26/9/2026, 9:45:02 am"
+      }
+    ],
+    "contact": "9116915428",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401512.8145,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02548",
+    "wght": "",
+    "truck": "RJ21GE4195",
+    "farm": "",
+    "party": "DURGA POULTRY FRAM (TS)",
+    "destination": "SIDDIPET",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "NASIRABAAD",
+        "time": "23/9/2026, 8:54:17 am"
+      },
+      {
+        "loc": "HINGOLI MH",
+        "time": "25/9/2026, 8:42:29 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "26/9/2026, 9:48:49 am"
+      }
+    ],
+    "contact": "9784196731",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.7927,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02549",
+    "wght": "",
+    "truck": "RJ36GB0919",
+    "farm": "",
+    "party": "NEUTRAL GLASS & ALLIED INDUSTRIES PRIVATE LIMITED",
+    "destination": "KOSAMBA",
+    "statusLocation": "UNLOADED YESTERDAY",
+    "locationHistory": [
+      {
+        "loc": "UNLOADED YESTERDAY",
+        "time": "26/9/2026, 9:51:14 am"
+      }
+    ],
+    "contact": "8144756900",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.1692,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02550",
+    "wght": "",
+    "truck": "RJ21GF9921",
+    "farm": "",
+    "party": "SHRI RAGHURAM AGRO FARMS PVT. LTD",
+    "destination": "RAMAYANPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9799688417",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.1616,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02551",
+    "wght": "",
+    "truck": "RJ09GC0584",
+    "farm": "",
+    "party": "HITECH HATCH FRESH PVT. LTD. (WB)",
+    "destination": "DANKUNI",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "NASIRABAAD SE",
+        "time": "23/9/2026, 8:56:26 am"
+      },
+      {
+        "loc": "NASIRABAAD",
+        "time": "23/9/2026, 8:57:27 am"
+      },
+      {
+        "loc": "DHANBAD",
+        "time": "25/9/2026, 8:49:21 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "26/9/2026, 9:53:30 am"
+      }
+    ],
+    "contact": "9660165246",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.716,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02553",
+    "wght": "",
+    "truck": "RJ14GV7799",
+    "farm": "",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "destination": "CUTTACK",
+    "statusLocation": "REACHED IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "ITAWA",
+        "time": "23/9/2026, 8:57:32 am"
+      },
+      {
+        "loc": "NAUBATPUR",
+        "time": "24/9/2026, 10:40:40 am"
+      },
+      {
+        "loc": "TATA NAGAR",
+        "time": "25/9/2026, 8:51:36 am"
+      },
+      {
+        "loc": "REACHED IN NIGHT",
+        "time": "26/9/2026, 9:54:46 am"
+      }
+    ],
+    "contact": "9511543077",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.6956,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02554",
+    "wght": "",
+    "truck": "B11DC6765",
+    "farm": "",
+    "party": "DE HEUS ANIMAL NUTRITION INDIA PRIVATE LIMITED",
+    "destination": "RAJPURA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7740014955",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.4106,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02555",
+    "wght": "",
+    "truck": "RJ21GD1360",
+    "farm": "",
+    "party": "HALDYN HEINZ FINE GLASS PVT LTD",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9680215062",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.2434,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02556",
+    "wght": "",
+    "truck": "RJ01GD2851",
+    "farm": "",
+    "party": "NEUTRAL GLASS & ALLIED INDUSTRIES PRIVATE LIMITED",
+    "destination": "KOSAMBA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8302158176",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.1375,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02557",
+    "wght": "",
+    "truck": "JH02BR0278",
+    "farm": "",
+    "party": "DHANVANTARI MEDICO",
+    "destination": "PATNA",
+    "statusLocation": "PRAYAGRAJ",
+    "locationHistory": [
+      {
+        "loc": "AGRA",
+        "time": "23/9/2026, 8:58:43 am"
+      },
+      {
+        "loc": "PRAYAGRAJ",
+        "time": "24/9/2026, 9:09:14 am"
+      }
+    ],
+    "contact": "8235296745",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.4192,
+    "date": "21-Sep-26",
+    "bill": "GI/2026-27/02558",
+    "wght": "",
+    "truck": "RJ21GC1554",
+    "farm": "",
+    "party": "SHALIMAR PELLET FEEDS LTD. (KA)",
+    "destination": "KOLAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9414780417",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.5874,
+    "date": "21-Sep-26",
+    "bill": "GM/2026-27/01725",
+    "wght": "",
+    "truck": "RJ50GB2944",
+    "farm": "",
+    "party": "GOLD PLUS FLOAT GLASS PRIVATE LIMITED",
+    "destination": "KANAGALA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9157341132",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.7878,
+    "date": "21-Sep-26",
+    "bill": "GM/2026-27/01727",
+    "wght": "",
+    "truck": "RJ32GE4457",
+    "farm": "",
+    "party": "KHUSHBOO FEED MILLS PVT LTD",
+    "destination": "BADSAHAPUR",
+    "statusLocation": "UNLOADING",
+    "locationHistory": [
+      {
+        "loc": "UNLOADING",
+        "time": "24/9/2026, 9:21:57 am"
+      }
+    ],
+    "contact": "8559908633",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.7224,
+    "date": "21-Sep-26",
+    "bill": "GM/2026-27/01729",
+    "wght": "",
+    "truck": "RJ19GH6432",
+    "farm": "",
+    "party": "M/S DJ MALPANI PRIVATE LIMITED",
+    "destination": "SANGAMNER",
+    "statusLocation": "SURAT",
+    "locationHistory": [
+      {
+        "loc": "SURAT",
+        "time": "23/9/2026, 9:15:24 am"
+      }
+    ],
+    "contact": "7665423051",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.001,
+    "date": "21-Sep-26",
+    "bill": "GM/2026-27/01730",
+    "wght": "",
+    "truck": "RJ19GK4437",
+    "farm": "",
+    "party": "DURGESH ENTERPRISE",
+    "destination": "AHMEDABAD",
+    "statusLocation": "UNLOADED",
+    "locationHistory": [
+      {
+        "loc": "UNLOADED",
+        "time": "23/9/2026, 9:16:21 am"
+      }
+    ],
+    "contact": "9799175944",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.3418,
+    "date": "21-Sep-26",
+    "bill": "GM/2026-27/01731",
+    "wght": "",
+    "truck": "RJ10GC0600",
+    "farm": "",
+    "party": "VENKYS (INDIA) LIMITED (UK)",
+    "destination": "DEHRADUN",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7056148995",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790133401513.8381,
+    "date": "21-Sep-26",
+    "bill": "GM/2026-27/01733",
+    "wght": "",
+    "truck": "RJ02GB7750",
+    "farm": "",
+    "party": "M/s Nutri Source Farm",
+    "destination": "MAYURBHANJ",
+    "statusLocation": "JH BORDER ENTRING",
+    "locationHistory": [
+      {
+        "loc": "BHARATPUR",
+        "time": "23/9/2026, 9:19:55 am"
+      },
+      {
+        "loc": "CROSSED KANPUR",
+        "time": "24/9/2026, 9:25:19 am"
+      },
+      {
+        "loc": "JH BORDER ENTRING",
+        "time": "25/9/2026, 8:58:21 am"
+      }
+    ],
+    "contact": "9680543528",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992366.8,
+    "date": "22-Sep-26",
+    "bill": "GM/2026-27/01738",
+    "wght": "",
+    "truck": "RJ07GE3747",
+    "farm": "",
+    "party": "M/S D K LAYER FARM",
+    "destination": "TAJPUR",
+    "statusLocation": "MUZAFFARPUR",
+    "locationHistory": [
+      {
+        "loc": "UP BORDER ENTRING",
+        "time": "24/9/2026, 8:24:29 am"
+      },
+      {
+        "loc": "BIHAR ENTERED",
+        "time": "25/9/2026, 4:40:32 pm"
+      },
+      {
+        "loc": "MUZAFFARPUR",
+        "time": "26/9/2026, 9:23:39 am"
+      }
+    ],
+    "contact": "7976284038",
+    "status": "SEND LOCATION",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.1704,
+    "date": "22-Sep-26",
+    "bill": "GM/2026-27/01740",
+    "wght": "",
+    "truck": "RJ22GA9494",
+    "farm": "",
+    "party": "DAYAL VET FOODS PRIVATE LIMITED",
+    "destination": "BARABANKI",
+    "statusLocation": "REACHED  IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "LUCKNOW  1ST PARKING",
+        "time": "25/9/2026, 10:39:41 am"
+      },
+      {
+        "loc": "REACHED  IN MORNING",
+        "time": "26/9/2026, 9:47:06 am"
+      }
+    ],
+    "contact": "8239258956",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.1755,
+    "date": "22-Sep-26",
+    "bill": "GM/2026-27/01742",
+    "wght": "",
+    "truck": "NL02Q3568",
+    "farm": "",
+    "party": "ASHOKA CATTLE AND POULTRY FEEDS LIMITED (BR)",
+    "destination": "DARBHANGA",
+    "statusLocation": "LUCKNOW CROSSED",
+    "locationHistory": [
+      {
+        "loc": "KISHANGARH",
+        "time": "24/9/2026, 8:37:44 am"
+      },
+      {
+        "loc": "LUCKNOW CROSSED",
+        "time": "26/9/2026, 9:25:33 am"
+      }
+    ],
+    "contact": "9411954404",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.354,
+    "date": "22-Sep-26",
+    "bill": "GM/2026-27/01743",
+    "wght": "",
+    "truck": "RJ32GE4942",
+    "farm": "",
+    "party": "AVITECH NUTRITION PVT. LTD.",
+    "destination": "JHAJJAR",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9950370012",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.4426,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02562",
+    "wght": "",
+    "truck": "RJ01GC8266",
+    "farm": "",
+    "party": "HITECH HATCH FRESH PVT. LTD. (WB)",
+    "destination": "DANKUNI",
+    "statusLocation": "BIHAR BORDER ENTERING",
+    "locationHistory": [
+      {
+        "loc": "AGRA",
+        "time": "24/9/2026, 10:00:59 am"
+      },
+      {
+        "loc": "BIHAR BORDER ENTERING",
+        "time": "26/9/2026, 9:27:29 am"
+      }
+    ],
+    "contact": "9784451621",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.3467,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02564",
+    "wght": "",
+    "truck": "RJ07GC3210",
+    "farm": "",
+    "party": "GBR HATCHERIES P LTD",
+    "destination": "CHINTHAPALLI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8290825782",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.6516,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02566",
+    "wght": "",
+    "truck": "RJ09GC7863",
+    "farm": "",
+    "party": "SIMRAN AGRITECH PRIVATE LIMITED (MP)",
+    "destination": "PITHAMPUR",
+    "statusLocation": "REACHED IN MORNING",
+    "locationHistory": [
+      {
+        "loc": "REACHED IN MORNING",
+        "time": "25/9/2026, 8:28:54 am"
+      }
+    ],
+    "contact": "7737001873",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.0188,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02567",
+    "wght": "",
+    "truck": "HR61D0715",
+    "farm": "",
+    "party": "NESURE NUTRITIONS PRIVATE LIMITED",
+    "destination": "KURUKSHETRA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8290816720",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.4006,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02568",
+    "wght": "",
+    "truck": "RJ21GD1529",
+    "farm": "",
+    "party": "JAYANTHI FARMS AND FEEDS",
+    "destination": "RAMAYANPET",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "7339937684",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.4766,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02570",
+    "wght": "",
+    "truck": "RJ21GF3435",
+    "farm": "",
+    "party": "SAMPOORNA FEEDS PRIVATE LIMITED (TS)",
+    "destination": "SERIGUDA",
+    "statusLocation": "REACHED  IN NIGHT",
+    "locationHistory": [
+      {
+        "loc": "REACHED  IN NIGHT",
+        "time": "25/9/2026, 8:32:21 am"
+      }
+    ],
+    "contact": "8619979525",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.954,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02571",
+    "wght": "",
+    "truck": "RJ01GD9100",
+    "farm": "",
+    "party": "SUR FEED CENTRE PRIVATE LIMITED (WB)",
+    "destination": "BARDHAMAN",
+    "statusLocation": "VARANASI WILL START FROM EVENING",
+    "locationHistory": [
+      {
+        "loc": "VARANASI",
+        "time": "25/9/2026, 8:34:11 am"
+      },
+      {
+        "loc": "VARANASI WILL START FROM EVENING",
+        "time": "26/9/2026, 9:42:50 am"
+      }
+    ],
+    "contact": "7071386835",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.7815,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02572",
+    "wght": "",
+    "truck": "RJ21GE5874",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "BALANAGAR",
+    "statusLocation": "WILL REACH IN EVENING",
+    "locationHistory": [
+      {
+        "loc": "WILL REACH IN EVENING",
+        "time": "24/9/2026, 10:03:49 am"
+      }
+    ],
+    "contact": "8000826897",
+    "status": "",
+    "issue": "TRACING",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790217992367.8987,
+    "date": "22-Sep-26",
+    "bill": "GI/2026-27/02574",
+    "wght": "",
+    "truck": "HR61F5397",
+    "farm": "",
+    "party": "DBS AGRO FOODS",
+    "destination": "BAREILLY",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "6396813072",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.0913,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02578",
+    "wght": "",
+    "truck": "RJ01GD3516",
+    "farm": "",
+    "party": "IDEAL FARM HOUSE",
+    "destination": "SURI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9167060439",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.0725,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02579",
+    "wght": "",
+    "truck": "RJ21GC1045",
+    "farm": "",
+    "party": "RAMNATH BREEDING FARM",
+    "destination": "YAMUNAPET",
+    "statusLocation": "CROSSED NIMUCH",
+    "locationHistory": [
+      {
+        "loc": "CROSSED NIMUCH",
+        "time": "26/9/2026, 8:58:30 am"
+      }
+    ],
+    "contact": "8290959247",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.1147,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02580",
+    "wght": "",
+    "truck": "HR55BC4271",
+    "farm": "",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "destination": "CUTTACK",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9817025673",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.444,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02582",
+    "wght": "",
+    "truck": "RJ01GD3151",
+    "farm": "",
+    "party": "SUR FEED CENTRE PRIVATE LIMITED (WB)",
+    "destination": "BARDHAMAN",
+    "statusLocation": "KISHANGARH",
+    "locationHistory": [
+      {
+        "loc": "KISHANGARH",
+        "time": "25/9/2026, 8:08:28 am"
+      }
+    ],
+    "contact": "9079821943",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.9956,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02584",
+    "wght": "",
+    "truck": "RJ01GE1187",
+    "farm": "",
+    "party": "SUR FEED CENTRE PRIVATE LIMITED (WB)",
+    "destination": "BARDHAMAN",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9571483677",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.362,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02585",
+    "wght": "",
+    "truck": "RJ21GF6757",
+    "farm": "",
+    "party": "SNEHA FARMS PRIVATE LIMITED (AP)",
+    "destination": "HANUMAN JUNCTION",
+    "statusLocation": "WARANGLE",
+    "locationHistory": [
+      {
+        "loc": "ENTERING MH",
+        "time": "25/9/2026, 8:11:44 am"
+      },
+      {
+        "loc": "WARANGLE",
+        "time": "26/9/2026, 9:00:50 am"
+      }
+    ],
+    "contact": "9950743597",
+    "status": "SEND LOCATION",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.195,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02587",
+    "wght": "",
+    "truck": "RJ07GE5185",
+    "farm": "",
+    "party": "CPF (INDIA) PRIVATE LIMITED (MH)",
+    "destination": "NEWASA",
+    "statusLocation": "NASIK",
+    "locationHistory": [
+      {
+        "loc": "PALANPUR",
+        "time": "25/9/2026, 8:15:05 am"
+      },
+      {
+        "loc": "NASIK",
+        "time": "26/9/2026, 9:02:51 am"
+      }
+    ],
+    "contact": "9602488834",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.4316,
+    "date": "23-Sep-26",
+    "bill": "GI/2026-27/02588",
+    "wght": "",
+    "truck": "RJ50GA7594",
+    "farm": "",
+    "party": "ROHINI MINERALS PVT LTD",
+    "destination": "MANGALPALLY",
+    "statusLocation": "MANPUR MP",
+    "locationHistory": [
+      {
+        "loc": "CHITTOR",
+        "time": "25/9/2026, 8:14:12 am"
+      },
+      {
+        "loc": "CHITTORGARH",
+        "time": "25/9/2026, 8:15:18 am"
+      },
+      {
+        "loc": "MANPUR MP",
+        "time": "26/9/2026, 9:17:42 am"
+      }
+    ],
+    "contact": "9782600229",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.9832,
+    "date": "23-Sep-26",
+    "bill": "GM/2026-27/01747",
+    "wght": "",
+    "truck": "RJ19GH9732",
+    "farm": "",
+    "party": "M/S DJ MALPANI PRIVATE LIMITED",
+    "destination": "SANGAMNER",
+    "statusLocation": "REACHED",
+    "locationHistory": [
+      {
+        "loc": "AHEMEDABAD",
+        "time": "25/9/2026, 8:19:42 am"
+      },
+      {
+        "loc": "REACHED",
+        "time": "26/9/2026, 9:19:10 am"
+      }
+    ],
+    "contact": "7410843498",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.9497,
+    "date": "23-Sep-26",
+    "bill": "GM/2026-27/01748",
+    "wght": "",
+    "truck": "RJ19GJ1477",
+    "farm": "",
+    "party": "RAJLAXMI TRADING COMPANY",
+    "destination": "WAVI",
+    "statusLocation": "AHEMEDABAD",
+    "locationHistory": [
+      {
+        "loc": "PALI",
+        "time": "25/9/2026, 8:46:26 am"
+      },
+      {
+        "loc": "AHEMEDABAD",
+        "time": "26/9/2026, 9:20:13 am"
+      }
+    ],
+    "contact": "8290132670",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790302034964.599,
+    "date": "23-Sep-26",
+    "bill": "GM/2026-27/01749",
+    "wght": "",
+    "truck": "BR26GC5848",
+    "farm": "",
+    "party": "KRISHU AGROVET",
+    "destination": "HAJIPUR",
+    "statusLocation": "BEFORE GAURAKHPUR",
+    "locationHistory": [
+      {
+        "loc": "BEFORE GAURAKHPUR",
+        "time": "25/9/2026, 8:22:41 am"
+      }
+    ],
+    "contact": "9931237353",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589036.1772,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02590",
+    "wght": "",
+    "truck": "RJ07GE2527",
+    "farm": "",
+    "party": "SUNDARAMMA POULTRY FARM",
+    "destination": "BADAMPUDI",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9414892527",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.501,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02592",
+    "wght": "",
+    "truck": "RJ01GC3695",
+    "farm": "",
+    "party": "ROHINI MINERALS PVT LTD",
+    "destination": "MANGALPALLY",
+    "statusLocation": "GUJJARI GHAT MH ENTER",
+    "locationHistory": [
+      {
+        "loc": "GUJJARI GHAT MH ENTER",
+        "time": "26/9/2026, 8:36:55 am"
+      }
+    ],
+    "contact": "8619296888",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.024,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02594",
+    "wght": "",
+    "truck": "RJ21GF2999",
+    "farm": "",
+    "party": "SNEHA FARMS PVT. LTD (TG)",
+    "destination": "MEDCHAL",
+    "statusLocation": "MANDSOR MP",
+    "locationHistory": [
+      {
+        "loc": "MANDSOR MP",
+        "time": "26/9/2026, 8:38:25 am"
+      }
+    ],
+    "contact": "9660044256",
+    "status": "SEND LOCATION",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.2834,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02596",
+    "wght": "",
+    "truck": "RJ48GA2459",
+    "farm": "",
+    "party": "DROOLS PET FOOD PRIVATE LIMITED",
+    "destination": "RAJNANDGAON",
+    "statusLocation": "KEKARI",
+    "locationHistory": [
+      {
+        "loc": "KEKARI",
+        "time": "26/9/2026, 8:39:57 am"
+      }
+    ],
+    "contact": "8955228126",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.4036,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02599",
+    "wght": "",
+    "truck": "RJ01GC5521",
+    "farm": "",
+    "party": "SHALIMAR HATCHERIES LIMITED (WB)",
+    "destination": "BANKURA",
+    "statusLocation": "AJMER",
+    "locationHistory": [
+      {
+        "loc": "AJMER",
+        "time": "26/9/2026, 8:41:08 am"
+      }
+    ],
+    "contact": "8800112470",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.8962,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02600",
+    "wght": "",
+    "truck": "HR38AL5683",
+    "farm": "",
+    "party": "PASUPATI AGROVET PRIVATE LIMITED (OD)",
+    "destination": "CUTTACK",
+    "statusLocation": "DAUSA",
+    "locationHistory": [
+      {
+        "loc": "DAUSA",
+        "time": "26/9/2026, 8:43:29 am"
+      }
+    ],
+    "contact": "9313657977",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.2615,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02601",
+    "wght": "",
+    "truck": "JH02BP1677",
+    "farm": "",
+    "party": "HARIOM FEEDS PVT. LTD.",
+    "destination": "GOPALGANJ",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "8292009852",
+    "status": "",
+    "issue": "N/A",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.0996,
+    "date": "24-Sep-26",
+    "bill": "GI/2026-27/02603",
+    "wght": "",
+    "truck": "RJ21GC9327",
+    "farm": "",
+    "party": "SHRI VATSHA POULTRY PVT LTD",
+    "destination": "GAJWEL",
+    "statusLocation": "MP ENTRING",
+    "locationHistory": [
+      {
+        "loc": "MP ENTRING",
+        "time": "26/9/2026, 8:46:16 am"
+      }
+    ],
+    "contact": "8690398745",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.6523,
+    "date": "24-Sep-26",
+    "bill": "GM/2026-27/01753",
+    "wght": "",
+    "truck": "RJ50GB6917",
+    "farm": "",
+    "party": "SRI VARSHAS AGRI FARMS",
+    "destination": "GHATKESAR",
+    "statusLocation": "HYDRABAD",
+    "locationHistory": [
+      {
+        "loc": "HYDRABAD",
+        "time": "26/9/2026, 8:48:37 am"
+      }
+    ],
+    "contact": "7976662840",
+    "status": "SEND LOCATION",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.4956,
+    "date": "24-Sep-26",
+    "bill": "GM/2026-27/01754",
+    "wght": "",
+    "truck": "RJ09GB4117",
+    "farm": "",
+    "party": "M/S JRB BREEDERS PRIVATE LIMITED",
+    "destination": "MEDCHAL",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9302379679",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.1677,
+    "date": "24-Sep-26",
+    "bill": "GM/2026-27/01756",
+    "wght": "",
+    "truck": "RJ09GD7437",
+    "farm": "",
+    "party": "SREE RAYALASEEMA HI STRENGTH HYPO LIMITED",
+    "destination": "KARNOOL",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9685618301",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.9895,
+    "date": "24-Sep-26",
+    "bill": "GM/2026-27/01758",
+    "wght": "",
+    "truck": "RJ19GK4792",
+    "farm": "",
+    "party": "PACIFIC LIME",
+    "destination": "UPLETA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9571171426",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.0127,
+    "date": "24-Sep-26",
+    "bill": "GM/2026-27/01759",
+    "wght": "",
+    "truck": "RJ41GA7660",
+    "farm": "",
+    "party": "HITECH NUTRISOL PRIVATE LIMITED (BR)",
+    "destination": "HAJIPUR",
+    "statusLocation": "JAIPUR",
+    "locationHistory": [
+      {
+        "loc": "JAIPUR",
+        "time": "26/9/2026, 8:55:27 am"
+      }
+    ],
+    "contact": "8690501378",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  },
+  {
+    "id": 1790391589037.5967,
+    "date": "24-Sep-26",
+    "bill": "GM/2026-27/01760",
+    "wght": "",
+    "truck": "RJ50GA5729",
+    "farm": "",
+    "party": "CHERRY CHIK HATCHERIES PVT LTD",
+    "destination": "MALERKOTLA",
+    "statusLocation": "",
+    "locationHistory": [],
+    "contact": "9983653213",
+    "status": "",
+    "issue": "",
+    "reachedChecked": false,
+    "pahunchChecked": false
+  }
+]
