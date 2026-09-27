@@ -115,6 +115,7 @@ function drishti(p){
 function add(arr,cat,name,reason,level="yes"){arr.push({cat,name,reason,level})}
 
 function analyze(){
+ try {
  const d=data(), out=[];
  // Planet status
  const sr=document.getElementById("statusRows"); sr.innerHTML="";
@@ -166,7 +167,7 @@ function analyze(){
  if(same("सूर्य","राहु")||same("सूर्य","केतु")||same("सूर्य","शनि"))add(out,"दोष","पितृ दोष संकेत","सूर्य के साथ राहु/केतु/शनि की युति है। यह परंपरा-आधारित संकेत है।","warn");
  // Kaal Sarp
  const shadow=[pos(d,"राहु").sign,pos(d,"केतु").sign]; let real=planets.filter(p=>!["राहु","केतु"].includes(p)).map(p=>pos(d,p).sign);
- const inArc=(start,end,s)=>{let cur=start;while(cur!==end){if(s===cur)return true;cur=(cur+1)%12}return s===end};
+ const inArc=(start,end,s)=>{if(start===end)return false;let cur=start;while(cur!==end){if(s===cur)return true;cur=(cur+1)%12}return s===end};
  let allOne=inArc(shadow[0],shadow[1],real[0])&&real.every(s=>inArc(shadow[0],shadow[1],s));
  let allOther=inArc(shadow[1],shadow[0],real[0])&&real.every(s=>inArc(shadow[1],shadow[0],s));
  if(allOne||allOther)add(out,"दोष","कालसर्प योग संकेत","सभी सात ग्रह राहु-केतु अक्ष के एक ओर पाए गए।","warn");
@@ -185,6 +186,10 @@ function analyze(){
  document.getElementById("special").textContent=(counts["विशेष"]||0)+(counts["चंद्र योग"]||0);
  document.getElementById("results").innerHTML=out.length?out.map(x=>`<div class="result"><h3>${x.level==="warn"?"⚠️":"✅"} ${x.name} <span class="badge ${x.level}">${x.cat}</span></h3><div class="reason">${x.reason}</div></div>`).join(""):`<div class="result"><h3>कोई प्रमुख योग/दोष नहीं मिला</h3><div class="reason">दिए गए डेटा के अनुसार इस संस्करण के नियमों में कोई परिणाम नहीं मिला।</div></div>`;
  window.lastResults=out;
+ } catch(err) {
+   console.error(err);
+   document.getElementById("results").innerHTML=`<div class="result"><h3>⚠️ विश्लेषण में त्रुटि</h3><div class="reason">${String(err.message||err)}</div></div>`;
+ }
 }
 function loadExample(){
  document.getElementById("lagna").value=3;
