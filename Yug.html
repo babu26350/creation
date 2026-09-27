@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>कुंडली योग एवं दोष विश्लेषक</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:#f3f6fb;color:#172033}
+header{background:linear-gradient(135deg,#4b1d73,#8b2f75);color:#fff;padding:18px;text-align:center;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #0002}
+h1{margin:0;font-size:24px}header small{opacity:.9}
+.container{max-width:1250px;margin:auto;padding:14px}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 10px #0001}
+h2{margin:0 0 12px;color:#54206f;font-size:19px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+label{font-weight:bold;font-size:13px;color:#444}select,input{width:100%;padding:10px;border:1px solid #ccd4df;border-radius:8px;background:#fff;margin-top:5px;font-size:14px}
+table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #e7eaf0;text-align:left;font-size:13px}th{background:#f1edf6;color:#54206f}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}button{border:0;border-radius:9px;padding:11px 16px;font-weight:bold;cursor:pointer;background:#54206f;color:#fff}button.alt{background:#e8edf5;color:#263247}button.danger{background:#b52b35}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stat{padding:14px;border-radius:12px;background:#f7f1fb;text-align:center}.stat b{display:block;font-size:25px;color:#54206f}.stat span{font-size:12px}
+.badge{display:inline-block;padding:4px 8px;border-radius:20px;font-size:11px;font-weight:bold}.yes{background:#d9f5e5;color:#08733a}.no{background:#f0f1f4;color:#667085}.warn{background:#fff0d6;color:#9a5b00}
+.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.result{border:1px solid #e4e7ed;border-radius:11px;padding:12px}.result h3{margin:0 0 7px;font-size:15px;color:#4d2167}.reason{font-size:12px;line-height:1.55;color:#4d5665}
+details{border:1px solid #ddd;border-radius:9px;margin:7px 0;padding:9px;background:#fafafa}summary{font-weight:bold;cursor:pointer}
+.notice{font-size:12px;color:#667085;background:#f7f8fa;padding:10px;border-radius:8px;line-height:1.6}
+@media(max-width:800px){.grid,.stats,.result-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid,.stats,.result-grid{grid-template-columns:1fr 1fr}h1{font-size:19px}table{font-size:11px}th,td{padding:7px}}
+</style>
+</head>
+<body>
+<header><h1>🔱 कुंडली योग एवं दोष विश्लेषक</h1><small>लग्न • ग्रह स्थिति • उच्च/नीच • दृष्टि • योग • दोष</small></header>
+<div class="container">
+
+<div class="card">
+<h2>① कुंडली की मूल जानकारी</h2>
+<div class="grid">
+<div><label>लग्न राशि</label><select id="lagna"></select></div>
+<div><label>कुंडली नाम</label><input id="chartName" placeholder="जैसे: मेरी कुंडली"></div>
+<div><label>अयनांश / पद्धति</label><select id="method"><option>वैदिक / पराशरी</option><option>लाहिड़ी (इनपुट आधारित)</option></select></div>
+<div><label>नोट</label><input id="note" placeholder="कोई अतिरिक्त जानकारी"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>② ग्रहों की Entry</h2>
+<div class="notice">राशि चुनते ही भाव, उच्च/नीच, स्वराशि आदि स्वतः निकाले जाएंगे। भाव क्रम लग्न से 1 से 12 माना गया है। डिग्री वैकल्पिक है।</div>
+<div style="overflow:auto;margin-top:10px">
+<table><thead><tr><th>ग्रह</th><th>राशि</th><th>डिग्री</th><th>वक्री</th><th>अस्त</th><th>भाव</th><th>स्थिति</th></tr></thead>
+<tbody id="planetRows"></tbody></table>
+</div>
+<div class="btns"><button onclick="analyze()">🔍 योग पहचानें</button><button class="alt" onclick="loadExample()">उदाहरण कुंडली</button><button class="alt" onclick="saveData()">💾 सेव</button><button class="alt" onclick="loadData()">📂 लोड</button><button class="danger" onclick="resetAll()">रीसेट</button></div>
+</div>
+
+<div class="card">
+<h2>③ परिणाम सारांश</h2>
+<div class="stats">
+<div class="stat"><b id="total">0</b><span>कुल योग/दोष</span></div>
+<div class="stat"><b id="raj">0</b><span>राजयोग</span></div>
+<div class="stat"><b id="dhan">0</b><span>धन योग</span></div>
+<div class="stat"><b id="dosha">0</b><span>दोष</span></div>
+<div class="stat"><b id="special">0</b><span>विशेष योग</span></div>
+</div>
+</div>
+
+<div class="card">
+<h2>④ ग्रहों की शक्ति एवं स्थिति</h2>
+<div style="overflow:auto"><table><thead><tr><th>ग्रह</th><th>राशि</th><th>भाव</th><th>स्थिति</th><th>दृष्टि</th></tr></thead><tbody id="statusRows"></tbody></table></div>
+</div>
+
+<div class="card"><h2>⑤ पहचाने गए योग एवं दोष</h2><div id="results" class="result-grid"></div></div>
+
+<div class="card">
+<h2>⑥ पराशरी योग डेटाबेस</h2>
+<div class="notice">इस संस्करण में प्रमुख नियमों का इंजन दिया गया है। योग की परिभाषाओं में अलग-अलग ग्रंथ/परंपराओं के मतभेद हो सकते हैं; इसलिए परिणाम को नियम-आधारित संकेत के रूप में देखें।</div>
+<div id="rules"></div>
+</div>
+</div>
+
+<script>
+const signs=["मेष","वृषभ","मिथुन","कर्क","सिंह","कन्या","तुला","वृश्चिक","धनु","मकर","कुंभ","मीन"];
+const planets=["सूर्य","चंद्र","मंगल","बुध","गुरु","शुक्र","शनि","राहु","केतु"];
+const exalt={सूर्य:0,चंद्र:1,मंगल:9,बुध:5,गुरु:3,शुक्र:11,शनि:6};
+const debil={सूर्य:6,चंद्र:7,मंगल:3,बुध:11,गुरु:9,शुक्र:5,शनि:0};
+const own={सूर्य:[4],चंद्र:[3],मंगल:[0,7],बुध:[2,5],गुरु:[8,11],शुक्र:[1,6],शनि:[9,10],राहु:[],केतु:[]};
+const houseLords={0:"मंगल",1:"शुक्र",2:"बुध",3:"चंद्र",4:"सूर्य",5:"बुध",6:"शुक्र",7:"मंगल",8:"गुरु",9:"शनि",10:"शनि",11:"गुरु"};
+
+const rows=document.getElementById("planetRows");
+document.getElementById("lagna").innerHTML=signs.map((s,i)=>`<option value="${i}">${s}</option>`).join("");
+planets.forEach(p=>{
+ rows.insertAdjacentHTML("beforeend",`<tr data-p="${p}">
+ <td><b>${p}</b></td><td><select class="sign">${signs.map((s,i)=>`<option value="${i}">${s}</option>`).join("")}</select></td>
+ <td><input class="deg" type="number" min="0" max="29.99" step=".01" placeholder="0–30"></td>
+ <td><input class="retro" type="checkbox"></td><td><input class="combust" type="checkbox"></td>
+ <td class="house">—</td><td class="strength">—</td></tr>`);
+});
+
+function data(){
+ const lag=+document.getElementById("lagna").value; const d={lagna:lag,planets:{}};
+ planets.forEach(p=>{let r=document.querySelector(`tr[data-p="${p}"]`);let s=+r.querySelector(".sign").value;
+ d.planets[p]={sign:s,deg:+r.querySelector(".deg").value||0,retro:r.querySelector(".retro").checked,combust:r.querySelector(".combust").checked,house:(s-lag+12)%12+1};});return d;
+}
+function pos(d,p){return d.planets[p]}
+function relationFrom(d,a,b){return (pos(d,a).sign-pos(d,b).sign+12)%12+1}
+function kendra(h){return [1,4,7,10].includes(h)}
+function trikona(h){return [1,5,9].includes(h)}
+function strength(p,x){
+ if(p==="राहु"||p==="केतु")return "छाया ग्रह";
+ if(x.sign===exalt[p])return "उच्च";
+ if(x.sign===debil[p])return "नीच";
+ if((own[p]||[]).includes(x.sign))return "स्वराशि";
+ return "सामान्य";
+}
+function drishti(d,p){
+ const h=pos(d,p).house, a=[(h+6)%12+1];
+ if(["मंगल"].includes(p))a.push((h+3)%12+1,(h+7)%12+1);
+ else if(["गुरु"].includes(p))a.push((h+4)%12+1,(h+8)%12+1);
+ else if(["शनि"].includes(p))a.push((h+2)%12+1,(h+9)%12+1);
+ else if(["राहु","केतु"].includes(p))a.push((h+4)%12+1,(h+8)%12+1);
+ return [...new Set(a)].sort((a,b)=>a-b).join(", ");
+}
+function add(arr,cat,name,reason,level="yes"){arr.push({cat,name,reason,level})}
+
+function analyze(){
+ try {
+ const d=data(), out=[];
+ // Planet status
+ const sr=document.getElementById("statusRows"); sr.innerHTML="";
+ planets.forEach(p=>{
+  let x=pos(d,p), st=strength(p,x), extras=[];
+  if(x.retro)extras.push("वक्री"); if(x.combust)extras.push("अस्त");
+  sr.insertAdjacentHTML("beforeend",`<tr><td><b>${p}</b></td><td>${signs[x.sign]}</td><td>${x.house}</td><td>${st}${extras.length?" / "+extras.join(" / "):""}</td><td>${drishti(d,p)}</td></tr>`);
+  const r=document.querySelector(`tr[data-p="${p}"]`);r.querySelector(".house").textContent=x.house;r.querySelector(".strength").textContent=st;
+ });
+ const lag=d.lagna;
+ // Exaltation/debilitation
+ planets.forEach(p=>{let x=pos(d,p);if(strength(p,x)==="उच्च")add(out,"विशेष",`${p} उच्चस्थ`,` ${p} ${signs[x.sign]} राशि में उच्च है।`);if(strength(p,x)==="नीच")add(out,"विशेष",`${p} नीचस्थ`,` ${p} ${signs[x.sign]} राशि में नीच है।`);if(strength(p,x)==="स्वराशि")add(out,"विशेष",`${p} स्वराशि`,` ${p} अपनी राशि में स्थित है।`);});
+ // Kendra/trikona lords
+ const lordH=h=>houseLords[(lag+h-1)%12];
+ const L1=lordH(1),L5=lordH(5),L9=lordH(9),L4=lordH(4),L7=lordH(7),L10=lordH(10),L2=lordH(2),L11=lordH(11),L6=lordH(6),L8=lordH(8),L12=lordH(12);
+ function same(a,b){return pos(d,a).sign===pos(d,b).sign}
+ function conn(a,b){if(a===b)return false; return same(a,b)||(relationFrom(d,a,b)===5||relationFrom(d,a,b)===9)||(kendra(relationFrom(d,a,b)))}
+ 
+ // Rajyoga
+ [[L5,L1],[L5,L4],[L5,L7],[L5,L10],[L9,L1],[L9,L4],[L9,L7],[L9,L10]].forEach(([a,b])=>{
+  if(conn(a,b))add(out,"राजयोग",`राजयोग (${a} + ${b})`,`${a} और ${b} के बीच संबंध/योग पाया गया।`);
+ });
+ if(conn(L9,L10))add(out,"राजयोग","धर्म-कर्माधिपति योग",`${L9} (नवमेश) और ${L10} (दशमेश) में संबंध पाया गया।`);
+ 
+ // Dhan yoga
+ [[L2,L1],[L2,L5],[L2,L9],[L11,L1],[L11,L5],[L11,L9],[L2,L11]].forEach(([a,b])=>{if(conn(a,b))add(out,"धन योग",`धन योग (${a} + ${b})`,`${a} और ${b} में संबंध पाया गया।`);});
+ 
+ // Panch Mahapurusha
+ [["मंगल","रुचक"],["बुध","भद्र"],["गुरु","हंस"],["शुक्र","मालव्य"],["शनि","शश"]].forEach(([p,n])=>{
+  let x=pos(d,p); if(kendra(x.house)&&["स्वराशि","उच्च"].includes(strength(p,x)))add(out,"विशेष",`${n} योग`,`${p} केंद्र भाव (${x.house}) में उच्च/स्वराशि है।`);
+ });
+ 
+ // Gajakesari
+ if(kendra(relationFrom(d,"गुरु","चंद्र")))add(out,"विशेष","गजकेसरी योग","गुरु चंद्र से केंद्र भाव में है।");
+ 
+ // Budhaditya
+ if(same("सूर्य","बुध"))add(out,"विशेष","बुधादित्य योग","सूर्य और बुध एक ही राशि में हैं।");
+ 
+ // Chandra Mangal
+ if(same("चंद्र","मंगल"))add(out,"धन योग","चंद्र-मंगल योग","चंद्र और मंगल एक ही राशि में हैं।");
+ 
+ // Sunapha / Anapha / Durudhara
+ let moon=pos(d,"चंद्र").sign, others=planets.filter(p=>p!=="चंद्र"&&p!=="राहु"&&p!=="केतु");
+ let before=others.some(p=>pos(d,p).sign===(moon+11)%12), after=others.some(p=>pos(d,p).sign===(moon+1)%12);
+ if(after)add(out,"चंद्र योग","सुनफा योग","चंद्र से दूसरे भाव में सूर्य को छोड़कर ग्रह स्थित है।");
+ if(before)add(out,"चंद्र योग","अनफा योग","चंद्र से बारहवें भाव में सूर्य को छोड़कर ग्रह स्थित है।");
+ if(before&&after)add(out,"चंद्र योग","दुर्धरा योग","चंद्र से 2nd और 12th दोनों ओर ग्रह स्थित हैं।");
+ 
+ // Vipreet Raj Yoga
+ if([6,8,12].includes(pos(d,L6).house)) add(out,"राजयोग","विपरीत राजयोग — हर्ष",`6ठे घर का स्वामी (${L6}) 6/8/12वें भाव में स्थित है।`);
+ if([6,8,12].includes(pos(d,L8).house)) add(out,"राजयोग","विपरीत राजयोग — सरल",`8वें घर का स्वामी (${L8}) 6/8/12वें भाव में स्थित है।`);
+ if([6,8,12].includes(pos(d,L12).house)) add(out,"राजयोग","विपरीत राजयोग — विमल",`12वें घर का स्वामी (${L12}) 6/8/12वें भाव में स्थित है।`);
+
+ // Manglik
+ const marsH=pos(d,"मंगल").house;
+ if([1,4,7,8,12].includes(marsH))add(out,"दोष","मांगलिक दोष — लग्न से","मंगल 1/4/7/8/12 में स्थित है।","warn");
+ const moonMarsH = relationFrom(d,"मंगल","चंद्र");
+ if([1,4,7,8,12].includes(moonMarsH))add(out,"दोष","मांगलिक स्थिति — चंद्र से","मंगल चंद्र से 1/4/7/8/12 में है।","warn");
+ 
+ // Pitri dosha
+ if(same("सूर्य","राहु")||same("सूर्य","केतु")||same("सूर्य","शनि"))add(out,"दोष","पितृ दोष संकेत","सूर्य के साथ राहु/केतु/शनि की युति है।","warn");
+ 
+ // Kaal Sarp
+ const shadow=[pos(d,"राहु").sign,pos(d,"केतु").sign]; let real=planets.filter(p=>!["राहु","केतु"].includes(p)).map(p=>pos(d,p).sign);
+ const inArc=(start,end,s)=>{if(start===end)return false;let cur=start;while(cur!==end){if(s===cur)return true;cur=(cur+1)%12}return s===end};
+ let allOne=inArc(shadow[0],shadow[1],real[0])&&real.every(s=>inArc(shadow[0],shadow[1],s));
+ let allOther=inArc(shadow[1],shadow[0],real[0])&&real.every(s=>inArc(shadow[1],shadow[0],s));
+ if(allOne||allOther)add(out,"दोष","कालसर्प योग संकेत","सभी सात ग्रह राहु-केतु अक्ष के एक ओर पाए गए।","warn");
+
+ // Kemadruma
+ let m2=others.some(p=>pos(d,p).sign===(moon+1)%12),m12=others.some(p=>pos(d,p).sign===(moon+11)%12);
+ if(!m2&&!m12)add(out,"चंद्र योग","केमद्रुम योग संकेत","चंद्र से 2nd और 12th में प्रमुख ग्रह नहीं मिला।","warn");
+
+ // Display
+ const counts={राजयोग:0,"धन योग":0,"दोष":0,"विशेष":0,"चंद्र योग":0};
+ out.forEach(x=>counts[x.cat]=(counts[x.cat]||0)+1);
+ document.getElementById("total").textContent=out.length;
+ document.getElementById("raj").textContent=counts["राजयोग"]||0;
+ document.getElementById("dhan").textContent=counts["धन योग"]||0;
+ document.getElementById("dosha").textContent=counts["दोष"]||0;
+ document.getElementById("special").textContent=(counts["विशेष"]||0)+(counts["चंद्र योग"]||0);
+ document.getElementById("results").innerHTML=out.length?out.map(x=>`<div class="result"><h3>${x.level==="warn"?"⚠️":"✅"} ${x.name} <span class="badge ${x.level}">${x.cat}</span></h3><div class="reason">${x.reason}</div></div>`).join(""):`<div class="result"><h3>कोई प्रमुख योग/दोष नहीं मिला</h3><div class="reason">दिए गए डेटा के अनुसार कोई परिणाम नहीं मिला।</div></div>`;
+ window.lastResults=out;
+ } catch(err) {
+   console.error(err);
+   document.getElementById("results").innerHTML=`<div class="result"><h3>⚠️ विश्लेषण में त्रुटि</h3><div class="reason">${String(err.message||err)}</div></div>`;
+ }
+}
+function loadExample(){
+ document.getElementById("lagna").value=3;
+ const ex={सूर्य:7,चंद्र:6,मंगल:9,बुध:7,गुरु:2,शुक्र:10,शनि:4,राहु:1,केतु:7};
+ planets.forEach(p=>{let r=document.querySelector(`tr[data-p="${p}"]`);r.querySelector(".sign").value=ex[p];});
+ analyze();
+}
+function saveData(){localStorage.setItem("kundaliYogaAnalyzer",JSON.stringify(data()));alert("कुंडली डेटा सेव हो गया।")}
+function loadData(){let s=localStorage.getItem("kundaliYogaAnalyzer");if(!s)return alert("कोई सेव डेटा नहीं मिला।");let d=JSON.parse(s);document.getElementById("lagna").value=d.lagna;planets.forEach(p=>{let x=d.planets[p],r=document.querySelector(`tr[data-p="${p}"]`);if(x){r.querySelector(".sign").value=x.sign;r.querySelector(".deg").value=x.deg;r.querySelector(".retro").checked=x.retro;r.querySelector(".combust").checked=x.combust;}});analyze();}
+function resetAll(){if(!confirm("सारा इनपुट रीसेट करें?"))return;document.getElementById("lagna").value=0;planets.forEach(p=>{let r=document.querySelector(`tr[data-p="${p}"]`);r.querySelector(".sign").value=0;r.querySelector(".deg").value="";r.querySelector(".retro").checked=false;r.querySelector(".combust").checked=false;});analyze();}
+document.getElementById("rules").innerHTML=[
+["राजयोग","त्रिकोणेश और केंद्रेश के संबंध की जांच"],
+["धर्म-कर्माधिपति","नवमेश-दशमेश संबंध"],
+["धन योग","द्वितीय/एकादशेश का लग्न/पंचम/नवमेश से संबंध"],
+["पंचमहापुरुष","मंगल/बुध/गुरु/शुक्र/शनि का केंद्र में उच्च/स्वराशि होना"],
+["गजकेसरी","गुरु का चंद्र से केंद्र में होना"],
+["बुधादित्य","सूर्य-बुध युति"],
+["चंद्र-मंगल","चंद्र-मंगल युति"],
+["सुनफा/अनफा/दुर्धरा","चंद्र के 2nd/12th भाव में ग्रह"],
+["विपरीत राजयोग","6/8/12 भावेशों के विशेष संबंध"],
+["मांगलिक","मंगल की परंपरागत 1/4/7/8/12 स्थिति"],
+["पितृ दोष संकेत","सूर्य-राहु/केतु/शनि युति"],
+["कालसर्प संकेत","राहु-केतु अक्ष के एक ओर सात ग्रह"],
+["केमद्रुम संकेत","चंद्र से 2nd/12th में ग्रह का अभाव"]
+].map(x=>`<details><summary>${x[0]}</summary>${x[1]}</details>`).join("");
+analyze();
+</script>
+</body>
+</html>
