@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="hi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vedic Astrology Argala Calculator - Brihat Parashar Hora Shastra</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Rozha One', 'serif'],
+                    },
+                    colors: {
+                        vedic: {
+                            gold: '#d97706',
+                            darkGold: '#b45309',
+                            maroon: '#7f1d1d',
+                            saffron: '#ea580c',
+                            cream: '#fef3c7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .vedic-gradient {
+            background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+        }
+        .gold-border {
+            border-color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-full flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
+
+    <header class="vedic-gradient border-b border-amber-600/30 shadow-2xl py-6 px-4 sm:px-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <span class="text-xs uppercase tracking-widest bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full font-semibold border border-amber-500/30">बृहत पाराशर होरा शास्त्र</span>
+                <h1 class="text-2xl sm:text-4xl font-serif font-bold text-amber-200 mt-2 tracking-wide">कुंडली अर्गला कैलकुलेटर (Argala Calculator)</h1>
+                <p class="text-slate-300 text-sm mt-1">भावों के अर्गला (प्रभाव/बाधा) और विरोध अर्गला का सटीक ज्योतिषीय विश्लेषण</p>
+            </div>
+            <div class="flex gap-2 bg-slate-900/80 p-2 rounded-xl border border-amber-500/30">
+                <button onclick="loadPreset('sample1')" class="text-xs bg-amber-600 hover:bg-amber-500 text-white font-medium px-3 py-2 rounded-lg transition shadow">डिफ़ॉल्ट कुंडली लोड करें</button>
+                <button onclick="resetForm()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-3 py-2 rounded-lg transition border border-slate-700">रीसेट करें</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-8 my-4">
+        
+        <!-- Left Column: Planet Configuration -->
+        <div class="lg:col-span-5 bg-slate-900/90 rounded-2xl border border-slate-800 p-5 shadow-xl flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                    <h2 class="text-lg font-semibold text-amber-400 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        लग्न व ग्रह स्थिति दर्ज करें
+                    </h2>
+                    <span class="text-xs text-slate-400">12 राशियाँ</span>
+                </div>
+
+                <!-- Lagna Selection -->
+                <div class="mb-4">
+                    <label class="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-1">लग्न (Ascendant - पहला भाव)</label>
+                    <select id="lagnaSelect" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-500 font-medium">
+                        <option value="1">1 - मेष (Aries)</option>
+                        <option value="2">2 - वृषभ (Taurus)</option>
+                        <option value="3">3 - मिथुन (Gemini)</option>
+                        <option value="4" selected>4 - कर्क (Cancer)</option>
+                        <option value="5">5 - सिंह (Leo)</option>
+                        <option value="6">6 - कन्या (Virgo)</option>
+                        <option value="7">7 - तुला (Libra)</option>
+                        <option value="8">8 - वृश्चिक (Scorpio)</option>
+                        <option value="9">9 - धनु (Sagittarius)</option>
+                        <option value="10">10 - मकर (Capricorn)</option>
+                        <option value="11">11 - कुंभ (Aquarius)</option>
+                        <option value="12">12 - मीन (Pisces)</option>
+                    </select>
+                </div>
+
+                <!-- Planet House Assignments -->
+                <div class="space-y-3 max-h-[380px] overflow-y-auto pr-1">
+                    <p class="text-xs text-slate-400 mb-2">प्रत्येक ग्रह किस भाव (1 से 12) में स्थित है, चुनें:</p>
+                    
+                    <!-- Dynamic planet row generator container -->
+                    <div id="planetsInputsContainer" class="space-y-2.5">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="mt-6 pt-4 border-t border-slate-800">
+                <button onclick="calculateArgala()" class="w-full py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold rounded-xl shadow-lg transition duration-200 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012-2m-6 9l2 2 4-4"/></svg>
+                    अर्गला विश्लेषण देखें
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Column: Results & Bhav Inspection -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+            
+            <!-- Bhav Selector Card -->
+            <div class="bg-slate-900/90 rounded-2xl border border-slate-800 p-5 shadow-xl">
+                <h2 class="text-lg font-semibold text-amber-400 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    अध्ययन के लिए भाव (Target Bhav) चुनें
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4" id="targetBhavButtons">
+                    <!-- Buttons 1 to 12 generated via JS -->
+                </div>
+                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center text-sm">
+                    <span class="text-slate-400">चयनित भाव:</span>
+                    <span id="selectedBhavLabel" class="text-amber-300 font-semibold">प्रथम भाव (लग्न)</span>
+                </div>
+            </div>
+
+            <!-- Argala Result Output Card -->
+            <div class="bg-slate-900/90 rounded-2xl border border-slate-800 p-5 shadow-xl flex-grow flex flex-col">
+                <div class="border-b border-slate-800 pb-3 mb-4 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-base font-semibold text-amber-200" id="resultTitle">अर्गला परिणाम (Argala Results)</h3>
+                        <p class="text-xs text-slate-400">बृहत पाराशर होरा शास्त्र के नियमानुसार</p>
+                    </div>
+                    <span id="bhavSignInfo" class="text-xs bg-slate-800 text-amber-400 px-2.5 py-1 rounded-lg border border-slate-700">राशि: --</span>
+                </div>
+
+                <!-- Results Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow" id="argalaResultGrid">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Parashari Summary Footer -->
+                <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400 leading-relaxed bg-slate-950/50 p-3 rounded-xl border border-slate-800/80">
+                    <strong class="text-amber-400">पाराशर नियम सार:</strong> 2nd (धन/वाणी), 4th (सुख/भूमि), 11th (लाभ) और 5th (बुद्धि/संतान) भाव मुख्य अर्गला (सांकल) बनाते हैं। इनके विरोधी भाव (12th, 10th, 3rd, 9th) इस प्रभाव को संतुलित या खंडित करते हैं।
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-4 text-center text-xs text-slate-500">
+        <p>वेद, ज्योतिष एवं पाराशर होरा शास्त्र आधारित अर्गला कैलकुलेटर &copy; 2026</p>
+    </footer>
+
+    <!-- Notification Toast container -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-amber-600 text-white px-4 py-2 rounded-xl shadow-2xl transition-opacity duration-300 opacity-0 pointer-events-none text-sm z-50"></div>
+
+    <script>
+        // Planet metadata in Hindi and English
+        const PLANETS = [
+            { id: 'Sun', name: 'सूर्य (Sun)', defaultHouse: 1 },
+            { id: 'Moon', name: 'चंद्रमा (Moon)', defaultHouse: 4 },
+            { id: 'Mars', name: 'मंगल (Mars)', defaultHouse: 10 },
+            { id: 'Mercury', name: 'बुध (Mercury)', defaultHouse: 2 },
+            { id: 'Jupiter', name: 'गुरु (Jupiter)', defaultHouse: 5 },
+            { id: 'Venus', name: 'शुक्र (Venus)', defaultHouse: 3 },
+            { id: 'Saturn', name: 'शनि (Saturn)', defaultHouse: 7 },
+            { id: 'Rahu', name: 'राहु (Rahu)', defaultHouse: 6 },
+            { id: 'Ketu', name: 'केतु (Ketu)', defaultHouse: 12 }
+        ];
+
+        // Rashi names in Vedic astrology
+        const RASHIS = {
+            1: 'मेष (Aries)', 2: 'वृषभ (Taurus)', 3: 'मिथुन (Gemini)', 4: 'कर्क (Cancer)',
+            5: 'सिंह (Leo)', 6: 'कन्या (Virgo)', 7: 'तुला (Libra)', 8: 'वृश्चिक (Scorpio)',
+            9: 'धनु (Sagittarius)', 10: 'मकर (Capricorn)', 11: 'कुंभ (Aquarius)', 12: 'मीन (Pisces)'
+        };
+
+        const BHAV_NAMES = {
+            1: 'प्रथम भाव (लग्न - Tanu)', 2: 'द्वितीय भाव (धन - Dhana)', 3: 'तृतीय भाव (पराक्रम - Sahaja)',
+            4: 'चतुर्थ भाव (सुख - Sukha)', 5: 'पञ्चम भाव (बुद्धि/पुत्र - Suta)', 6: 'षष्ठ भाव (शत्रु/रोग - Ari)',
+            7: 'सप्तम भाव (जीवनसाथी - Yuvati)', 8: 'अष्टम भाव (आयु/मृत्यु - Randhra)', 9: 'नवम भाव (भाग्य/धर्म - Dharma)',
+            10: 'दशम भाव (कर्म/पिता - Karma)', 11: 'एकादश भाव (लाभ - Labha)', 12: 'द्वादश भाव (व्यय - Vyaya)'
+        };
+
+        let currentTargetBhav = 1;
+
+        // Initialize UI inputs on load
+        window.onload = function() {
+            buildPlanetInputs();
+            buildBhavButtons();
+            loadPreset('sample1');
+        };
+
+        function buildPlanetInputs() {
+            const container = document.getElementById('planetsInputsContainer');
+            container.innerHTML = '';
+            PLANETS.forEach(p => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center justify-between bg-slate-950 px-3 py-2 rounded-xl border border-slate-800/80';
+                div.innerHTML = `
+                    <span class="text-sm font-medium text-slate-300">${p.name}</span>
+                    <select id="planet_${p.id}" class="bg-slate-900 border border-slate-700 text-amber-300 font-semibold text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-amber-500">
+                        <option value="1">भाव 1</option>
+                        <option value="2">भाव 2</option>
+                        <option value="3">भाव 3</option>
+                        <option value="4">भाव 4</option>
+                        <option value="5">भाव 5</option>
+                        <option value="6">भाव 6</option>
+                        <option value="7">भाव 7</option>
+                        <option value="8">भाव 8</option>
+                        <option value="9">भाव 9</option>
+                        <option value="10">भाव 10</option>
+                        <option value="11">भाव 11</option>
+                        <option value="12">भाव 12</option>
+                    </select>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function buildBhavButtons() {
+            const container = document.getElementById('targetBhavButtons');
+            container.innerHTML = '';
+            for (let i = 1; i <= 12; i++) {
+                const btn = document.createElement('button');
+                btn.id = `bhavBtn_${i}`;
+                btn.className = `py-2 px-2 text-xs font-semibold rounded-xl border transition text-center ${i === currentTargetBhav ? 'bg-amber-600 border-amber-500 text-white shadow' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'}`;
+                btn.innerHTML = `भाव ${i}`;
+                btn.onclick = () => setTargetBhav(i);
+                container.appendChild(btn);
+            }
+        }
+
+        function setTargetBhav(bhavNum) {
+            currentTargetBhav = bhavNum;
+            document.querySelectorAll('[id^="bhavBtn_"]').forEach(el => {
+                el.className = 'py-2 px-2 text-xs font-semibold rounded-xl border transition text-center bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700';
+            });
+            const activeBtn = document.getElementById(`bhavBtn_${bhavNum}`);
+            if (activeBtn) {
+                activeBtn.className = 'py-2 px-2 text-xs font-semibold rounded-xl border transition text-center bg-amber-600 border-amber-500 text-white shadow';
+            }
+            document.getElementById('selectedBhavLabel').innerText = BHAV_NAMES[bhavNum];
+            calculateArgala();
+        }
+
+        function loadPreset(type) {
+            if (type === 'sample1') {
+                document.getElementById('lagnaSelect').value = '4'; // Cancer Lagna
+                const presetHouses = {
+                    'Sun': 1,   // Sun in 1st (Cancer)
+                    'Moon': 4,  // Moon in 4th (Libra)
+                    'Mars': 10, // Mars in 10th (Aries)
+                    'Mercury': 2, // Mercury in 2nd (Leo)
+                    'Jupiter': 5, // Jupiter in 5th (Scorpio)
+                    'Venus': 3,  // Venus in 3rd (Virgo)
+                    'Saturn': 7, // Saturn in 7th (Capricorn)
+                    'Rahu': 6,   // Rahu in 6th (Sagittarius)
+                    'Ketu': 12   // Ketu in 12th (Gemini)
+                };
+                for (const [pId, house] of Object.entries(presetHouses)) {
+                    const sel = document.getElementById(`planet_${pId}`);
+                    if (sel) sel.value = house;
+                }
+                setTargetBhav(2); // Inspect 2nd house (Dhana Bhav)
+                showToast("डिफ़ॉल्ट कुंडली (कर्क लग्न) लोड हो गई है!");
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('lagnaSelect').value = '1';
+            PLANETS.forEach(p => {
+                const sel = document.getElementById(`planet_${p.id}`);
+                if (sel) sel.value = '1';
+            });
+            setTargetBhav(1);
+            showToast("फॉर्म रीसेट कर दिया गया है।");
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.style.opacity = '1';
+            setTimeout(() => {
+                t.style.opacity = '0';
+            }, 3000);
+        }
+
+        // Helper to get relative house from target (1 to 12)
+        // distance: e.g., 2nd house from target
+        function getRelativeHouse(target, offset) {
+            let res = (target + offset - 1) % 12;
+            return res === 0 ? 12 : res;
+        }
+
+        function calculateArgala() {
+            const lagna = parseInt(document.getElementById('lagnaSelect').value);
+            
+            // Collect planet locations
+            let planetMap = {}; // house -> array of planet names
+            for (let i = 1; i <= 12; i++) planetMap[i] = [];
+
+            PLANETS.forEach(p => {
+                const h = parseInt(document.getElementById(`planet_${p.id}`).value);
+                planetMap[h].push(p.name);
+            });
+
+            // Calculate Rashi for Target Bhav
+            const targetRashiNum = ((lagna + currentTargetBhav - 2) % 12) + 1;
+            document.getElementById('bhavSignInfo').innerText = `राशि: ${RASHIS[targetRashiNum]}`;
+            document.getElementById('resultTitle').innerText = `${BHAV_NAMES[currentTargetBhav]} का अर्गला विवरण`;
+
+            // Parashar Argala definitions relative to Target Bhav:
+            // Primary Argala houses: 2nd, 4th, 11th, 5th
+            // Virodh Argala (Opposition/Counter) houses: 12th, 10th, 3rd, 9th
+            const argalaSpecs = [
+                { offset: 2, virodhOffset: 12, title: 'द्वितीय भाव (2nd House Argala)', desc: 'धन, कुटुंब और वाणी संबंधी प्रभाव' },
+                { offset: 4, virodhOffset: 10, title: 'चतुर्थ भाव (4th House Argala)', desc: 'सुख, माता और भूमि संबंधी प्रभाव' },
+                { offset: 11, virodhOffset: 3, title: 'एकादश भाव (11th House Argala)', desc: 'लाभ, आय और इच्छापूर्ति संबंधी प्रभाव' },
+                { offset: 5, virodhOffset: 9, title: 'पञ्चम भाव (5th House Argala)', desc: 'बुद्धि, संतान और विद्या संबंधी प्रभाव' }
+            ];
+
+            const grid = document.getElementById('argalaResultGrid');
+            grid.innerHTML = '';
+
+            argalaSpecs.forEach(spec => {
+                const argalaHouse = getRelativeHouse(currentTargetBhav, spec.offset);
+                const virodhHouse = getRelativeHouse(currentTargetBhav, spec.virodhOffset);
+
+                const argalaPlanets = planetMap[argalaHouse];
+                const virodhPlanets = planetMap[virodhHouse];
+
+                const hasArgala = argalaPlanets.length > 0;
+                const hasVirodh = virodhPlanets.length > 0;
+
+                let statusBadge = '';
+                if (hasArgala && !hasVirodh) {
+                    statusBadge = `<span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-2 py-0.5 rounded font-medium">सक्रिय अर्गला (Active)</span>`;
+                } else if (hasArgala && hasVirodh) {
+                    statusBadge = `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs px-2 py-0.5 rounded font-medium">विरोध द्वारा खंडित (Contested)</span>`;
+                } else {
+                    statusBadge = `<span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded">निष्क्रिय (Inactive)</span>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between shadow-inner';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-sm font-semibold text-amber-300">${spec.title}</h4>
+                            ${statusBadge}
+                        </div>
+                        <p class="text-xs text-slate-400 mb-3">${spec.desc}</p>
+                        
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                                <span class="text-slate-400">अर्गला भाव (${argalaHouse}):</span>
+                                <span class="text-slate-100 font-medium ml-1">${hasArgala ? argalaPlanets.join(', ') : 'कोई ग्रह नहीं'}</span>
+                            </div>
+                            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                                <span class="text-slate-400">विरोधी भाव (${virodhHouse} Virodh):</span>
+                                <span class="text-slate-100 font-medium ml-1">${hasVirodh ? virodhPlanets.join(', ') : 'कोई ग्रह नहीं'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
