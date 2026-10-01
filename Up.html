@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>उपपद लग्न एवं ज्योतिषीय योग पहचान यंत्र</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #800000;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #800000;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #a00000;
+        }
+        .report-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fafafa;
+            border-left: 5px solid #800000;
+            border-radius: 4px;
+        }
+        .report-section h3 {
+            color: #800000;
+            margin-top: 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .alert {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        .success {
+            color: #4cae4c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>ज्योतिषीय उपपद एवं योग पहचान यंत्र</h2>
+    
+    <div class="form-group">
+        <label for="lagna">जन्म लग्न की राशि चुनें:</label>
+        <select id="lagna">
+            <option value="1">मेष (1)</option>
+            <option value="2">वृषभ (2)</option>
+            <option value="3">मिथुन (3)</option>
+            <option value="4">कर्क (4)</option>
+            <option value="5">सिंह (5)</option>
+            <option value="6">कन्या (6)</option>
+            <option value="7">तुला (7)</option>
+            <option value="8">वृश्चिक (8)</option>
+            <option value="9">धनु (9)</option>
+            <option value="10">मकर (10)</option>
+            <option value="11">कुंभ (11)</option>
+            <option value="12">मीन (12)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="up pada_rasi">उपपद लग्न में स्थित राशि:</label>
+        <select id="up pada_rasi">
+            <option value="1">मेष (1)</option>
+            <option value="2">वृषभ (2)</option>
+            <option value="3">मिथुन (3)</option>
+            <option value="4">कर्क (4)</option>
+            <option value="5">सिंह (5)</option>
+            <option value="6">कन्या (6)</option>
+            <option value="7">तुला (7)</option>
+            <option value="8">वृश्चिक (8)</option>
+            <option value="9">धनु (9)</option>
+            <option value="10">मकर (10)</option>
+            <option value="11">कुंभ (11)</option>
+            <option value="12">मीन (12)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="up pada_planets">उपपद से द्वितीय भाव में स्थित ग्रह (कॉमा लगाकर चुनें जैसे: Sun, Saturn, Rahu):</label>
+        <select id="up pada_planets" multiple style="height: 120px;">
+            <option value="Sun">सूर्य (Sun)</option>
+            <option value="Moon">चंद्रमा (Moon)</option>
+            <option value="Mars">मंगल (Mars)</option>
+            <option value="Mercury">बुध (Mercury)</option>
+            <option value="Jupiter">गुरु (Jupiter)</option>
+            <option value="Venus">शुक्र (Venus)</option>
+            <option value="Saturn">शनि (Saturn)</option>
+            <option value="Rahu">राहु (Rahu)</option>
+            <option value="Ketu">केतु (Ketu)</option>
+        </select>
+        <small style="color: #666;">(एक से अधिक ग्रह चुनने के लिए Ctrl या Cmd दबाकर क्लिक करें)</small>
+    </div>
+
+    <div class="form-group">
+        <label for="has_benefic_aspect">क्या उपपद/द्वितीय भाव पर शुभ ग्रहों (गुरु/शुक्र) की दृष्टि या युति है?</label>
+        <select id="has_benefic_aspect">
+            <option value="no">नहीं</option>
+            <option value="yes">हाँ</option>
+        </select>
+    </div>
+
+    <button onclick="analyzeYoga()">योग पहचान करें और रिपोर्ट देखें</button>
+
+    <div id="report" class="report-section" style="display:none;">
+        <h3>विश्लेषण रिपोर्ट:</h3>
+        <p><strong>निर्णय उपपद (Up pada):</strong> <span id="res_up pada"></span></p>
+        <ul id="res_list"></ul>
+    </div>
+</div>
+
+<script>
+function analyzeYoga() {
+    let lagna = parseInt(document.getElementById('lagna').value);
+    let up padaRasi = parseInt(document.getElementById('up pada_rasi').value);
+    
+    let selectElement = document.getElementById('up pada_planets');
+    let selectedPlanets = Array.from(selectElement.selectedOptions).map(option => option.value);
+    let hasBenefic = document.getElementById('has_benefic_aspect').value === 'yes';
+
+    // उपपद निकालने का नियम: 
+    // विषम लग्न (1,3,5,7,9,11) होने पर द्वितीय भाव उपपद होता है।
+    // सम लग्न (2,4,6,8,10,12) होने पर द्वादश भाव उपपद होता है।
+    let isOddLagna = (lagna % 2 !== 0);
+    let up padaHouse = isOddLagna ? ((lagna % 12) + 1) : ((lagna - 2 + 12) % 12 + 1);
+
+    let reportHtml = "";
+    let findings = [];
+
+    let lagnaNames = ["", "मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+    document.getElementById('res_up pada').innerText = `लग्न (${lagnaNames[lagna]}) के अनुसार उपपद भाव संख्या: ${up padaHouse} (${lagnaNames[up padaHouse]} राशि)`;
+
+    // यदि शुभ ग्रहों का प्रभाव हो तो अरिष्ट योग भंग नियम (श्लोक 25)
+    if (hasBenefic) {
+        findings.push(`<span class="success">विशेष नियम (अपवाद):</span> उपपद या द्वितीय भाव पर शुभ ग्रहों का प्रभाव होने के कारण अधिकांश अशुभ योग (संन्यास, स्त्री नाश, रोग आदि) निष्प्रभावी या फलप्रद नहीं होते हैं।`);
+    }
+
+    // विभिन्न योगों की जाँच
+    if (selectedPlanets.includes('Saturn') && selectedPlanets.includes('Rahu')) {
+        if (up padaRasi === 11 || up padaRasi === 12) {
+            findings.push(`<span class="alert">पंगु योग:</span> उपपद में कुंभ/मीन राशि और शनि-राहु की युति के कारण पत्नी वातव्याधि (पंगु/चलने में लाचार) हो सकती है।`);
+        } else {
+            findings.push(`<span class="alert">दार नाश योग:</span> उपपद/द्वितीय भाव में शनि और राहु की युति के कारण अपवादस्वरूप स्त्री का त्याग या नाश हो सकता है।`);
+        }
+    }
+
+    if (selectedPlanets.includes('Ketu') && selectedPlanets.includes('Venus')) {
+        findings.push(`<span class="alert">रक्तप्रदर रोग:</span> केतु और शुक्र के संयोग से स्त्री रक्तप्रदर रोग से पीड़ित हो सकती है।`);
+    }
+
+    if (selectedPlanets.includes('Mercury') && selectedPlanets.includes('Ketu')) {
+        findings.push(`<span class="alert">अस्थिस्राव / स्थूल शरीर:</span> बुध और केतु के संयोग से स्त्री अस्थिस्राव रोग से ग्रसित या स्थूल शरीर वाली हो सकती है।`);
+    }
+
+    if (selectedPlanets.includes('Sun') && selectedPlanets.includes('Rahu') && selectedPlanets.includes('Saturn')) {
+        findings.push(`<span class="alert">अस्थिज्वर योग:</span> सूर्य, राहु और शनि के उपपद में होने से स्त्री अस्थिज्वर (हड्डियों के बुखार) से पीड़ित हो सकती है।`);
+    }
+
+    if (selectedPlanets.includes('Saturn') && selectedPlanets.includes('Jupiter')) {
+        findings.push(`<span class="alert">कर्ण/नेत्र रोग:</span> गुरु और शनि के योग से स्त्री कान और नेत्र (आँख) के रोगों से पीड़ित हो सकती है।`);
+    }
+
+    if ((selectedPlanets.includes('Mars') && selectedPlanets.includes('Mercury')) || (selectedPlanets.includes('Jupiter') && selectedPlanets.includes('Rahu'))) {
+        findings.push(`<span class="alert">दन्तरोग:</span> मंगल-बुध या गुरु-राहु की युति से स्त्री दाँतों के रोग से पीड़ित हो सकती है।`);
+    }
+
+    if (selectedPlanets.includes('Sun')) {
+        if (up padaRasi === 5 || up padaRasi === 1) {
+            findings.push(`<span class="success">सूर्य की शुभ स्थिति:</span> उपपद के द्वितीय भाव में सूर्य सिंह या मेष (उच्च) राशि में होने के कारण पापकारी नहीं है, अतः संन्यास योग भंग होकर गृहिणी का सुख प्राप्त होता है।`);
+        } else {
+            findings.push(`<span class="alert">प्रव्रज्या / संन्यास योग:</span> सूर्य की अन्य राशियों में स्थिति और पाप प्रभाव से संन्यास या स्त्री वियोग का योग बनता है।`);
+        }
+    } else if (selectedPlanets.length > 0 && !hasBenefic) {
+        findings.push(`<span class="alert">संन्यास/वियोग योग:</span> उपपद से द्वितीय भाव में पाप ग्रहों का प्रभाव होने के कारण जातक के जीवन में संन्यास या वैवाहिक कष्ट/वियोग की संभावना बनती है।`);
+    }
+
+    if (up padaRasi === 3) {
+        findings.push(`<span class="success">बहुदार योग:</span> उपपद या द्वितीय भाव में मिथुन राशि होने के कारण जातक को अनेक स्त्रियों का सुख मिल सकता है।`);
+    }
+
+    if (findings.length === 0) {
+        findings.push(`सामान्य या संतुलित फल प्राप्त होगा, कोई विशेष तीव्र अरिष्ट या विशिष्ट योग सूची के अनुसार नहीं पाया गया।`);
+    }
+
+    let listHtml = "";
+    findings.forEach(item => {
+        listHtml += `<li>${item}</li>`;
+    });
+
+    document.getElementById('res_list').innerHTML = listHtml;
+    document.getElementById('report').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
