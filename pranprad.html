@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>प्राणपद लग्न कैलकुलेटर</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #ff5722;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+            border-radius: 5px;
+            display: none;
+        }
+        .result-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        .calculation-steps {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .faladesh {
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: bold;
+            color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>प्राणपद लग्न साधन एवं फलादेश</h2>
+    
+    <label>सूर्योदय का समय (Sunrise Time):</label>
+    <input type="time" id="sunrise" value="06:48">
+
+    <label>जन्म का समय (Birth Time):</label>
+    <input type="time" id="birthtime" value="22:00">
+
+    <label>जन्म के समय सूर्य की राशि:</label>
+    <select id="sunSign">
+        <option value="1">1. मेष (Aries)</option>
+        <option value="2">2. वृषभ (Taurus)</option>
+        <option value="3">3. मिथुन (Gemini)</option>
+        <option value="4">4. कर्क (Cancer)</option>
+        <option value="5">5. सिंह (Leo)</option>
+        <option value="6">6. कन्या (Virgo)</option>
+        <option value="7">7. तुला (Libra)</option>
+        <option value="8" selected>8. वृश्चिक (Scorpio)</option>
+        <option value="9">9. धनु (Sagittarius)</option>
+        <option value="10">10. मकर (Capricorn)</option>
+        <option value="11">11. कुंभ (Aquarius)</option>
+        <option value="12">12. मीन (Pisces)</option>
+    </select>
+
+    <label>सूर्य के अंश (Degrees in Sign):</label>
+    <input type="number" id="sunDegree" value="4" step="0.01" min="0" max="29.99">
+
+    <label>जन्म कुंडली का लग्न (Ascendant):</label>
+    <select id="lagnaSign">
+        <option value="1">1. मेष (Aries)</option>
+        <option value="2">2. वृषभ (Taurus)</option>
+        <option value="3">3. मिथुन (Gemini)</option>
+        <option value="4" selected>4. कर्क (Cancer)</option>
+        <option value="5">5. सिंह (Leo)</option>
+        <option value="6">6. कन्या (Virgo)</option>
+        <option value="7">7. तुला (Libra)</option>
+        <option value="8">8. वृश्चिक (Scorpio)</option>
+        <option value="9">9. धनु (Sagittarius)</option>
+        <option value="10">10. मकर (Capricorn)</option>
+        <option value="11">11. कुंभ (Aquarius)</option>
+        <option value="12">12. मीन (Pisces)</option>
+    </select>
+
+    <button onclick="calculatePranapada()">प्राणपद निकालें</button>
+
+    <div class="result-box" id="resultBox">
+        <div class="result-title" id="resTitle"></div>
+        <div class="calculation-steps" id="calcSteps"></div>
+        <div class="faladesh" id="faladeshText"></div>
+    </div>
+</div>
+
+<script>
+    // 12 भावों के फलादेश (पराशर होरा शास्त्र के आधार पर)
+    const predictions = {
+        1: "प्रथम भाव (लग्न): यदि प्राणपद लग्न में हो तो जातक गूंगा, उन्मत्त, जड, अंगहीन, दुःखी, कृश (कमजोर शरीर), क्षीण और रोगी होता है।",
+        2: "द्वितीय भाव: दूसरे भाव में हो तो धन-धान्य से पूर्ण, अनेक भृत्य (सेवक) एवं अनेक संतति वाला और भाग्यशाली पुरुष होता है।",
+        3: "तृतीय भाव: तीसरे भाव में हो तो हिंसा करने वाला, गर्व से युक्त, निष्ठुर, अत्यंत मलिन और गुरुभक्ति से हीन होता है।",
+        4: "चतुर्थ भाव: चौथे भाव में हो तो सुखी, सुन्दर, मित्र एवं स्त्री का प्रिय, गुरुभक्त, सुशील और सत्यवक्ता होता है।",
+        5: "पंचम भाव: पांचवें भाव में हो तो सुख भोगने वाला, क्रियाशील, दयायुक्त और सभी सत्कर्मों में अनुरक्त होता है।",
+        6: "षष्ठम भाव: छठे भाव में हो तो बन्धु एवं शत्रु के वश में रहने वाला, तीक्ष्ण स्वभाव, मंदाग्नि (पेट के रोग) से युक्त, निर्दयी, दुष्ट, धनी और अल्पायु होता है।",
+        7: "सप्तम भाव: सातवें भाव में हो तो ईर्ष्यालु, कामी, भयानक शरीर वाला, दुष्ट स्वभाव और मूर्ख होता है।",
+        8: "अष्टम भाव: आठवें भाव में हो तो राजा/सरकार से भयभीत, रोगों से पीड़ित, बंधु-बांधवों से हीन और दुखी रहता है।",
+        9: "नवम भाव: नौवें भाव में हो तो अत्यंत भाग्यशाली, पुत्रवान, धनवान, धर्मपरायण, सुन्दर और अनेक कलाओं का ज्ञाता होता है।",
+        10: "दशम भाव: दसवें भाव में हो तो शूरवीर, बुद्धिमान, राजा के समान ऐश्वर्यवान और शास्त्रों का ज्ञाता होता है।",
+        11: "एकादश भाव: ग्यारहवें भाव में हो तो प्रसिद्ध, गुणी, अपार धन-संपत्ति का स्वामी, राजा का प्रिय और गौरवांवित होता है।",
+        12: "द्वादश भाव: बारहवें भाव में हो तो नीच प्रकृति, अंगों से विकल, धनहीन, मूर्ख, अधिक खर्च करने वाला और दुखी होता है।"
+    };
+
+    const rashiNames = ["", "मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+
+    function calculatePranapada() {
+        // 1. इनपुट प्राप्त करना
+        let sunriseStr = document.getElementById("sunrise").value;
+        let birthTimeStr = document.getElementById("birthtime").value;
+        let sunSign = parseInt(document.getElementById("sunSign").value);
+        let sunDegree = parseFloat(document.getElementById("sunDegree").value);
+        let lagnaSign = parseInt(document.getElementById("lagnaSign").value);
+
+        if(!sunriseStr || !birthTimeStr || isNaN(sunDegree)) {
+            alert("कृपया सभी जानकारी सही से भरें।");
+            return;
+        }
+
+        // 2. समय का अंतर (मिनटों में) निकालना
+        let sTime = sunriseStr.split(":");
+        let bTime = birthTimeStr.split(":");
+        
+        let sMins = parseInt(sTime[0]) * 60 + parseInt(sTime[1]);
+        let bMins = parseInt(bTime[0]) * 60 + parseInt(bTime[1]);
+        
+        if (bMins < sMins) {
+            bMins += 24 * 60; // यदि जन्म अगले दिन सुबह सूर्योदय से पहले हो
+        }
+        let totalMinutes = bMins - sMins;
+
+        // 3. विघटी (Palas) बनाना
+        let vighatis = totalMinutes * 2.5;
+
+        // 4. इष्टकाल को डिग्री में बदलना (15 विघटी = 30 डिग्री, तो 1 विघटी = 2 डिग्री)
+        let ishtaPhalaDegree = vighatis * 2;
+
+        // 5. सूर्य की कुल स्थिति (मेष से)
+        let sunTotalDegree = ((sunSign - 1) * 30) + sunDegree;
+
+        // 6. सूर्य की राशि के अनुसार अतिरिक्त डिग्री जोड़ना (चर, स्थिर, द्विस्वभाव)
+        let sunNatureAdd = 0;
+        let natureText = "";
+        
+        if ([1, 4, 7, 10].includes(sunSign)) {
+            sunNatureAdd = 0; // चर राशि
+            natureText = "चर राशि (0° जुड़े)";
+        } else if ([2, 5, 8, 11].includes(sunSign)) {
+            sunNatureAdd = 240; // स्थिर राशि
+            natureText = "स्थिर राशि (240° जुड़े)";
+        } else if ([3, 6, 9, 12].includes(sunSign)) {
+            sunNatureAdd = 120; // द्विस्वभाव राशि
+            natureText = "द्विस्वभाव राशि (120° जुड़े)";
+        }
+
+        // 7. कुल योग और प्राणपद का अंश निकालना (Modulo 360)
+        let pranapadaTotalDegree = (sunTotalDegree + sunNatureAdd + ishtaPhalaDegree) % 360;
+        
+        // 8. प्राणपद की राशि ज्ञात करना
+        let pranapadaSign = Math.floor(pranapadaTotalDegree / 30) + 1;
+        let pDegreeInSign = (pranapadaTotalDegree % 30).toFixed(2);
+
+        // 9. लग्न से प्राणपद का भाव (House) ज्ञात करना
+        let house = (pranapadaSign - lagnaSign + 12) % 12 + 1;
+
+        // परिणाम दिखाना
+        document.getElementById("resTitle").innerText = `आपका प्राणपद ${house}वें भाव में है!`;
+        
+        let stepsHtml = `
+            <b>गणितीय प्रक्रिया (Steps):</b><br>
+            • इष्टकाल: ${totalMinutes} मिनट (${vighatis} विघटी)<br>
+            • विघटी से डिग्री: ${ishtaPhalaDegree}°<br>
+            • सूर्य स्पष्ट (मेष से): ${sunTotalDegree.toFixed(2)}°<br>
+            • सूर्य का नियम: ${natureText}<br>
+            • कुल डिग्री (360° के चक्र में): ${pranapadaTotalDegree.toFixed(2)}°<br>
+            • प्राणपद राशि: ${rashiNames[pranapadaSign]} (${pDegreeInSign} अंश)<br>
+            • जन्म लग्न: ${rashiNames[lagnaSign]}<br>
+            • <b>अंतिम भाव: ${house}वाँ भाव</b>
+        `;
+        document.getElementById("calcSteps").innerHTML = stepsHtml;
+        
+        // फलादेश दिखाना
+        document.getElementById("faladeshText").innerText = "फलादेश:\n" + predictions[house];
+        
+        document.getElementById("resultBox").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
