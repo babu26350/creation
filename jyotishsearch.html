@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ज्योतिष: ब्रह्मांडीय ऊर्जा और गणितीय आकाशीय गणनाओं का विज्ञान</title>
+    <!-- Google Fonts for Hindi -->
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Teko:wght@500;600&family=Yatra+One&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a154b;
+            --accent-color: #d4af37;
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b, #31103f);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(212, 175, 55, 0.3);
+            --text-color: #e2e8f0;
+            --heading-color: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Rozha One', serif;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .section-title {
+            font-family: 'Yatra One', cursive;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: 40px 0 20px 0;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card h3 {
+            color: #fef08a;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .feature-box {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .feature-box h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .conclusion {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed var(--accent-color);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: justify;
+        }
+
+        .conclusion h3 {
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            text-align: center;
+            font-family: 'Yatra One', cursive;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .author-sig {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 15px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>ज्योतिष: ब्रह्मांडीय ऊर्जा और गणितीय विज्ञान</h1>
+            <p class="subtitle">"ज्योतिष एक अद्भुत समीकरणों का खेल है"</p>
+        </header>
+
+        <div class="intro-text">
+            <p>भारतीय सनातन संस्कृति और महर्षियों की ऋचाओं में ज्योतिष को केवल भविष्यवक्ता का साधन नहीं माना गया, बल्कि इसे ब्रह्मांडीय ऊर्जा और गणितीय आकाशीय गणनाओं का एक विज्ञान कहा गया है। आकाशमंडल में घूमते ग्रह, नक्षत्र और राशियाँ केवल खगोलीय पिंड नहीं हैं, बल्कि वे मानव जीवन के हर एक स्पंदन को नियंत्रित करने वाले अद्भुत समीकरणों के सूत्र हैं। यह इस बात को सिद्ध करता है कि कैसे जन्म के समय ग्रहों की विशेष स्थिति और उनका गणितीय विन्यास संपूर्ण मानव जीवन की दिशा और दशा को निर्धारित करता है।</p>
+        </div>
+
+        <h2 class="section-title">ज्योतिषीय समीकरणों का ताना-बाना</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>1. भाव से ग्रह स्थिति</h3>
+                <p>जन्मकुंडली के बारह भाव हमारे जीवन के अलग-अलग पहलुओं (जैसे शरीर, धन, परिवार, पराक्रम) को दर्शाते हैं। जब इन भावों में विशिष्ट ग्रह बैठते हैं, तो वे उस भाव विशेष की ऊर्जा को सक्रिय कर देते हैं, जिससे जातक के व्यक्तित्व और स्वभाव की मूल प्रवृत्तियों का पता चलता है।</p>
+            </div>
+            <div class="card">
+                <h3>2. ग्रह से ग्रह स्थिति</h3>
+                <p>कोई भी ग्रह अकेला प्रभाव नहीं डालता, बल्कि एक ग्रह दूसरे ग्रह से किस दूरी या स्थिति में है, यह उनके आपसी रिश्तों और तात्कालिक प्रभावों को तय करता है।</p>
+            </div>
+            <div class="card">
+                <h3>3. भावेट भावम् स्थिति</h3>
+                <p>यह ज्योतिष का एक अत्यंत गूढ़ नियम है (यानी 'भाव से भाव'), जिसके अंतर्गत किसी भाव से उतनी ही दूरी पर स्थित अगले भाव का अध्ययन किया जाता है। यह मूल विषय के विस्तार, उसकी वृद्धि या उसके छिपे हुए रहस्यों को उजागर करता है।</p>
+            </div>
+            <div class="card">
+                <h3>4. ग्रहों का आपसी संबंध और उच्च-नीच दृष्टियां</h3>
+                <p>ग्रहों की युति (मिलना), दृष्टि संबंध और उनका उच्च या नीच राशि में होना उनकी शक्ति को घटाता या बढ़ाता है। यह समीकरण तय करता है कि जीवन में संघर्ष अधिक होगा या सफलता आसानी से मिलेगी।</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">जीवन के प्रमुख प्रभावित क्षेत्र</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h4>करियर और आजीविका</h4>
+                <p>कर्म भाव और ग्रहों की स्थिति व्यक्ति के व्यवसाय, नौकरी, व्यापार और सफलता के अवसरों को तय करती है।</p>
+            </div>
+            <div class="feature-box">
+                <h4>स्वास्थ्य और शारीरिक गठन</h4>
+                <p>लग्न और छठे भाव के समीकरण शारीरिक रोग, प्रतिरोधक क्षमता और दीर्घायु का संकेत देते हैं।</p>
+            </div>
+            <div class="feature-box">
+                <h4>पारिवारिक व वैवाहिक जीवन</h4>
+                <p>दूसरे, चौथे और सप्तम भाव के संबंध परिवार में प्रेम, कलह, विवाह के योग और वैवाहिक सुख-दुख को प्रभावित करते हैं।</p>
+            </div>
+            <div class="feature-box">
+                <h4>आर्थिक स्थिति व समृद्धि</h4>
+                <p>धन और लाभ भाव के समीकरण व्यक्ति की वित्तीय स्थिरता, संपत्ति योग और ऐश्वर्य का निर्धारण करते हैं।</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>उपसंहार (सारांश)</h3>
+            <p>संक्षेप में कहें तो ज्योतिष कोई अंधविश्वास या कल्पित कल्पना नहीं, बल्कि ब्रह्मांडीय गणित और कर्मफल के सिद्धांतों का एक सजीव मानचित्र है। भाव से ग्रह स्थिति, ग्रह से ग्रह का संबंध, भावेट भावम् के सूत्र, तथा उच्च-नीच की दृष्टियां मिलकर एक ऐसा जटिल और अद्भुत समीकरण तैयार करती हैं जो मानव जीवन के अतीत, वर्तमान और भविष्य के कैनवास को उकेरता है। यह विद्या हमें यह सिखाती है कि जीवन में जो कुछ भी घटित हो रहा है, वह एक सुनियोजित ब्रह्मांडीय गणित का हिस्सा है, जिसे समझकर मनुष्य अपने जीवन को अधिक संतुलित और सफल बना सकता है।</p>
+        </div>
+
+        <footer>
+            <div class="author-sig">By Astrologer Babulal Joshi<br><span style="font-size: 1.2rem; color: #94a3b8;">Dhadhria Banirotan</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
