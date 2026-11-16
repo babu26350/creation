@@ -139,7 +139,6 @@
         const [year, month] = selectedMonthVal.split('-').map(Number);
         const daysInMonth = new Date(year, month, 0).getDate();
 
-        // हेडर बनाना: ID, Name, 1 से 31, और अंत में Total Hours कॉलम
         let headerHTML = `<th>ID</th><th>Name</th>`;
         for(let d = 1; d <= daysInMonth; d++) {
             headerHTML += `<th>${d}</th>`;
@@ -182,7 +181,8 @@
                     let dayStr = String(d).padStart(2, '0');
                     let targetDate = `${selectedMonthVal}-${dayStr}`;
 
-                    let matchedRec = records.find(r => {
+                    // इस ID और तारीख से मिलने वाले सभी रिकॉर्ड्स को ढूंढें
+                    let matchedRecords = records.filter(r => {
                         let rId = String(r.id2 || r.id || '');
                         let rDate = String(r.date || '');
                         return rId === String(cand.id) && rDate.startsWith(targetDate);
@@ -191,19 +191,33 @@
                     let statusSymbol = "-";
                     let statusClass = "";
                     let cellTooltip = "";
+                    let dayInTime = "-";
+                    let dayOutTime = "-";
+                    let dayDuration = 0;
 
-                    if(matchedRec) {
+                    if(matchedRecords.length > 0) {
                         statusSymbol = "P";
                         statusClass = "status-p";
-                        let dur = parseFloat(matchedRec.duration) || 0;
-                        totalMonthlyHours += dur;
-                        cellTooltip = `In: ${matchedRec.inTime || 'N/A'}, Out: ${matchedRec.outTime || 'N/A'}, Duration: ${dur} hrs`;
+
+                        // यदि एक ही दिन में कई बार अटेंडेंस लगी है तो सबसे नया या आख़िरी ड्यूरेशन लें
+                        let latestRec = matchedRecords[matchedRecords.length - 1];
+                        
+                        dayInTime = latestRec.inTime || latestRec.time || 'उपलब्ध नहीं';
+                        dayOutTime = latestRec.outTime || '0 (दूसरी शिफ्ट नहीं)';
+                        dayDuration = parseFloat(latestRec.duration) || 0;
+
+                        totalMonthlyHours += dayDuration;
+                        cellTooltip = `In: ${dayInTime}, Out: ${dayOutTime}, Duration: ${dayDuration} hrs`;
                     }
 
-                    rowHTML += `<td class="${statusClass}" title="${cellTooltip}" onclick="showDetails('${cand.name}', '${targetDate}', '${matchedRec ? matchedRec.inTime : ''}', '${matchedRec ? matchedRec.outTime : ''}', '${matchedRec ? matchedRec.duration : 0}')">${statusSymbol}</td>`;
+                    // एस्केप करके सुरक्षित रूप से वैल्यू पास करना ताकि अनडिफ़ाइंड न आए
+                    let safeIn = String(dayInTime).replace(/'/g, "");
+                    let safeOut = String(dayOutTime).replace(/'/g, "");
+                    let safeDur = String(dayDuration);
+
+                    rowHTML += `<td class="${statusClass}" title="${cellTooltip}" onclick="showDetails('${cand.name}', '${targetDate}', '${safeIn}', '${safeOut}', '${safeDur}')">${statusSymbol}</td>`;
                 }
 
-                // आखिरी कॉलम में महीने के कुल घंटे
                 rowHTML += `<td style="font-weight:bold; background:#fef9e7;">${totalMonthlyHours.toFixed(2)} hrs</td></tr>`;
                 tableBody.innerHTML += rowHTML;
             });
@@ -213,13 +227,12 @@
         });
     }
 
-    // सेल पर क्लिक करने पर टाइम और ड्यूरेशन पॉपअप में दिखाने के लिए
     function showDetails(name, date, inTime, outTime, duration) {
-        if(!inTime && !outTime) {
+        if(inTime === '-' && outTime === '-') {
             alert(`तारीख: ${date}\nकोई अटेंडेंस रिकॉर्ड नहीं है।`);
             return;
         }
-        alert(`कैंडिडेट: ${name}\nतारीख: ${date}\n-------------------\nआने का समय (In): ${inTime || 'उपलब्ध नहीं'}\nजाने का समय (Out): ${outTime || '0 (दूसरी शिफ्ट नहीं लगाई)'}\nड्यूरेशन: ${duration} घंटे`);
+        alert(`कैंडिडेट: ${name}\nतारीख: ${date}\n-------------------\nआने का समय (In): ${inTime}\nजाने का समय (Out): ${outTime}\nड्यूरेशन: ${duration} घंटे`);
     }
 
     function clearAllApiData() {
