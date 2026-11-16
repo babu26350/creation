@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>जियो-फेंसिंग अटेंडेंस ऐप</title>
+    <title>मैनेजर कंट्रोल पैनल</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h2 { color: #2c3e50; text-align: center; }
-        .nav-tabs { display: flex; justify-content: space-around; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
-        .nav-tabs button { padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; background: #ddd; border-radius: 4px; }
-        .nav-tabs button.active { background: #3498db; color: #fff; }
+        .container { max-width: 1000px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h3 { color: #2980b9; text-align: center; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
         input, select { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
@@ -18,349 +15,60 @@
         button.action-btn:hover { background: #219653; }
         .danger-btn { background: #e74c3c !important; }
         .danger-btn:hover { background: #c0392b !important; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        
+        .table-container { width: 100%; overflow-x: auto; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
         table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 8px; text-align: center; }
-        th { background: #f2f2f2; }
-        .hidden { display: none; }
+        th, td { padding: 6px; text-align: center; white-space: nowrap; }
+        th { background: #f2f2f2; position: sticky; top: 0; }
+        
         .msg { margin-top: 10px; text-align: center; font-weight: bold; }
+        .status-p { color: green; font-weight: bold; }
+        .status-a { color: red; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>जियो-फेंसिंग अटेंडेंस सिस्टम</h2>
+    <h3>मैनेजर कंट्रोल पैनल</h3>
     
-    <!-- टैब नेविगेशन -->
-    <div class="nav-tabs">
-        <button id="tabCandidateBtn" onclick="switchTab('candidate')" class="active">Candidate Page</button>
-        <button id="tabManagerBtn" onclick="switchTab('manager')">Manager Page</button>
+    <div class="form-group">
+        <label>ऑफ़िस लोकेशन सेट करें (Latitude, Longitude):</label>
+        <input type="text" id="managerLoc" placeholder="उदा. 28.6139, 77.2090">
+        <button style="margin-top:5px; padding:6px 12px;" onclick="getCurrentLocation()">वर्तमान लोकेशन प्राप्त करें</button>
     </div>
 
-    <!-- 1. कैंडिडेट पेज -->
-    <div id="candidateSection">
-        <h3>कैंडिडेट अटेंडेंस पोर्टल</h3>
-        <div class="form-group">
-            <label>अपनी स्पेशल ID दर्ज करें:</label>
-            <input type="text" id="candidateInputId" placeholder="उदा. EMP001">
-        </div>
-        <button class="action-btn" onclick="markAttendance()">अटेंडेंस दर्ज करें (Mark Attendance)</button>
-        <p id="candidateMsg" class="msg"></p>
+    <div class="form-group">
+        <label>नया कैंडिडेट जोड़ें (Name):</label>
+        <input type="text" id="managerName" placeholder="कैंडिडेट का नाम">
+    </div>
+    <div class="form-group">
+        <label>स्पेशल ID:</label>
+        <input type="text" id="managerId" placeholder="स्पेशल ID">
+    </div>
+    <button class="action-btn" onclick="saveCandidateToManager()">कैंडिडेट सेव करें</button>
+
+    <hr style="margin: 25px 0;">
+
+    <h4>मासिक अटेंडेंस रिपोर्ट (1 से 31 तारीख - P / A Matrix)</h4>
+    <div class="form-group">
+        <label>महीना चुनें:</label>
+        <input type="month" id="selectedMonth" onchange="loadAttendanceTable()">
     </div>
 
-    <!-- 2. मैनेजर पेज -->
-    <div id="managerSection" class="hidden">
-        <h3>मैनेजर कंट्रोल पैनल</h3>
-        
-        <div class="form-group">
-            <label>स्थान सेट करें (Latitude, Longitude):</label>
-            <input type="text" id="managerLoc" placeholder="उदा. 28.6139, 77.2090">
-            <button style="margin-top:5px; padding:6px 12px;" onclick="getCurrentLocation()">वर्तमान लोकेशन प्राप्त करें</button>
-        </div>
-
-        <div class="form-group">
-            <label>नया कैंडिडेट जोड़ें (Name):</label>
-            <input type="text" id="managerName" placeholder="कैंडिडेट का नाम">
-        </div>
-        <div class="form-group">
-            <label>स्पेशल ID:</label>
-            <input type="text" id="managerId" placeholder="स्पेशल ID">
-        </div>
-        <button class="action-btn" onclick="saveCandidate()">कैंडिडेट सेव करें</button>
-
-        <hr style="margin: 20px 0;">
-
-        <h4>महीने के अनुसार अटेंडेंस रिपोर्ट</h4>
-        <div class="form-group">
-            <label>महीना चुनें:</label>
-            <input type="month" id="selectedMonth" onchange="loadAttendanceTable()">
-        </div>
-
-        <div style="overflow-x:auto;">
-            <table id="attendanceTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>नाम</th>
-                        <th>तारीख</th>
-                        <th>समय</th>
-                        <th>Shift 1 Status</th>
-                        <th>Shift 2 Status</th>
-                        <th>Location Status</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <!-- डेटा यहाँ डायनेमिक लोड होगा -->
-                </tbody>
-            </table>
-        </div>
-
-        <br>
-        <button class="action-btn danger-btn" onclick="clearAllApiData()">Evening Data Clear (API Limit Reset)</button>
-        <p id="managerMsg" class="msg"></p>
+    <div class="table-container">
+        <table id="attendanceTable">
+            <thead>
+                <tr id="tableHeaderRow">
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- डेटा यहाँ लोड होगा -->
+            </tbody>
+        </table>
     </div>
-</div>
 
-<script>
-    const API_URL = "https://6555dd2084b36e3a431e83be.mockapi.io/att";
-
-    function switchTab(role) {
-        if(role === 'candidate') {
-            document.getElementById('candidateSection').classList.remove('hidden');
-            document.getElementById('managerSection').classList.add('hidden');
-            document.getElementById('tabCandidateBtn').classList.add('active');
-            document.getElementById('tabManagerBtn').classList.remove('active');
-        } else {
-            document.getElementById('candidateSection').classList.add('hidden');
-            document.getElementById('managerSection').classList.remove('hidden');
-            document.getElementById('tabManagerBtn').classList.add('active');
-            document.getElementById('tabCandidateBtn').classList.remove('active');
-            loadAttendanceTable();
-        }
-    }
-
-    // मैनेजर लोकेशन सेट करने के लिए ऑटो फेच
-    function getCurrentLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                const latLon = `${position.coords.latitude.toFixed(6)}, ${position.coords.longitude.toFixed(6)}`;
-                document.getElementById('managerLoc').value = latLon;
-                localStorage.setItem('manager_location', latLon);
-                alert("लोकेशन सफलतापूर्व सेव हो गई है!");
-            }, () => {
-                alert("लोकेशन प्राप्त करने में विफल। जीपीएस चालू करें।");
-            });
-        } else {
-            alert("आपका ब्राउज़र जियोलोकेशन सपोर्ट नहीं करता है।");
-        }
-    }
-
-    // मैनेजर द्वारा कैंडिडेट और ID लोकल स्टोरेज में सेव करना
-    function saveCandidate() {
-        const name = document.getElementById('managerName').value.trim();
-        const id = document.getElementById('managerId').value.trim();
-        const loc = document.getElementById('managerLoc').value.trim();
-
-        if(!name || !id || !loc) {
-            alert("कृपया सभी फील्ड भरें!");
-            return;
-        }
-
-        let candidates = JSON.parse(localStorage.getItem('saved_candidates')) || [];
-        candidates.push({ name, id, loc });
-        localStorage.setItem('saved_candidates', JSON.stringify(candidates));
-        localStorage.setItem('manager_location', loc);
-
-        alert("कैंडिडेट सफलतापर्वक सेव हो गया!");
-        document.getElementById('managerName').value = '';
-        document.getElementById('managerId').value = '';
-    }
-
-    // दो GPS कोऑर्डिनेट्स के बीच की दूरी (मीटर में) निकालने का फ़ॉर्मूला (Haversine formula)
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-        function toRad(x) { return x * Math.PI / 180; }
-        const R = 6371e3; // पृथ्वी की त्रिज्या मीटर में
-        const dLat = toRad(lat2 - lat1);
-        const dLon = toRad(lon2 - lon1);
-        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                  Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-                  Math.sin(dLon/2) * Math.sin(dLon/2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return R * c;
-    }
-
-    // कैंडिडेट द्वारा अटेंडेंस मार्क करना (100 मीटर जिओ-फेंसिंग और शिफ्ट नियम के साथ)
-    function markAttendance() {
-        const inputId = document.getElementById('candidateInputId').value.trim();
-        const msgElem = document.getElementById('candidateMsg');
-
-        if(!inputId) {
-            msgElem.style.color = 'red';
-            msgElem.innerText = "कृपया अपनी स्पेशल ID दर्ज करें।";
-            return;
-        }
-
-        // लोकल स्टोरेज से कैंडिडेट चेक करें
-        let candidates = JSON.parse(localStorage.getItem('saved_candidates')) || [];
-        let matchedCandidate = candidates.find(c => c.id === inputId);
-
-        if(!matchedCandidate) {
-            msgElem.style.color = 'red';
-            msgElem.innerText = "अमान्य ID! यह ID मैनेजर द्वारा रजिस्टर्ड नहीं है।";
-            return;
-        }
-
-        // मैनेजर द्वारा सेट की गई लोकेशन लें
-        let mLoc = localStorage.getItem('manager_location');
-        if(!mLoc) {
-            msgElem.style.color = 'red';
-            msgElem.innerText = "मैनेजर द्वारा अभी तक ऑफिस लोकेशन सेट नहीं की गई है।";
-            return;
-        }
-
-        // जियोलोकेशन चेक करें
-        if (!navigator.geolocation) {
-            msgElem.style.color = 'red';
-            msgElem.innerText = "जियोलोकेशन समर्थित नहीं है।";
-            return;
-        }
-
-        msgElem.style.color = 'blue';
-        msgElem.innerText = "लोकेशन जांची जा रही है...";
-
-        navigator.geolocation.getCurrentPosition(position => {
-            const userLat = position.coords.latitude;
-            const userLon = position.coords.longitude;
-
-            const [mLat, mLon] = mLoc.split(',').map(Number);
-            const distance = calculateDistance(userLat, userLon, mLat, mLon);
-
-            if(distance > 100) {
-                msgElem.style.color = 'red';
-                msgElem.innerText = `अटेंडेंस असफल! आप ऑफिस से ${Math.round(distance)} मीटर दूर हैं (सीमा 100 मीटर है)।`;
-                return;
-            }
-
-            // शिफ्ट और समय नियम लागू करना
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const timeDecimal = hours + minutes / 60;
-            
-            const currentDate = now.toISOString().split('T')[0];
-
-            let shift1Status = "Present";
-            let shift2Status = "Present";
-
-            // शिफ्ट नियम: सुबह 8 से 10 (8:00 AM - 10:00 AM) उपस्थित, 12 बजे के बाद लेट होने पर Shift 1 Absent
-            if (timeDecimal > 10.0 && timeDecimal <= 12.0) {
-                shift1Status = "Late / Absent";
-            } else if (timeDecimal > 12.0) {
-                shift1Status = "Absent";
-            }
-
-            // 12:00 PM के बाद घर जाने पर/चेक-इन पर 2nd शिफ्ट एब्सेंट
-            if (timeDecimal > 12.0) {
-                shift2Status = "Absent";
-            }
-
-            const payload = {
-                name: matchedCandidate.name,
-                id2: matchedCandidate.id,
-                loc: `${userLat.toFixed(4)}, ${userLon.toFixed(4)} (Dist: ${Math.round(distance)}m)`,
-                date: currentDate,
-                time: now.toLocaleTimeString(),
-                shift1: shift1Status,
-                shift2: shift2Status
-            };
-
-            // MockAPI पर डेटा भेजना
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(data => {
-                msgElem.style.color = 'green';
-                msgElem.innerText = "सफलतापूर्वक अटेंडेंस दर्ज हो गई!";
-                document.getElementById('candidateInputId').value = '';
-            })
-            .catch(err => {
-                msgElem.style.color = 'red';
-                msgElem.innerText = "सर्वर त्रुटि: अटेंडेंस सेव नहीं हो सकी।";
-            });
-
-        }, () => {
-            msgElem.style.color = 'red';
-            msgElem.innerText = "GPS लोकेशन प्राप्त करने में असमर्थ। कृपया परमिशन दें।";
-        });
-    }
-
-    // मैनेजर पेज के लिए API से डेटा लोड करना और महीने के अनुसार फिल्टर करना
-    function loadAttendanceTable() {
-        const selectedMonth = document.getElementById('selectedMonth').value; // YYYY-MM फॉर्मेट
-        const tableBody = document.getElementById('tableBody');
-        tableBody.innerHTML = `<tr><td colspan="7">डेटा लोड हो रहा है...</td></tr>`;
-
-        fetch(API_URL)
-        .then(res => res.json())
-        .then(records => {
-            tableBody.innerHTML = '';
-            
-            if(!Array.isArray(records) || records.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="7">कोई रिकॉर्ड नहीं मिला।</td></tr>`;
-                return;
-            }
-
-            records.forEach(rec => {
-                // अगर महीना चुना गया है तो फ़िल्टर करें
-                if (selectedMonth && rec.date && !rec.date.startsWith(selectedMonth)) {
-                    return;
-                }
-
-                let row = `<tr>
-                    <td>${rec.id2 || rec.id || '-'}</td>
-                    <td>${rec.name || '-'}</td>
-                    <td>${rec.date || '-'}</td>
-                    <td>${rec.time || '-'}</td>
-                    <td style="color:${rec.shift1 === 'Present' ? 'green':'red'}">${rec.shift1 || 'Present'}</td>
-                    <td style="color:${rec.shift2 === 'Present' ? 'green':'red'}">${rec.shift2 || 'Present'}</td>
-                    <td>${rec.loc || '-'}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            });
-
-            if(tableBody.innerHTML === '') {
-                tableBody.innerHTML = `<tr><td colspan="7">इस महीने का कोई डेटा नहीं है।</td></tr>`;
-            }
-        })
-        .catch(err => {
-            tableBody.innerHTML = `<tr><td colspan="7">डेटा फेच करने में समस्या आई।</td></tr>`;
-        });
-    }
-
-    // शाम को API की 100 लिमिट बचाने के लिए सारा डेटा डिलीट करना (Clear Data)
-    function clearAllApiData() {
-        if(!confirm("क्या आप वाकई शाम को सभी API डेटा को डिलीट करना चाहते हैं ताकि लिमिट खाली हो जाए?")) return;
-        
-        const msgElem = document.getElementById('managerMsg');
-        msgElem.innerText = "डेटा डिलीट हो रहा है...";
-
-        fetch(API_URL)
-        .then(res => res.json())
-        .then(records => {
-            if(!Array.isArray(records) || records.length === 0) {
-                alert("API पहले से खाली है।");
-                msgElem.innerText = "";
-                return;
-            }
-
-            let deletePromises = records.map(rec => {
-                return fetch(`${API_URL}/${rec.id}`, { method: 'DELETE' });
-            });
-
-            Promise.all(deletePromises)
-            .then(() => {
-                msgElem.style.color = 'green';
-                msgElem.innerText = "सभी API डेटा सफलतापूर्वक साफ (Delete) कर दिए गए हैं!";
-                loadAttendanceTable();
-            })
-            .catch(err => {
-                msgElem.style.color = 'red';
-                msgElem.innerText = "कुछ रिकॉर्ड डिलीट करने में त्रुटि हुई।";
-            });
-        });
-    }
-
-    // पेज लोड होने पर करंट मंथ सेट करें
-    window.onload = function() {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        document.getElementById('selectedMonth').value = `${year}-${month}`;
-    }
-</script>
-
-</body>
-</html>
+    <br>
+    <button class="action-btn danger-btn" onclick="clearAllApiData()">Evening Data Clear (
