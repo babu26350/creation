@@ -50,8 +50,12 @@
 
     <hr style="margin: 25px 0;">
 
-    <h4>मासिक अटेंडेंस रिपोर्ट (1 से 31 तारीख - P / A Matrix)</h4>
-    <div class="form-group">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4>मासिक अटेंडेंस रिपोर्ट (1 से 31 तारीख - P / A Matrix)</h4>
+        <button onclick="loadAttendanceTable()" style="padding: 6px 12px; background: #3498db; color: #fff; border: none; border-radius: 4px; cursor: pointer;">डेटा रिफ्रेश करें</button>
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">
         <label>महीना चुनें:</label>
         <input type="month" id="selectedMonth" onchange="loadAttendanceTable()">
     </div>
@@ -71,4 +75,169 @@
     </div>
 
     <br>
-    <button class="action-btn danger-btn" onclick="clearAllApiData()">Evening Data Clear (
+    <button class="action-btn danger-btn" onclick="clearAllApiData()">Evening Data Clear (API Limit Reset)</button>
+    <p id="managerMsg" class="msg"></p>
+</div>
+
+<script>
+    const API_URL = "https://6555dd2084b36e3a431e83be.mockapi.io/att";
+
+    window.onload = function() {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        document.getElementById('selectedMonth').value = `${year}-${month}`;
+
+        const savedLoc = localStorage.getItem('manager_location');
+        if(savedLoc) document.getElementById('managerLoc').value = savedLoc;
+
+        loadAttendanceTable();
+    }
+
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const latLon = `${position.coords.latitude.toFixed(6)}, ${position.coords.longitude.toFixed(6)}`;
+                document.getElementById('managerLoc').value = latLon;
+                localStorage.setItem('manager_location', latLon);
+                alert("लोकेशन सफलतापूर्वक सेव हो गई है!");
+            }, () => {
+                alert("लोकेशन प्राप्त करने में विफल।");
+            });
+        }
+    }
+
+    function saveCandidateToManager() {
+        const name = document.getElementById('managerName').value.trim();
+        const id = document.getElementById('managerId').value.trim();
+
+        if(!name || !id) {
+            alert("कृपया नाम और ID दोनों भरें!");
+            return;
+        }
+
+        let candidates = JSON.parse(localStorage.getItem('saved_candidates_list')) || [];
+        // चेक करें कि ID पहले से मौजूद है या नहीं
+        if(!candidates.some(c => c.id === id)) {
+            candidates.push({ name, id });
+            localStorage.setItem('saved_candidates_list', JSON.stringify(candidates));
+            alert("कैंडिडेट सफलतापूर्वक सेव हो गया!");
+        } else {
+            alert("यह ID पहले से रजिस्टर्ड है!");
+        }
+
+        document.getElementById('managerName').value = '';
+        document.getElementById('managerId').value = '';
+        loadAttendanceTable();
+    }
+
+    function loadAttendanceTable() {
+        const selectedMonthVal = document.getElementById('selectedMonth').value;
+        const headerRow = document.getElementById('tableHeaderRow');
+        const tableBody = document.getElementById('tableBody');
+
+        if(!selectedMonthVal) return;
+
+        const [year, month] = selectedMonthVal.split('-').map(Number);
+        const daysInMonth = new Date(year, month, 0).getDate();
+
+        let headerHTML = `<th>ID</th><th>Name</th>`;
+        for(let d = 1; d <= daysInMonth; d++) {
+            headerHTML += `<th>${d}</th>`;
+        }
+        headerRow.innerHTML = headerHTML;
+
+        tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">डेटा लोड हो रहा है... आकृति की जाँच जारी है...</td></tr>`;
+
+        fetch(API_URL)
+        .then(res => res.json())
+        .then(records => {
+            if(!Array.isArray(records)) {
+                tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">API से अमान्य डेटा प्राप्त हुआ।</td></tr>`;
+                return;
+            }
+
+            let candidates = JSON.parse(localStorage.getItem('saved_candidates_list')) || [];
+            
+            // यदि मैनेजर ने लोकल में नाम नहीं जोड़ा है, तो API में आए रिकॉर्ड से स्वतः नाम/आईडी निकाल लें
+            records.forEach(r => {
+                let rId = r.id2 || r.id;
+                let rName = r.name || rId;
+                if(rId && !candidates.some(c => c.id === rId)) {
+                    candidates.push({ name: rName, id: rId });
+                }
+            });
+
+            if(candidates.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">कोई कैंडिडेट नहीं मिला। कृपया ऊपर से नया कैंडिडेट जोड़ें या अटेंडेंस लगने का इंतज़ार करें।</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = '';
+
+            candidates.forEach(cand => {
+                let rowHTML = `<tr><td>${cand.id}</td><td>${cand.name}</td>`;
+
+                for(let d = 1; d <= daysInMonth; d++) {
+                    let dayStr = String(d).padStart(2, '0');
+                    let targetDate = `${selectedMonthVal}-${dayStr}`;
+
+                    // उस कैंडिडेट और उस तारीख का रिकॉर्ड ढूंढना
+                    let matchedRec = records.find(r => (String(r.id2) === String(cand.id) || String(r.id) === String(cand.id)) && String(r.date).includes(targetDate));
+
+                    let statusSymbol = "-";
+                    let statusClass = "";
+
+                    if(matchedRec) {
+                        statusSymbol = matchedRec.status || "P";
+                        if(statusSymbol === 'P') statusClass = "status-p";
+                        else statusClass = "status-a";
+                    }
+
+                    rowHTML += `<td class="${statusClass}">${statusSymbol}</td>`;
+                }
+
+                rowHTML += `</tr>`;
+                tableBody.innerHTML += rowHTML;
+            });
+        })
+        .catch(err => {
+            tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">सर्वर से डेटा लोड करने में त्रुटि आई।</td></tr>`;
+        });
+    }
+
+    function clearAllApiData() {
+        if(!confirm("क्या आप वाकई शाम को सभी API डेटा डिलीट करना चाहते हैं ताकि 100 लिमिट खाली हो जाए?")) return;
+        
+        const msgElem = document.getElementById('managerMsg');
+        msgElem.innerText = "डेटा डिलीट हो रहा है...";
+
+        fetch(API_URL)
+        .then(res => res.json())
+        .then(records => {
+            if(!Array.isArray(records) || records.length === 0) {
+                alert("API पहले से खाली है।");
+                msgElem.innerText = "";
+                return;
+            }
+
+            let deletePromises = records.map(rec => {
+                return fetch(`${API_URL}/${rec.id}`, { method: 'DELETE' });
+            });
+
+            Promise.all(deletePromises)
+            .then(() => {
+                msgElem.style.color = 'green';
+                msgElem.innerText = "सभी API डेटा सफलतापूर्वक साफ (Delete) कर दिए गए हैं!";
+                loadAttendanceTable();
+            })
+            .catch(err => {
+                msgElem.style.color = 'red';
+                msgElem.innerText = "कुछ रिकॉर्ड डिलीट करने में त्रुटि हुई।";
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
