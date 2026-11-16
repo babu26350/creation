@@ -11,7 +11,7 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
         input { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        button.action-btn { width: 100%; padding: 12px; background: #27ae60; color: white; border: none; font-size: 16px; border-radius: 4px; cursor: pointer; }
+        button.action-btn { width: 100%; padding: 12px; background: #27ae60; color: white; border: none; font-size: 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
         button.action-btn:hover { background: #219653; }
         .msg { margin-top: 15px; text-align: center; font-weight: bold; }
     </style>
@@ -31,8 +31,9 @@
 
     <div id="candidateActionArea" style="display: none;">
         <p>सहेजी गई ID: <strong id="displaySavedId" style="color:blue;"></strong></p>
-        <button class="action-btn" onclick="markAttendance()">आज की अटेंडेंस दर्ज करें (Mark Attendance)</button>
-        <button style="margin-top:10px; background:#e67e22;" class="action-btn" onclick="resetLocalId()">ID बदलें / रीसेट करें</button>
+        <button class="action-btn" onclick="markAttendance(1)">Shift 1: अटेंडेंस दर्ज करें (आना)</button>
+        <button class="action-btn" style="background: #2980b9;" onclick="markAttendance(2)">Shift 2: अटेंडेंस दर्ज करें (जाना)</button>
+        <button style="margin-top:15px; background:#e67e22;" class="action-btn" onclick="resetLocalId()">ID बदलें / रीसेट करें</button>
     </div>
     
     <p id="candidateMsg" class="msg"></p>
@@ -64,7 +65,7 @@
             return;
         }
         localStorage.setItem('my_candidate_id', inputId);
-        alert("ID आपके फोन में सफलतापूर्वक सेव हो गई है!");
+        alert("ID सफलतापूर्वक सेव हो गई है!");
         checkStoredCandidateId();
     }
 
@@ -87,17 +88,14 @@
         return R * c;
     }
 
-    function markAttendance() {
+    function markAttendance(shiftNum) {
         const myId = localStorage.getItem('my_candidate_id');
         const msgElem = document.getElementById('candidateMsg');
 
-        // मैनेजर द्वारा सेट की गई लोकेशन मैनेजर के लोकल स्टोरेज या शेयर की गई वैल्यू से ली जाएगी
-        // चूँकि दोनों अलग फाइलें हैं, मैनेजर लोकेशन localStorage के जरिए शेयर हो सकती है यदि दोनों एक ही डोमेन पर हैं,
-        // या आप यहाँ सीधे हार्डकोडेड या शेयर कर सकते हैं।
         let mLoc = localStorage.getItem('manager_location');
         if(!mLoc) {
             msgElem.style.color = 'red';
-            msgElem.innerText = "मैनेजर द्वारा अभी तक ऑफिस लोकेशन सेट नहीं की गई है।";
+            msgElem.innerText = "मैनेजर द्वारा ऑफिस लोकेशन सेट नहीं की गई है।";
             return;
         }
 
@@ -119,32 +117,51 @@
 
             if(distance > 100) {
                 msgElem.style.color = 'red';
-                msgElem.innerText = `अटेंडेंस असफल! आप ऑफिस से ${Math.round(distance)} मीटर दूर हैं (सीमा 100 मीटर है)।`;
+                msgElem.innerText = `अटेंडेंस असफल! आप ऑफिस से ${Math.round(distance)} मीटर दूर हैं।`;
                 return;
             }
 
             const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const timeDecimal = hours + minutes / 60;
-            const currentDate = now.toISOString().split('T')[0];
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const currentDate = `${year}-${month}-${day}`;
+            
+            // समय (HH:MM:SS) और सटीक टाइमस्टैम्प
+            const currentTime = now.toTimeString().split(' ')[0];
+            const timestamp = now.getTime();
 
-            let status = "P";
-            if (timeDecimal > 12.0) {
-                status = "A";
+            // पहले से लोकल में चेक करें कि आज की शिफ्ट 1 का डेटा है या नहीं
+            let todayDataKey = `att_${myId}_${currentDate}`;
+            let savedDayData = JSON.parse(localStorage.getItem(todayDataKey)) || { inTime: null, outTime: null, inTimestamp: null };
+
+            if(shiftNum === 1) {
+                savedDayData.inTime = currentTime;
+                savedDayData.inTimestamp = timestamp;
+                localStorage.setItem(todayDataKey, JSON.stringify(savedDayData));
+            } else {
+                savedDayData.outTime = currentTime;
+                localStorage.setItem(todayDataKey, JSON.stringify(savedDayData));
             }
 
-            let candidates = JSON.parse(localStorage.getItem('saved_candidates_list')) || [];
-            let foundCand = candidates.find(c => c.id === myId);
-            let candName = foundCand ? foundCand.name : myId;
+            // ड्यूरेशन कैलकुलेट करें (घंटों में)
+            let durationHours = 0;
+            if(savedDayData.inTimestamp && shiftNum === 2) {
+                let diffMs = timestamp - savedDayData.inTimestamp;
+                durationHours = (diffMs / (1000 * 60 * 60)).toFixed(2); // घंटे में
+            }
 
             const payload = {
-                name: candName,
+                name: myId,
                 id2: myId,
                 loc: `${userLat.toFixed(4)}, ${userLon.toFixed(4)}`,
                 date: currentDate,
-                status: status,
-                time: now.toLocaleTimeString()
+                time: currentTime,
+                shift: shiftNum,
+                inTime: savedDayData.inTime || currentTime,
+                outTime: savedDayData.outTime || "",
+                duration: durationHours,
+                status: "P"
             };
 
             fetch(API_URL, {
@@ -155,7 +172,7 @@
             .then(res => res.json())
             .then(data => {
                 msgElem.style.color = 'green';
-                msgElem.innerText = "सफलतापूर्वक अटेंडेंस दर्ज हो गई!";
+                msgElem.innerText = `Shift ${shiftNum} की अटेंडेंस सफलतापूर्वक दर्ज हो गई!`;
             })
             .catch(err => {
                 msgElem.style.color = 'red';
@@ -164,11 +181,10 @@
 
         }, () => {
             msgElem.style.color = 'red';
-            msgElem.innerText = "GPS लोकेशन प्राप्त करने में असमर्थ। कृपया परमिशन दें।";
+            msgElem.innerText = "GPS लोकेशन प्राप्त करने में असमर्थ।";
         });
     }
 </script>
 
 </body>
-  </html>
-  
+</html>
