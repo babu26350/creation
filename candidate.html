@@ -14,6 +14,7 @@
         button.action-btn { width: 100%; padding: 12px; background: #27ae60; color: white; border: none; font-size: 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
         button.action-btn:hover { background: #219653; }
         .msg { margin-top: 15px; text-align: center; font-weight: bold; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -21,19 +22,31 @@
 <div class="container">
     <h3>कैंडिडेट अटेंडेंस पोर्टल</h3>
     
+    <!-- ID इनपुट एरिया -->
     <div id="candidateInputArea">
         <div class="form-group">
-            <label>अपनी स्पेशल ID दर्ज करें (सिर्फ पहली बार):</label>
-            <input type="text" id="candidateInputId" placeholder="उदा. EMP001">
+            <label>अपना नाम दर्ज करें:</label>
+            <input type="text" id="candidateInputName" placeholder="उदा. Babulal">
         </div>
-        <button class="action-btn" onclick="saveCandidateIdLocally()">ID सेव करें</button>
+        <div class="form-group">
+            <label>अपनी स्पेशल ID दर्ज करें:</label>
+            <input type="text" id="candidateInputId" placeholder="उदा. 1214">
+        </div>
+        <button class="action-btn" onclick="saveCandidateLocally()">डेटा सेव करें</button>
     </div>
 
-    <div id="candidateActionArea" style="display: none;">
-        <p>सहेजी गई ID: <strong id="displaySavedId" style="color:blue;"></strong></p>
-        <button class="action-btn" onclick="markAttendance(1)">Shift 1: अटेंडेंस दर्ज करें (आना)</button>
-        <button class="action-btn" style="background: #2980b9;" onclick="markAttendance(2)">Shift 2: अटेंडेंस दर्ज करें (जाना)</button>
-        <button style="margin-top:15px; background:#e67e22;" class="action-btn" onclick="resetLocalId()">ID बदलें / रीसेट करें</button>
+    <!-- अटेंडेंस एक्शन एरिया -->
+    <div id="candidateActionArea" class="hidden">
+        <p><strong>नाम:</strong> <span id="displayName" style="color:blue;"></span></p>
+        <p><strong>सहेजी गई ID:</strong> <span id="displaySavedId" style="color:blue;"></span></p>
+        
+        <!-- Shift 1 Button -->
+        <button id="btnShift1" class="action-btn" onclick="markAttendance(1)">Shift 1: अटेंडेंस दर्ज करें (आना)</button>
+        
+        <!-- Shift 2 Button (शुरुआत में छुपा रहेगा जब तक In-Time न हो) -->
+        <button id="btnShift2" class="action-btn hidden" style="background: #2980b9;" onclick="markAttendance(2)">Shift 2: अटेंडेंस दर्ज करें (जाना)</button>
+        
+        <button style="margin-top:15px; background:#e67e22;" class="action-btn" onclick="resetLocalData()">डेटा रीसेट करें</button>
     </div>
     
     <p id="candidateMsg" class="msg"></p>
@@ -43,36 +56,49 @@
     const API_URL = "https://6555dd2084b36e3a431e83be.mockapi.io/att";
 
     window.onload = function() {
-        checkStoredCandidateId();
+        checkStoredCandidateData();
     }
 
-    function checkStoredCandidateId() {
+    function checkStoredCandidateData() {
         const savedId = localStorage.getItem('my_candidate_id');
-        if(savedId) {
-            document.getElementById('candidateInputArea').style.display = 'none';
-            document.getElementById('candidateActionArea').style.display = 'block';
+        const savedName = localStorage.getItem('my_candidate_name');
+
+        if(savedId && savedName) {
+            document.getElementById('candidateInputArea').classList.add('hidden');
+            document.getElementById('candidateActionArea').classList.remove('hidden');
             document.getElementById('displaySavedId').innerText = savedId;
+            document.getElementById('displayName').innerText = savedName;
+
+            // पेज लोड होते ही चेक करें कि आज का रिकॉर्ड API में है या नहीं
+            checkExistingApiRecord(savedId);
         } else {
-            document.getElementById('candidateInputArea').style.display = 'block';
-            document.getElementById('candidateActionArea').style.display = 'none';
+            document.getElementById('candidateInputArea').classList.remove('hidden');
+            document.getElementById('candidateActionArea').classList.add('hidden');
         }
     }
 
-    function saveCandidateIdLocally() {
+    function saveCandidateLocally() {
+        const inputName = document.getElementById('candidateInputName').value.trim();
         const inputId = document.getElementById('candidateInputId').value.trim();
-        if(!inputId) {
-            alert("कृपया अपनी ID दर्ज करें।");
+
+        if(!inputName || !inputId) {
+            alert("कृपया नाम और ID दोनों दर्ज करें।");
             return;
         }
+
+        localStorage.setItem('my_candidate_name', inputName);
         localStorage.setItem('my_candidate_id', inputId);
-        alert("ID सफलतापूर्वक सेव हो गई है!");
-        checkStoredCandidateId();
+        
+        alert("डेटा सफलतापूर्वक सेव हो गया है!");
+        checkStoredCandidateData();
     }
 
-    function resetLocalId() {
-        if(confirm("क्या आप अपनी ID बदलना चाहते हैं?")) {
+    function resetLocalData() {
+        if(confirm("क्या आप अपना डेटा रीसेट करना चाहते हैं?")) {
             localStorage.removeItem('my_candidate_id');
-            checkStoredCandidateId();
+            localStorage.removeItem('my_candidate_name');
+            localStorage.removeItem('today_api_record_id');
+            checkStoredCandidateData();
         }
     }
 
@@ -88,8 +114,43 @@
         return R * c;
     }
 
+    // चेक करें कि आज की तारीख का इस ID का रिकॉर्ड API में पहले से है या नहीं
+    function checkExistingApiRecord(myId) {
+        const now = new Date();
+        const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+        fetch(API_URL)
+        .then(res => res.json())
+        .then(records => {
+            if(Array.isArray(records)) {
+                let todayRecord = records.find(r => {
+                    let rId = String(r.id2 || r.id || '');
+                    let rDate = String(r.date || '');
+                    return rId === String(myId) && rDate.startsWith(currentDate);
+                });
+
+                if(todayRecord) {
+                    // रिकॉर्ड मिल गया! API वाला ID लोकल में सेव करें ताकि PUT हो सके
+                    localStorage.setItem('today_api_record_id', todayRecord.id);
+
+                    if(todayRecord.inTime) {
+                        // अगर In-Time है, तो Shift 1 छुपाएं और सिर्फ Shift 2 (Out Time) दिखाएं
+                        document.getElementById('btnShift1').classList.add('hidden');
+                        document.getElementById('btnShift2').classList.remove('hidden');
+                    }
+                } else {
+                    localStorage.removeItem('today_api_record_id');
+                    document.getElementById('btnShift1').classList.remove('hidden');
+                    document.getElementById('btnShift2').classList.add('hidden');
+                }
+            }
+        })
+        .catch(err => console.log("API check error:", err));
+    }
+
     function markAttendance(shiftNum) {
         const myId = localStorage.getItem('my_candidate_id');
+        const myName = localStorage.getItem('my_candidate_name');
         const msgElem = document.getElementById('candidateMsg');
 
         let mLoc = localStorage.getItem('manager_location');
@@ -122,66 +183,100 @@
             }
 
             const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const currentDate = `${year}-${month}-${day}`;
-            
-            // समय (HH:MM:SS) और सटीक टाइमस्टैम्प
-            const currentTime = now.toTimeString().split(' ')[0];
+            const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+            const currentTime = now.toTimeString().split(' ')[0]; // HH:MM:SS
             const timestamp = now.getTime();
 
-            // पहले से लोकल में चेक करें कि आज की शिफ्ट 1 का डेटा है या नहीं
-            let todayDataKey = `att_${myId}_${currentDate}`;
-            let savedDayData = JSON.parse(localStorage.getItem(todayDataKey)) || { inTime: null, outTime: null, inTimestamp: null };
+            let existingApiRecordId = localStorage.getItem('today_api_record_id');
 
-            if(shiftNum === 1) {
-                savedDayData.inTime = currentTime;
-                savedDayData.inTimestamp = timestamp;
-                localStorage.setItem(todayDataKey, JSON.stringify(savedDayData));
-            } else {
-                savedDayData.outTime = currentTime;
-                localStorage.setItem(todayDataKey, JSON.stringify(savedDayData));
-            }
-
-            // ड्यूरेशन कैलकुलेट करें (घंटों में)
-            let durationHours = 0;
-            if(savedDayData.inTimestamp && shiftNum === 2) {
-                let diffMs = timestamp - savedDayData.inTimestamp;
-                durationHours = (diffMs / (1000 * 60 * 60)).toFixed(2); // घंटे में
-            }
-
-            const payload = {
-                name: myId,
+            // यदि शिफ्ट 1 है, तो नया इन-टाइम बनेगा
+            // यदि शिफ्ट 2 है, तो आउट-टाइम बनेगा और ड्यूरेशन कैलकुलेट होगा
+            let payload = {
+                name: myName,
                 id2: myId,
                 loc: `${userLat.toFixed(4)}, ${userLon.toFixed(4)}`,
                 date: currentDate,
                 time: currentTime,
                 shift: shiftNum,
-                inTime: savedDayData.inTime || currentTime,
-                outTime: savedDayData.outTime || "",
-                duration: durationHours,
                 status: "P"
             };
 
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(data => {
-                msgElem.style.color = 'green';
-                msgElem.innerText = `Shift ${shiftNum} की अटेंडेंस सफलतापूर्वक दर्ज हो गई!`;
-            })
-            .catch(err => {
-                msgElem.style.color = 'red';
-                msgElem.innerText = "सर्वर त्रुटि: अटेंडेंस सेव नहीं हो सकी।";
-            });
+            let method = "POST";
+            let targetUrl = API_URL;
+
+            if(shiftNum === 1) {
+                payload.inTime = currentTime;
+                payload.outTime = "";
+                payload.duration = "0.00";
+                // अगर पहले से API में रिकॉर्ड आईडी है तो PUT (Edit) करें, वरना POST
+                if(existingApiRecordId) {
+                    method = "PUT";
+                    targetUrl = `${API_URL}/${existingApiRecordId}`;
+                }
+            } else {
+                // Shift 2 के लिए: हमें पिछला inTime चाहिए कैलकुलेशन के लिए
+                fetch(`${API_URL}/${existingApiRecordId}`)
+                .then(res => res.json())
+                .catch(() => ({}))
+                .then(oldRec => {
+                    let inTimeStr = (oldRec && oldRec.inTime) ? oldRec.inTime : currentTime;
+                    
+                    // ड्यूरेशन कैलकुलेट करने का सटीक तरीका
+                    let [inH, inM, inS] = inTimeStr.split(':').map(Number);
+                    let inDateObj = new Date();
+                    inDateObj.setHours(inH, inM, inS, 0);
+
+                    let diffMs = timestamp - inDateObj.getTime();
+                    let durationHours = (diffMs > 0 ? (diffMs / (1000 * 60 * 60)) : 0.01).toFixed(2);
+
+                    payload.inTime = inTimeStr;
+                    payload.outTime = currentTime;
+                    payload.duration = durationHours;
+
+                    if(existingApiRecordId) {
+                        method = "PUT";
+                        targetUrl = `${API_URL}/${existingApiRecordId}`;
+                    }
+
+                    sendApiRequest(method, targetUrl, payload, shiftNum, msgElem);
+                });
+                return;
+            }
+
+            sendApiRequest(method, targetUrl, payload, shiftNum, msgElem);
 
         }, () => {
             msgElem.style.color = 'red';
             msgElem.innerText = "GPS लोकेशन प्राप्त करने में असमर्थ।";
+        });
+    }
+
+    function sendApiRequest(method, url, payload, shiftNum, msgElem) {
+        fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data && data.id) {
+                localStorage.setItem('today_api_record_id', data.id);
+            }
+            msgElem.style.color = 'green';
+            msgElem.innerText = `Shift ${shiftNum} सफलतापूर्व दर्ज हो गई!`;
+            
+            // बटन टॉगल करें
+            if(shiftNum === 1) {
+                document.getElementById('btnShift1').classList.add('hidden');
+                document.getElementById('btnShift2').classList.remove('hidden');
+            } else {
+                document.getElementById('btnShift2').innerText = "Shift 2 दर्ज हो चुकी है ✓";
+                document.getElementById('btnShift2').disabled = true;
+            }
+        })
+        .catch(err => {
+            msgElem.style.color = 'red';
+            msgElem.innerText = "सर्वर त्रुटि: अटेंडेंस सेव नहीं हो सकी।";
         });
     }
 </script>
