@@ -6,7 +6,7 @@
     <title>मैनेजर कंट्रोल पैनल</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 1000px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .container { max-width: 1200px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         h3 { color: #2980b9; text-align: center; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
@@ -22,9 +22,8 @@
         th, td { padding: 6px; text-align: center; white-space: nowrap; }
         th { background: #f2f2f2; position: sticky; top: 0; }
         
+        .status-p { color: green; font-weight: bold; background: #e8f8f5; cursor: pointer; }
         .msg { margin-top: 10px; text-align: center; font-weight: bold; }
-        .status-p { color: green; font-weight: bold; }
-        .status-a { color: red; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -51,7 +50,7 @@
     <hr style="margin: 25px 0;">
 
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4>मासिक अटेंडेंस रिपोर्ट (1 से 31 तारीख - P / A Matrix)</h4>
+        <h4>मासिक अटेंडेंस रिपोर्ट (1 से 31 तारीख + Total Hours)</h4>
         <button onclick="loadAttendanceTable()" style="padding: 6px 12px; background: #3498db; color: #fff; border: none; border-radius: 4px; cursor: pointer;">डेटा रिफ्रेश करें</button>
     </div>
 
@@ -117,7 +116,6 @@
         }
 
         let candidates = JSON.parse(localStorage.getItem('saved_candidates_list')) || [];
-        // चेक करें कि ID पहले से मौजूद है या नहीं
         if(!candidates.some(c => c.id === id)) {
             candidates.push({ name, id });
             localStorage.setItem('saved_candidates_list', JSON.stringify(candidates));
@@ -132,7 +130,7 @@
     }
 
     function loadAttendanceTable() {
-        const selectedMonthVal = document.getElementById('selectedMonth').value;
+        const selectedMonthVal = document.getElementById('selectedMonth').value; // YYYY-MM
         const headerRow = document.getElementById('tableHeaderRow');
         const tableBody = document.getElementById('tableBody');
 
@@ -141,25 +139,26 @@
         const [year, month] = selectedMonthVal.split('-').map(Number);
         const daysInMonth = new Date(year, month, 0).getDate();
 
+        // हेडर बनाना: ID, Name, 1 से 31, और अंत में Total Hours कॉलम
         let headerHTML = `<th>ID</th><th>Name</th>`;
         for(let d = 1; d <= daysInMonth; d++) {
             headerHTML += `<th>${d}</th>`;
         }
+        headerHTML += `<th style="background:#f39c12; color:white;">Total Hours</th>`;
         headerRow.innerHTML = headerHTML;
 
-        tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">डेटा लोड हो रहा है... आकृति की जाँच जारी है...</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 3}">डेटा लोड हो रहा है...</td></tr>`;
 
         fetch(API_URL)
         .then(res => res.json())
         .then(records => {
             if(!Array.isArray(records)) {
-                tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">API से अमान्य डेटा प्राप्त हुआ।</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 3}">API से अमान्य डेटा प्राप्त हुआ।</td></tr>`;
                 return;
             }
 
             let candidates = JSON.parse(localStorage.getItem('saved_candidates_list')) || [];
             
-            // यदि मैनेजर ने लोकल में नाम नहीं जोड़ा है, तो API में आए रिकॉर्ड से स्वतः नाम/आईडी निकाल लें
             records.forEach(r => {
                 let rId = r.id2 || r.id;
                 let rName = r.name || rId;
@@ -169,7 +168,7 @@
             });
 
             if(candidates.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">कोई कैंडिडेट नहीं मिला। कृपया ऊपर से नया कैंडिडेट जोड़ें या अटेंडेंस लगने का इंतज़ार करें।</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 3}">कोई कैंडिडेट नहीं मिला।</td></tr>`;
                 return;
             }
 
@@ -177,37 +176,54 @@
 
             candidates.forEach(cand => {
                 let rowHTML = `<tr><td>${cand.id}</td><td>${cand.name}</td>`;
+                let totalMonthlyHours = 0;
 
                 for(let d = 1; d <= daysInMonth; d++) {
                     let dayStr = String(d).padStart(2, '0');
                     let targetDate = `${selectedMonthVal}-${dayStr}`;
 
-                    // उस कैंडिडेट और उस तारीख का रिकॉर्ड ढूंढना
-                    let matchedRec = records.find(r => (String(r.id2) === String(cand.id) || String(r.id) === String(cand.id)) && String(r.date).includes(targetDate));
+                    let matchedRec = records.find(r => {
+                        let rId = String(r.id2 || r.id || '');
+                        let rDate = String(r.date || '');
+                        return rId === String(cand.id) && rDate.startsWith(targetDate);
+                    });
 
                     let statusSymbol = "-";
                     let statusClass = "";
+                    let cellTooltip = "";
 
                     if(matchedRec) {
-                        statusSymbol = matchedRec.status || "P";
-                        if(statusSymbol === 'P') statusClass = "status-p";
-                        else statusClass = "status-a";
+                        statusSymbol = "P";
+                        statusClass = "status-p";
+                        let dur = parseFloat(matchedRec.duration) || 0;
+                        totalMonthlyHours += dur;
+                        cellTooltip = `In: ${matchedRec.inTime || 'N/A'}, Out: ${matchedRec.outTime || 'N/A'}, Duration: ${dur} hrs`;
                     }
 
-                    rowHTML += `<td class="${statusClass}">${statusSymbol}</td>`;
+                    rowHTML += `<td class="${statusClass}" title="${cellTooltip}" onclick="showDetails('${cand.name}', '${targetDate}', '${matchedRec ? matchedRec.inTime : ''}', '${matchedRec ? matchedRec.outTime : ''}', '${matchedRec ? matchedRec.duration : 0}')">${statusSymbol}</td>`;
                 }
 
-                rowHTML += `</tr>`;
+                // आखिरी कॉलम में महीने के कुल घंटे
+                rowHTML += `<td style="font-weight:bold; background:#fef9e7;">${totalMonthlyHours.toFixed(2)} hrs</td></tr>`;
                 tableBody.innerHTML += rowHTML;
             });
         })
         .catch(err => {
-            tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 2}">सर्वर से डेटा लोड करने में त्रुटि आई।</td></tr>`;
+            tableBody.innerHTML = `<tr><td colspan="${daysInMonth + 3}">सर्वर से डेटा लोड करने में त्रुटि आई।</td></tr>`;
         });
     }
 
+    // सेल पर क्लिक करने पर टाइम और ड्यूरेशन पॉपअप में दिखाने के लिए
+    function showDetails(name, date, inTime, outTime, duration) {
+        if(!inTime && !outTime) {
+            alert(`तारीख: ${date}\nकोई अटेंडेंस रिकॉर्ड नहीं है।`);
+            return;
+        }
+        alert(`कैंडिडेट: ${name}\nतारीख: ${date}\n-------------------\nआने का समय (In): ${inTime || 'उपलब्ध नहीं'}\nजाने का समय (Out): ${outTime || '0 (दूसरी शिफ्ट नहीं लगाई)'}\nड्यूरेशन: ${duration} घंटे`);
+    }
+
     function clearAllApiData() {
-        if(!confirm("क्या आप वाकई शाम को सभी API डेटा डिलीट करना चाहते हैं ताकि 100 लिमिट खाली हो जाए?")) return;
+        if(!confirm("क्या आप वाकई सभी API डेटा डिलीट करना चाहते हैं ताकि 100 लिमिट खाली हो जाए?")) return;
         
         const msgElem = document.getElementById('managerMsg');
         msgElem.innerText = "डेटा डिलीट हो रहा है...";
@@ -228,7 +244,7 @@
             Promise.all(deletePromises)
             .then(() => {
                 msgElem.style.color = 'green';
-                msgElem.innerText = "सभी API डेटा सफलतापूर्वक साफ (Delete) कर दिए गए हैं!";
+                msgElem.innerText = "सभी API डेटा सफलतापूर्वक साफ कर दिए गए हैं!";
                 loadAttendanceTable();
             })
             .catch(err => {
@@ -240,4 +256,5 @@
 </script>
 
 </body>
-</html>
+    </html>
+    
