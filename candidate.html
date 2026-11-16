@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कैंडिडेट अटेंडेंस पोर्टल</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 400px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h3 { color: #27ae60; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button.action-btn { width: 100%; padding: 12px; background: #27ae60; color: white; border: none; font-size: 16px; border-radius: 4px; cursor: pointer; }
+        button.action-btn:hover { background: #219653; }
+        .msg { margin-top: 15px; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
 
+<div class="container">
+    <h3>कैंडिडेट अटेंडेंस पोर्टल</h3>
+    
+    <div id="candidateInputArea">
+        <div class="form-group">
+            <label>अपनी स्पेशल ID दर्ज करें (सिर्फ पहली बार):</label>
+            <input type="text" id="candidateInputId" placeholder="उदा. EMP001">
+        </div>
+        <button class="action-btn" onclick="saveCandidateIdLocally()">ID सेव करें</button>
+    </div>
+
+    <div id="candidateActionArea" style="display: none;">
+        <p>सहेजी गई ID: <strong id="displaySavedId" style="color:blue;"></strong></p>
+        <button class="action-btn" onclick="markAttendance()">आज की अटेंडेंस दर्ज करें (Mark Attendance)</button>
+        <button style="margin-top:10px; background:#e67e22;" class="action-btn" onclick="resetLocalId()">ID बदलें / रीसेट करें</button>
+    </div>
+    
+    <p id="candidateMsg" class="msg"></p>
+</div>
+
+<script>
+    const API_URL = "https://6555dd2084b36e3a431e83be.mockapi.io/att";
+
+    window.onload = function() {
+        checkStoredCandidateId();
+    }
+
+    function checkStoredCandidateId() {
+        const savedId = localStorage.getItem('my_candidate_id');
+        if(savedId) {
+            document.getElementById('candidateInputArea').style.display = 'none';
+            document.getElementById('candidateActionArea').style.display = 'block';
+            document.getElementById('displaySavedId').innerText = savedId;
+        } else {
+            document.getElementById('candidateInputArea').style.display = 'block';
+            document.getElementById('candidateActionArea').style.display = 'none';
+        }
+    }
+
+    function saveCandidateIdLocally() {
+        const inputId = document.getElementById('candidateInputId').value.trim();
+        if(!inputId) {
+            alert("कृपया अपनी ID दर्ज करें।");
+            return;
+        }
+        localStorage.setItem('my_candidate_id', inputId);
+        alert("ID आपके फोन में सफलतापूर्वक सेव हो गई है!");
+        checkStoredCandidateId();
+    }
+
+    function resetLocalId() {
+        if(confirm("क्या आप अपनी ID बदलना चाहते हैं?")) {
+            localStorage.removeItem('my_candidate_id');
+            checkStoredCandidateId();
+        }
+    }
+
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        function toRad(x) { return x * Math.PI / 180; }
+        const R = 6371e3;
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+    }
+
+    function markAttendance() {
+        const myId = localStorage.getItem('my_candidate_id');
+        const msgElem = document.getElementById('candidateMsg');
+
+        // मैनेजर द्वारा सेट की गई लोकेशन मैनेजर के लोकल स्टोरेज या शेयर की गई वैल्यू से ली जाएगी
+        // चूँकि दोनों अलग फाइलें हैं, मैनेजर लोकेशन localStorage के जरिए शेयर हो सकती है यदि दोनों एक ही डोमेन पर हैं,
+        // या आप यहाँ सीधे हार्डकोडेड या शेयर कर सकते हैं।
+        let mLoc = localStorage.getItem('manager_location');
+        if(!mLoc) {
+            msgElem.style.color = 'red';
+            msgElem.innerText = "मैनेजर द्वारा अभी तक ऑफिस लोकेशन सेट नहीं की गई है।";
+            return;
+        }
+
+        if (!navigator.geolocation) {
+            msgElem.style.color = 'red';
+            msgElem.innerText = "जियोलोकेशन समर्थित नहीं है।";
+            return;
+        }
+
+        msgElem.style.color = 'blue';
+        msgElem.innerText = "लोकेशन जांची जा रही है (100 मीटर दायरा)...";
+
+        navigator.geolocation.getCurrentPosition(position => {
+            const userLat = position.coords.latitude;
+            const userLon = position.coords.longitude;
+
+            const [mLat, mLon] = mLoc.split(',').map(Number);
+            const distance = calculateDistance(userLat, userLon, mLat, mLon);
+
+            if(distance > 100) {
+                msgElem.style.color = 'red';
+                msgElem.innerText = `अटेंडेंस असफल! आप ऑफिस से ${Math.round(distance)} मीटर दूर हैं (सीमा 100 मीटर है)।`;
+                return;
+            }
+
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const timeDecimal = hours + minutes / 60;
+            const currentDate = now.toISOString().split('T')[0];
+
+            let status = "P";
+            if (timeDecimal > 12.0) {
+                status = "A";
+            }
+
+            let candidates = JSON.parse(localStorage.getItem('saved_candidates_list')) || [];
+            let foundCand = candidates.find(c => c.id === myId);
+            let candName = foundCand ? foundCand.name : myId;
+
+            const payload = {
+                name: candName,
+                id2: myId,
+                loc: `${userLat.toFixed(4)}, ${userLon.toFixed(4)}`,
+                date: currentDate,
+                status: status,
+                time: now.toLocaleTimeString()
+            };
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                msgElem.style.color = 'green';
+                msgElem.innerText = "सफलतापूर्वक अटेंडेंस दर्ज हो गई!";
+            })
+            .catch(err => {
+                msgElem.style.color = 'red';
+                msgElem.innerText = "सर्वर त्रुटि: अटेंडेंस सेव नहीं हो सकी।";
+            });
+
+        }, () => {
+            msgElem.style.color = 'red';
+            msgElem.innerText = "GPS लोकेशन प्राप्त करने में असमर्थ। कृपया परमिशन दें।";
+        });
+    }
+</script>
+
+</body>
+  </html>
+  
